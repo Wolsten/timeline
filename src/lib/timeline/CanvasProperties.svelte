@@ -38,7 +38,7 @@
 -------------------------------------------------------------------------------->
 
 {#if options.selectedPoint !== false}
-    <div class="properties" transition:slide>
+    <div class="properties" transition:slide={{ duration: 1000 }}>
         <h3>Data series: {options.selectedPoint.name}</h3>
 
         <div class="table">

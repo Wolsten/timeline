@@ -50,37 +50,42 @@
 
   /* Custom colour variables */
 
+  --colour-yellow: rgb(255, 243, 76);
+
   --colour-background: white;
 
-  --colour-font: var(--material-700-blue-grey);
+  --colour-font: var(--material-600-blue-grey);
   --colour-font-faint: var(--material-400-blue-grey);
-  --colour-font-titles: var(--material-700-blue-grey);
+  --colour-font-titles: var(--material-700-red);
 
-  /* --colour-link: var(--material-200-blue-grey); */
-  --colour-link: var(--material-700-red);
-  /* --colour-link-hover: var(--material-300-blue-grey); */
-  --colour-link-hover: var(--material-500-red);
+  --colour-link: var(--material-800-red);
+  --colour-link-hover: var(--material-400-red);
 
-  /* --colour-menu : var(--material-600-blue-grey);
-       --colour-menu-hover : var(--material-500-blue-grey); */
+  --colour-menu: var(--material-700-blue-grey);
+  --colour-menu-active: var(--material-500-blue-grey);
+  --colour-menu-hover: var(--material-100-blue-grey);
 
-  --colour-menu: var(--material-700-red);
-  --colour-menu-hover: var(--material-700-red);
-
-  --colour-post-title-hover: white;
+  --colour-post: white;
+  --colour-post-hover: var(--material-500-yellow);
 
   --colour-box-shadow: var(--material-200-blue-grey);
 
-  --colour-chart-background: var(--material-50-grey);
+  --colour-chart-background: white;
+  --colour-chart-border: var(--material-50-blue-grey);
+
+  /* var(--material-100-grey); */
+  --colour-lines: var(--material-400-blue-grey);
   --colour-faint-lines: var(--material-200-blue-grey);
+  --colour-legend-active: var(--material-400-blue-grey);
   --colour-legend-highlight: var(--material-200-blue-grey);
 
   --colour-input-border: var(--material-200-blue-grey);
   --colour-toggle: var(--material-500-blue-grey);
   --colour-toggle-hover: var(--material-300-blue-grey);
-  /* --colour-toggle-hover-font: var(--material-500-amber); */
+
   --colour-toggle-hover-font: white;
   --colour-range-slider-fill: var(--material-100-grey);
+  --colour-search-reset-hover: var(--material-500-red);
 
 
   /* Other custom variables */

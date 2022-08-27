@@ -235,6 +235,7 @@
         series={dataset.series.length > 1}
         categorised={options.categorise}
         grouped={options.totalise}
+        filter={options.filter}
         title={options.title || dataset.name}
     />
 

@@ -3,6 +3,7 @@
     export let series
     export let categorised
     export let grouped
+    export let filter
 
     function setComments(g, c) {
         let comments = ""
@@ -13,6 +14,9 @@
         } else {
             comments = "individually coloured series"
         }
+        if (filter) {
+            comments = comments + ", highlighting " + filter
+        }
         return comments
     }
 </script>
@@ -21,7 +25,9 @@
     <h3>
         {title}
         {#if series}
-            <span class="subtitle">{setComments(grouped, categorised)}</span>
+            <span class="subtitle"
+                >{setComments(grouped, categorised, filter)}</span
+            >
         {/if}
     </h3>
 </figCaption>
