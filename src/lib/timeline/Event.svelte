@@ -16,7 +16,7 @@
     function rectColour(filter) {
         // console.log("rectColour filter", "\nevent", filter, event)
         // debugger
-        console.log("event", event, `filter=[${filter}]`)
+        // console.log("event", event, `filter=[${filter}]`)
         if (filter !== undefined && filter !== "") {
             console.log(`matched`)
             if (filter == event.subCategory) {

@@ -1,35 +1,27 @@
 <script>
     export let title
-    export let multiSeries
+    export let series
     export let categorised
     export let grouped
 
-    let subTitle = ""
-
-    $: if (multiSeries) {
-        let comments = []
-        if (grouped) {
-            comments.push("grouped by category")
+    function setComments(g, c) {
+        let comments = ""
+        if (g && c) {
+            comments = "series grouped and coloured by category"
+        } else if (c) {
+            comments = "individual series, coloured by category"
         } else {
-            comments.push("all types")
+            comments = "individually coloured series"
         }
-        if (categorised) {
-            comments.push("coloured by category")
-        } else {
-            comments.push("coloured by series")
-        }
-        if (comments.length > 0) {
-            subTitle = `(${comments.join(", ")})`
-        }
+        return comments
     }
 </script>
 
 <figCaption>
     <h3>
         {title}
-
-        {#if subTitle}
-            <span class="subtitle">{subTitle}</span>
+        {#if series}
+            <span class="subtitle">{setComments(grouped, categorised)}</span>
         {/if}
     </h3>
 </figCaption>

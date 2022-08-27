@@ -78,12 +78,8 @@
 
 <div id="placeholder">
     {#if ready}
-        {#each timelines as timeline, index}
-            <svelte:component
-                this={Timeline}
-                data={data[index]}
-                settings={settings[index]}
-            />
+        {#each data as d, i}
+            <svelte:component this={Timeline} data={d} settings={settings[i]} />
         {/each}
     {/if}
 </div>

@@ -177,7 +177,7 @@ const initSettings = function (xUnit, userSettings, start, end, subCats) {
 		filter: '',
 		title: '',
 		sort: 'x',
-		subCats: subCats,
+		subCats: subCats
 	}
 
 	// Apply default settings where required
@@ -818,7 +818,7 @@ const scaleXAxis = function (xUnit, xAxis, drawingWidth, optionsXRange) {
 	newAxis.majorLast = newAxis.labels[newAxis.labels.length - 1]
 	newAxis.majorRange = newAxis.majorLast - newAxis.majorFirst
 
-	console.table(newAxis)
+	// console.table(newAxis)
 
 	return newAxis
 }

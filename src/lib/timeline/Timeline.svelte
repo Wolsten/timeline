@@ -232,7 +232,7 @@
     on:click|stopPropagation={handleClick}
 >
     <Caption
-        multiSeries={options.series.length > 1}
+        series={dataset.series.length > 1}
         categorised={options.categorise}
         grouped={options.totalise}
         title={options.title || dataset.name}
