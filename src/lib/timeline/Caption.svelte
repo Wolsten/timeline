@@ -26,7 +26,7 @@
         {title}
         {#if series}
             <span class="subtitle"
-                >{setComments(grouped, categorised, filter)}</span
+                >({setComments(grouped, categorised, filter)})</span
             >
         {/if}
     </h3>
@@ -44,12 +44,14 @@
     h3 {
         padding: 0;
         margin: 0;
+        color: var(--colour-font-titles);
     }
 
     span.subtitle {
         display: block;
         padding: 0;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: normal;
+        color: var(--colour-font);
     }
 </style>

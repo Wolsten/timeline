@@ -220,7 +220,7 @@
             )
 
             if (point) {
-                console.warn("point", point)
+                // console.warn("point", point)
                 const value = Utils.formatNumber(point.value)
                 const left =
                     viewportWidth - point.x > 120 ? point.x + 5 : point.x - 120

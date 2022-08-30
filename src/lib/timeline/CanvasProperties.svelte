@@ -38,8 +38,19 @@
 -------------------------------------------------------------------------------->
 
 {#if options.selectedPoint !== false}
-    <div class="properties" transition:slide={{ duration: 1000 }}>
-        <h3>Data series: {options.selectedPoint.name}</h3>
+    <div
+        class="properties"
+        transition:slide={{ duration: 500 }}
+        style="margin-left:{-Utils.CANVAS_PADDING_LEFT}px; 
+               margin-right:{-Utils.CANVAS_PADDING_RIGHT}px;
+               padding-left:{Utils.CANVAS_PADDING_LEFT}px; 
+               padding-right:{Utils.CANVAS_PADDING_RIGHT}px;"
+    >
+        <h3>
+            Selected series: <span class="subtitle"
+                >{options.selectedPoint.name}</span
+            >
+        </h3>
 
         <div class="table">
             <header>
@@ -78,10 +89,16 @@
     .properties {
         font-size: 0.9rem;
         line-height: 1.2rem;
+        padding: 1rem;
+        background-color: var(--colour-range-slider-fill);
     }
 
     h3 {
         font-size: 1rem;
+    }
+
+    .subtitle {
+        color: var(--colour-font);
     }
 
     h4 {
@@ -102,12 +119,15 @@
     .table header {
         padding: 0.3rem 0.5rem;
         font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .table .body {
         display: flex;
         overflow-x: scroll;
-        padding-bottom: 1rem;
+        /* align-items: stretch; */
     }
 
     .x {
@@ -115,6 +135,9 @@
     }
 
     .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         border-radius: 0.5rem;
         padding: 0.3rem 0.5rem;
         text-align: right;

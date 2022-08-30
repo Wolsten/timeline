@@ -53,7 +53,7 @@
             console.log(slug, dataSettings)
 
             // Grab the data
-            fetch(`/data/${slug}.json`)
+            fetch(slug)
                 .then((response) => {
                     return response.json()
                 })
@@ -75,6 +75,8 @@
         handleResize()
     })
 </script>
+
+<svelte:window on:resize={handleResize} />
 
 <div id="placeholder">
     {#if ready}

@@ -1,5 +1,6 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -23,6 +24,8 @@
   --material-400-blue-grey: rgb(120, 144, 156);
   --material-600-blue-grey: rgb(84, 110, 122);
   --material-700-blue-grey: rgb(69, 90, 100);
+  --material-800-blue-grey: rgb(55, 71, 79);
+  --material-900-blue-grey: rgb(38, 50, 56);
 
   --material-50-red: rgb(255, 235, 238);
   --material-100-red: rgb(255, 205, 210);
@@ -54,8 +57,8 @@
 
   --colour-background: white;
 
-  --colour-font: var(--material-600-blue-grey);
-  --colour-font-faint: var(--material-400-blue-grey);
+  --colour-font: var(--material-800-blue-grey);
+  --colour-font-faint: var(--material-600-blue-grey);
   --colour-font-titles: var(--material-700-red);
 
   --colour-link: var(--material-800-red);
@@ -97,6 +100,8 @@
 
   --size-input-border-radius: 0.4rem;
   --size-input-padding: 0.3rem 0.6rem;
+
+  color: var(--colour-font);
 }
 
 * {
@@ -113,11 +118,11 @@ a:hover {
   color: #535bf2;
 }
 
-body {
+/* body {
   color: var(--colour-font);
   margin: 0;
   padding: 1rem;
-}
+} */
 
 
 @media (max-width:599px) {

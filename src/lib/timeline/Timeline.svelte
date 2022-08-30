@@ -320,7 +320,7 @@
         padding: 0;
     }
 
-    .clickable {
+    /* .clickable {
         cursor: zoom-out;
-    }
+    } */
 </style>
