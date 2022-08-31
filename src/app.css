@@ -104,6 +104,13 @@
   color: var(--colour-font);
 }
 
+time-line {
+  display: block;
+  width: 100%;
+  flex-grow: 0;
+}
+
+
 * {
   box-sizing: border-box;
 }
@@ -123,6 +130,8 @@ a:hover {
   margin: 0;
   padding: 1rem;
 } */
+
+
 
 
 @media (max-width:599px) {

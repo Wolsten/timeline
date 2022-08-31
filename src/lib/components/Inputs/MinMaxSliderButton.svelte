@@ -1,7 +1,8 @@
 <script>
-    import { touch, windowWidth } from "../../stores"
+    import { touch } from "../../stores"
     import { createEventDispatcher } from "svelte"
 
+    export let drawingWidth
     export let value
     export let min
     export let max
@@ -10,22 +11,14 @@
 
     const dispatch = createEventDispatcher()
 
-    let width
     let holder
     let xOffset = 0
     let dragging = false
-    let interval = 0
+    let interval = parseInt(drawingWidth / labels.length)
     let newValue = value
     let label = ""
 
-    // Get the width of the slider container - this elements parent
-    // and the size of the scrolling interval
-    $: if ($windowWidth && holder && holder.parentNode) {
-        width = holder.parentNode.offsetWidth
-        // console.error('offset width of parent node', width)
-        interval = parseInt(width / labels.length)
-        // console.log('width',width,'interval',interval)
-    }
+    // console.log("interval", interval)
 
     // Update new value when the value changes
     $: if (value != -1) {

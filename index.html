@@ -9,17 +9,38 @@
 
 <body>
 
+
+
   <h1>Timeline Test</h1>
 
-  <h2>My first timeline</h2>
-  <p>Just some text to read.</p>
-  <time-line data-slug="/data/deaths-from-natural-disasters.json" data-settings=""></time-line>
+  <style>
+    #main-c {
+      display: flex;
+      column-gap: 2rem;
+    }
+  </style>
 
-  <!-- <h2>My second timeline</h2>
-  <time-line data-slug="history-of-taiwan" data-settings="title=my funny title"></time-line> -->
+  <main id="main-c">
 
-  <!-- <h2>My third timeline</h2>
-  <time-line data-slug="history-of-ukraine" data-settings="readonly=true"></time-line> -->
+    <div>
+
+      <h2>My first timeline</h2>
+      <time-line data-slug="/data/deaths-from-natural-disasters.json" data-settings=""></time-line>
+      <!-- 
+      <h2>My second timeline</h2>
+      <time-line data-slug="/data/history-of-taiwan.json" data-settings="title=my funny title"></time-line> -->
+
+      <!-- <h2>My third timeline</h2>
+      <time-line data-slug="/data/history-of-ukraine.json" data-settings="readonly=true"></time-line> -->
+    </div>
+
+    <aside>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate enim consequatur placeat magni repellendus
+      deserunt molestias neque ab deleniti pariatur, iste accusamus saepe a quaerat sit ullam. Voluptatem, iste qui.
+    </aside>
+
+  </main>
+
 
   <!-- <div id="app"></div> -->
   <script type="module" src="/src/main.js"></script>

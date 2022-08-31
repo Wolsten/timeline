@@ -18,7 +18,7 @@
         // debugger
         // console.log("event", event, `filter=[${filter}]`)
         if (filter !== undefined && filter !== "") {
-            console.log(`matched`)
+            // console.log(`matched`)
             if (filter == event.subCategory) {
                 return event.colour
             }
@@ -39,7 +39,7 @@
     function handleClick() {
         let clickMs = Date.now()
 
-        console.log("Handling click")
+        // console.log("Handling click")
 
         // console.log('event handling click to select',event)
         if (
@@ -51,18 +51,18 @@
             setTimeout(handleDeferredClick, 500)
         } else {
             // Check for double click in analysis mode
-            console.log(
-                clickMs,
-                lastClickedMs,
-                clickMs - lastClickedMs,
-                options.selectedEvent
-            )
+            // console.log(
+            //     clickMs,
+            //     lastClickedMs,
+            //     clickMs - lastClickedMs,
+            //     options.selectedEvent
+            // )
             if (
                 options.readonly === false &&
                 lastClickedMs &&
                 clickMs - lastClickedMs < 500
             ) {
-                console.log("Double clicked true")
+                // console.log("Double clicked true")
                 options.zoomIn()
             } else {
                 options.selectedEvent = false

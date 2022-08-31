@@ -2,6 +2,7 @@
     import { touch } from "../../stores"
     import MinMaxSliderButton from "./MinMaxSliderButton.svelte"
 
+    export let drawingWidth
     export let labels
     export let minValue
     export let maxValue
@@ -13,6 +14,7 @@
 
 <div class="date-range" class:touch={$touch}>
     <MinMaxSliderButton
+        {drawingWidth}
         value={minValue}
         {labels}
         min={0}
@@ -21,6 +23,7 @@
         on:rangeChanged
     />
     <MinMaxSliderButton
+        {drawingWidth}
         value={maxValue}
         {labels}
         min={minValue + 1}

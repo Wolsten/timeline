@@ -6,6 +6,9 @@
     import Utils from "../Utils.js"
 
     export let options
+    export let viewportWidth
+
+    // $: console.error("CanvasProperties: viewportWidth", viewportWidth)
 
     const dispatch = createEventDispatcher()
 
@@ -41,7 +44,8 @@
     <div
         class="properties"
         transition:slide={{ duration: 500 }}
-        style="margin-left:{-Utils.CANVAS_PADDING_LEFT}px; 
+        style="max-width:{viewportWidth}px;
+               margin-left:{-Utils.CANVAS_PADDING_LEFT}px; 
                margin-right:{-Utils.CANVAS_PADDING_RIGHT}px;
                padding-left:{Utils.CANVAS_PADDING_LEFT}px; 
                padding-right:{Utils.CANVAS_PADDING_RIGHT}px;"
@@ -91,6 +95,8 @@
         line-height: 1.2rem;
         padding: 1rem;
         background-color: var(--colour-range-slider-fill);
+        /* width: 100%; */
+        /* max-width: 200px; */
     }
 
     h3 {
@@ -119,6 +125,7 @@
     .table header {
         padding: 0.3rem 0.5rem;
         font-weight: bold;
+        display: block;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

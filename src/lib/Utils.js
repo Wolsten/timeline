@@ -150,7 +150,7 @@ const initXAxis = function (start, end) {
 		majorLast: e,
 		majorRange: e - s,
 	}
-	console.log('initAxis: axis', axis)
+	// console.log('initAxis: axis', axis)
 	return axis
 }
 
@@ -259,7 +259,7 @@ const initSettings = function (xUnit, userSettings, start, end, subCats) {
 		range: e - s
 	}
 
-	console.log('initSettings', settings)
+	// console.log('initSettings', settings)
 
 	return settings
 }

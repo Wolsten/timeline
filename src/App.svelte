@@ -12,18 +12,18 @@
     let data = []
     let settings = []
 
-    function handleResize() {
+    const handleResize = Utils.debounce(() => {
         $windowWidth = window.innerWidth
         $desktop = $windowWidth >= Utils.NAV_BREAK
         $mobile = !$desktop
-    }
+    }, 500)
 
     function reparentTimelines(timelines) {
         const inserted = document.querySelectorAll("#placeholder .timeline")
-        console.log("checking if all inserted")
+        // console.log("checking if all inserted")
         if (inserted.length === timelines.length) {
             // move them
-            console.log("all inserted")
+            // console.log("all inserted")
             inserted.forEach((insert, index) => {
                 timelines[index].appendChild(insert)
             })
@@ -41,7 +41,7 @@
     onMount(() => {
         // find all timelines in the page
         timelines = document.querySelectorAll("time-line")
-        console.log(timelines)
+        // console.log(timelines)
         // Process each one
         timelines.forEach((timeline) => {
             // Get custom data
@@ -50,7 +50,7 @@
                 timeline.getAttribute("data-settings") !== null
                     ? timeline.getAttribute("data-settings")
                     : ""
-            console.log(slug, dataSettings)
+            // console.log(slug, dataSettings)
 
             // Grab the data
             fetch(slug)
@@ -58,7 +58,7 @@
                     return response.json()
                 })
                 .then((json) => {
-                    console.log("data", json)
+                    // console.log("data", json)
                     data = [...data, json]
                     settings = [...settings, dataSettings]
                     ready = timelines.length === data.length

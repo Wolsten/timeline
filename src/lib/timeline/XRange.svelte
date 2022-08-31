@@ -5,6 +5,7 @@
     import MinMaxRangeSlider from "../components/inputs/MinMaxRangeSlider.svelte"
     import Utils from "../Utils.js"
 
+    export let drawingWidth
     export let xAxis
     export let options
 
@@ -56,7 +57,7 @@
     }
 
     function handleRange(event) {
-        console.warn("Handling date range changed by child", event.detail)
+        // console.warn("Handling date range changed by child", event.detail)
 
         if (event.detail.type == "min") {
             // console.log('new start value', event.detail.value )
@@ -71,7 +72,7 @@
             end = options.xRange.end
             maxValue = event.detail.value
         }
-        console.log("XRange: handleRange", options.xRange)
+        // console.log("XRange: handleRange", options.xRange)
         dispatch("optionsChanged", { name: "xRange", data: options.xRange })
     }
 </script>
@@ -81,6 +82,7 @@
 	       padding-right:{Utils.CANVAS_PADDING_RIGHT}px;"
 >
     <MinMaxRangeSlider
+        {drawingWidth}
         labels={fullAxis.labels}
         {minValue}
         {maxValue}

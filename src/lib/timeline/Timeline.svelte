@@ -23,7 +23,7 @@
     // of this component
     const dataset = JSON.parse(JSON.stringify(Utils.processDataset(data)))
 
-    console.error("Timeline dataset", dataset)
+    // console.error("Timeline dataset", dataset)
 
     const options = {
         ...Utils.initSettings(
@@ -39,7 +39,7 @@
         series: [],
     }
 
-    console.warn("options", options)
+    // console.warn("options", options)
 
     let viewport
     let viewportWidth = 0
@@ -58,12 +58,23 @@
         const generalTouchEnabled =
             "ontouchstart" in document.createElement("div")
         $touch = msTouchEnabled || generalTouchEnabled
+
+        // setTimeout(() => {
+        //     console.log("delayed scaling")
+        //     scaleX()
+        // }, 100)
+
+        // scaleX()
     })
 
     //
     // Reactive stuff
     //
 
+    $: if (viewport) {
+        console.log("got viewport", viewport.clientWidth)
+        scaleX()
+    }
     $: if ($windowWidth) handleResize()
 
     //
@@ -133,12 +144,31 @@
         }
     }
 
-    const handleResize = Utils.debounce(() => {
-        // console.log('Handling resize')
-        if (viewport && viewport.clientWidth != viewportWidth) {
-            // viewportWidth = viewport.clientWidth;
+    // const handleResize = Utils.debounce(() => {
+    //     // console.log('Handling resize')
+    //     if (viewport && viewport.clientWidth != viewportWidth) {
+    //         scaleX()
+    //         // Non-intuitive behaviour on touch devices
+    //         if ($touch == false) {
+    //             if (options.selectedEvent) {
+    //                 setTimeout(scrollToSelected, 500)
+    //             }
+    //         }
+    //     }
+    // }, 500)
+
+    function handleResize() {
+        // console.log(
+        //     "Handling resize with viewport",
+        //     viewport,
+        //     viewport?.clientWidth,
+        //     viewportWidth
+        // )
+
+        if (viewport === undefined) return
+
+        if (viewport.clientWidth != viewportWidth) {
             scaleX()
-            // console.warn('Set new viewport width', viewportWidth)
             // Non-intuitive behaviour on touch devices
             if ($touch == false) {
                 if (options.selectedEvent) {
@@ -146,24 +176,33 @@
                 }
             }
         }
-    }, 500)
+    }
 
     function scaleX() {
         // Viewport is the main drawing area which includes non-drawing
         // areas in the x-axis which are the left and right padding, though
         // the viewport itself is NOT padded using CSS
+
         viewportWidth = viewport.clientWidth
-        // console.error('scaleX: viewPortWidth', viewportWidth);
+        if (viewportWidth === 0)
+            viewportWidth =
+                400 + Utils.CANVAS_PADDING_LEFT + Utils.CANVAS_PADDING_RIGHT
+
+        // console.error("scaleX: viewportWidth", viewportWidth)
+        // console.error(
+        //     "scaleX: viewport Parent Width",
+        //     viewport.parentNode.clientWidth
+        // )
         // Take off padding to get the drawing width
         drawingWidth =
             viewportWidth -
             Utils.CANVAS_PADDING_LEFT -
             Utils.CANVAS_PADDING_RIGHT
-        // console.log('scaleX: drawingWidth', drawingWidth);
+        // console.log("scaleX: drawingWidth", drawingWidth)
         // console.log('scaleX: range', options.xRange.range);
         // scale in pixels/x-unit
         scale = drawingWidth / options.xRange.range
-        // console.log('scaleX: scale (pixels/x unit)', scale);
+        // console.log("scaleX: scale (pixels/x unit)", scale)
 
         // @todo
         // Use the options xRange - straight numbers (of years for dates)
@@ -205,7 +244,7 @@
             drawingWidth,
             options.xRange
         )
-        console.log("dataset.xAxis", dataset.xAxis)
+        // console.log("dataset.xAxis", dataset.xAxis)
     }
 
     function scrollToSelected() {
@@ -278,8 +317,9 @@
         {/if}
     </div>
 
-    {#if scale !== 0 && options.readonly === false}
+    {#if drawingWidth != 0 && scale !== 0 && options.readonly === false}
         <XRange
+            {drawingWidth}
             xAxis={dataset.xAxis}
             {options}
             on:optionsChanged={handleOptions}
@@ -298,7 +338,11 @@
         on:optionsChanged={handleOptions}
     />
 
-    <CanvasProperties {options} on:optionsChanged={handleOptions} />
+    <CanvasProperties
+        {options}
+        {viewportWidth}
+        on:optionsChanged={handleOptions}
+    />
 </figure>
 
 <style>
@@ -307,6 +351,7 @@
         margin: 0;
         padding: 1rem;
         width: 100%;
+        min-width: 400px;
         background: var(--colour-chart-background);
         border: 1px solid var(--colour-chart-border);
         overflow: hidden;
