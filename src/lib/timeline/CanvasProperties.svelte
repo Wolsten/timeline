@@ -94,7 +94,7 @@
         font-size: 0.9rem;
         line-height: 1.2rem;
         padding: 1rem;
-        background-color: var(--colour-range-slider-fill);
+        background-color: var(--tl-colour-range-slider-fill);
         /* width: 100%; */
         /* max-width: 200px; */
     }
@@ -104,7 +104,7 @@
     }
 
     .subtitle {
-        color: var(--colour-font);
+        color: var(--tl-colour-font);
     }
 
     h4 {
@@ -151,14 +151,14 @@
     }
 
     .col:not(.active):hover {
-        background-color: var(--colour-legend-highlight);
-        color: var(--colour-background);
+        background-color: var(--tl-colour-legend-highlight);
+        color: var(--tl-colour-background);
         cursor: pointer;
     }
 
     .col.active {
-        background-color: var(--colour-legend-active);
-        color: var(--colour-background);
+        background-color: var(--tl-colour-legend-active);
+        color: var(--tl-colour-background);
         cursor: default;
         font-weight: bold;
     }

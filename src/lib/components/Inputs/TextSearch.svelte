@@ -41,7 +41,7 @@
 
     input {
         padding: var(--size-input-padding);
-        border: 1px solid var(--colour-input-border);
+        border: 1px solid var(--tl-colour-input-border);
         border-radius: var(--size-input-border-radius);
         /* font-size: 1rem; */
         width: 100%;
@@ -55,7 +55,7 @@
 
         width: 1.2rem;
         height: 1.2rem;
-        color: var(--colour-font-faint);
+        color: var(--tl-colour-font-faint);
 
         text-align: center;
         margin: 0;
@@ -66,11 +66,11 @@
     }
 
     div.reset:not([disabled="true"]) {
-        color: var(--colour-font);
+        color: var(--tl-colour-font);
     }
 
     div.reset:not([disabled="true"]):hover {
         cursor: pointer;
-        color: var(--colour-search-reset-hover);
+        color: var(--tl-colour-search-reset-hover);
     }
 </style>

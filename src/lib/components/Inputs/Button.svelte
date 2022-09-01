@@ -1,30 +1,28 @@
 <script>
-
-    import { createEventDispatcher } from 'svelte'
+    import { createEventDispatcher } from "svelte"
 
     const dispatch = createEventDispatcher()
 
-    export let label = ''
+    export let label = ""
     export let disabled = false
-
-
 </script>
 
-
-<button type="button" {disabled} on:click|stopPropagation={()=>dispatch('clicked')}>
+<button
+    type="button"
+    {disabled}
+    on:click|stopPropagation={() => dispatch("clicked")}
+>
     {label}
 </button>
 
-
 <style>
-    
     button {
-        background: var(--colour-background);
-        border:1px solid var(--colour-input-border);
-        border-radius:var(--size-input-border-radius);
-        padding:var(--size-input-padding);
-        color:var(--colour-font);
-        margin:0;
+        background: var(--tl-colour-background);
+        border: 1px solid var(--tl-colour-input-border);
+        border-radius: var(--size-input-border-radius);
+        padding: var(--size-input-padding);
+        color: var(--tl-colour-font);
+        margin: 0;
         cursor: default;
     }
 
@@ -33,9 +31,8 @@
     }
 
     button:not(:disabled):hover {
-        background: var(--colour-toggle-hover);
-        color:white;
+        background: var(--tl-colour-toggle-hover);
+        color: white;
         cursor: pointer;
     }
-
 </style>

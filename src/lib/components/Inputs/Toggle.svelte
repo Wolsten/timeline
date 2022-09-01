@@ -69,8 +69,8 @@
         display: inline-block;
         margin: 0;
         padding: var(--size-input-padding);
-        border: 1px solid var(--colour-faint-lines);
-        color: var(--colour-font);
+        border: 1px solid var(--tl-colour-faint-lines);
+        color: var(--tl-colour-font);
         cursor: pointer;
         /* text-transform: uppercase; */
         /* font-size: 0.7rem; */
@@ -88,13 +88,13 @@
     }
 
     .active {
-        background: var(--colour-toggle);
+        background: var(--tl-colour-toggle);
         color: white;
     }
 
     .holder:not(.disabled) span:not(.active):hover {
-        background: var(--colour-toggle-hover);
-        color: var(--colour-toggle-hover-font);
+        background: var(--tl-colour-toggle-hover);
+        color: var(--tl-colour-toggle-hover-font);
     }
 
     .holder.disabled span {

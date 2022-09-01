@@ -87,7 +87,7 @@
     }
 
     .svg-major-label {
-        fill: var(--colour-font);
+        fill: var(--tl-colour-font);
         font-size: 0.8rem;
     }
 

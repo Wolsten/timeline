@@ -9,15 +9,15 @@ const DATE_BEFORE = -1
 // https://materialui.co/colors
 // 500 unless otherwise stated
 const COLOUR_SET = [
-	'var(--material-600-red)',
-	'var(--material-400-indigo)',
-	'var(--material-500-teal)',
-	'var(--material-600-light-green)',
-	'var(--material-500-amber)',
-	'var(--material-300-brown)',
-	'var(--material-500-blue-grey)',
-	'var(--material-700-cyan)',
-	'var(--material-700-orange)'
+	'var(--tl-material-600-red)',
+	'var(--tl-material-400-indigo)',
+	'var(--tl-material-500-teal)',
+	'var(--tl-material-600-light-green)',
+	'var(--tl-material-500-amber)',
+	'var(--tl-material-300-brown)',
+	'var(--tl-material-500-blue-grey)',
+	'var(--tl-material-700-cyan)',
+	'var(--tl-material-700-orange)'
 ]
 
 
@@ -184,6 +184,7 @@ const initSettings = function (xUnit, userSettings, start, end, subCats) {
 	// Note that only non-defaults should be set in user settings
 	if (userSettings !== '') {
 		const pairs = userSettings.split(',')
+		console.log('pairs', pairs)
 		pairs.forEach(pair => {
 			// debugger
 			const parts = pair.split('=')
@@ -198,7 +199,10 @@ const initSettings = function (xUnit, userSettings, start, end, subCats) {
 						if (value === 'true') settings.readonly = true
 						break;
 					case 'totalise':
-						if (value === 'true') settings.totalise = true
+						if (value === 'true') {
+							settings.totalise = true
+							settings.categorise = true
+						}
 						break;
 					case 'categorise':
 						if (value === 'true') settings.categorise = true
@@ -233,7 +237,7 @@ const initSettings = function (xUnit, userSettings, start, end, subCats) {
 						}
 						break;
 					case 'subCats':
-						const subCats = value.split(',')
+						const subCats = value.split('|')
 						if (subCats.length > 0) {
 							subCats.forEach(subCat => subCat.trim())
 							settings.subCats = subCats
@@ -896,7 +900,7 @@ const Utils = {
 	formatYear,
 	colour,
 	findNormalisedMin,
-	COLOUR_INACTIVE: 'var(--material-grey-400)',
+	COLOUR_INACTIVE: 'var(--tl-material-grey-400)',
 	MIN_BOX_WIDTH: 80,
 	CANVAS_MIN_HEIGHT: 300,
 	CANVAS_PADDING_LEFT: 20,  // 20

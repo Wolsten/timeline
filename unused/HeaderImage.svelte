@@ -65,15 +65,15 @@
         margin: 0;
         font-size: 0.8rem;
         line-height: 1.4rem;
-        color: var(--colour-font-faint);
+        color: var(--tl-colour-font-faint);
     }
 
     :global(a) {
-        color: var(--colour-link);
+        color: var(--tl-colour-link);
         text-decoration: none;
     }
 
     :global(a:hover) {
-        color: var(--colour-link-hover);
+        color: var(--tl-colour-link-hover);
     }
 </style>

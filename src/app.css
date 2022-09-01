@@ -13,87 +13,84 @@
 
   /* https://materialui.co/colors
        Saturation 500 */
-  --material-50-grey: #fafafa;
-  --material-100-grey: rgb(245, 245, 245);
+  --tl-material-50-grey: #fafafa;
+  --tl-material-100-grey: rgb(245, 245, 245);
 
-  --material-50-blue-grey: rgb(236, 239, 241);
-  --material-100-blue-grey: rgb(207, 216, 220);
-  --material-200-blue-grey: rgb(176, 190, 197);
-  --material-300-blue-grey: rgb(144, 164, 174);
-  --material-500-blue-grey: rgb(96, 125, 139);
-  --material-400-blue-grey: rgb(120, 144, 156);
-  --material-600-blue-grey: rgb(84, 110, 122);
-  --material-700-blue-grey: rgb(69, 90, 100);
-  --material-800-blue-grey: rgb(55, 71, 79);
-  --material-900-blue-grey: rgb(38, 50, 56);
+  --tl-material-50-blue-grey: rgb(236, 239, 241);
+  --tl-material-100-blue-grey: rgb(207, 216, 220);
+  --tl-material-200-blue-grey: rgb(176, 190, 197);
+  --tl-material-300-blue-grey: rgb(144, 164, 174);
+  --tl-material-500-blue-grey: rgb(96, 125, 139);
+  --tl-material-400-blue-grey: rgb(120, 144, 156);
+  --tl-material-600-blue-grey: rgb(84, 110, 122);
+  --tl-material-700-blue-grey: rgb(69, 90, 100);
+  --tl-material-800-blue-grey: rgb(55, 71, 79);
+  --tl-material-900-blue-grey: rgb(38, 50, 56);
 
-  --material-50-red: rgb(255, 235, 238);
-  --material-100-red: rgb(255, 205, 210);
-  --material-200-red: rgb(239, 154, 154);
+  --tl-material-50-red: rgb(255, 235, 238);
+  --tl-material-100-red: rgb(255, 205, 210);
+  --tl-material-200-red: rgb(239, 154, 154);
   /* Logo colour */
-  --material-300-red: rgb(229, 115, 115);
-  --material-400-red: rgb(239, 83, 80);
-  --material-500-red: rgb(244, 67, 54);
-  --material-600-red: rgb(229, 57, 53);
-  --material-700-red: rgb(211, 47, 47);
-  --material-800-red: rgb(198, 40, 40);
+  --tl-material-300-red: rgb(229, 115, 115);
+  --tl-material-400-red: rgb(239, 83, 80);
+  --tl-material-500-red: rgb(244, 67, 54);
+  --tl-material-600-red: rgb(229, 57, 53);
+  --tl-material-700-red: rgb(211, 47, 47);
+  --tl-material-800-red: rgb(198, 40, 40);
 
-  --material-400-indigo: rgb(92, 107, 192);
-  --material-500-teal: rgb(0, 150, 136);
-  --material-600-light-green: rgb(124, 179, 66);
-  --material-500-amber: rgb(255, 193, 7);
-  --material-300-brown: rgb(161, 136, 127);
-  --material-700-cyan: rgb(0, 151, 167);
-  --material-700-orange: rgb(245, 124, 0);
-  --material-500-yellow: rgb(255, 235, 59);
-  --material-grey-400: rgb(189, 189, 189);
-  --material-100-light-blue: rgb(179, 229, 252);
-  --material-400-light-blue: rgb(41, 182, 246);
-
+  --tl-material-400-indigo: rgb(92, 107, 192);
+  --tl-material-500-teal: rgb(0, 150, 136);
+  --tl-material-600-light-green: rgb(124, 179, 66);
+  --tl-material-500-amber: rgb(255, 193, 7);
+  --tl-material-300-brown: rgb(161, 136, 127);
+  --tl-material-700-cyan: rgb(0, 151, 167);
+  --tl-material-700-orange: rgb(245, 124, 0);
+  --tl-material-500-yellow: rgb(255, 235, 59);
+  --tl-material-grey-400: rgb(189, 189, 189);
+  --tl-material-100-light-blue: rgb(179, 229, 252);
+  --tl-material-400-light-blue: rgb(41, 182, 246);
 
   /* Custom colour variables */
 
-  --colour-yellow: rgb(255, 243, 76);
+  --tl-colour-background: white;
 
-  --colour-background: white;
+  --tl-colour-font: var(--tl-material-800-blue-grey);
+  --tl-colour-font-faint: var(--tl-material-300-blue-grey);
+  --tl-colour-font-titles: var(--tl-material-700-red);
 
-  --colour-font: var(--material-800-blue-grey);
-  --colour-font-faint: var(--material-300-blue-grey);
-  --colour-font-titles: var(--material-700-red);
+  --tl-colour-link: var(--tl-material-800-red);
+  --tl-colour-link-hover: var(--tl-material-400-red);
 
-  --colour-link: var(--material-800-red);
-  --colour-link-hover: var(--material-400-red);
+  --tl-colour-menu: var(--tl-material-700-blue-grey);
+  --tl-colour-menu-active: var(--tl-material-500-blue-grey);
+  --tl-colour-menu-hover: var(--tl-material-100-blue-grey);
 
-  --colour-menu: var(--material-700-blue-grey);
-  --colour-menu-active: var(--material-500-blue-grey);
-  --colour-menu-hover: var(--material-100-blue-grey);
+  --tl-colour-post: white;
+  --tl-colour-post-hover: var(--tl-material-500-yellow);
 
-  --colour-post: white;
-  --colour-post-hover: var(--material-500-yellow);
+  --tl-colour-box-shadow: var(--tl-material-200-blue-grey);
 
-  --colour-box-shadow: var(--material-200-blue-grey);
+  --tl-colour-chart-background: white;
+  --tl-colour-chart-border: var(--tl-material-50-blue-grey);
 
-  --colour-chart-background: white;
-  --colour-chart-border: var(--material-50-blue-grey);
+  /* var(--tl-material-100-grey); */
+  --tl-colour-lines: var(--tl-material-400-blue-grey);
+  --tl-colour-faint-lines: var(--tl-material-200-blue-grey);
+  --tl-colour-legend-active: var(--tl-material-400-blue-grey);
+  --tl-colour-legend-highlight: var(--tl-material-200-blue-grey);
 
-  /* var(--material-100-grey); */
-  --colour-lines: var(--material-400-blue-grey);
-  --colour-faint-lines: var(--material-200-blue-grey);
-  --colour-legend-active: var(--material-400-blue-grey);
-  --colour-legend-highlight: var(--material-200-blue-grey);
+  --tl-colour-input-border: var(--tl-material-200-blue-grey);
+  --tl-colour-toggle: var(--tl-material-500-blue-grey);
+  --tl-colour-toggle-hover: var(--tl-material-300-blue-grey);
 
-  --colour-input-border: var(--material-200-blue-grey);
-  --colour-toggle: var(--material-500-blue-grey);
-  --colour-toggle-hover: var(--material-300-blue-grey);
-
-  --colour-toggle-hover-font: white;
-  --colour-range-slider-fill: var(--material-100-grey);
-  --colour-search-reset-hover: var(--material-500-red);
+  --tl-colour-toggle-hover-font: white;
+  --tl-colour-range-slider-fill: var(--tl-material-100-grey);
+  --tl-colour-search-reset-hover: var(--tl-material-500-red);
 
 
   /* Other custom variables */
 
-  --opacity-faint: 0.4;
+  --tl-opacity-faint: 0.4;
 
   --size-post-height: 300px;
   --size-x-padding: 2%;
@@ -101,7 +98,7 @@
   --size-input-border-radius: 0.4rem;
   --size-input-padding: 0.4rem 0.6rem;
 
-  color: var(--colour-font);
+  color: var(--tl-colour-font);
 }
 
 time-line {
@@ -126,7 +123,7 @@ time-line a:hover {
 }
 
 /* body {
-  color: var(--colour-font);
+  color: var(--tl-colour-font);
   margin: 0;
   padding: 1rem;
 } */
@@ -144,7 +141,7 @@ time-line h1,
 time-line h2,
 time-line h3,
 time-line h4 {
-  color: var(--colour-font-titles);
+  color: var(--tl-colour-font-titles);
 
 }
 

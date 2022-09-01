@@ -56,7 +56,7 @@
         cursor: pointer;
     }
     rect:hover {
-        outline: 2px solid var(--colour-font-titles);
+        outline: 2px solid var(--tl-colour-font-titles);
     }
 
     .symbol-selected {

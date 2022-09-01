@@ -85,8 +85,8 @@
         text-decoration: none;
         text-transform: uppercase;
 
-        color: var(--colour-menu);
-        background-color: var(--colour-background);
+        color: var(--tl-colour-menu);
+        background-color: var(--tl-colour-background);
 
         padding: 0.6rem;
     }
@@ -96,33 +96,33 @@
     }
 
     a:hover {
-        background-color: var(--colour-menu-hover);
+        background-color: var(--tl-colour-menu-hover);
         /* color:white; */
     }
 
     a.active {
-        background-color: var(--colour-menu-active);
+        background-color: var(--tl-colour-menu-active);
         color: white;
         cursor: default;
     }
 
     /* nav.mobile a {
-        background-color: var(--colour-menu);
+        background-color: var(--tl-colour-menu);
         color:white;
     }
 
     nav.mobile a:hover {
-        background-color:var(--colour-menu-hover);
+        background-color:var(--tl-colour-menu-hover);
     }
 
     nav.mobile a.active {
-        color: var(--colour-menu);
-        background-color:var(--colour-background);
+        color: var(--tl-colour-menu);
+        background-color:var(--tl-colour-background);
     } */
 
     .menu-button {
-        border-top: 6px solid var(--colour-menu);
-        border-bottom: 6px solid var(--colour-menu);
+        border-top: 6px solid var(--tl-colour-menu);
+        border-bottom: 6px solid var(--tl-colour-menu);
         width: 32px;
         height: 32px;
         transition: all ease-in-out 300ms;
@@ -140,12 +140,12 @@
     .menu-button:before {
         content: "";
         top: 7px;
-        border-bottom: 6px solid var(--colour-menu);
+        border-bottom: 6px solid var(--tl-colour-menu);
     }
 
     .menu-button:hover,
     .menu-button:hover:before {
-        /* border-color:var(--colour-menu-hover); */
+        /* border-color:var(--tl-colour-menu-hover); */
         cursor: pointer;
     }
 
@@ -163,7 +163,7 @@
         flex-direction: column;
         justify-content: space-around;
 
-        background-color: var(--colour-menu);
+        background-color: var(--tl-colour-menu);
         z-index: 100;
         /* padding:1rem 0 1rem 0; */
         padding: 0rem;

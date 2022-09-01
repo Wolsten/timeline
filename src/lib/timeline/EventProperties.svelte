@@ -63,8 +63,8 @@
         width: 50%;
         max-height: 400px;
         padding: 0.5rem;
-        border: 1px solid var(--colour-box-shadow);
-        box-shadow: 0.2rem 0.2rem 0.3rem var(--colour-box-shadow);
+        border: 1px solid var(--tl-colour-box-shadow);
+        box-shadow: 0.2rem 0.2rem 0.3rem var(--tl-colour-box-shadow);
         z-index: 2;
         overflow-y: scroll;
     }

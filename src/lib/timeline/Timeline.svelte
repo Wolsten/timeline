@@ -42,7 +42,7 @@
         series: [],
     }
 
-    // console.warn("options", options)
+    console.warn("options", options)
 
     let viewport
     let drawingWidth = 0
@@ -256,7 +256,7 @@
     on:click|stopPropagation={handleClick}
 >
     <Caption
-        series={dataset.series.length > 1}
+        nSeries={dataset.series.length > 1}
         categorised={options.categorise}
         grouped={options.totalise}
         filter={options.filter}
@@ -336,8 +336,8 @@
         margin: 0;
         padding: 1rem 0.5rem 0 0.5rem;
         width: 100%;
-        background: var(--colour-chart-background);
-        border: 1px solid var(--colour-chart-border);
+        background: var(--tl-colour-chart-background);
+        border: 1px solid var(--tl-colour-chart-border);
         overflow: hidden;
     }
 

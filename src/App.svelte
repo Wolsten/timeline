@@ -1,7 +1,7 @@
 <script>
     import { onMount } from "svelte"
     import Timeline from "./lib/timeline/Timeline.svelte"
-    import { windowWidth, mobile, desktop } from "./lib/stores.js"
+    import { windowWidth, mobile, desktop } from "./lib/stores"
     import Utils from "./lib/Utils"
 
     const MAX_ATTEMPTS = 5

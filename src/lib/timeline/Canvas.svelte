@@ -221,12 +221,20 @@
 
             if (point) {
                 // console.warn("point", point)
-                const value = Utils.formatNumber(point.value)
-                const left =
-                    viewportWidth - point.x > 120 ? point.x + 5 : point.x - 120
-                const top = point.scaledY - 5
-                tooltipText = `${point.xLabel}, ${value}`
-                tooltip.style = `opacity:1;left:${left}px;top:${top}px`
+                tooltipText = `${point.xLabel}, ${Utils.formatNumber(
+                    point.value
+                )}`
+                const top = point.scaledY - 9
+                // Fit to right of point if there is room
+                if (viewportWidth - point.x > 120) {
+                    const left = point.x + 5
+                    tooltip.style = `opacity:1;left:${left}px;top:${top}px`
+                    tooltipText = "&larr; " + tooltipText
+                } else {
+                    const right = viewportWidth - point.x + 7
+                    tooltip.style = `opacity:1;right:${right}px;top:${top}px`
+                    tooltipText += " &rarr;"
+                }
             }
         }
     }
@@ -324,7 +332,7 @@
     </svg>
 {/if}
 
-<span class="tooltip" bind:this={tooltip}>{tooltipText}</span>
+<span class="tooltip" bind:this={tooltip}>{@html tooltipText}</span>
 
 <!------------------------------------------------------------------------------
 @section STYLES
@@ -345,12 +353,12 @@
 
     .y-line {
         stroke-width: 1;
-        stroke: var(--colour-faint-lines);
+        stroke: var(--tl-colour-faint-lines);
     }
 
     .y-line.y-zero {
         stroke-width: 2;
-        stroke: var(--colour-lines);
+        stroke: var(--tl-colour-lines);
     }
 
     .y-label {
@@ -358,25 +366,31 @@
     }
 
     text {
-        fill: var(--colour-font);
+        fill: var(--tl-colour-font);
     }
 
     .tooltip {
         position: absolute;
         display: inline-block;
-        padding: 0.3rem 0.6rem;
-        background: var(--colour-background);
+        padding: 0.1rem;
+        background: var(--tl-colour-background);
         z-index: 1000;
 
-        text-align: center;
         font-size: 0.8rem;
+        font-weight: bold;
 
-        border: 1px solid var(--colour-box-shadow);
+        /* text-align: center; */
+        /* font-size: 0.8rem; */
+
+        /* border: 1px solid var(--tl-colour-box-shadow);
+        box-shadow: 0.1rem 0.1rem 0.3rem var(--tl-colour-box-shadow);
         border-radius: 0.5rem;
-        box-shadow: 0.1rem 0.1rem 0.3rem var(--colour-box-shadow);
-        border-top-left-radius: 0;
+        border-top-left-radius: 0; */
 
-        opacity: 0;
+        /* border-top: 1px solid var(--tl-colour-box-shadow); */
+        /* box-shadow: 0.1rem 0.1rem 0.3rem var(--tl-colour-box-shadow); */
+
+        /* opacity: 0; */
         transition: all 0.3s ease-in-out;
     }
 </style>

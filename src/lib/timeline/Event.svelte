@@ -100,13 +100,13 @@
 
     g:hover rect {
         cursor: pointer;
-        fill: var(--colour-toggle-hover);
+        fill: var(--tl-colour-toggle-hover);
     }
 
     g:hover text {
         font-weight: bold;
         cursor: pointer;
-        fill: var(--colour-link);
+        fill: var(--tl-colour-link);
     }
 
     g:hover text.middle {
@@ -122,7 +122,7 @@
     text {
         text-anchor: start;
         font-size: 0.8rem;
-        fill: var(--colour-text);
+        fill: var(--tl-colour-text);
     }
 
     text.middle {

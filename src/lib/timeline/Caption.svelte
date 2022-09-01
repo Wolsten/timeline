@@ -1,6 +1,6 @@
 <script>
     export let title
-    export let series
+    export let nSeries
     export let categorised
     export let grouped
     export let filter
@@ -24,7 +24,7 @@
 <figCaption>
     <h3>
         {title}
-        {#if series}
+        {#if nSeries > 1}
             <span class="subtitle"
                 >({setComments(grouped, categorised, filter)})</span
             >
@@ -44,7 +44,7 @@
     h3 {
         padding: 0;
         margin: 0;
-        color: var(--colour-font-titles);
+        color: var(--tl-colour-font-titles);
     }
 
     span.subtitle {
@@ -52,6 +52,6 @@
         padding: 0;
         font-size: 0.9rem;
         font-weight: normal;
-        color: var(--colour-font);
+        color: var(--tl-colour-font);
     }
 </style>

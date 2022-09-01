@@ -42,7 +42,7 @@
             rgba(0, 0, 0, 0.5) 70%,
             rgba(0, 0, 0, 0.7) 100%
         );
-        color: var(--colour-post);
+        color: var(--tl-colour-post);
     }
 
     article.mobile {
@@ -60,7 +60,7 @@
             rgba(0, 0, 0, 0.6) 70%,
             rgba(0, 0, 0, 0.8) 100%
         );
-        color: var(--colour-post-hover);
+        color: var(--tl-colour-post-hover);
     }
 
     header,
@@ -78,7 +78,7 @@
         font-size: 0.9rem;
         line-height: 1.2rem;
 
-        /* color: var(--colour-post); */
+        /* color: var(--tl-colour-post); */
     }
 
     a {
@@ -102,12 +102,12 @@
 
     h2,
     p {
-        color: var(--colour-post);
+        color: var(--tl-colour-post);
     }
 
     article:hover h2,
     article:hover p {
-        color: var(--colour-post-hover);
+        color: var(--tl-colour-post-hover);
     }
 
     article:hover img {

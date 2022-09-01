@@ -39,7 +39,7 @@
         height: 0.5rem;
         position: relative;
         user-select: none;
-        background-color: var(--colour-range-slider-fill);
+        background-color: var(--tl-colour-range-slider-fill);
         border-radius: 1rem;
     }
 

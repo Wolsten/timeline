@@ -46,9 +46,9 @@
 <style>
     select {
         padding: var(--size-input-padding);
-        border: 1px solid var(--colour-input-border);
+        border: 1px solid var(--tl-colour-input-border);
         border-radius: var(--size-input-border-radius);
-        color: var(--colour-font);
+        color: var(--tl-colour-font);
         /* font-size: 1rem; */
     }
 

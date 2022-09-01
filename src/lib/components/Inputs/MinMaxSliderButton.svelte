@@ -143,9 +143,9 @@
         padding: 0.2rem 0.4rem;
 
         border-radius: 1rem;
-        border: 1px solid var(--colour-faint-lines);
-        background-color: var(--colour-range-slider-fill);
-        color: var(--colour-font);
+        border: 1px solid var(--tl-colour-faint-lines);
+        background-color: var(--tl-colour-range-slider-fill);
+        color: var(--tl-colour-font);
 
         min-width: 50px;
         font-size: 0.8rem;
@@ -161,14 +161,14 @@
     }
 
     div.dragging {
-        background-color: var(--colour-toggle);
+        background-color: var(--tl-colour-toggle);
         color: white;
         cursor: col-resize;
     }
 
     div:hover,
     button:hover {
-        background-color: var(--colour-toggle-hover);
+        background-color: var(--tl-colour-toggle-hover);
         color: white;
     }
 

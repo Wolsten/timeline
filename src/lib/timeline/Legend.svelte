@@ -153,7 +153,7 @@
     }
 
     span.series:hover {
-        border-color: var(--colour-legend-highlight);
+        border-color: var(--tl-colour-legend-highlight);
     }
 
     span.series.active {
