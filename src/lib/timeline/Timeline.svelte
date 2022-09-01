@@ -152,24 +152,22 @@
         }
     }
 
-    // const handleResize = Utils.debounce(() => {
-    //     // console.log('Handling resize')
-    //     if (viewport && viewport.clientWidth != viewportWidth) {
-    //         scaleX()
-    //         // Non-intuitive behaviour on touch devices
-    //         if ($touch == false) {
-    //             if (options.selectedEvent) {
-    //                 setTimeout(scrollToSelected, 500)
-    //             }
-    //         }
-    //     }
-    // }, 500)
-
     function handleResize() {
+        // Handle resizing - debouncing taken care of in App.svelte
         console.log("Handling resize with viewport", viewport?.clientWidth)
-
+        // Stop if we don;t yet have a viewport
         if (viewport === undefined) return
-
+        // If we have a viewport with a non-zero size use this
+        if (viewport.clientWidth !== 0) {
+            // Viewport is the main drawing area which includes non-drawing
+            // areas in the x-axis which are the left and right padding, though
+            // the viewport itself is NOT padded using CSS
+            viewportWidth =
+                viewport.clientWidth +
+                Utils.CANVAS_PADDING_LEFT +
+                Utils.CANVAS_PADDING_RIGHT
+        }
+        // If the width has changed then rescale the x-axis
         if (viewport.clientWidth != viewportWidth) {
             scaleX()
             // Non-intuitive behaviour on touch devices
@@ -182,38 +180,19 @@
     }
 
     function scaleX() {
-        // Viewport is the main drawing area which includes non-drawing
-        // areas in the x-axis which are the left and right padding, though
-        // the viewport itself is NOT padded using CSS
-
-        if (viewport.clientWidth !== 0) {
-            viewportWidth =
-                viewport.clientWidth +
-                Utils.CANVAS_PADDING_LEFT +
-                Utils.CANVAS_PADDING_RIGHT
-        }
-
         // console.error("scaleX: viewportWidth", viewportWidth)
-        // console.error(
-        //     "scaleX: viewport Parent Width",
-        //     viewport.parentNode.clientWidth
-        // )
         // Take off padding to get the drawing width
         drawingWidth =
             viewportWidth -
             Utils.CANVAS_PADDING_LEFT -
             Utils.CANVAS_PADDING_RIGHT
-        // console.log("scaleX: drawingWidth", drawingWidth)
-        // console.log('scaleX: range', options.xRange.range);
         // scale in pixels/x-unit
         scale = drawingWidth / options.xRange.range
         // console.log("scaleX: scale (pixels/x unit)", scale)
-
         // @todo
-        // Use the options xRange - straight numbers (of years for dates)
+        // Use the options xRange - scalar numbers (of years for dates)
         let xStart = options.xRange.start
         let xEnd = options.xRange.end
-
         // console.warn('options', options);
         // console.log('data.events', data.events);
         filteredEvents = Utils.processEvents(
@@ -241,7 +220,6 @@
                 xStart,
                 xEnd
             )
-
         // Reset the x-axis based on filtered data
         dataset.xAxis = Utils.scaleXAxis(
             dataset.xUnit,
@@ -354,7 +332,7 @@
     figure {
         position: relative;
         margin: 0;
-        padding: 1rem;
+        padding: 1rem 0.5rem 0 0.5rem;
         width: 100%;
         background: var(--colour-chart-background);
         border: 1px solid var(--colour-chart-border);
