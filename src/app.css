@@ -58,7 +58,7 @@
   --colour-background: white;
 
   --colour-font: var(--material-800-blue-grey);
-  --colour-font-faint: var(--material-600-blue-grey);
+  --colour-font-faint: var(--material-300-blue-grey);
   --colour-font-titles: var(--material-700-red);
 
   --colour-link: var(--material-800-red);

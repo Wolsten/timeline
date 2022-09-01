@@ -5,6 +5,7 @@
     import Button from "../components/Inputs/Button.svelte"
     import TextSearch from "../components/Inputs/TextSearch.svelte"
     import Toggle from "../components/Inputs/Toggle.svelte"
+    import XRange from "./XRange.svelte"
 
     export let xAxis
     export let xUnit
@@ -26,6 +27,7 @@
         console.log("Handling zoom in")
         handleZoomIn(true)
     }
+    $: console.error(options.xRange)
 
     function handleZoomIn(focus) {
         console.log("Clicked event zoom in - selected=", options.selectedEvent)
@@ -192,8 +194,8 @@
 
         <Button
             label="Reset"
-            disabled={options.xRange.start == xAxis.majorFirst &&
-                options.xRange.end == xAxis.majorLast &&
+            disabled={initialXRange.start == options.xRange.start &&
+                initialXRange.end == options.xRange.end &&
                 options.filter == "" &&
                 options.search == ""}
             on:clicked={() => handleZoomIn(false)}
@@ -212,9 +214,9 @@
         gap: 0.5rem;
     }
 
-    .form :global(> *) {
+    /* .form :global(> *) {
         font-size: 0.8rem;
-    }
+    } */
 
     .buttons {
         display: flex;

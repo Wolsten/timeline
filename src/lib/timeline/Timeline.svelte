@@ -22,7 +22,9 @@
     // Copy the object values - spread retains references so cannot be used
     // This ensures that the data is not inadvertently shared across instances
     // of this component
-    const dataset = JSON.parse(JSON.stringify(Utils.processDataset(data)))
+    // const dataset = JSON.parse(JSON.stringify(Utils.processDataset(data)))
+
+    const dataset = Utils.processDataset(data)
 
     // console.error("Timeline dataset", dataset)
 

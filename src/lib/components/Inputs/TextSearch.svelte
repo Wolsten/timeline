@@ -43,7 +43,7 @@
         padding: var(--size-input-padding);
         border: 1px solid var(--colour-input-border);
         border-radius: var(--size-input-border-radius);
-        font-size: 1rem;
+        /* font-size: 1rem; */
         width: 100%;
     }
 
@@ -55,16 +55,14 @@
 
         width: 1.2rem;
         height: 1.2rem;
-        border: 1px solid transparent;
-        border-radius: 50%;
-        color: transparent;
+        color: var(--colour-font-faint);
 
         text-align: center;
         margin: 0;
-        top: 0.2rem;
+        top: 0.3rem;
         right: 0.5rem;
         padding-bottom: 0.4rem;
-        font-size: 2rem !important;
+        font-size: 2rem;
     }
 
     div.reset:not([disabled="true"]) {
