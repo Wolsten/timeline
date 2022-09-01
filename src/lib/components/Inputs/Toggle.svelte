@@ -41,7 +41,7 @@
     label {
         display: flex;
         align-items: center;
-        /* padding:0.3rem 0.5rem; */
+        gap: 0.3rem;
     }
 
     label.mobile {
@@ -62,18 +62,18 @@
 
     .holder {
         display: flex;
-        margin-left: 0.3rem;
+        /* margin-left: 0.3rem; */
     }
 
     .toggle {
         display: inline-block;
         margin: 0;
-        padding: 0.3rem 0.5rem;
+        padding: var(--size-input-padding);
         border: 1px solid var(--colour-faint-lines);
         color: var(--colour-font);
         cursor: pointer;
-        text-transform: uppercase;
-        font-size: 0.7rem;
+        /* text-transform: uppercase; */
+        /* font-size: 0.7rem; */
         transition: all ease-in-out 300ms;
     }
 

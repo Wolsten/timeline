@@ -2,8 +2,8 @@
   /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  /* line-height: 24px;
+  font-weight: 400; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -99,7 +99,7 @@
   --size-x-padding: 2%;
 
   --size-input-border-radius: 0.4rem;
-  --size-input-padding: 0.3rem 0.6rem;
+  --size-input-padding: 0.4rem 0.6rem;
 
   color: var(--colour-font);
 }
@@ -111,17 +111,17 @@ time-line {
 }
 
 
-* {
+time-line * {
   box-sizing: border-box;
 }
 
-a {
+time-line a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
 
-a:hover {
+time-line a:hover {
   color: #535bf2;
 }
 
@@ -135,112 +135,57 @@ a:hover {
 
 
 @media (max-width:599px) {
-  body {
+  body time-line * {
     font-size: 18px;
   }
 }
 
-h1,
-h2,
-h3,
-h4 {
+time-line h1,
+time-line h2,
+time-line h3,
+time-line h4 {
   color: var(--colour-font-titles);
 
 }
 
-h1 {
+time-line h1 {
   font-size: 1.8rem;
   text-transform: uppercase;
 }
 
-h2 {
+time-line h2 {
   font-size: 1.4rem;
 }
 
-h3 {
+time-line h3 {
   font-size: 1.2rem;
 }
 
-h4 {
+time-line h4 {
   font-size: 1rem;
 }
 
-p {
+time-line p {
   line-height: 2rem;
   position: relative;
   /* font-family: Georgia, 'Times New Roman', Times, serif; */
 }
 
-li {
+/* time-line li {
   padding: 0.5rem;
   text-align: left;
   line-height: 1.4rem;
   ;
-}
+} */
 
 
-.sub-title {
+/* time-line .sub-title {
   font-weight: bold;
-}
+} */
 
-a.cite {
-  display: inline-block;
-  position: relative;
-  top: -0.5rem;
-  left: -0.3rem;
-  font-size: 0.7rem;
-  margin-right: -0.3rem;
-  text-decoration: none;
-}
 
-a.cite:hover {
-  text-decoration: underline;
-}
-
-a.cite:before {
-  content: '['
-}
-
-a.cite:after {
-  content: ']'
-}
-
-blockquote {
-  line-height: 1.8rem;
-  font-style: italic;
-  position: relative;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-blockquote:before {
-  content: '"';
-  position: absolute;
-  left: -2rem;
-  top: 0.5rem;
-  font-size: 4rem;
-  color: var(--colour-font-faint);
-}
-
-sup {
-  position: relative;
-  vertical-align: top;
-  top: -0.5rem;
-}
-
-.credit {
-  margin-top: 3rem;
-}
-
-.page-container {
-  max-width: 76ch;
-  margin: 1rem auto 1rem auto;
-  padding: 0 1rem;
-  text-align: justify;
-}
-
-button,
-a {
+time-line button,
+time-line a {
   transition: background-color ease-in 500ms;
 }
 

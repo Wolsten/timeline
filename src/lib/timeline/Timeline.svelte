@@ -17,6 +17,7 @@
     // As pass in by the user
     export let data
     export let settings
+    export let viewportWidth
 
     // Copy the object values - spread retains references so cannot be used
     // This ensures that the data is not inadvertently shared across instances
@@ -42,12 +43,11 @@
     // console.warn("options", options)
 
     let viewport
-    let viewportWidth = 0
     let drawingWidth = 0
     let scale = 0
 
     // Events, series and groups filtered by date range (search and subCats)
-    // Filtering by subCats done in canvas component)
+    // Filtering by subCats done in canvas component
     let filteredEvents = []
     let filteredSeries = []
     let filteredGroups = []
@@ -72,8 +72,16 @@
     //
 
     $: if (viewport) {
-        console.log("got viewport", viewport.clientWidth)
-        scaleX()
+        // debugger
+        console.log(
+            "got viewport: width",
+            viewport.clientWidth,
+            "parent width",
+            viewport.parentNode.clientWidth,
+            "viewportWidth",
+            viewportWidth
+        )
+        // scaleX()
     }
     $: if ($windowWidth) handleResize()
 
@@ -158,12 +166,7 @@
     // }, 500)
 
     function handleResize() {
-        // console.log(
-        //     "Handling resize with viewport",
-        //     viewport,
-        //     viewport?.clientWidth,
-        //     viewportWidth
-        // )
+        console.log("Handling resize with viewport", viewport?.clientWidth)
 
         if (viewport === undefined) return
 
@@ -183,10 +186,12 @@
         // areas in the x-axis which are the left and right padding, though
         // the viewport itself is NOT padded using CSS
 
-        viewportWidth = viewport.clientWidth
-        if (viewportWidth === 0)
+        if (viewport.clientWidth !== 0) {
             viewportWidth =
-                400 + Utils.CANVAS_PADDING_LEFT + Utils.CANVAS_PADDING_RIGHT
+                viewport.clientWidth +
+                Utils.CANVAS_PADDING_LEFT +
+                Utils.CANVAS_PADDING_RIGHT
+        }
 
         // console.error("scaleX: viewportWidth", viewportWidth)
         // console.error(
@@ -351,7 +356,6 @@
         margin: 0;
         padding: 1rem;
         width: 100%;
-        min-width: 400px;
         background: var(--colour-chart-background);
         border: 1px solid var(--colour-chart-border);
         overflow: hidden;

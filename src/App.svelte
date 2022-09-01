@@ -52,6 +52,8 @@
                     : ""
             // console.log(slug, dataSettings)
 
+            // console.log("timeline width", timeline.clientWidth)
+
             // Grab the data
             fetch(slug)
                 .then((response) => {
@@ -80,8 +82,13 @@
 
 <div id="placeholder">
     {#if ready}
-        {#each data as d, i}
-            <svelte:component this={Timeline} data={d} settings={settings[i]} />
+        {#each timelines as timeline, i}
+            <svelte:component
+                this={Timeline}
+                data={data[i]}
+                settings={settings[i]}
+                viewportWidth={timeline.clientWidth}
+            />
         {/each}
     {/if}
 </div>

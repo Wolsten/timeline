@@ -206,7 +206,6 @@
         width: 100%;
         display: flex;
         justify-content: space-around;
-        /* justify-content: flex-start; */
         flex-wrap: wrap;
         align-items: center;
         margin-bottom: 0.5rem;

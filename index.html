@@ -16,7 +16,24 @@
   <style>
     #main-c {
       display: flex;
-      column-gap: 2rem;
+      justify-content: center;
+    }
+
+    #main-c>div {
+      flex-basis: 60%;
+      flex-grow: 1;
+    }
+
+    #main-c>aside {
+      flex-basis: 40%;
+      flex-shrink: 1;
+      padding: 2rem;
+    }
+
+    @media (max-width:800px) {
+      #main-c {
+        flex-direction: column;
+      }
     }
   </style>
 
@@ -26,9 +43,9 @@
 
       <h2>My first timeline</h2>
       <time-line data-slug="/data/deaths-from-natural-disasters.json" data-settings=""></time-line>
-      <!-- 
+
       <h2>My second timeline</h2>
-      <time-line data-slug="/data/history-of-taiwan.json" data-settings="title=my funny title"></time-line> -->
+      <time-line data-slug="/data/history-of-taiwan.json" data-settings="title=my funny title"></time-line>
 
       <!-- <h2>My third timeline</h2>
       <time-line data-slug="/data/history-of-ukraine.json" data-settings="readonly=true"></time-line> -->
