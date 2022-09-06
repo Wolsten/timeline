@@ -41,10 +41,21 @@
 -------------------------------------------------------------------------------->
 
 {#if options.selectedPoint !== false}
-    <div
+    <!-- <div
         class="properties"
         transition:slide={{ duration: 500 }}
         style="max-width:{viewportWidth}px;
+               margin-left:{-Utils.CANVAS_PADDING_LEFT}px; 
+               margin-right:{-Utils.CANVAS_PADDING_RIGHT}px;
+               padding-left:{Utils.CANVAS_PADDING_LEFT}px; 
+               padding-right:{Utils.CANVAS_PADDING_RIGHT}px;"
+    > -->
+    <div
+        class="properties"
+        transition:slide={{ duration: 500 }}
+        style="max-width:{viewportWidth +
+            Utils.CANVAS_PADDING_LEFT +
+            Utils.CANVAS_PADDING_RIGHT}px;
                margin-left:{-Utils.CANVAS_PADDING_LEFT}px; 
                margin-right:{-Utils.CANVAS_PADDING_RIGHT}px;
                padding-left:{Utils.CANVAS_PADDING_LEFT}px; 
@@ -95,8 +106,6 @@
         line-height: 1.2rem;
         padding: 1rem;
         background-color: var(--tl-colour-range-slider-fill);
-        /* width: 100%; */
-        /* max-width: 200px; */
     }
 
     h3 {
@@ -145,21 +154,19 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border-radius: 0.5rem;
+        border-radius: var(--tl-size-border-radius);
         padding: 0.3rem 0.5rem;
         text-align: right;
     }
 
     .col:not(.active):hover {
         background-color: var(--tl-colour-legend-highlight);
-        color: var(--tl-colour-background);
         cursor: pointer;
     }
 
     .col.active {
         background-color: var(--tl-colour-legend-active);
-        color: var(--tl-colour-background);
         cursor: default;
-        font-weight: bold;
+        /* font-weight: bold; */
     }
 </style>

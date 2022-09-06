@@ -42,7 +42,7 @@
         series: [],
     }
 
-    console.warn("options", options)
+    // console.warn("options", options)
 
     let viewport
     let drawingWidth = 0
@@ -73,19 +73,10 @@
     // Reactive stuff
     //
 
-    $: if (viewport) {
-        // debugger
-        console.log(
-            "got viewport: width",
-            viewport.clientWidth,
-            "parent width",
-            viewport.parentNode.clientWidth,
-            "viewportWidth",
-            viewportWidth
-        )
-        // scaleX()
-    }
     $: if ($windowWidth) handleResize()
+
+    $: clickable =
+        options.selectedEvent !== false || options.selectedPoint !== false
 
     //
     // Functions
@@ -141,9 +132,6 @@
         }
     }
 
-    $: clickable =
-        options.selectedEvent !== false || options.selectedPoint !== false
-
     function handleClick() {
         // console.error('Handling timeline click in dataset',data.name)
         if (options.selectedEvent !== false) {
@@ -156,7 +144,7 @@
 
     function handleResize() {
         // Handle resizing - debouncing taken care of in App.svelte
-        console.log("Handling resize with viewport", viewport?.clientWidth)
+        // console.log("Handling resize with viewport", viewport?.clientWidth)
         // Stop if we don;t yet have a viewport
         if (viewport === undefined) return
         // If we have a viewport with a non-zero size use this
@@ -322,7 +310,6 @@
         selectedEvent={options.selectedEvent}
         on:optionsChanged={handleOptions}
     />
-
     <CanvasProperties
         {options}
         {viewportWidth}
@@ -334,7 +321,7 @@
     figure {
         position: relative;
         margin: 0;
-        padding: 1rem 0.5rem 0 0.5rem;
+        padding: 1rem 0.5rem var(--tl-size-figure-padding-bottom) 0.5rem;
         width: 100%;
         background: var(--tl-colour-chart-background);
         border: 1px solid var(--tl-colour-chart-border);

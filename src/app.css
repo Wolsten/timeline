@@ -73,11 +73,10 @@
   --tl-colour-chart-background: white;
   --tl-colour-chart-border: var(--tl-material-50-blue-grey);
 
-  /* var(--tl-material-100-grey); */
   --tl-colour-lines: var(--tl-material-400-blue-grey);
-  --tl-colour-faint-lines: var(--tl-material-200-blue-grey);
-  --tl-colour-legend-active: var(--tl-material-400-blue-grey);
-  --tl-colour-legend-highlight: var(--tl-material-200-blue-grey);
+  --tl-colour-faint-lines: var(--tl-material-100-blue-grey);
+  --tl-colour-legend-active: var(--tl-material-100-blue-grey);
+  --tl-colour-legend-highlight: var(--tl-material-50-blue-grey);
 
   --tl-colour-input-border: var(--tl-material-200-blue-grey);
   --tl-colour-toggle: var(--tl-material-500-blue-grey);
@@ -92,11 +91,11 @@
 
   --tl-opacity-faint: 0.4;
 
-  --size-post-height: 300px;
-  --size-x-padding: 2%;
+  --tl-size-border-radius: 0.4rem;
 
-  --size-input-border-radius: 0.4rem;
-  --size-input-padding: 0.4rem 0.6rem;
+  --tl-size-input-padding: 0.4rem 0.6rem;
+
+  --tl-size-figure-padding-bottom: 0;
 
   color: var(--tl-colour-font);
 }
@@ -104,9 +103,8 @@
 time-line {
   display: block;
   width: 100%;
-  /* flex-grow: 0; */
+  margin: 1rem 0;
 }
-
 
 time-line * {
   box-sizing: border-box;
@@ -122,14 +120,6 @@ time-line a:hover {
   color: #535bf2;
 }
 
-/* body {
-  color: var(--tl-colour-font);
-  margin: 0;
-  padding: 1rem;
-} */
-
-
-
 
 @media (max-width:599px) {
   body time-line * {
@@ -142,7 +132,6 @@ time-line h2,
 time-line h3,
 time-line h4 {
   color: var(--tl-colour-font-titles);
-
 }
 
 time-line h1 {
@@ -184,6 +173,11 @@ time-line p {
 time-line button,
 time-line a {
   transition: background-color ease-in 500ms;
+}
+
+
+time-line svg {
+  display: block;
 }
 
 /* https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/ */

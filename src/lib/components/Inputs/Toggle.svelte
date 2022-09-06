@@ -68,7 +68,7 @@
     .toggle {
         display: inline-block;
         margin: 0;
-        padding: var(--size-input-padding);
+        padding: var(--tl-size-input-padding);
         border: 1px solid var(--tl-colour-faint-lines);
         color: var(--tl-colour-font);
         cursor: pointer;
@@ -78,12 +78,14 @@
     }
 
     .off {
-        border-radius: 0.4rem 0 0 0.4rem;
+        border-radius: var(--tl-size-border-radius) 0 0
+            var(--tl-size-border-radius);
         border-right: none;
     }
 
     .on {
-        border-radius: 0 0.4rem 0.4rem 0;
+        border-radius: 0 var(--tl-size-border-radius)
+            var(--tl-size-border-radius) 0;
         border-left: none;
     }
 

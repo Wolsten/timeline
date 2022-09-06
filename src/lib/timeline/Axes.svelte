@@ -9,9 +9,9 @@
 
     // console.table(xAxis)
 
-    const AXIS_HEIGHT = 30
-    const MAJOR_TICK_Y1 = -4
-    const MAJOR_TICK_Y2 = 6
+    const AXIS_HEIGHT = 35
+    const MAJOR_TICK_Y1 = 0 //-4
+    const MAJOR_TICK_HEIGHT = 10
     // const MINOR_TICK_Y2 = 14
 
     // console.log('padding left',paddingLeft)
@@ -37,13 +37,13 @@
             x1={x}
             y1={MAJOR_TICK_Y1}
             x2={x}
-            y2={MAJOR_TICK_Y2}
+            y2={MAJOR_TICK_HEIGHT}
         />
 
         <text
             class="svg-major-label"
             x={x - Utils.MIN_BOX_WIDTH / 4}
-            y={MAJOR_TICK_Y2 + 14}
+            y={MAJOR_TICK_HEIGHT + 14}
         >
             {Utils.formatYear(xAxis.labels[majorIndex])}
         </text>
@@ -70,20 +70,20 @@
 -------------------------------------------------------------------------------->
 <style>
     svg {
-        overflow: visible;
-        display: block;
+        /* border: 1px solid rgb(143, 138, 233); */
         position: relative;
+        width: 100%;
         z-index: 1;
     }
 
     .svg-major {
-        stroke-width: 1;
-        stroke: gray;
+        stroke-width: 4;
+        stroke: var(--tl-colour-lines);
     }
 
     .svg-major-tick {
         stroke-width: 2;
-        stroke: gray;
+        stroke: var(--tl-colour-lines);
     }
 
     .svg-major-label {

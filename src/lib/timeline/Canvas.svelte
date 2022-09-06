@@ -40,6 +40,8 @@
     // Tooltip handling
     let tooltip
     let tooltipText = ""
+    let tooltipLeftArrow = ""
+    let tooltipRightArrow = ""
 
     // Things that can trigger initialisation
     let totalise = false
@@ -221,19 +223,25 @@
 
             if (point) {
                 // console.warn("point", point)
-                tooltipText = `${point.xLabel}, ${Utils.formatNumber(
-                    point.value
-                )}`
-                const top = point.scaledY - 9
+                // tooltipText = `${point.xLabel}, ${Utils.formatNumber(
+                //     point.value
+                // )}`
+                tooltipText = `${Utils.formatNumber(point.value)}<br>${
+                    point.xLabel
+                }`
+
                 // Fit to right of point if there is room
+                const top = point.scaledY - 14
                 if (viewportWidth - point.x > 120) {
                     const left = point.x + 5
-                    tooltip.style = `opacity:1;left:${left}px;top:${top}px`
-                    tooltipText = "&larr; " + tooltipText
+                    tooltip.style = `opacity:1;left:${left}px;top:${top}px; text-align:right;`
+                    tooltipLeftArrow = "&larr;"
+                    tooltipRightArrow = ""
                 } else {
-                    const right = viewportWidth - point.x + 7
+                    const right = viewportWidth - point.x + 10
                     tooltip.style = `opacity:1;right:${right}px;top:${top}px`
-                    tooltipText += " &rarr;"
+                    tooltipLeftArrow = ""
+                    tooltipRightArrow = "&rarr;"
                 }
             }
         }
@@ -278,7 +286,7 @@
             <!-- line and label-->
             {#if index != 0}
                 <line
-                    class="y-line {h.y == 0 ? 'y-zero' : ''}"
+                    class="y-line"
                     x1={paddingLeft}
                     x2={paddingLeft + drawingWidth}
                     y1={yValue(h.y, globalMin)}
@@ -332,7 +340,11 @@
     </svg>
 {/if}
 
-<span class="tooltip" bind:this={tooltip}>{@html tooltipText}</span>
+<span class="tooltip" bind:this={tooltip}>
+    <span class="tooltip-arrow">{@html tooltipLeftArrow}</span>
+    <span class="tooltip-text">{@html tooltipText}</span>
+    <span class="tooltip-arrow">{@html tooltipRightArrow}</span>
+</span>
 
 <!------------------------------------------------------------------------------
 @section STYLES
@@ -340,7 +352,6 @@
 <style>
     svg {
         /* border: 1px solid rgb(218, 177, 177); */
-        /* overflow: visible; */
         overflow: hidden;
         position: relative;
         width: 100%;
@@ -356,11 +367,6 @@
         stroke: var(--tl-colour-faint-lines);
     }
 
-    .y-line.y-zero {
-        stroke-width: 2;
-        stroke: var(--tl-colour-lines);
-    }
-
     .y-label {
         font-size: 0.8rem;
     }
@@ -371,26 +377,31 @@
 
     .tooltip {
         position: absolute;
-        display: inline-block;
-        padding: 0.1rem;
-        background: var(--tl-colour-background);
+        display: flex;
+        gap: 0.2rem;
+        padding: 0;
+        background: transparent;
         z-index: 1000;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .tooltip > span {
+        display: block;
+    }
+
+    .tooltip-text {
+        background-color: var(--tl-colour-background);
+        border: 1px solid var(--tl-colour-faint-lines);
+        border-radius: var(--tl-size-border-radius);
 
         font-size: 0.8rem;
         font-weight: bold;
+        padding: 0.3rem;
 
-        /* text-align: center; */
-        /* font-size: 0.8rem; */
+        opacity: 0.9;
+    }
 
-        /* border: 1px solid var(--tl-colour-box-shadow);
-        box-shadow: 0.1rem 0.1rem 0.3rem var(--tl-colour-box-shadow);
-        border-radius: 0.5rem;
-        border-top-left-radius: 0; */
-
-        /* border-top: 1px solid var(--tl-colour-box-shadow); */
-        /* box-shadow: 0.1rem 0.1rem 0.3rem var(--tl-colour-box-shadow); */
-
-        /* opacity: 0; */
-        transition: all 0.3s ease-in-out;
+    .tooltip-arrow {
+        font-size: 1.4rem;
     }
 </style>

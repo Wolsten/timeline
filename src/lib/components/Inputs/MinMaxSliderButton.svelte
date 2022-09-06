@@ -142,7 +142,7 @@
 
         padding: 0.2rem 0.4rem;
 
-        border-radius: 1rem;
+        border-radius: var(--tl-size-border-radius);
         border: 1px solid var(--tl-colour-faint-lines);
         background-color: var(--tl-colour-range-slider-fill);
         color: var(--tl-colour-font);

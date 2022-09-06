@@ -26,8 +26,8 @@
     a {
         border: 1px solid var(--tl-colour-input-border);
         background: var(--tl-colour-background);
-        border-radius: var(--size-input-border-radius);
-        padding: var(--size-input-padding);
+        border-radius: var(--tl-size-border-radius);
+        padding: var(--tl-size-input-padding);
         font-size: 1rem;
         font-weight: normal;
     }

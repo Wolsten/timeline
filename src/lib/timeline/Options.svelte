@@ -24,13 +24,13 @@
     let initialTotalise = options.totalise
 
     options.zoomIn = () => {
-        console.log("Handling zoom in")
+        // console.log("Handling zoom in")
         handleZoomIn(true)
     }
-    $: console.error(options.xRange)
+    // $: console.error(options.xRange)
 
     function handleZoomIn(focus) {
-        console.log("Clicked event zoom in - selected=", options.selectedEvent)
+        // console.log("Clicked event zoom in - selected=", options.selectedEvent)
 
         if (focus) {
             // console.log('Clicked focus')

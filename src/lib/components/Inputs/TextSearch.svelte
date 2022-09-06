@@ -40,9 +40,9 @@
     }
 
     input {
-        padding: var(--size-input-padding);
+        padding: var(--tl-size-input-padding);
         border: 1px solid var(--tl-colour-input-border);
-        border-radius: var(--size-input-border-radius);
+        border-radius: var(--tl-size-border-radius);
         /* font-size: 1rem; */
         width: 100%;
     }

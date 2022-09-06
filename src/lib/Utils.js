@@ -184,7 +184,7 @@ const initSettings = function (xUnit, userSettings, start, end, subCats) {
 	// Note that only non-defaults should be set in user settings
 	if (userSettings !== '') {
 		const pairs = userSettings.split(',')
-		console.log('pairs', pairs)
+		// console.log('pairs', pairs)
 		pairs.forEach(pair => {
 			// debugger
 			const parts = pair.split('=')

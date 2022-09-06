@@ -19,8 +19,8 @@
     button {
         background: var(--tl-colour-background);
         border: 1px solid var(--tl-colour-input-border);
-        border-radius: var(--size-input-border-radius);
-        padding: var(--size-input-padding);
+        border-radius: var(--tl-size-border-radius);
+        padding: var(--tl-size-input-padding);
         color: var(--tl-colour-font);
         margin: 0;
         cursor: default;

@@ -40,7 +40,7 @@
         position: relative;
         user-select: none;
         background-color: var(--tl-colour-range-slider-fill);
-        border-radius: 1rem;
+        border-radius: var(--tl-size-border-radius);
     }
 
     .date-range.touch {
