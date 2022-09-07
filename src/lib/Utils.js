@@ -689,21 +689,36 @@ const compareDates = function (a, b) {
 	return 0
 }
 
+const sortEventsByDate = function (a, b) {
+	// console.log('a', a, 'b', b)
+	if (a.start == '-') return -1
+	if (b.start == '-') return 1
+	if (a.start.decimal !== undefined && b.start.decimal !== undefined) {
+		return a.start.decimal - b.start.decimal
+	}
+	return 0
+}
+
+const sortEventsByCategory = function (a, b) {
+	return a.cIndex - b.cIndex
+}
+
+
 
 const sortEventsVertically = function (events, datasetSubCats) {
 	// console.error('sortEventsVertically events',events)
 	// console.log('subcats',datasetSubCats)
 	// A sort indices
 	// x sorted
-	events.sort((a, b) => a.startDate?.decimal - b.startDate?.decimal)
-	events.forEach((e, i) => e.xOrder = i)
+	events.sort(sortEventsByDate)
+	// Save the xOrder and lookup/save category indices for subsequent category sort
+	events.forEach((e, i) => {
+		e.xOrder = i
+		e.cIndex = datasetSubCats.findIndex(sc => sc == e.subCategory)
+	})
 	// console.error('sorted events series by decimal',[...events])
 	// Sub-category sorted
-	events.sort((a, b) => {
-		const aIndex = datasetSubCats.findIndex(c => c == a.subCategory)
-		const bIndex = datasetSubCats.findIndex(c => c == b.subCategory)
-		return aIndex - bIndex
-	})
+	events.sort(sortEventsByCategory)
 	events.forEach((e, i) => e.cOrder = i)
 	// console.warn('sorted events by x-axis value and category',events)
 	return [...events]

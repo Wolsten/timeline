@@ -120,7 +120,7 @@
                 options.filter = ""
                 break
             case "sort":
-                options.sort = detail.data
+                options.sort = detail.data // x or category
                 break
             case "search":
                 options.search = detail.data
