@@ -27,9 +27,6 @@
 {#if selectedEvent !== false}
     <div class="properties" class:mobile={$mobile} transition:slide>
         {#if selectedEvent.index != -1}
-            <!-- <button type="button" on:click={handleClick}>
-                Close
-            </button> -->
             <div class="button">
                 <Button label="Close" on:clicked={handleClick} />
             </div>
@@ -57,11 +54,11 @@
         font-size: 1rem;
         line-height: 1.4rem;
         position: absolute;
-        bottom: 200px;
-        left: 0.5rem;
+        top: 0;
+        left: 0;
         background: white;
-        width: 50%;
-        max-height: 400px;
+        width: 100%;
+        height: 100%;
         padding: 0.5rem;
         border: 1px solid var(--tl-colour-box-shadow);
         box-shadow: 0.2rem 0.2rem 0.3rem var(--tl-colour-box-shadow);

@@ -134,9 +134,9 @@
 
     function handleClick() {
         // console.error('Handling timeline click in dataset',data.name)
-        if (options.selectedEvent !== false) {
-            options.selectedEvent = false
-        }
+        // if (options.selectedEvent !== false) {
+        //     options.selectedEvent = false
+        // }
         if (options.selectedPoint !== false) {
             options.selectedPoint = false
         }

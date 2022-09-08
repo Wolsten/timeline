@@ -247,7 +247,7 @@ const initSettings = function (xUnit, userSettings, start, end, subCats) {
 		})
 	}
 
-	// xRange - determine sclar values 
+	// xRange - determine scalar values 
 	let s, e
 	if (xUnit === 'date') {
 		s = start.year
@@ -603,7 +603,8 @@ const getDateParts = function (stringDate) {
 		return stringDate
 	}
 
-	//console.log('stringDate', stringDate)
+	// console.log('stringDate', stringDate)
+
 	stringDate = '' + stringDate
 
 	const parts = stringDate.split('-')
