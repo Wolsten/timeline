@@ -5,10 +5,8 @@
     import Button from "../components/Inputs/Button.svelte"
     import TextSearch from "../components/Inputs/TextSearch.svelte"
     import Toggle from "../components/Inputs/Toggle.svelte"
-    import XRange from "./XRange.svelte"
 
     export let xAxis
-    export let xUnit
     export let seriesLength
     export let eventsLength
     export let options
@@ -150,7 +148,7 @@
             name="category"
             bind:value={options.sort}
             options={[
-                { value: "x", label: `Sort by ${xUnit}` },
+                { value: "x", label: `Sort by date` },
                 { value: "category", label: "Sort by category" },
             ]}
             on:changed={() =>

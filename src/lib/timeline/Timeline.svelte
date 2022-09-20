@@ -11,6 +11,7 @@
     import CanvasProperties from "./CanvasProperties.svelte"
     import Caption from "./Caption.svelte"
     import XRange from "./XRange.svelte"
+    import Error from "../components/Error.svelte"
     // import DebugTimeline from "$lib/timeline/DebugTimeline.svelte"
     import { windowWidth, touch } from "../stores"
 
@@ -28,14 +29,15 @@
 
     // console.error("Timeline dataset", dataset)
 
+    const userSettings = Utils.initSettings(
+        settings,
+        dataset.start,
+        dataset.end,
+        [...dataset.eventsSubCats, ...dataset.seriesSubCats]
+    )
+
     const options = {
-        ...Utils.initSettings(
-            dataset.xUnit,
-            settings,
-            dataset.start,
-            dataset.end,
-            [...dataset.eventsSubCats, ...dataset.seriesSubCats]
-        ),
+        ...userSettings,
         selectedEvent: false,
         selectedPoint: false,
         zoom: 1,
@@ -60,13 +62,6 @@
         const generalTouchEnabled =
             "ontouchstart" in document.createElement("div")
         $touch = msTouchEnabled || generalTouchEnabled
-
-        // setTimeout(() => {
-        //     console.log("delayed scaling")
-        //     scaleX()
-        // }, 100)
-
-        // scaleX()
     })
 
     //
@@ -209,7 +204,6 @@
             )
         // Reset the x-axis based on filtered data
         dataset.xAxis = Utils.scaleXAxis(
-            dataset.xUnit,
             dataset.xAxis,
             drawingWidth,
             options.xRange
@@ -240,6 +234,10 @@
     class:clickable
     on:click|stopPropagation={handleClick}
 >
+    <!-- {#if error}
+        <Error {error} />
+    {/if} -->
+
     <Caption
         nSeries={dataset.series.length > 1}
         categorised={options.categorise}
@@ -252,7 +250,6 @@
         <Options
             {options}
             xAxis={dataset.xAxis}
-            xUnit={dataset.xUnit}
             seriesLength={dataset.series.length}
             eventsLength={dataset.events.length}
             on:optionsChanged={handleOptions}

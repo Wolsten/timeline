@@ -48,7 +48,7 @@
 
 {#if viewportWidth}
     <svg class="events" width={viewportWidth} height={eventsHeight(size)}>
-        {#each events as event (event.id)}
+        {#each events as event (event.index)}
             {@const label = labelValues(event, viewportWidth)}
 
             <Event
