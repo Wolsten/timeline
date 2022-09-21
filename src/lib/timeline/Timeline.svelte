@@ -5,13 +5,15 @@
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
     import Canvas from "./Canvas.svelte"
+    import CanvasNew from "./CanvasNew.svelte"
     import Legend from "./Legend.svelte"
+    import LegendNew from "./LegendNew.svelte"
     import Options from "./Options.svelte"
     import EventProperties from "./EventProperties.svelte"
     import CanvasProperties from "./CanvasProperties.svelte"
     import Caption from "./Caption.svelte"
     import XRange from "./XRange.svelte"
-    import Error from "../components/Error.svelte"
+    // import Error from "../components/Error.svelte"
     // import DebugTimeline from "$lib/timeline/DebugTimeline.svelte"
     import { windowWidth, touch } from "../stores"
 
@@ -33,7 +35,8 @@
         settings,
         dataset.start,
         dataset.end,
-        [...dataset.eventsSubCats, ...dataset.seriesSubCats]
+        dataset.categories,
+        dataset.subCategories.map((item) => item.name)
     )
 
     const options = {
@@ -100,9 +103,22 @@
                 options.selectedPoint = false
                 scaleX()
                 break
+            case "category":
+                options.filter = detail.data
+                options.filterType = "category"
+                options.selectedEvent = false
+                options.selectedPoint = false
+                break
+            case "sub-category":
+                options.filter = detail.data
+                options.filterType = "sub-category"
+                options.selectedEvent = false
+                options.selectedPoint = false
+                break
             case "filter":
                 // console.log('Filtering')
                 options.filter = detail.data
+                options.filterType = "single"
                 options.selectedEvent = false
                 options.selectedPoint = false
                 break
@@ -182,7 +198,7 @@
             scale,
             xStart,
             xEnd,
-            dataset.eventsSubCats,
+            dataset.subCategories.map((item) => item.name),
             options.subCats,
             options.search
         )
@@ -193,15 +209,18 @@
                 dataset.series,
                 scale,
                 xStart,
-                xEnd
+                xEnd,
+                options.filter,
+                options.filterType,
+                options.totalise
             )
-        if (dataset.groups.length > 0)
-            filteredGroups = Utils.processSeries(
-                dataset.groups,
-                scale,
-                xStart,
-                xEnd
-            )
+        // if (dataset.groups.length > 0)
+        //     filteredGroups = Utils.processSeries(
+        //         dataset.groups,
+        //         scale,
+        //         xStart,
+        //         xEnd
+        //     )
         // Reset the x-axis based on filtered data
         dataset.xAxis = Utils.scaleXAxis(
             dataset.xAxis,
@@ -260,6 +279,8 @@
         {#if scale !== 0}
             {#if filteredEvents.length > 0}
                 <Events
+                    categories={dataset.categories}
+                    subCategories={dataset.subCategories}
                     events={filteredEvents}
                     size={filteredEvents.length}
                     {viewportWidth}
@@ -269,9 +290,19 @@
             {/if}
 
             {#if filteredSeries.length > 0}
-                <Canvas
+                <!-- <Canvas
                     series={filteredSeries}
                     groups={filteredGroups}
+                    {viewportWidth}
+                    {drawingWidth}
+                    paddingLeft={Utils.CANVAS_PADDING_LEFT}
+                    {options}
+                    on:optionsChanged={handleOptions}
+                /> -->
+                <CanvasNew
+                    categories={dataset.categories}
+                    subCategories={dataset.subCategories}
+                    series={filteredSeries}
                     {viewportWidth}
                     {drawingWidth}
                     paddingLeft={Utils.CANVAS_PADDING_LEFT}
@@ -293,8 +324,17 @@
         />
     {/if}
 
-    <Legend
+    <!-- <Legend
         eventsSubCats={dataset.eventsSubCats}
+        {filteredEvents}
+        {options}
+        on:optionsChanged={handleOptions}
+    /> -->
+
+    <LegendNew
+        series={filteredSeries}
+        categories={dataset.categories}
+        subCategories={dataset.subCategories}
         {filteredEvents}
         {options}
         on:optionsChanged={handleOptions}

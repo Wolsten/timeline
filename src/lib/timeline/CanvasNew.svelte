@@ -6,13 +6,15 @@
 
     import { createEventDispatcher } from "svelte"
     import { fade } from "svelte/transition"
+    // import MinMaxRangeSlider from "../components/inputs/MinMaxRangeSlider.svelte"
 
     import Utils from "../Utils.js"
     import Symbol from "./Symbol.svelte"
 
+    export let categories
+    export let subCategories
     export let options
-    export let series // Array of multiple series
-    export let groups // Array of multiple groups
+    export let series // Array of multiple series (includes grouped series)
     export let viewportWidth
     export let drawingWidth
     export let paddingLeft
@@ -46,16 +48,16 @@
     // Things that can trigger initialisation
     let totalise = false
     let categorise = false
-    let logScale = false
-    let subCats = [...options.subCats]
+    // let logScale = false
+    // let subCats = [...options.subCats]
 
     $: if (
         series ||
-        groups ||
+        // groups ||
         options.categorise != categorise ||
-        options.totalise != totalise ||
-        options.logScale != logScale ||
-        options.subCats.length != subCats.length
+        options.totalise != totalise // ||
+        // options.logScale != logScale ||
+        // options.subCats.length != subCats.length
     ) {
         init()
     }
@@ -66,84 +68,92 @@
         // console.error('initialising canvas with options', options);
         totalise = options.totalise
         categorise = options.categorise
-        logScale = options.logScale
-        items = totalise ? [...groups] : [...series]
+        // logScale = options.logScale
+
+        // if (totalise) {
+        //     items = series.filter((item) => item.type !== "single")
+        // } else {
+        //     items = series.filter((item) => item.type === "single")
+        // }
 
         // console.log('items',items)
         // console.log('canvas init: totalise, series, groups, items',totalise,series,groups,items)
 
-        // Filter by category
-        if (options.subCats.length != 0) {
-            items = items.filter((entry) =>
-                options.subCats.includes(entry.subCategory)
-            )
-        }
+        // // Filter by category
+        // if (options.subCats.length != 0) {
+        //     items = items.filter((entry) =>
+        //         options.subCats.includes(entry.subCategory)
+        //     )
+        // }
 
         // Set vertical range and horizontal axes
         calculateYRange()
 
         // Copy data from series in options and polylines, scaling y-values
         // and checking category
-        options.series = []
+        // options.series = []
         polylines = []
-        items.forEach((entry, index) => {
+        series.forEach((entry, index) => {
             // Set the range allowing for space at the top and bottom
             let min = globalMin
 
-            options.series[index] = {
-                name: entry.legend || entry.name,
-                colourIndex: entry.colourIndex,
-                symbolIndex: entry.symbolIndex,
-                citations: entry.citations,
-                subCategory: entry.subCategory,
-                data: [],
-            }
-            polylines[index] = ""
+            // options.series[index] = {
+            //     name: entry.legend || entry.name,
+            //     colourIndex: entry.colourIndex,
+            //     symbolIndex: entry.symbolIndex,
+            //     citations: entry.citations,
+            //     subCategory: entry.subCategory,
+            //     data: [],
+            // }
+            let polyline = ""
 
             entry.data.forEach((point, i) => {
                 let y = point.value
 
-                if (options.logScale) {
-                    y = y != 0 ? Math.log10(y) : 1
-                }
+                // if (options.logScale) {
+                //     y = y != 0 ? Math.log10(y) : 1
+                // }
 
-                options.series[index].data.push(point)
+                // options.series[index].data.push(point)
 
                 point.scaledY = yValue(y, min)
-                polylines[index] += ` ${point.x},${point.scaledY}`
+                polyline += ` ${point.x},${point.scaledY}`
             })
+
+            polylines.push(polyline)
         })
 
         // console.log('polylines', polylines);
-        console.table("options.series", options.series)
+        console.table("y-scaled series", series)
     }
 
     function calculateYRange() {
-        // Max min values from the series selected
-        // debugger;
-        globalMin = Number.POSITIVE_INFINITY
-        globalMax = Number.NEGATIVE_INFINITY
-        items.forEach((entry) => {
-            if (entry.min < globalMin) globalMin = entry.min
-            if (entry.max > globalMax) globalMax = entry.max
-        })
-        // console.warn('Raw globalMin, globalMax', globalMin, globalMax);
+        // Global max and min values from the series selected
+        globalMin = series.reduce(
+            (min, entry) => (entry.min < min ? entry.min : min),
+            Number.POSITIVE_INFINITY
+        )
+        globalMax = series.reduce(
+            (max, entry) => (entry.max > max ? entry.max : max),
+            Number.NEGATIVE_INFINITY
+        )
 
-        // Log scale?
-        if (options.logScale) {
-            if (globalMin <= 0) {
-                globalMin = Math.round(Math.log10(globalMin))
-            } else {
-                globalMin = 1
-            }
-            globalMax = Math.round(Math.log10(globalMax))
-            // console.log('Log globalMin, globalMax',globalMin,globalMax)
-        }
+        console.warn("Raw globalMin, globalMax", globalMin, globalMax)
+        // // Log scale?
+        // if (options.logScale) {
+        //     if (globalMin <= 0) {
+        //         globalMin = Math.round(Math.log10(globalMin))
+        //     } else {
+        //         globalMin = 1
+        //     }
+        //     globalMax = Math.round(Math.log10(globalMax))
+        //     // console.log('Log globalMin, globalMax',globalMin,globalMax)
+        // }
 
         // Normalise the minimum value
         range = globalMax - globalMin
         range = Utils.toPrecision(range, 1)
-        const step = options.logScale ? 0.5 : range / 10
+        const step = range / 10
         // console.log('step, globalMin % step',step, globalMin % step)
 
         // globalMin = Utils.toPrecision(globalMin - (globalMin % step), 1)
@@ -208,8 +218,8 @@
             options.selectedPoint.i != -1
         ) {
             if (
-                options.series[options.selectedPoint.index] == undefined ||
-                options.series[options.selectedPoint.index].data == undefined
+                series[options.selectedPoint.index] == undefined ||
+                series[options.selectedPoint.index].data == undefined
             ) {
                 console.error(
                     "Found undefined series for selected",
@@ -217,7 +227,7 @@
                 )
             }
 
-            const point = options.series[options.selectedPoint.index].data.find(
+            const point = series[options.selectedPoint.index].data.find(
                 (pt) => pt.i == options.selectedPoint.i
             )
 
@@ -247,27 +257,59 @@
         }
     }
 
-    function getColour(sel, filter, index, colourIndex) {
+    function getColour(selPoint, filter, index) {
         let inActive = false
-        let colour = Utils.colour(index, colourIndex, options.categorise)
-        if (sel && sel.type == "series") {
-            if (sel.index != index) {
+        // Set the default colour
+        let colour = series[index].colour
+
+        // Utils.colour(index, colourIndex, options.categorise)
+
+        // Highlight selected series
+        if (selPoint && selPoint.type == "series") {
+            if (selPoint.index != index) {
                 inActive = true
             }
         } else if (filter !== "") {
-            if (options.totalise) {
-                if (items[index].subCategory != filter) {
-                    inActive = true
-                }
-            } else {
-                if (items[index].legend != filter) {
-                    inActive = true
-                }
+            if (series[index].legend != filter) {
+                inActive = true
+            }
+            switch (options.filterType) {
+                case "single":
+                    colour = series[index].colour
+                    break
+                case "categories":
+                    const catIndex = categories.findIndex(
+                        (item) => item == series[index].category
+                    )
+                    colour = Utils.defaultColour(catIndex)
+                    break
+                case "sub-categories":
+                    const match = subCategories.find(
+                        (item) => item.name == series[index].subCategory
+                    )
+                    colour = match.colour
+                default:
+                    colour = Utils.defaultColour(index)
             }
         }
+
+        // if (options.totalise) {
+        //     if (options.filterType == "category") {
+        //         if (series[index].category != filter) {
+        //             inActive = true
+        //         }
+        //     } else if (series[index].subCategory != filter) {
+        //         inActive = true
+        //     }
+        // } else {
+        // if (series[index].legend != filter) {
+        //     inActive = true
+        // }
+        // }
         if (inActive) {
             colour = Utils.COLOUR_INACTIVE
         }
+
         return colour
     }
 </script>
@@ -276,7 +318,7 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#if options.series.length > 0}
+{#if series.length > 0}
     <svg {height} {viewportWidth}>
         <!-- Y axis -->
         {#each horizontals as h, index}
@@ -297,12 +339,11 @@
         {/each}
 
         <!-- Date series -->
-        {#each options.series as entry, index}
+        {#each series as entry, index}
             {@const colour = getColour(
                 options.selectedPoint,
                 options.filter,
-                index,
-                entry.colourIndex
+                index
             )}
             {@const width = colour == Utils.COLOUR_INACTIVE ? 1 : 2}
 

@@ -76,7 +76,7 @@
   --tl-colour-lines: var(--tl-material-400-blue-grey);
   --tl-colour-faint-lines: var(--tl-material-100-blue-grey);
   --tl-colour-legend-active: var(--tl-material-100-blue-grey);
-  --tl-colour-legend-highlight: var(--tl-material-50-blue-grey);
+  --tl-colour-legend-highlight: var(--tl-material-200-blue-grey);
 
   --tl-colour-input-border: var(--tl-material-200-blue-grey);
   --tl-colour-toggle: var(--tl-material-500-blue-grey);

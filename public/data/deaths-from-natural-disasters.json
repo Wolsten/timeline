@@ -1,23 +1,39 @@
 {
-    "xUnit": "date",
     "slug": "deaths-from-natural-disasters",
     "name": "Deaths from natural disasters",
     "categories": [
         "disasters"
     ],
+    "subCategories": [
+        {
+            "type": "series",
+            "category": "disasters",
+            "name": "climate",
+            "colour": ""
+        },
+        {
+            "type": "series",
+            "category": "disasters",
+            "name": "meteorological",
+            "colour": ""
+        },
+        {
+            "type": "series",
+            "category": "disasters",
+            "name": "geophysical",
+            "colour": ""
+        }
+    ],
     "events": [],
     "series": [
         {
-            "id": 1,
             "name": "Deaths from landslides",
             "legend": "landslides",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "climate",
+            "colour": "rgb(255,192,0)",
             "summary": "Deaths from landslides",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 36,
             "max": 24000,
             "points": [
@@ -360,16 +376,13 @@
             ]
         },
         {
-            "id": 2,
             "name": "Deaths from fog",
             "legend": "fog",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "meteorological",
+            "colour": "rgb(198,89,17)",
             "summary": "Deaths from fog",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 106,
             "max": 8000,
             "points": [
@@ -388,16 +401,13 @@
             ]
         },
         {
-            "id": 3,
             "name": "Deaths from wildfires",
             "legend": "wildfires",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "climate",
+            "colour": "rgb(217,225,242)",
             "summary": "Deaths from wildfires",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 0,
             "max": 2000,
             "points": [
@@ -660,16 +670,13 @@
             ]
         },
         {
-            "id": 4,
             "name": "Deaths from extreme temperatures",
             "legend": "extreme temperatures",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "climate",
+            "colour": "rgb(169,208,142)",
             "summary": "Deaths from extreme temperatures",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 0,
             "max": 149396,
             "points": [
@@ -912,16 +919,13 @@
             ]
         },
         {
-            "id": 5,
             "name": "Deaths from floods",
             "legend": "floods",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "climate",
+            "colour": "rgb(48,84,150)",
             "summary": "Deaths from floods",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 0,
             "max": 7400000,
             "points": [
@@ -1308,16 +1312,13 @@
             ]
         },
         {
-            "id": 6,
             "name": "Deaths from volcanic activity",
             "legend": "volcanic activity",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "geophysical",
+            "colour": "rgb(191,143,0)",
             "summary": "Deaths from volcanic activity",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 0,
             "max": 77380,
             "points": [
@@ -1636,16 +1637,13 @@
             ]
         },
         {
-            "id": 7,
             "name": "Deaths from drought",
             "legend": "drought",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "climate",
+            "colour": "rgb(132,151,176)",
             "summary": "Deaths from drought",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 0,
             "max": 6000000,
             "points": [
@@ -1948,16 +1946,13 @@
             ]
         },
         {
-            "id": 8,
             "name": "Deaths from mass movements",
             "legend": "mass movements",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "geophysical",
+            "colour": "rgb(68,114,196)",
             "summary": "Deaths from mass movements",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 6,
             "max": 4000,
             "points": [
@@ -2084,16 +2079,13 @@
             ]
         },
         {
-            "id": 9,
             "name": "Deaths from storms",
             "legend": "storms",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "climate",
+            "colour": "rgb(248,203,173)",
             "summary": "Deaths from storms",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 0,
             "max": 608990,
             "points": [
@@ -2568,16 +2560,13 @@
             ]
         },
         {
-            "id": 10,
             "name": "Deaths from earthquakes",
             "legend": "earthquakes",
-            "categories": [
-                "disasters"
-            ],
+            "category": "disasters",
             "subCategory": "geophysical",
+            "colour": "rgb(128,96,0)",
             "summary": "Deaths from earthquakes",
             "citations": "<p>Hannah Ritchie and Max Roser (2014) - &quot;Natural Disasters&quot;. Published online at OurWorldInData.org. Retrieved from: <a target=\"_blank\" href=\"https://ourworldindata.org/natural-disasters\">https://ourworldindata.org/natural-disasters</a> [Online Resource]</p>\n",
-            "xUnit": "date",
             "min": 24,
             "max": 554010,
             "points": [

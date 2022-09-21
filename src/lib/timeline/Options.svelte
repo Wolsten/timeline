@@ -182,13 +182,13 @@
     {/if}
 
     <div class="buttons">
-        {#if eventsLength > 0}
+        <!-- {#if eventsLength > 0}
             <Button
                 label="Focus"
                 disabled={options.selectedEvent == false}
                 on:clicked={() => handleZoomIn(true)}
             />
-        {/if}
+        {/if} -->
 
         <Button
             label="Reset"

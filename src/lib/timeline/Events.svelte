@@ -2,6 +2,8 @@
     import Utils from "../Utils"
     import Event from "./Event.svelte"
 
+    export let categories
+    export let subCategories
     export let events
     export let options
     export let viewportWidth
@@ -52,6 +54,8 @@
             {@const label = labelValues(event, viewportWidth)}
 
             <Event
+                {categories}
+                {subCategories}
                 {event}
                 {label}
                 {margin}

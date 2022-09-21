@@ -8,23 +8,34 @@
     export let options
     export let margin
     export let height
+    export let categories
+    export let subCategories
 
     const dispatch = createEventDispatcher()
 
     let lastClickedMs = 0
 
     function rectColour(filter) {
-        // console.log("rectColour filter", "\nevent", filter, event)
-        // debugger
-        // console.log("event", event, `filter=[${filter}]`)
-        if (filter !== undefined && filter !== "") {
-            // console.log(`matched`)
-            if (filter == event.subCategory) {
-                return event.colour
+        const subCat = subCategories.find(
+            (item) => item.name === event.subCategory
+        )
+        // If filtering then choose colour according to whether
+        // filtering by a subcategory or by a category
+        if (filter !== "") {
+            if (options?.filterType === "sub-category") {
+                if (filter == event.subCategory) return subCat.colour
+            } else if (options?.filterType === "category") {
+                // debugger
+                if (event.category === filter) {
+                    const index = categories.findIndex((item) => filter == item)
+                    return Utils.defaultColour(index)
+                }
             }
+            // De-emphasise others
             return Utils.COLOUR_INACTIVE
         }
-        return event.colour
+        // Default is to colour by sub-category
+        return subCat.colour
     }
 
     function handleDeferredClick() {
@@ -78,20 +89,25 @@
 </script>
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-<g
-    transform="translate({event.left}, {margin.top +
-        (options.sort == 'x' ? event.xOrder : event.cOrder) * height})"
-    style="--event-rect-colour: {rectColour(options.filter)};"
-    class:selected={options.selectedEvent &&
-        options.selectedEvent.index == event.index}
-    on:click|stopPropagation={handleClick}
->
-    <rect x={0} y={-height / 2} width={event.width} height={height * 0.9} />
+{#if event}
+    {@const top =
+        margin.top +
+        (options.sort == "x" ? event.xOrder : event.cOrder) * height}
+    {@const selected =
+        options.selectedEvent && options.selectedEvent.index == event.index}
+    <g
+        transform="translate({event.left},{top})"
+        style="--event-rect-colour: {rectColour(options.filter)};"
+        class:selected
+        on:click|stopPropagation={handleClick}
+    >
+        <rect x={0} y={-height / 2} width={event.width} height={height * 0.9} />
 
-    <text x={label.x} class={label.text} y={height / 7}>
-        {event.name}
-    </text>
-</g>
+        <text x={label.x} class={label.text} y={height / 7}>
+            {event.name}
+        </text>
+    </g>
+{/if}
 
 <style>
     g {

@@ -23,10 +23,16 @@ const COLOUR_SET = [
 ]
 
 
+
+
 const colour = function (index, colourIndex, group) {
 	if (group) {
 		index = colourIndex
 	}
+	return COLOUR_SET[index % COLOUR_SET.length]
+}
+
+const defaultColour = function (index) {
 	return COLOUR_SET[index % COLOUR_SET.length]
 }
 
@@ -159,10 +165,11 @@ const eventDates = function (event) {
  * @param {string} userSettings Command separate list of setting=value pairs
  * @param {Object|Number} start Start date or number
  * @param {Object|Number} end End date or number
- * @param {String[]} subCats Array of sub category strings
+ * @param {String[]} subCats Array of dataset category strings
+ * @param {String[]} subCats Array of dataset sub category strings
  * @returns {Object}
  */
-const initSettings = function (userSettings, start, end, subCats) {
+const initSettings = function (userSettings, start, end, categories, subCats) {
 
 	let settings = {
 		symbols: false,
@@ -172,9 +179,11 @@ const initSettings = function (userSettings, start, end, subCats) {
 		logscale: false,
 		search: '',
 		filter: '',
+		filterType: '',
 		title: '',
 		sort: 'x',
-		subCats: subCats
+		categories,			// Defaults to all categories
+		subCats
 	}
 
 	// Apply default settings where required
@@ -247,15 +256,93 @@ const initSettings = function (userSettings, start, end, subCats) {
 	return settings
 }
 
-const initCategories = function (events, set) {
+/**
+ * Group and return data series according to xRange and type (by category or sub-category)
+ * @param {Array} series The raw series
+ * @param {String} type Either category or subcategory
+ * @param {Array} list A list of strings of either categories or sub categories
+ */
+const groupSeries = function (series, type, list) {
+
+	if (series.length == 0) return []
+
+	let groups = []
+
+	list.forEach((item, index) => {
+
+		let group = false
+
+		series.forEach(entry => {
+
+			// console.table(entry.points)
+			entry.type = 'single'
+
+			if ((type == 'category' && entry.category == item) ||
+				(type == 'sub-category' && entry.subCategory == item.name)) {
+
+				if (group === false) {
+
+					const name = type == 'category' ? item : item.name
+					const colour = type == 'category' ? defaultColour(index) : item.colour
+					group = {
+						...entry,
+						max: Number.NEGATIVE_INFINITY,
+						min: Number.POSITIVE_INFINITY,
+						points: [],
+						name,
+						legend: name,
+						type,
+						colour,
+						summary: `Data grouped by ${type} ${name}`
+					}
+				}
+
+				entry.points.forEach(point => {
+
+					// Look for point with same x
+					let match = group.points.findIndex(pt => {
+						return pt.x == point.x
+					})
+
+					// Create new point or add existing to match
+					if (group.points.length == 0 || match == -1) {
+						// *** IMPORTANT *** MUST PUSH A COPY NOT THE ORIGINAL
+						group.points.push({ ...point })
+						match = group.points.length - 1
+					} else {
+						group.points[match].y += point.y
+					}
+
+					if (group.points[match].y > group.max) {
+						group.max = group.points[match].y
+					}
+					if (group.points[match].y < group.min) {
+						group.min = group.points[match].y
+					}
+
+				})
+
+				group.points.sort((a, b) => a.x.decimal - b.x.decimal)
+			}
+
+		})
+
+		groups.push(group)
+	})
+
+	return groups
+}
+
+
+const initCategories = function (events, series) {
 
 	// console.log('creating new group from series', series)
 	let groups = []
 
 	// Get two lists of unique sub categories
 	let seriesSubCats = new Set
-	set.forEach(series => {
-		seriesSubCats.add(series.subCategory)
+	series.forEach(entry => {
+		seriesSubCats.add(entry.subCategory)
 	})
 
 	let eventsSubCats = new Set
@@ -275,7 +362,7 @@ const initCategories = function (events, set) {
 	// debugger
 
 	// Generate totalised sub category groups
-	if (set.length > 0) {
+	if (series.length > 0) {
 
 		seriesSubCats.forEach((cat, index) => {
 
@@ -289,7 +376,7 @@ const initCategories = function (events, set) {
 				citations: ''
 			}
 
-			set.forEach(series => {
+			series.forEach(series => {
 
 				group.citations = series.citations
 
@@ -367,7 +454,12 @@ const initSeriesColours = function (series, groups) {
 	return { series, groups }
 }
 
+
 const processDataset = function (data) {
+	// Initialise sub category colours
+	data.subCategories.forEach((item, index) => {
+		if (item.colour == '') item.colour = defaultColour(index)
+	})
 	// Process events
 	if (data.events.length > 0) {
 		// Convert string dates to custom date objects
@@ -376,20 +468,31 @@ const processDataset = function (data) {
 			event.end = getDateParts(event.end)
 		})
 		// Find min start value and max end value
-		data.start = data.events.reduce((min, event) => aBeforeB(event.start, min) ? event.start : min, data.events[0].start || undefined);
+		data.start = data.events.reduce((min, event) => aBeforeB(event.start, min) ? event.start : min, data.events[0].start);
 		data.end = data.events.reduce((max, event) => aBeforeB(event.end, max) ? max : event.end, data.start);
 	}
+	console.log('series', data.series)
+	// Generate and append category and sub-category groups to series
+	const categoryGroups = groupSeries(data.series, 'category', data.categories)
+	const subCategoryGroups = groupSeries(data.series, 'sub-category', data.subCategories)
+	data.series = [
+		...data.series,
+		...categoryGroups,
+		...subCategoryGroups
+	]
 	// Process series
-	data.series.forEach((item) => {
+	data.series.forEach((item, index) => {
+		// debugger
 		// Convert string dates to custom date objects
 		item.points.forEach(point => {
 			point.x = getDateParts(point.x)
+			point.colour = item.colour ? item.colour : defaultColour(index)
 		})
 		// Find x-range start and end, plus y range min and max
-		data.start = item.points.reduce((min, point) => aBeforeB(point.x, min) ? point.x : min, data.start || undefined)
+		data.start = item.points.reduce((min, point) => aBeforeB(point.x, min) ? point.x : min, item.points[0].x)
 		data.end = item.points.reduce((max, point) => aBeforeB(point.x, max) ? max : point.x, data.start);
-		data.min = item.points.reduce((min, point) => point.y < min ? point.y : min, item.points[0].y || undefined)
-		data.min = item.points.reduce((max, point) => point.y > max ? point.y : max, data.min)
+		data.min = item.points.reduce((min, point) => point.y < min ? point.y : min, item.points[0].y)
+		data.max = item.points.reduce((max, point) => point.y > max ? point.y : max, data.min)
 	})
 	// Initialise x axis 
 	data.xAxis = {
@@ -401,12 +504,12 @@ const processDataset = function (data) {
 		majorRange: data.end.year - data.start.year,
 	}
 	// Initialise categories and colours
-	const groupsAndSubCats = initCategories(data.events, data.series)
-	data.eventsSubCats = groupsAndSubCats.eventsSubCats
-	data.seriesSubCats = groupsAndSubCats.seriesSubCats
-	const seriesAndGroups = initSeriesColours(data.series, groupsAndSubCats.groups)
-	data.series = seriesAndGroups.series
-	data.groups = seriesAndGroups.groups
+	// const groupsAndSubCats = initCategories(data.events, data.series)
+	// data.eventsSubCats = groupsAndSubCats.eventsSubCats
+	// data.seriesSubCats = groupsAndSubCats.seriesSubCats
+	// const seriesAndGroups = initSeriesColours(data.series, groupsAndSubCats.groups)
+	// data.series = seriesAndGroups.series
+	// data.groups = seriesAndGroups.groups
 	console.log('dataset', data)
 	return data
 }
@@ -421,7 +524,7 @@ const processEvents = function (events, scale, startValue, endValue, datasetSubC
 	// console.log('filtered', [...filtered])
 
 	filtered = filterEventsByXRange(filtered, scale, startValue, endValue, datasetSubCats)
-	console.log('filtered', [...filtered])
+	console.log('filtered events', [...filtered])
 
 	return sortEventsVertically(filtered, datasetSubCats)
 }
@@ -527,7 +630,7 @@ function getDecimalDate(date) {
 		total += m == 2 && isLeap(date.year) ? 29 : DAYS_IN_MONTH[m - 1]
 	}
 	total += date.day
-	return date.year + total / daysInYear
+	return (date.year + total / daysInYear).toPrecision(6) * 1.0
 }
 
 
@@ -717,31 +820,41 @@ const sortEventsVertically = function (events, datasetSubCats) {
 
 
 
-const processSeries = function (set, scale, xStart, xEnd) {
+const processSeries = function (series, scale, xStart, xEnd, filter, type, totalise) {
 
+	// Initialise the filtered list
 	let filtered = []
+	// Totalised values only?
+	if (totalise) {
+		filtered = series.filter((entry) => entry.type !== "single")
+	} else {
+		filtered = series.filter((entry) => entry.type === "single")
+	}
+	// Filter by category or sub-category?
+	if (filter !== '') {
+		if (type === 'category') {
+			filtered = filtered.filter(entry => entry.category == filter)
+		} else {
+			filtered = filtered.filter(entry => entry.subCategory == filter)
+		}
+	}
 
 	// console.warn('set',set)
 	// console.log('scale',scale)
 	// console.log('xStart',xStart)
 	// console.log('xEnd',xEnd)
 
-	set.forEach((series, index) => {
+	// Filter data by start and end range and generate data from points
+	filtered.forEach((entry, index) => {
 
-		filtered[index] = { ...series, data: [] }
+		entry.data = []
 
-		series.points.forEach((point, i) => {
+		entry.points.forEach((point, i) => {
 
 			// debugger
 
 			// Range test
-			let inRange
-
-			if (isDate(point.x)) {
-				inRange = point.x.decimal >= xStart && point.x.decimal <= xEnd
-			} else {
-				inRange = point.x >= xStart && point.x <= xEnd
-			}
+			const inRange = point.x.decimal >= xStart && point.x.decimal <= xEnd
 
 			if (inRange) {
 
@@ -771,7 +884,7 @@ const processSeries = function (set, scale, xStart, xEnd) {
 
 	})
 
-	// console.error('filtered', filtered)
+	console.error('filtered', filtered)
 
 	return filtered
 }
@@ -897,6 +1010,7 @@ const Utils = {
 	formatYear,
 	colour,
 	findNormalisedMin,
+	defaultColour,
 	COLOUR_INACTIVE: 'var(--tl-material-grey-400)',
 	MIN_BOX_WIDTH: 80,
 	CANVAS_MIN_HEIGHT: 300,
