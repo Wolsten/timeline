@@ -6,7 +6,6 @@
 
     import { createEventDispatcher } from "svelte"
     import { fade } from "svelte/transition"
-    // import MinMaxRangeSlider from "../components/inputs/MinMaxRangeSlider.svelte"
 
     import Utils from "../Utils.js"
     import Symbol from "./Symbol.svelte"
@@ -20,9 +19,6 @@
     export let paddingLeft
 
     const dispatch = createEventDispatcher()
-
-    // console.log('series',series)
-    // console.log('groups',groups)
 
     // Set viewport height to be proportional to width upto a max size
     let height = Math.min(viewportWidth / 2, Utils.CANVAS_MIN_HEIGHT)
@@ -48,12 +44,9 @@
     // Things that can trigger initialisation
     let totalise = false
     let categorise = false
-    // let logScale = false
-    // let subCats = [...options.subCats]
 
     $: if (
         series ||
-        // groups ||
         options.categorise != categorise ||
         options.totalise != totalise // ||
         // options.logScale != logScale ||

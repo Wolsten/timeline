@@ -42,23 +42,22 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#if series.length > 1}
+{#if series.length > 1 && options.totalise == false}
+    <!-- Display individual series options if not totalising -->
     <aside class="series">
-        <span class="title"
-            >{options.totalise ? "Series categories" : "Series"}:</span
-        >
+        <span class="title">Series:</span>
 
         {#each series as entry, index}
             {@const colour = entry.colour}
+            {@const isActive = active(
+                options.search,
+                entry.name,
+                options.selectedPoint,
+                index
+            )}
 
             <span
-                class="series"
-                class:active={active(
-                    options.search,
-                    entry.name,
-                    options.selectedPoint,
-                    index
-                )}
+                class:active={isActive}
                 on:click|stopPropagation={() => handleClickSeries(entry.legend)}
                 title="Click to highlight this series"
             >
@@ -77,9 +76,11 @@
                             </g>
                         </svg>
                     </span>
+                {:else}
+                    <div class="box" style="background-color:{colour};">
+                        &nbsp;
+                    </div>
                 {/if}
-
-                <div class="box" style="background-color:{colour};">&nbsp;</div>
 
                 {entry.legend}
             </span>
@@ -89,34 +90,34 @@
 
 {#if subCategories.length > 0}
     <aside>
-        {#each categories as cat, catIndex}
+        {#each categories as category}
             <span
                 class="category title"
-                class:active={options.filter == cat}
-                on:click|stopPropagation={() => handleClickCat(cat)}
+                class:active={options.filter == category}
+                on:click|stopPropagation={() => handleClickCat(category)}
             >
-                <div
-                    class="box"
-                    style="background-color:{Utils.defaultColour(catIndex)};"
-                >
+                <div class="box" style="background-color:{category.colour};">
                     &nbsp;
                 </div>
-                {cat}:
+                {category.name}:
             </span>
 
-            {#each subCategories as subCat, subCatIndex}
-                {#if subCat.category == cat}
+            {#each subCategories as subCategory}
+                {#if subCategory.category == category.name}
                     <span
                         class="sub-category"
-                        class:active={options.subCategory == subCat.name}
+                        class:active={options.subCategory == subCategory.name}
                         title="Click to highlight this event category"
                         on:click|stopPropagation={() =>
-                            handleClickSubCat(subCat.name)}
+                            handleClickSubCat(subCategory.name)}
                     >
-                        <div class="box" style:background-color={subCat.colour}>
+                        <div
+                            class="box"
+                            style:background-color={subCategory.colour}
+                        >
                             &nbsp;
                         </div>
-                        {subCat.name}
+                        {subCategory.name}
                     </span>
                 {/if}
             {/each}

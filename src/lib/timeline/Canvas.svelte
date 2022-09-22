@@ -322,14 +322,16 @@
                         on:click|stopPropagation={() =>
                             handleClickedSymbol(point, index)}
                     >
-                        <Symbol
-                            i={point.i}
-                            {index}
-                            defaultColour={colour}
-                            symbolIndex={entry.symbolIndex}
-                            symbols={options.symbols}
-                            selectedPoint={options.selectedPoint}
-                        />
+                        {#if options.symbols}
+                            <Symbol
+                                i={point.i}
+                                {index}
+                                defaultColour={colour}
+                                symbolIndex={entry.symbolIndex}
+                                symbols={options.symbols}
+                                selectedPoint={options.selectedPoint}
+                            />
+                        {/if}
                     </g>
                 {/each}
             {/if}

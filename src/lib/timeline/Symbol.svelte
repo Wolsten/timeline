@@ -5,7 +5,7 @@
     export let index
     export let defaultColour
     export let symbolIndex
-    export let symbols
+    export let symbols // @todo Not required if wrap in test for symbols
     export let selectedPoint
 
     // $: console.log('selectedPoint',selectedPoint)

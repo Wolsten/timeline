@@ -2,12 +2,12 @@
     import Utils from "../Utils"
     import Event from "./Event.svelte"
 
-    export let categories
-    export let subCategories
     export let events
     export let options
     export let viewportWidth
     export let size
+    export let scale
+    export let xRange
 
     // console.error('events',events)
 
@@ -27,39 +27,18 @@
         // console.log('set height to',h)
         return h
     }
-
-    function labelValues(e, w) {
-        let x = e.width / 2
-        let text = "middle"
-        let right = e.left + e.width
-        // console.log('labelValues',e)
-        if (right > 0 && right < w * 0.7) {
-            text = "right"
-            x = e.width + 5
-        } else if (e.left > w * 0.3 && e.left < w) {
-            text = "left"
-            x = -5
-        } else if (e.left < 0 || right > w) {
-            text = "middle"
-            x = w / 2 - e.left
-        }
-        // console.warn('set',e.name, text, x)
-        return { x, text }
-    }
 </script>
 
 {#if viewportWidth}
     <svg class="events" width={viewportWidth} height={eventsHeight(size)}>
-        {#each events as event (event.index)}
-            {@const label = labelValues(event, viewportWidth)}
-
+        {#each events as event}
             <Event
-                {categories}
-                {subCategories}
+                {scale}
                 {event}
-                {label}
                 {margin}
+                {xRange}
                 height={EVENT_HEIGHT}
+                {viewportWidth}
                 {options}
                 on:optionsChanged
             />

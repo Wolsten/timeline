@@ -4,38 +4,90 @@
     import Utils from "../Utils"
 
     export let event
-    export let label
     export let options
     export let margin
     export let height
-    export let categories
-    export let subCategories
+    export let scale
+    export let xRange
+    export let viewportWidth
 
     const dispatch = createEventDispatcher()
 
+    let selected = false
     let lastClickedMs = 0
+    let props = sizeEvent()
+
+    $: selected =
+        options.selectedEvent && options.selectedEvent.index == event.index
+
+    $: if (event && scale > 0) {
+        props = sizeEvent()
+    }
+
+    function sizeEvent() {
+        if (!event || scale === 0)
+            return { top: 0, left: 0, right: 0, width: 0 }
+        // Top
+        const top =
+            margin.top +
+            (options.sort == "x" ? event.index : event.scIndex) * height
+        // Left
+        let left = 0
+        if (event.start.decimal === undefined) {
+            left = Math.round(xRange.start * scale)
+        } else {
+            left = Math.round((event.start.decimal - xRange.start) * scale)
+        }
+        // Right
+        let right = 0
+        if (event.end === undefined) {
+            right = left
+        } else if (event.end === "-") {
+            right = Math.round(xRange.range * scale)
+        } else {
+            right = Math.round((event.end.decimal - xRange.start) * scale)
+        }
+        // Width
+        let width = right - left
+        if (width < 5) {
+            width = 5
+        }
+        // Correct for canvas padding
+        left += Utils.CANVAS_PADDING_LEFT
+        right = left + width
+
+        // Label
+        let x = width / 2
+        let text = "middle"
+        if (right > 0 && right < viewportWidth * 0.7) {
+            text = "right"
+            x = width + 5
+        } else if (left > viewportWidth * 0.3 && left < viewportWidth) {
+            text = "left"
+            x = -5
+        } else if (left < 0 || right > viewportWidth) {
+            text = "middle"
+            x = viewportWidth / 2 - left
+        }
+        // console.log(
+        //     "scaled event",
+        //     event.name,
+        //     event,
+        //     top,
+        //     left,
+        //     right,
+        //     width,
+        //     x,
+        //     text
+        // )
+        return { top, left, right, width, x, text }
+    }
 
     function rectColour(filter) {
-        const subCat = subCategories.find(
-            (item) => item.name === event.subCategory
-        )
-        // If filtering then choose colour according to whether
-        // filtering by a subcategory or by a category
-        if (filter !== "") {
-            if (options?.filterType === "sub-category") {
-                if (filter == event.subCategory) return subCat.colour
-            } else if (options?.filterType === "category") {
-                // debugger
-                if (event.category === filter) {
-                    const index = categories.findIndex((item) => filter == item)
-                    return Utils.defaultColour(index)
-                }
-            }
-            // De-emphasise others
-            return Utils.COLOUR_INACTIVE
+        if (filter !== "" && options?.filterType === "category") {
+            return event.categoryColour
         }
-        // Default is to colour by sub-category
-        return subCat.colour
+        return event.subCategoryColour
     }
 
     function handleDeferredClick() {
@@ -61,13 +113,6 @@
             lastClickedMs = clickMs
             setTimeout(handleDeferredClick, 500)
         } else {
-            // Check for double click in analysis mode
-            // console.log(
-            //     clickMs,
-            //     lastClickedMs,
-            //     clickMs - lastClickedMs,
-            //     options.selectedEvent
-            // )
             if (
                 options.readonly === false &&
                 lastClickedMs &&
@@ -89,21 +134,16 @@
 </script>
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-{#if event}
-    {@const top =
-        margin.top +
-        (options.sort == "x" ? event.xOrder : event.cOrder) * height}
-    {@const selected =
-        options.selectedEvent && options.selectedEvent.index == event.index}
+{#if event && props?.top}
     <g
-        transform="translate({event.left},{top})"
+        transform="translate({props.left},{props.top})"
         style="--event-rect-colour: {rectColour(options.filter)};"
         class:selected
         on:click|stopPropagation={handleClick}
     >
-        <rect x={0} y={-height / 2} width={event.width} height={height * 0.9} />
+        <rect x={0} y={-height / 2} width={props.width} height={height * 0.9} />
 
-        <text x={label.x} class={label.text} y={height / 7}>
+        <text x={props.x} class={props.text} y={height / 7}>
             {event.name}
         </text>
     </g>

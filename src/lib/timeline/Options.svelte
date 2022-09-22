@@ -6,6 +6,8 @@
     import TextSearch from "../components/Inputs/TextSearch.svelte"
     import Toggle from "../components/Inputs/Toggle.svelte"
 
+    export let categoriesLength
+    export let subCategoriesLength
     export let xAxis
     export let seriesLength
     export let eventsLength
@@ -108,7 +110,7 @@
                     on:changed={dispatch('optionsChanged', {name:'logScale', data:options.logScale})} /> -->
         {/if}
 
-        {#if seriesLength > 1}
+        {#if seriesLength > 1 || categoriesLength > 1 || subCategoriesLength > 1}
             <Toggle
                 name="categorise"
                 label="Colour by"

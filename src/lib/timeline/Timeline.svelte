@@ -22,22 +22,13 @@
     export let settings
     export let viewportWidth
 
-    // Copy the object values - spread retains references so cannot be used
-    // This ensures that the data is not inadvertently shared across instances
-    // of this component
-    // const dataset = JSON.parse(JSON.stringify(Utils.processDataset(data)))
+    // Convert string settings to object
+    const userSettings = Utils.initSettings(settings)
 
-    const dataset = Utils.processDataset(data)
+    // Process the dataset
+    const dataset = Utils.processDataset(data, userSettings)
 
     // console.error("Timeline dataset", dataset)
-
-    const userSettings = Utils.initSettings(
-        settings,
-        dataset.start,
-        dataset.end,
-        dataset.categories,
-        dataset.subCategories.map((item) => item.name)
-    )
 
     const options = {
         ...userSettings,
@@ -45,6 +36,16 @@
         selectedPoint: false,
         zoom: 1,
         series: [],
+    }
+
+    // Check of we have an xRange from the user settings and if
+    // not set to dataset range
+    if (options.xRange === false) {
+        options.xRange = {
+            start: dataset.start.year,
+            end: dataset.end.year,
+            range: dataset.end.year - dataset.start.year,
+        }
     }
 
     // console.warn("options", options)
@@ -57,7 +58,7 @@
     // Filtering by subCats done in canvas component
     let filteredEvents = []
     let filteredSeries = []
-    let filteredGroups = []
+    // let filteredGroups = []
 
     // Wait for window to be mounted to test for touch devices
     onMount(() => {
@@ -191,15 +192,12 @@
         // Use the options xRange - scalar numbers (of years for dates)
         let xStart = options.xRange.start
         let xEnd = options.xRange.end
-        // console.warn('options', options);
+        console.warn("options", options)
         // console.log('data.events', data.events);
         filteredEvents = Utils.processEvents(
             dataset.events,
             scale,
-            xStart,
-            xEnd,
-            dataset.subCategories.map((item) => item.name),
-            options.subCats,
+            options.xRange,
             options.search
         )
         // console.log('filteredEvents', filteredEvents);
@@ -268,6 +266,8 @@
     {#if options.readonly === false}
         <Options
             {options}
+            categoriesLength={dataset.categories.length}
+            subCategoriesLength={dataset.subCategories.length}
             xAxis={dataset.xAxis}
             seriesLength={dataset.series.length}
             eventsLength={dataset.events.length}
@@ -279,10 +279,10 @@
         {#if scale !== 0}
             {#if filteredEvents.length > 0}
                 <Events
-                    categories={dataset.categories}
-                    subCategories={dataset.subCategories}
                     events={filteredEvents}
                     size={filteredEvents.length}
+                    {scale}
+                    xRange={options.xRange}
                     {viewportWidth}
                     {options}
                     on:optionsChanged={handleOptions}

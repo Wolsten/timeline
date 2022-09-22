@@ -2,7 +2,7 @@
     import { createEventDispatcher } from "svelte"
 
     // import Utils from './Utils.js';
-    import MinMaxRangeSlider from "../components/inputs/MinMaxRangeSlider.svelte"
+    import MinMaxRangeSlider from "../components/Inputs/MinMaxRangeSlider.svelte"
     import Utils from "../Utils.js"
 
     export let drawingWidth
@@ -94,6 +94,5 @@
     div {
         width: 100%;
         margin-top: 0.3rem;
-        /* box-sizing: content-box; */
     }
 </style>
