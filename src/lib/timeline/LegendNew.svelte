@@ -95,7 +95,8 @@
                 <span
                     class="category title"
                     class:active={options.filter == category}
-                    on:click|stopPropagation={() => handleClickCat(category)}
+                    on:click|stopPropagation={() =>
+                        handleClickCat(category.name)}
                 >
                     <div
                         class="box"

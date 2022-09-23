@@ -148,8 +148,6 @@
     }
 </script>
 
-<h1>TESTING</h1>
-
 <div class="form">
     {#if options.readonly === false}
         {#if seriesLength > 0}
@@ -172,7 +170,7 @@
         {/if}
 
         {#if seriesLength > 1 || categoriesLength > 1 || subCategoriesLength > 1}
-            <Toggle
+            <!-- <Toggle
                 name="categorise"
                 label="Colour by"
                 bind:value={options.categorise}
@@ -183,7 +181,7 @@
                         name: "categorise",
                         data: options.categorise,
                     })}
-            />
+            /> -->
 
             <Toggle
                 name="totalise"

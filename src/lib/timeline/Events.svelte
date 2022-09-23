@@ -1,5 +1,4 @@
 <script>
-    import { afterUpdate } from "svelte"
     import Utils from "../Utils"
     import Event from "./Event.svelte"
 
@@ -22,8 +21,6 @@
         right: Utils.CANVAS_PADDING_RIGHT,
         bottom: 20,
     }
-
-    afterUpdate(() => {})
 
     function eventsHeight(size) {
         let h = size * EVENT_HEIGHT + margin.top + margin.bottom

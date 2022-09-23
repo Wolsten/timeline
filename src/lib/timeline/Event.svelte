@@ -19,7 +19,7 @@
     $: selected =
         options.selectedEvent && options.selectedEvent.index == event.index
 
-    $: if (event && scale > 0) {
+    $: if (event && scale > 0 && options.sort) {
         props = sizeEvent()
     }
 
