@@ -130,18 +130,7 @@
             (max, entry) => (entry.max > max ? entry.max : max),
             Number.NEGATIVE_INFINITY
         )
-
         console.warn("Raw globalMin, globalMax", globalMin, globalMax)
-        // // Log scale?
-        // if (options.logScale) {
-        //     if (globalMin <= 0) {
-        //         globalMin = Math.round(Math.log10(globalMin))
-        //     } else {
-        //         globalMin = 1
-        //     }
-        //     globalMax = Math.round(Math.log10(globalMax))
-        //     // console.log('Log globalMin, globalMax',globalMin,globalMax)
-        // }
 
         // Normalise the minimum value
         range = globalMax - globalMin
@@ -149,7 +138,6 @@
         const step = range / 10
         // console.log('step, globalMin % step',step, globalMin % step)
 
-        // globalMin = Utils.toPrecision(globalMin - (globalMin % step), 1)
         globalMin = Utils.findNormalisedMin(step, globalMin)
         // console.log('Normalised global min,max,step', globalMin, globalMax,step)
 

@@ -1,12 +1,9 @@
-import { current_component } from "svelte/internal"
 
 const SYMBOLS = 7 // Must match number of symbol classes in Symbol.svelte
-const MIN_EVENT_WIDTH = 4
 const DAYS_IN_MONTH = [
 	31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 ]
-const DATE_BEFORE = -1
-
+// const DATE_BEFORE = -1
 
 // https://materialui.co/colors
 // 500 unless otherwise stated
@@ -22,9 +19,6 @@ const COLOUR_SET = [
 	'var(--tl-material-700-orange)'
 ]
 
-
-
-
 const colour = function (index, colourIndex, group) {
 	if (group) {
 		index = colourIndex
@@ -36,11 +30,9 @@ const defaultColour = function (index) {
 	return COLOUR_SET[index % COLOUR_SET.length]
 }
 
-
 const toPrecision = function (num, digits) {
 	return parseFloat(num.toPrecision(digits))
 }
-
 
 const findNormalisedMin = function (step, min) {
 	let y = 0
@@ -85,6 +77,23 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const getMonth = function (m) {
 	return MONTHS[parseInt(m) - 1]
 }
+
+const setDate = function (year = 0, month = 0, day = 0) {
+	const date = { year, month, day }
+	const decimal = getDecimalDate(date)
+	return { ...date, decimal }
+}
+
+const setRange = function (date1, date2) {
+	const start = setDate(date1)
+	const end = setDate(date2)
+	return {
+		start,
+		end,
+		range: end.year - start.year
+	}
+}
+
 
 
 const formatYear = function (year) {
@@ -179,10 +188,14 @@ const initSettings = function (userSettings) {
 		sort: 'x',
 		categories: [],
 		subCategories: [],
-		xRange: false
+		xRange: {
+			start: setDate(),
+			end: setDate(),
+			range: 0
+		}
 	}
-	let start
-	let end
+	let start = { year: 0, month: 0, day: 0, decimal: 0 }
+	let end = { year: 0, month: 0, day: 0, decimal: 0 }
 	// Apply default settings where required
 	// Note that only non-defaults should be set in user settings
 	if (userSettings !== '') {
@@ -249,13 +262,11 @@ const initSettings = function (userSettings) {
 		})
 	}
 	// xRange
-	if (start !== undefined && end !== undefined) {
-		const s = start.year
-		const e = end.year
+	if (start.range != 0 && end.range !== 0) {
 		settings.xRange = {
-			start: s,
-			end: e,
-			range: e - s
+			start,
+			end,
+			range: end.year - start.year
 		}
 	}
 	// console.log('initSettings', settings)
@@ -263,7 +274,7 @@ const initSettings = function (userSettings) {
 }
 
 /**
- * Group and return data series according to xRange and type (by category or sub-category)
+ * Group and return data series according taxonomy (by category or sub-category)
  * @param {Array} series The raw series
  * @param {String} taxonomy Either category or subcategory
  * @param {Array} list A list of strings of either categories or sub categories
@@ -414,37 +425,37 @@ const initCategories = function (events, series) {
 	return { groups, eventsSubCats, seriesSubCats }
 }
 
-const initSeriesColours = function (series, groups) {
-	const indices = []
-	series.forEach((entry, index) => {
-		let subCatIndex = index
-		if (entry.subCategory != '') {
-			subCatIndex = indices.findIndex(cat => cat == entry.subCategory)
-			if (subCatIndex == -1) {
-				indices.push(entry.subCategory)
-				subCatIndex = indices.length - 1
-			}
-		}
-		entry.colourIndex = subCatIndex % COLOUR_SET.length
-		entry.symbolIndex = index % SYMBOLS
-	})
-	groups.forEach((entry, index) => {
-		let subCatIndex = index
-		if (entry.subCategory != '') {
-			subCatIndex = indices.findIndex(cat => cat == entry.subCategory)
-			if (subCatIndex == -1) {
-				indices.push(entry.subCategory)
-				subCatIndex = indices.length - 1
-			}
-		}
-		entry.colourIndex = subCatIndex % COLOUR_SET.length
-		entry.symbolIndex = index % SYMBOLS
-	})
+// const initSeriesColours = function (series, groups) {
+// 	const indices = []
+// 	series.forEach((entry, index) => {
+// 		let subCatIndex = index
+// 		if (entry.subCategory != '') {
+// 			subCatIndex = indices.findIndex(cat => cat == entry.subCategory)
+// 			if (subCatIndex == -1) {
+// 				indices.push(entry.subCategory)
+// 				subCatIndex = indices.length - 1
+// 			}
+// 		}
+// 		entry.colourIndex = subCatIndex % COLOUR_SET.length
+// 		entry.symbolIndex = index % SYMBOLS
+// 	})
+// 	groups.forEach((entry, index) => {
+// 		let subCatIndex = index
+// 		if (entry.subCategory != '') {
+// 			subCatIndex = indices.findIndex(cat => cat == entry.subCategory)
+// 			if (subCatIndex == -1) {
+// 				indices.push(entry.subCategory)
+// 				subCatIndex = indices.length - 1
+// 			}
+// 		}
+// 		entry.colourIndex = subCatIndex % COLOUR_SET.length
+// 		entry.symbolIndex = index % SYMBOLS
+// 	})
 
-	// console.log('series',series)
+// 	// console.log('series',series)
 
-	return { series, groups }
-}
+// 	return { series, groups }
+// }
 
 
 const setTaxonomyColours = function (taxonomy) {
@@ -453,26 +464,46 @@ const setTaxonomyColours = function (taxonomy) {
 	})
 }
 
-const initialiseEvents = function (events, categories, subCategories, range, dataCategories, dataSubCategories) {
+const initEvents = function (events, settings, dataCategories, dataSubCategories) {
 	// Filter events according to optional categories and dsubcategories
 	let filtered = [...events]
-	if (categories.length > 0) {
-		filtered = filtered.filter(item => categories.includes(item.category))
+	if (settings.categories.length > 0) {
+		filtered = filtered.filter(event => settings.categories.includes(event.category))
 	}
-	if (subCategories.length > 0) {
-		filtered = filtered.filter(item => subCategories.includes(item.category))
+	if (settings.subCategories.length > 0) {
+		filtered = filtered.filter(event => settings.subCategories.includes(event.category))
 	}
-	// Set start, end dates and colours
+	// Convert string start and end dates to date objects and set taxonomy colours
+	//
+	// Event start dates can be on eof the following:
+	// 		a valid date string
+	// 		'-' - started before the start of the data range
+	// Event end dates can be one of the following:
+	// 		undefined - i.e. same as the start date 
+	// 		a valid date string
+	// 		'-' ended after the end of the data range
+	//
+	// Convert undefined end dates to match start dates
+	// In either case convert '-' to undefined
 	filtered.forEach((event) => {
-		// const category = dataCategories.find(item => category.name == event.category)
-		event.start = getDateParts(event.start)
-		event.end = getDateParts(event.end)
+		if (event.start === '-') {
+			delete (event.start)
+		} else {
+			event.start = getDateParts(event.start)
+		}
+		if (event.end === undefined) {
+			event.end = event.start
+		} else if (event.end === '-') {
+			delete (event.end)
+		} else {
+			event.end = getDateParts(event.end)
+		}
 		event.categoryColour = dataCategories.find(item => item.name == event.category).colour
 		event.subCategoryColour = dataSubCategories.find(item => item.name == event.subCategory).colour
 	})
 	// If have user settings for start and end then filter events
-	if (range) {
-		filtered = filtered.filter(event => eventInRange(range, event))
+	if (settings.xRange.range != 0) {
+		filtered = filtered.filter(event => eventInRange(settings.xRange, event))
 	}
 	// Set event sorting indices
 	// First sort by date, 
@@ -493,20 +524,28 @@ const initialiseEvents = function (events, categories, subCategories, range, dat
 }
 
 
-const initialiseSeries = function (series, categories, subCategories) {
+const initSeries = function (series, settings, dataDategories, dataSubCategories) {
 	// Filter series according to optional categories and dsubcategories
 	let filtered = [...series]
-	if (categories.length > 0) {
-		filtered = filtered.filter(item => categories.includes(item.category))
+	if (settings.categories.length > 0) {
+		filtered = filtered.filter(item => settings.categories.includes(item.category))
 	}
-	if (subCategories.length > 0) {
-		filtered = filtered.filter(item => subCategories.includes(item.category))
+	if (settings.subCategories.length > 0) {
+		filtered = filtered.filter(item => settings.subCategories.includes(item.category))
 	}
 	// Set original series type and colour property (if not set)
 	filtered.forEach((entry, index) => {
 		entry.type = 'single'
 		if (!entry.colour) entry.colour = defaultColour(index)
 	})
+	// Generate and append category and sub-category groups to series
+	const categoryGroups = groupSeries(filtered, 'category', dataDategories)
+	const subCategoryGroups = groupSeries(filtered, 'sub-category', dataSubCategories)
+	filtered = [
+		...filtered,
+		...categoryGroups,
+		...subCategoryGroups
+	]
 	return filtered
 }
 
@@ -518,40 +557,36 @@ const initialiseSeries = function (series, categories, subCategories) {
  * @param {Object} settings The processed user settings 
  * @returns {Object} The process data datset
  */
-const processDataset = function (data, settings) {
+const initDataset = function (data, settings) {
+	// debugger
 	console.log('raw events', data.events)
 	// Set taxonomy colours
 	setTaxonomyColours(data.categories)
 	setTaxonomyColours(data.subCategories)
 	// Process events
-	data.start = false
-	data.end = false
+	data.xRange = {
+		start: setDate(),
+		end: setDate(),
+		range: 0
+	}
 	if (data.events.length > 0) {
 		// Optional filtering, set start & end dates, and colours
-		data.events = initialiseEvents(data.events, settings.categories, settings.subCategories, settings.xRange, data.categories, data.subCategories)
+		data.events = initEvents(data.events, settings, data.categories, data.subCategories)
 		// Find min start value and max end value
-		data.start = data.events.reduce((min, event) => aBeforeB(event.start, min) ? event.start : min, data.events[0].start)
-		data.end = data.events.reduce((max, event) => {
+		data.xRange.start = data.events.reduce((min, event) => aBeforeB(event.start, min) ? event.start : min, data.events[0].start)
+		data.xRange.end = data.events.reduce((max, event) => {
 			if (event.end === undefined) {
 				return aBeforeB(max, event.start) ? event.start : max
 			}
 			return aBeforeB(max, event.end) ? event.end : max
-		}, data.start)
+		}, data.xRange.start)
 	}
-	console.log('data start', data.start)
-	console.log('data end', data.end)
+	console.log('data start', data.xRange.start)
+	console.log('data end', data.xRange.end)
 	// Process series
 	if (data.series.length > 0) {
-		// Optional filtering, set type and colours
-		data.series = initialiseSeries(data.series, settings.categories, settings.subCategories, settings.xRange, data.categories, data.subCategories)
-		// Generate and append category and sub-category groups to series
-		const categoryGroups = groupSeries(data.series, 'category', data.categories)
-		const subCategoryGroups = groupSeries(data.series, 'sub-category', data.subCategories)
-		data.series = [
-			...data.series,
-			...categoryGroups,
-			...subCategoryGroups
-		]
+		// Optional filtering, set type and colours, group by taxonomies
+		data.series = initSeries(data.series, settings, data.categories, data.subCategories)
 		// Process series (including newly created groups)
 		data.series.forEach((entry, index) => {
 			// Convert string dates to custom date objects and set colours
@@ -562,27 +597,31 @@ const processDataset = function (data, settings) {
 				point.subCategoryColour = data.subCategories.find(item => item.name == entry.subCategory).colour
 			})
 			// Filter by settings range?
-			if (settings.xRange) {
+			if (settings.xRange.range > 0) {
 				entry.points = entry.points.filter(point => dateInRange(settings.xRange, point.x))
 			}
 			// Find x-range start and end, plus y range min and max
-			const start = data.start ? data.start : entry.points[0].x
-			const end = data.end ? data.end : entry.points[0].x
-			data.start = entry.points.reduce((min, point) => aBeforeB(point.x, min) ? point.x : min, start)
-			data.end = entry.points.reduce((max, point) => aBeforeB(point.x, max) ? max : point.x, end)
-			data.min = entry.points.reduce((min, point) => point.y < min ? point.y : min, entry.points[0].y)
-			data.max = entry.points.reduce((max, point) => point.y > max ? point.y : max, data.min)
+			const start = data.xRange.start ? data.xRange.start : entry.points[0].x
+			const end = data.xRange.end ? data.xRange.end : entry.points[0].x
+			data.xRange.start = entry.points.reduce((min, point) => aBeforeB(point.x, min) ? point.x : min, start)
+			data.xRange.end = entry.points.reduce((max, point) => aBeforeB(point.x, max) ? max : point.x, end)
+
+			data.yRange = {
+				min: entry.points.reduce((min, point) => point.y < min ? point.y : min, entry.points[0].y),
+				max: entry.points.reduce((max, point) => point.y > max ? point.y : max, data.min)
+			}
 		})
 	}
+	data.xRange.range = data.xRange.end.year - data.xRange.start.year
 	// Initialise x axis 
-	data.xAxis = {
-		values: [],
-		ticks: [],
-		labels: [],
-		majorFirst: data.start.year,
-		majorLast: data.end.year,
-		majorRange: data.end.year - data.start.year
-	}
+	// data.xAxis = {
+	// 	values: [],
+	// 	ticks: [],
+	// 	labels: [],
+	// 	majorFirst: data.start.year,
+	// 	majorLast: data.end.year,
+	// 	majorRange: data.end.year - data.start.year
+	// }
 	console.log('dataset', data)
 	return data
 }
@@ -591,27 +630,22 @@ const processDataset = function (data, settings) {
  * Filter the full set of events to return ones which match the filtering criteria. 
  * Invoked when the date range or search text changes
  * @param {Object[]} events 
- * @param {Number} scale 
- * @param {Object} xRange start and end values - number of years
+ * @param {Object} xRange Options xRange {start date, end date,range years} 
  * @param {String} search 
  * @returns {Object[]}
  */
-const processEvents = function (events, scale, xRange, search) {
+const processEvents = function (events, xRange, search) {
 	let filtered = events
 	// Search?
 	if (search != '') {
 		const pattern = new RegExp(search, 'i')
 		filtered = filtered.filter(event => event.name.search(pattern) != -1)
 	}
-	// Date range
-	const dateRange = {
-		start: getDateParts(xRange.start),
-		end: getDateParts(xRange.end)
+	// Filter
+	if (xRange.range > 0) {
+		filtered = filtered.filter(event => eventInRange(xRange, event))
 	}
-	filtered = filtered.filter(event => eventInRange(dateRange, event))
-	// filtered = filterEventsByXRange(filtered, scale, startValue, endValue, datasetSubCats)
-	// console.log('filtered events', [...filtered])
-	// return sortEventsVertically(filtered, datasetSubCats)
+	console.log('filtered events', [...filtered])
 	return filtered
 }
 
@@ -711,7 +745,7 @@ function getDecimalDate(date) {
 		total += m == 2 && isLeap(date.year) ? 29 : DAYS_IN_MONTH[m - 1]
 	}
 	total += date.day
-	return (date.year + total / daysInYear).toPrecision(6) * 1.0
+	return toPrecision((date.year + total / daysInYear), 6)
 }
 
 
@@ -733,8 +767,8 @@ function getDecimalDate(date) {
  *     year     Integer year
  *     decimal  Number representing fractional year (e.g. 1 July 2020 => 2020.5)
  *   
- * @param {string} stringDate 
- * @returns {undefined|string|Object}
+ * @param {Number|String} stringDate 
+ * @returns {undefined|String|Object}
  */
 const getDateParts = function (stringDate) {
 
@@ -801,24 +835,18 @@ const getYearOrValue = function (dv) {
 
 
 const dateInRange = function (range, date) {
-	if (date === undefined || date == '-' || range == false) return false
 	return range.start.decimal <= date.decimal && date.decimal <= range.end.decimal
 }
 
 
 const eventInRange = function (range, event) {
-	const start = range.start
-	const end = range.end
-	let startsInRange = false
-	let endsInRange = false
-	// Event started already or start fits in the range
-	startsInRange = event.start == '-' || dateInRange(range, event.start)
-	// Already started and has an end date?
-	if (event.end && startsInRange == false && event.start.decimal < start.decimal) {
-		// Check if end in range
-		endsInRange = event.end == '-' || dateInRange(range, event.end)
+	// console.log('options xRange', range)
+	// Not in range if defined and doesn't fit in the range
+	if (event.start !== undefined && dateInRange(range, event.start) == false) {
+		return false
 	}
-	return startsInRange || endsInRange
+	// Start in range, end in range if end is undefined or fites in date range
+	return event.end == undefined || dateInRange(range, event.end)
 }
 
 
@@ -999,45 +1027,45 @@ const processSeries = function (series, scale, xStart, xEnd, filter, type, total
  * @param {Object} optionsXRange 
  * @returns {Object}
  */
-const scaleXAxis = function (xAxis, drawingWidth, optionsXRange) {
+// const scaleXAxis = function (xAxis, drawingWidth, optionsXRange) {
 
-	// console.warn('scaleXAxis: options x range', optionsXRange)
-	// console.log('scaleXAxis: old xAxis')
-	// console.table(xAxis)
+// 	// console.warn('scaleXAxis: options x range', optionsXRange)
+// 	// console.log('scaleXAxis: old xAxis')
+// 	// console.table(xAxis)
 
-	// debugger
-	const intervals = Math.floor(drawingWidth / Utils.MIN_BOX_WIDTH)
-	const canvasInterval = Math.round(drawingWidth / intervals)
-	const dataInterval = Math.round(optionsXRange.range / intervals)
+// 	// debugger
+// 	const intervals = Math.floor(drawingWidth / Utils.MIN_BOX_WIDTH)
+// 	const canvasInterval = Math.round(drawingWidth / intervals)
+// 	const dataInterval = Math.round(optionsXRange.range / intervals)
 
-	// console.log('scaleXAxis: intervals, canvasInterval, dataInterval', intervals, canvasInterval, dataInterval)
+// 	// console.log('scaleXAxis: intervals, canvasInterval, dataInterval', intervals, canvasInterval, dataInterval)
 
-	let canvasX = Utils.CANVAS_PADDING_LEFT
-	let dataX = optionsXRange.start
-	let newAxis = { ...xAxis }
+// 	let canvasX = Utils.CANVAS_PADDING_LEFT
+// 	let dataX = optionsXRange.start
+// 	let newAxis = { ...xAxis }
 
-	// Initialise values, ticks and labels
-	newAxis.values = []
-	newAxis.ticks = []
-	newAxis.labels = []
+// 	// Initialise values, ticks and labels
+// 	newAxis.values = []
+// 	newAxis.ticks = []
+// 	newAxis.labels = []
 
-	for (let i = 0; i <= intervals; i++) {
+// 	for (let i = 0; i <= intervals; i++) {
 
-		newAxis.ticks.push(parseInt(canvasX))
-		newAxis.values.push(parseInt(dataX))
-		newAxis.labels.push(formatYear(parseInt(dataX)))
+// 		newAxis.ticks.push(parseInt(canvasX))
+// 		newAxis.values.push(parseInt(dataX))
+// 		newAxis.labels.push(formatYear(parseInt(dataX)))
 
-		canvasX += canvasInterval
-		dataX += dataInterval
-	}
+// 		canvasX += canvasInterval
+// 		dataX += dataInterval
+// 	}
 
-	newAxis.majorLast = newAxis.labels[newAxis.labels.length - 1]
-	newAxis.majorRange = newAxis.majorLast - newAxis.majorFirst
+// 	newAxis.majorLast = newAxis.labels[newAxis.labels.length - 1]
+// 	newAxis.majorRange = newAxis.majorLast - newAxis.majorFirst
 
-	// console.table(newAxis)
+// 	// console.table(newAxis)
 
-	return newAxis
-}
+// 	return newAxis
+// }
 
 /**
  * Smooth out user interaction
@@ -1100,12 +1128,12 @@ const getVersionHistory = function (history = []) {
 
 const Utils = {
 	getVersionHistory,
-	processDataset,
+	initDataset,
 	initSettings,
 	processEvents,
 	processSeries,
 	eventDates,
-	scaleXAxis,
+	// scaleXAxis,
 	debounce,
 	toPrecision,
 	formatNumber,
@@ -1113,11 +1141,13 @@ const Utils = {
 	colour,
 	findNormalisedMin,
 	defaultColour,
+	setRange,
+	setDate,
 	COLOUR_INACTIVE: 'var(--tl-material-grey-400)',
 	MIN_BOX_WIDTH: 80,
 	CANVAS_MIN_HEIGHT: 300,
-	CANVAS_PADDING_LEFT: 20,  // 20
-	CANVAS_PADDING_RIGHT: 20,  // 20
+	CANVAS_PADDING_LEFT: 30,  // 20
+	CANVAS_PADDING_RIGHT: 30,  // 20
 	NAV_BREAK: 600,
 }
 

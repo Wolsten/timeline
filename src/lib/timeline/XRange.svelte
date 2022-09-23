@@ -6,7 +6,6 @@
     import Utils from "../Utils.js"
 
     export let drawingWidth
-    export let xAxis
     export let options
 
     // console.table(options)
@@ -14,41 +13,41 @@
     const dispatch = createEventDispatcher()
 
     // Save the original axis
-    let fullAxis = { ...xAxis }
+    let axis = { ...options.xAxis }
 
     // console.warn('fullAxis', fullAxis, '\noptions', options);
     //console.table(fullAxis);
 
     let minValue = 0
-    let maxValue = fullAxis.values.length - 1
-    let start = 0
-    let end = 0
+    let maxValue = axis.values.length - 1
+    let startYear = 0
+    let endYear = 0
 
-    $: if (xAxis) setValues()
+    $: if (options.xAxis) setValues()
 
     function setValues() {
         // labels = xAxis.labels
-        start = options.xRange.start
-        end = options.xRange.end
+        startYear = options.xRange.start.year
+        endYear = options.xRange.end.year
 
         // console.log('max',maxValue)
         // console.log('start', start);
         // console.log('end', end);
 
-        // Find the min value
-        for (let i = 0; i < fullAxis.values.length - 1; i++) {
-            if (start >= fullAxis.values[i]) {
+        // Find the min value in the original axis
+        for (let i = 0; i < axis.values.length - 1; i++) {
+            if (startYear >= axis.values[i]) {
                 minValue = i
             }
         }
         // Find the max value - defaults to the last value
-        maxValue = fullAxis.values.length - 1
+        maxValue = axis.values.length - 1
         // Loop around all but the last value
-        for (let i = fullAxis.values.length - 2; i > minValue; i--) {
-            if (end >= fullAxis.values[i]) {
+        for (let i = axis.values.length - 2; i > minValue; i--) {
+            if (endYear >= axis.values[i]) {
                 // Find out which interval it is nearest to - this one or the next
-                const deltaBefore = end - fullAxis.values[i]
-                const deltaAfter = fullAxis.values[i + 1] - end
+                const deltaBefore = endYear - axis.values[i]
+                const deltaAfter = axis.values[i + 1] - endYear
                 maxValue = deltaBefore <= deltaAfter ? i : i + 1
                 break
             }
@@ -60,17 +59,17 @@
         // console.warn("Handling date range changed by child", event.detail)
 
         if (event.detail.type == "min") {
-            // console.log('new start value', event.detail.value )
-            options.xRange.start = fullAxis.values[event.detail.value]
-            options.xRange.range = options.xRange.end - options.xRange.start
-            start = options.xRange.start
+            // console.log("new start value", event.detail.value)
             minValue = event.detail.value
+            startYear = axis.values[minValue]
+            options.xRange.start = Utils.setDate(startYear)
+            options.xRange.range = options.xRange.end.year - startYear
         } else if (event.detail.type == "max") {
-            // console.log('new end value', event.detail.value )
-            options.xRange.end = fullAxis.values[event.detail.value]
-            options.xRange.range = options.xRange.end - options.xRange.start
-            end = options.xRange.end
+            // console.log("new end value", event.detail.value)
             maxValue = event.detail.value
+            endYear = axis.values[maxValue]
+            options.xRange.end = Utils.setDate(endYear)
+            options.xRange.range = endYear - options.xRange.start.year
         }
         // console.log("XRange: handleRange", options.xRange)
         dispatch("optionsChanged", { name: "xRange", data: options.xRange })
@@ -83,7 +82,7 @@
 >
     <MinMaxRangeSlider
         {drawingWidth}
-        labels={fullAxis.labels}
+        labels={axis.labels}
         {minValue}
         {maxValue}
         on:rangeChanged={handleRange}

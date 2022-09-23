@@ -3,15 +3,65 @@
 
     import Utils from "../Utils.js"
 
-    export let xAxis
+    // export let xAxis
+    export let options
     export let viewportWidth
     export let drawingWidth
+    // export let xRange
 
     // console.table(xAxis)
 
     const AXIS_HEIGHT = 35
     const MAJOR_TICK_Y1 = 0 //-4
     const MAJOR_TICK_HEIGHT = 10
+
+    options.xAxis = scaleXAxis(drawingWidth)
+
+    /**
+     * Scale and label the axis based on the current data range defined in xAxis
+     * and constrained by the options range
+     * @param {Number} drawingWidth
+     * @returns {Object}
+     */
+    function scaleXAxis(drawingWidth) {
+        // console.warn('scaleXAxis: options x range', optionsXRange)
+        // console.log('scaleXAxis: old xAxis')
+        // console.table(xAxis)
+
+        // debugger
+        const intervals = Math.floor(drawingWidth / Utils.MIN_BOX_WIDTH)
+        const canvasInterval = Math.round(drawingWidth / intervals)
+        const dataInterval = Math.round(options.xRange.range / intervals)
+
+        // console.log('scaleXAxis: intervals, canvasInterval, dataInterval', intervals, canvasInterval, dataInterval)
+
+        let canvasX = Utils.CANVAS_PADDING_LEFT
+        let x = options.xRange.start.year
+        let axis = {
+            values: [],
+            ticks: [],
+            labels: [],
+            majorFirst: x,
+            majorLast: 0,
+            majorRange: 0,
+        }
+
+        for (let i = 0; i <= intervals; i++) {
+            axis.ticks.push(parseInt(canvasX))
+            axis.values.push(parseInt(x))
+            axis.labels.push(Utils.formatYear(parseInt(x)))
+            canvasX += canvasInterval
+            x += dataInterval
+        }
+
+        axis.majorLast = axis.labels[axis.labels.length - 1]
+        axis.majorRange = axis.majorLast - axis.majorFirst
+
+        // console.table(newAxis)
+
+        return axis
+    }
+
     // const MINOR_TICK_Y2 = 14
 
     // console.log('padding left',paddingLeft)
@@ -31,7 +81,7 @@
         y2={MAJOR_TICK_Y1}
     />
 
-    {#each xAxis.ticks as x, majorIndex}
+    {#each options.xAxis.ticks as x, majorIndex}
         <line
             class="svg-major-tick"
             x1={x}
@@ -45,7 +95,7 @@
             x={x - Utils.MIN_BOX_WIDTH / 4}
             y={MAJOR_TICK_HEIGHT + 14}
         >
-            {Utils.formatYear(xAxis.labels[majorIndex])}
+            {Utils.formatYear(options.xAxis.labels[majorIndex])}
         </text>
 
         <!-- {#if majorIndex < svgticks.length - 1 && svgMinorTicks.length > 0}

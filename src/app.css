@@ -86,6 +86,8 @@
   --tl-colour-range-slider-fill: var(--tl-material-100-grey);
   --tl-colour-search-reset-hover: var(--tl-material-500-red);
 
+  --tl-not-filtered: var(--tl-material-200-blue-grey);
+
 
   /* Other custom variables */
 

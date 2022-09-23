@@ -8,7 +8,6 @@
     export let margin
     export let height
     export let scale
-    export let xRange
     export let viewportWidth
 
     const dispatch = createEventDispatcher()
@@ -33,19 +32,21 @@
             (options.sort == "x" ? event.index : event.scIndex) * height
         // Left
         let left = 0
-        if (event.start.decimal === undefined) {
-            left = Math.round(xRange.start * scale)
+        if (event.start === undefined) {
+            left = Math.round(options.xRange.start.decimal * scale)
         } else {
-            left = Math.round((event.start.decimal - xRange.start) * scale)
+            left = Math.round(
+                (event.start.decimal - options.xRange.start.decimal) * scale
+            )
         }
         // Right
         let right = 0
         if (event.end === undefined) {
-            right = left
-        } else if (event.end === "-") {
-            right = Math.round(xRange.range * scale)
+            right = Math.round(options.xRange.range * scale)
         } else {
-            right = Math.round((event.end.decimal - xRange.start) * scale)
+            right = Math.round(
+                (event.end.decimal - options.xRange.start.decimal) * scale
+            )
         }
         // Width
         let width = right - left
@@ -55,7 +56,6 @@
         // Correct for canvas padding
         left += Utils.CANVAS_PADDING_LEFT
         right = left + width
-
         // Label
         let x = width / 2
         let text = "middle"
@@ -84,8 +84,18 @@
     }
 
     function rectColour(filter) {
-        if (filter !== "" && options?.filterType === "category") {
-            return event.categoryColour
+        if (filter !== "") {
+            if (options?.filterType === "category") {
+                if (event.category == options.filter) {
+                    return event.categoryColour
+                }
+                return "var(--tl-not-filtered)"
+            } else if (options?.filterType === "sub-category") {
+                if (event.subCategory == options.filter) {
+                    return event.subCategoryColour
+                }
+                return "var(--tl-not-filtered)"
+            }
         }
         return event.subCategoryColour
     }
@@ -136,6 +146,7 @@
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 {#if event && props?.top}
     <g
+        class="event-group"
         transform="translate({props.left},{props.top})"
         style="--event-rect-colour: {rectColour(options.filter)};"
         class:selected

@@ -91,22 +91,27 @@
 {#if subCategories.length > 0}
     <aside>
         {#each categories as category}
-            <span
-                class="category title"
-                class:active={options.filter == category}
-                on:click|stopPropagation={() => handleClickCat(category)}
-            >
-                <div class="box" style="background-color:{category.colour};">
-                    &nbsp;
-                </div>
-                {category.name}:
-            </span>
+            {#if categories.length > 1}
+                <span
+                    class="category title"
+                    class:active={options.filter == category}
+                    on:click|stopPropagation={() => handleClickCat(category)}
+                >
+                    <div
+                        class="box"
+                        style="background-color:{category.colour};"
+                    >
+                        &nbsp;
+                    </div>
+                    {category.name}:
+                </span>
+            {/if}
 
             {#each subCategories as subCategory}
                 {#if subCategory.category == category.name}
                     <span
                         class="sub-category"
-                        class:active={options.subCategory == subCategory.name}
+                        class:active={options.filter == subCategory.name}
                         title="Click to highlight this event category"
                         on:click|stopPropagation={() =>
                             handleClickSubCat(subCategory.name)}

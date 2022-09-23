@@ -10,7 +10,7 @@
 
 <!-- <p>Start value = {minValue}</p>
 <p>End value = {maxValue}</p>
-<p>Range = {labels.length-1}</p> -->
+<p>Range = {labels.length - 1}</p> -->
 
 <div class="date-range" class:touch={$touch}>
     <MinMaxSliderButton

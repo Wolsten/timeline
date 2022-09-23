@@ -1,15 +1,17 @@
 <script>
+    import { afterUpdate } from "svelte"
     import Utils from "../Utils"
     import Event from "./Event.svelte"
 
     export let events
     export let options
     export let viewportWidth
-    export let size
+    export let size // @todo can probably lose this one
     export let scale
-    export let xRange
 
     // console.error('events',events)
+
+    console.warn("options.xRange", options.xRange)
 
     const MIN_HEIGHT = 100
     const EVENT_HEIGHT = 20
@@ -20,6 +22,8 @@
         right: Utils.CANVAS_PADDING_RIGHT,
         bottom: 20,
     }
+
+    afterUpdate(() => {})
 
     function eventsHeight(size) {
         let h = size * EVENT_HEIGHT + margin.top + margin.bottom
@@ -36,7 +40,6 @@
                 {scale}
                 {event}
                 {margin}
-                {xRange}
                 height={EVENT_HEIGHT}
                 {viewportWidth}
                 {options}

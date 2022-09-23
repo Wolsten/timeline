@@ -26,7 +26,7 @@
     const userSettings = Utils.initSettings(settings)
 
     // Process the dataset
-    const dataset = Utils.processDataset(data, userSettings)
+    const dataset = Utils.initDataset(data, userSettings)
 
     // console.error("Timeline dataset", dataset)
 
@@ -40,15 +40,10 @@
 
     // Check of we have an xRange from the user settings and if
     // not set to dataset range
-    if (options.xRange === false) {
-        options.xRange = {
-            start: dataset.start.year,
-            end: dataset.end.year,
-            range: dataset.end.year - dataset.start.year,
-        }
+    if (options.xRange.range === 0) {
+        options.xRange = { ...dataset.xRange }
     }
-
-    // console.warn("options", options)
+    console.warn("options", options)
 
     let viewport
     let drawingWidth = 0
@@ -98,7 +93,7 @@
                 options.logScale = detail.data
                 break
             case "xRange":
-                // console.log('resetting xRange')
+                console.log("resetting xRange")
                 options.xRange = detail.data
                 options.selectedEvent = false
                 options.selectedPoint = false
@@ -189,14 +184,13 @@
         scale = drawingWidth / options.xRange.range
         // console.log("scaleX: scale (pixels/x unit)", scale)
         // @todo
-        // Use the options xRange - scalar numbers (of years for dates)
+        // Use the options xRange
         let xStart = options.xRange.start
         let xEnd = options.xRange.end
         console.warn("options", options)
         // console.log('data.events', data.events);
         filteredEvents = Utils.processEvents(
             dataset.events,
-            scale,
             options.xRange,
             options.search
         )
@@ -220,11 +214,11 @@
         //         xEnd
         //     )
         // Reset the x-axis based on filtered data
-        dataset.xAxis = Utils.scaleXAxis(
-            dataset.xAxis,
-            drawingWidth,
-            options.xRange
-        )
+        // dataset.xAxis = Utils.scaleXAxis(
+        //     dataset.xAxis,
+        //     drawingWidth,
+        //     options.xRange
+        // )
         // console.log("dataset.xAxis", dataset.xAxis)
     }
 
@@ -251,10 +245,6 @@
     class:clickable
     on:click|stopPropagation={handleClick}
 >
-    <!-- {#if error}
-        <Error {error} />
-    {/if} -->
-
     <Caption
         nSeries={dataset.series.length > 1}
         categorised={options.categorise}
@@ -268,7 +258,7 @@
             {options}
             categoriesLength={dataset.categories.length}
             subCategoriesLength={dataset.subCategories.length}
-            xAxis={dataset.xAxis}
+            xRange={dataset.xRange}
             seriesLength={dataset.series.length}
             eventsLength={dataset.events.length}
             on:optionsChanged={handleOptions}
@@ -282,7 +272,6 @@
                     events={filteredEvents}
                     size={filteredEvents.length}
                     {scale}
-                    xRange={options.xRange}
                     {viewportWidth}
                     {options}
                     on:optionsChanged={handleOptions}
@@ -290,15 +279,6 @@
             {/if}
 
             {#if filteredSeries.length > 0}
-                <!-- <Canvas
-                    series={filteredSeries}
-                    groups={filteredGroups}
-                    {viewportWidth}
-                    {drawingWidth}
-                    paddingLeft={Utils.CANVAS_PADDING_LEFT}
-                    {options}
-                    on:optionsChanged={handleOptions}
-                /> -->
                 <CanvasNew
                     categories={dataset.categories}
                     subCategories={dataset.subCategories}
@@ -311,17 +291,13 @@
                 />
             {/if}
 
-            <Axes xAxis={dataset.xAxis} {viewportWidth} {drawingWidth} />
+            <!-- <Axes xAxis={dataset.xAxis} {viewportWidth} {drawingWidth} /> -->
+            <Axes {options} {viewportWidth} {drawingWidth} />
         {/if}
     </div>
 
     {#if drawingWidth != 0 && scale !== 0 && options.readonly === false}
-        <XRange
-            {drawingWidth}
-            xAxis={dataset.xAxis}
-            {options}
-            on:optionsChanged={handleOptions}
-        />
+        <XRange {drawingWidth} {options} on:optionsChanged={handleOptions} />
     {/if}
 
     <!-- <Legend
@@ -335,7 +311,6 @@
         series={filteredSeries}
         categories={dataset.categories}
         subCategories={dataset.subCategories}
-        {filteredEvents}
         {options}
         on:optionsChanged={handleOptions}
     />

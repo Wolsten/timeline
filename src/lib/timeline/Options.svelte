@@ -5,23 +5,22 @@
     import Button from "../components/Inputs/Button.svelte"
     import TextSearch from "../components/Inputs/TextSearch.svelte"
     import Toggle from "../components/Inputs/Toggle.svelte"
+    import Utils from "../Utils.js"
 
     export let categoriesLength
     export let subCategoriesLength
-    export let xAxis
+    // export let xAxis
+    export let xRange // Original dataset xRange
     export let seriesLength
     export let eventsLength
     export let options
 
     // console.log('seriesLength',seriesLength)
+    console.log("xRange", xRange)
 
     const dispatch = createEventDispatcher()
 
-    // Save initial x range for resetting
-    let initialXRange = { ...options.xRange }
-    let initialSymbols = options.symbols
-    let initialCategorise = options.categorise
-    let initialTotalise = options.totalise
+    const initialOptions = { ...options }
 
     options.zoomIn = () => {
         // console.log("Handling zoom in")
@@ -29,7 +28,7 @@
     }
     // $: console.error(options.xRange)
 
-    function handleZoomIn(focus) {
+    function OLDhandleZoomIn(focus) {
         // console.log("Clicked event zoom in - selected=", options.selectedEvent)
 
         if (focus) {
@@ -87,7 +86,69 @@
 
         // console.error('xRange', dateRange)
     }
+
+    function handleZoomIn(focus) {
+        // console.log("Clicked event zoom in - selected=", options.selectedEvent)
+
+        if (focus) {
+            // console.log('Clicked focus')
+
+            // Only respond if selected is set
+            if (options.selectedEvent) {
+                if (options.selectedEvent.start === undefined) {
+                    options.xRange.start = xRange.start
+                } else {
+                    options.xRange.start = options.selectedEvent.start
+                }
+                if (options.selectedEvent.end === undefined) {
+                    options.xRange.end = xRange.end
+                } else if (
+                    options.selectedEvent.start?.decimal ==
+                    options.selectedEvent.end.decimal
+                ) {
+                    // Start end end dates match so calculate a pseudo end date
+                    let pseudoEnd =
+                        options.xRange.start.year +
+                        xRange.range / Utils.MIN_BOX_WIDTH
+                    if (pseudoEnd > xRange.end.year) {
+                        pseudoEnd = xRange.end.year
+                    }
+                    options.xRange.end = Utils.setDate(pseudoEnd)
+                } else {
+                    options.xRange.end = options.selectedEvent.end
+                }
+
+                options.xRange.range =
+                    options.xRange.end.year - options.xRange.start.year
+
+                console.log("options.xRange", options.xRange)
+
+                dispatch("optionsChanged", {
+                    name: "xRange",
+                    data: options.xRange,
+                })
+            }
+        } else {
+            options.selectedEvent = false
+            options.search = ""
+            options.filter = ""
+            options.xRange = { ...xRange }
+            options.symbols = initialOptions.symbols
+            options.categorise = initialOptions.categorise
+            options.totalise = initialOptions.totalise
+
+            dispatch("optionsChanged", {
+                name: "selectedEvent",
+                data: options.selectedEvent,
+            })
+            dispatch("optionsChanged", { name: "xRange", data: options.xRange })
+        }
+
+        // console.error('xRange', dateRange)
+    }
 </script>
+
+<h1>TESTING</h1>
 
 <div class="form">
     {#if options.readonly === false}
@@ -184,18 +245,10 @@
     {/if}
 
     <div class="buttons">
-        <!-- {#if eventsLength > 0}
-            <Button
-                label="Focus"
-                disabled={options.selectedEvent == false}
-                on:clicked={() => handleZoomIn(true)}
-            />
-        {/if} -->
-
         <Button
             label="Reset"
-            disabled={initialXRange.start == options.xRange.start &&
-                initialXRange.end == options.xRange.end &&
+            disabled={xRange.start.year == options.xRange.start.year &&
+                xRange.end.year == options.xRange.end.year &&
                 options.filter == "" &&
                 options.search == ""}
             on:clicked={() => handleZoomIn(false)}
