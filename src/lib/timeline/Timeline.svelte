@@ -192,7 +192,8 @@
         filteredEvents = Utils.processEvents(
             dataset.events,
             options.xRange,
-            options.search
+            options.search,
+            dataset.subCategories
         )
         // console.log('filteredEvents', filteredEvents);
         // console.log('series',series,'groups',groups,'scale',scale)

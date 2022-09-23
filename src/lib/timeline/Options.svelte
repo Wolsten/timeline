@@ -169,7 +169,7 @@
                     on:changed={dispatch('optionsChanged', {name:'logScale', data:options.logScale})} /> -->
         {/if}
 
-        {#if seriesLength > 1 || categoriesLength > 1 || subCategoriesLength > 1}
+        {#if seriesLength > 1}
             <!-- <Toggle
                 name="categorise"
                 label="Colour by"

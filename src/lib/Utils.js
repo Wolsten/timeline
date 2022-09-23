@@ -505,24 +505,29 @@ const initEvents = function (events, settings, dataCategories, dataSubCategories
 	if (settings.xRange.range != 0) {
 		filtered = filtered.filter(event => eventInRange(settings.xRange, event))
 	}
+	// Sort events
+	sortEvents(filtered, dataSubCategories)
+	// Return the filtered list of events
+	return filtered
+}
+
+
+const sortEvents = function (events, subCategories) {
 	// Set event sorting indices
 	// First sort by date, 
 	// then set date ordering and sub category index
 	// Finally sort by this index
-	filtered.sort(sortEventsByDate)
-	filtered.forEach((event, index) => {
+	events.sort(sortEventsByDate)
+	events.forEach((event, index) => {
 		event.index = index
-		event.sci = dataSubCategories.findIndex(sc => sc == event.subCategory)
+		event.sci = subCategories.findIndex(sc => sc.name == event.subCategory)
 	})
 	events.sort(sortEventsBySubCategory)
 	events.forEach((event, index) => {
 		event.scIndex = index
 		delete (event.sci)
 	})
-	// Return the filtered list of events
-	return filtered
 }
-
 
 const initSeries = function (series, settings, dataDategories, dataSubCategories) {
 	// Filter series according to optional categories and dsubcategories
@@ -632,10 +637,11 @@ const initDataset = function (data, settings) {
  * @param {Object[]} events 
  * @param {Object} xRange Options xRange {start date, end date,range years} 
  * @param {String} search 
+ * @param {Object[]} subCategories The data set sub categories
  * @returns {Object[]}
  */
-const processEvents = function (events, xRange, search) {
-	let filtered = events
+const processEvents = function (events, xRange, search, subCategories) {
+	let filtered = [...events]
 	// Search?
 	if (search != '') {
 		const pattern = new RegExp(search, 'i')
@@ -645,6 +651,8 @@ const processEvents = function (events, xRange, search) {
 	if (xRange.range > 0) {
 		filtered = filtered.filter(event => eventInRange(xRange, event))
 	}
+	// Sort events
+	sortEvents(filtered, subCategories)
 	console.log('filtered events', [...filtered])
 	return filtered
 }
