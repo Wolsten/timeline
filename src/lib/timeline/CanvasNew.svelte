@@ -55,33 +55,14 @@
         init()
     }
 
-    // init()
-
     function init() {
         // console.error('initialising canvas with options', options);
         totalise = options.totalise
         categorise = options.categorise
-        // logScale = options.logScale
-
-        // if (totalise) {
-        //     items = series.filter((item) => item.type !== "single")
-        // } else {
-        //     items = series.filter((item) => item.type === "single")
-        // }
-
         // console.log('items',items)
         // console.log('canvas init: totalise, series, groups, items',totalise,series,groups,items)
-
-        // // Filter by category
-        // if (options.subCats.length != 0) {
-        //     items = items.filter((entry) =>
-        //         options.subCats.includes(entry.subCategory)
-        //     )
-        // }
-
         // Set vertical range and horizontal axes
         calculateYRange()
-
         // Copy data from series in options and polylines, scaling y-values
         // and checking category
         // options.series = []
@@ -89,37 +70,17 @@
         series.forEach((entry, index) => {
             // Set the range allowing for space at the top and bottom
             let min = globalMin
-
-            // options.series[index] = {
-            //     name: entry.legend || entry.name,
-            //     colourIndex: entry.colourIndex,
-            //     symbolIndex: entry.symbolIndex,
-            //     citations: entry.citations,
-            //     subCategory: entry.subCategory,
-            //     data: [],
-            // }
             let polyline = ""
-
             // console.log(entry.data)
-
             entry.data.forEach((point, i) => {
                 let y = point.value
-
-                // if (options.logScale) {
-                //     y = y != 0 ? Math.log10(y) : 1
-                // }
-
-                // options.series[index].data.push(point)
-
                 point.scaledY = yValue(y, min)
                 polyline += ` ${point.x},${point.scaledY}`
             })
-
             polylines.push(polyline)
         })
-
         // console.log('polylines', polylines);
-        console.table("y-scaled series", series)
+        // console.table("y-scaled series", series)
     }
 
     function calculateYRange() {
@@ -209,20 +170,14 @@
                     options.selectedPoint
                 )
             }
-
             const point = series[options.selectedPoint.index].data.find(
                 (pt) => pt.i == options.selectedPoint.i
             )
-
             if (point) {
                 // console.warn("point", point)
-                // tooltipText = `${point.xLabel}, ${Utils.formatNumber(
-                //     point.value
-                // )}`
                 tooltipText = `${Utils.formatNumber(point.value)}<br>${
                     point.xLabel
                 }`
-
                 // Fit to right of point if there is room
                 const top = point.scaledY - 14
                 if (viewportWidth - point.x > 120) {

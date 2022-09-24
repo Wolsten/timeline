@@ -4,9 +4,9 @@
     import Utils from "../Utils.js"
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
-    import Canvas from "./Canvas.svelte"
+    // import Canvas from "./Canvas.svelte"
     import CanvasNew from "./CanvasNew.svelte"
-    import Legend from "./Legend.svelte"
+    // import Legend from "./Legend.svelte"
     import LegendNew from "./LegendNew.svelte"
     import Options from "./Options.svelte"
     import EventProperties from "./EventProperties.svelte"
@@ -27,7 +27,6 @@
 
     // Process the dataset
     const dataset = Utils.initDataset(data, userSettings)
-
     // console.error("Timeline dataset", dataset)
 
     const options = {
@@ -43,7 +42,7 @@
     if (options.xRange.range === 0) {
         options.xRange = { ...dataset.xRange }
     }
-    console.warn("options", options)
+    // console.log("options", options)
 
     let viewport
     let drawingWidth = 0
@@ -53,7 +52,6 @@
     // Filtering by subCats done in canvas component
     let filteredEvents = []
     let filteredSeries = []
-    // let filteredGroups = []
 
     // Wait for window to be mounted to test for touch devices
     onMount(() => {
@@ -89,11 +87,7 @@
             case "symbols":
                 options.symbols = detail.data
                 break
-            case "logScale":
-                options.logScale = detail.data
-                break
             case "xRange":
-                console.log("resetting xRange")
                 options.xRange = detail.data
                 options.selectedEvent = false
                 options.selectedPoint = false
@@ -127,7 +121,7 @@
                 options.filter = ""
                 break
             case "sort":
-                options.sort = detail.data // x or category
+                // options.sort = detail.data // x or category
                 break
             case "search":
                 options.search = detail.data
@@ -183,11 +177,6 @@
         // scale in pixels/x-unit
         scale = drawingWidth / options.xRange.range
         // console.log("scaleX: scale (pixels/x unit)", scale)
-        // @todo
-        // Use the options xRange
-        let xStart = options.xRange.start
-        let xEnd = options.xRange.end
-        console.warn("options", options)
         // console.log('data.events', data.events);
         filteredEvents = Utils.processEvents(
             dataset.events,
@@ -206,20 +195,6 @@
                 options.filterType,
                 options.totalise
             )
-        // if (dataset.groups.length > 0)
-        //     filteredGroups = Utils.processSeries(
-        //         dataset.groups,
-        //         scale,
-        //         xStart,
-        //         xEnd
-        //     )
-        // Reset the x-axis based on filtered data
-        // dataset.xAxis = Utils.scaleXAxis(
-        //     dataset.xAxis,
-        //     drawingWidth,
-        //     options.xRange
-        // )
-        // console.log("dataset.xAxis", dataset.xAxis)
     }
 
     function scrollToSelected() {
@@ -270,7 +245,6 @@
             {#if filteredEvents.length > 0}
                 <Events
                     events={filteredEvents}
-                    size={filteredEvents.length}
                     {scale}
                     {viewportWidth}
                     {options}

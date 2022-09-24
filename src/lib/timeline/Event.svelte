@@ -19,17 +19,24 @@
     $: selected =
         options.selectedEvent && options.selectedEvent.index == event.index
 
-    $: if (event && scale > 0 && options.sort) {
+    $: if (scale > 0) {
         props = sizeEvent()
+    }
+
+    $: if (options.sort) props.top = getTop()
+
+    function getTop() {
+        return (
+            margin.top +
+            (options.sort == "x" ? event.index : event.scIndex) * height
+        )
     }
 
     function sizeEvent() {
         if (!event || scale === 0)
             return { top: 0, left: 0, right: 0, width: 0 }
         // Top
-        const top =
-            margin.top +
-            (options.sort == "x" ? event.index : event.scIndex) * height
+        const top = getTop()
         // Left
         let left = 0
         if (event.start === undefined) {
@@ -111,9 +118,6 @@
 
     function handleClick() {
         let clickMs = Date.now()
-
-        // console.log("Handling click")
-
         // console.log('event handling click to select',event)
         if (
             options.selectedEvent === false ||
@@ -137,11 +141,14 @@
                     data: options.selectedEvent,
                 })
             }
-
             lastClickedMs = 0
         }
     }
 </script>
+
+<!------------------------------------------------------------------------------
+@section HTML
+-------------------------------------------------------------------------------->
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 {#if event && props?.top}
@@ -160,6 +167,9 @@
     </g>
 {/if}
 
+<!------------------------------------------------------------------------------
+@section Styles
+-------------------------------------------------------------------------------->
 <style>
     g {
         transition: transform ease-in-out 500ms;

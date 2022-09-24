@@ -5,12 +5,10 @@
     export let events
     export let options
     export let viewportWidth
-    export let size // @todo can probably lose this one
     export let scale
 
     // console.error('events',events)
-
-    console.warn("options.xRange", options.xRange)
+    // console.warn("options.xRange", options.xRange)
 
     const MIN_HEIGHT = 100
     const EVENT_HEIGHT = 20
@@ -25,13 +23,16 @@
     function eventsHeight(size) {
         let h = size * EVENT_HEIGHT + margin.top + margin.bottom
         if (h < MIN_HEIGHT) h = MIN_HEIGHT
-        // console.log('set height to',h)
         return h
     }
 </script>
 
 {#if viewportWidth}
-    <svg class="events" width={viewportWidth} height={eventsHeight(size)}>
+    <svg
+        class="events"
+        width={viewportWidth}
+        height={eventsHeight(events.length)}
+    >
         {#each events as event}
             <Event
                 {scale}

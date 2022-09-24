@@ -1,9 +1,8 @@
-
-const SYMBOLS = 7 // Must match number of symbol classes in Symbol.svelte
 const DAYS_IN_MONTH = [
 	31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 ]
-// const DATE_BEFORE = -1
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 // https://materialui.co/colors
 // 500 unless otherwise stated
@@ -19,6 +18,7 @@ const COLOUR_SET = [
 	'var(--tl-material-700-orange)'
 ]
 
+
 const colour = function (index, colourIndex, group) {
 	if (group) {
 		index = colourIndex
@@ -26,13 +26,16 @@ const colour = function (index, colourIndex, group) {
 	return COLOUR_SET[index % COLOUR_SET.length]
 }
 
+
 const defaultColour = function (index) {
 	return COLOUR_SET[index % COLOUR_SET.length]
 }
 
+
 const toPrecision = function (num, digits) {
 	return parseFloat(num.toPrecision(digits))
 }
+
 
 const findNormalisedMin = function (step, min) {
 	let y = 0
@@ -72,17 +75,17 @@ const formatDate = function (date) {
 }
 
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
 const getMonth = function (m) {
 	return MONTHS[parseInt(m) - 1]
 }
+
 
 const setDate = function (year = 0, month = 0, day = 0) {
 	const date = { year, month, day }
 	const decimal = getDecimalDate(date)
 	return { ...date, decimal }
 }
+
 
 const setRange = function (date1, date2) {
 	const start = setDate(date1)
@@ -95,40 +98,31 @@ const setRange = function (date1, date2) {
 }
 
 
-
 const formatYear = function (year) {
 	const magnitude = Math.abs(year)
 	let millions = magnitude / 1000000
 	let thousands = millions * 1000
 	// let formatted = new Intl.NumberFormat().format(Math.round(millions))
 	// console.log(year,magnitude,millions,thousands,formatted)
-
 	if (millions > 1) {
-
 		// let formatted = new Intl.NumberFormat().format(Math.round(millions))
 		let formatted = Number.parseFloat(millions).toPrecision(2)
 		formatted = new Intl.NumberFormat().format(formatted)
-
 		if (year < 0) {
 			return formatted + 'mya'
 		}
 		return formatted + 'my'
-
 	} else if (thousands > 10) {
-
 		let formatted = parseInt(thousands / 100) * 100
 		if (year < 0) {
 			return formatted + 'tya'
 		}
 		return formatted + 'ty'
-
 	} else if (year < 0) {
 		return Math.abs(year) + 'bc'
 	}
-
 	return year
 }
-
 
 
 const eventDates = function (event) {
@@ -149,33 +143,12 @@ const eventDates = function (event) {
 }
 
 
-
-// const initXAxis = function (start, end) {
-// 	// const s = parseFloat(start.year)
-// 	// const e = parseFloat(end.year)
-// 	const s = start.year
-// 	const e = end.year
-// 	const axis = {
-// 		values: [],
-// 		ticks: [],
-// 		labels: [],
-// 		majorFirst: start.year,
-// 		majorLast: end.year,
-// 		majorRange: end.year - start.year,
-// 	}
-// 	// console.log('initAxis: axis', axis)
-// 	return axis
-// }
-
-
-
 /**
  * Initialise the settings with any optional user supplied settings
  * @param {String} userSettings Command separate list of setting=value pairs
  * @returns {Object}
  */
 const initSettings = function (userSettings) {
-
 	let settings = {
 		symbols: false,
 		readonly: false,
@@ -273,6 +246,7 @@ const initSettings = function (userSettings) {
 	return settings
 }
 
+
 /**
  * Group and return data series according taxonomy (by category or sub-category)
  * @param {Array} series The raw series
@@ -287,10 +261,8 @@ const groupSeries = function (series, taxonomy, list) {
 	list.forEach((item, index) => {
 		let group
 		series.forEach(entry => {
-
 			if ((taxonomy == 'category' && entry.category == item.name) ||
 				(taxonomy == 'sub-category' && entry.subCategory == item.name)) {
-
 				// Initialise group
 				if (!group) {
 					const name = item.name
@@ -327,9 +299,7 @@ const groupSeries = function (series, taxonomy, list) {
 					if (group.points[match].y < group.min) {
 						group.min = group.points[match].y
 					}
-
 				})
-				// group.points.sort((a, b) => a.x.decimal - b.x.decimal)
 			}
 		})
 		groups.push(group)
@@ -338,131 +308,12 @@ const groupSeries = function (series, taxonomy, list) {
 }
 
 
-const initCategories = function (events, series) {
-
-	// console.log('creating new group from series', series)
-	let groups = []
-
-	// Get two lists of unique sub categories
-	let seriesSubCats = new Set
-	series.forEach(entry => {
-		seriesSubCats.add(entry.subCategory)
-	})
-
-	let eventsSubCats = new Set
-	events.forEach(entry => {
-		eventsSubCats.add(entry.subCategory)
-	})
-
-	seriesSubCats = Array.from(seriesSubCats)
-	eventsSubCats = Array.from(eventsSubCats)
-
-	// Sort and add extra full total group for series
-	if (seriesSubCats.length > 1) {
-		seriesSubCats.sort((a, b) => a - b)
-		seriesSubCats.push('total')
-	}
-
-	// debugger
-
-	// Generate totalised sub category groups
-	if (series.length > 0) {
-
-		seriesSubCats.forEach((cat, index) => {
-
-			let group = {
-				id: index + 1,
-				max: Number.NEGATIVE_INFINITY,
-				min: Number.POSITIVE_INFINITY,
-				name: cat,
-				points: [],
-				subCategory: cat,
-				citations: ''
-			}
-
-			series.forEach(series => {
-
-				group.citations = series.citations
-
-				if (cat == 'total' || series.subCategory == cat) {
-					series.points.forEach(point => {
-
-						// Look for point with same x
-						let match = group.points.findIndex(pt => {
-							return pt.x.year == point.x.year
-						})
-
-						// Create new point or add existing to match
-						if (group.points.length == 0 || match == -1) {
-							// match = 0
-							// *** IMPORTANT *** MUST PUSH A COPY NOT THE ORIGINAL
-							group.points.push({ ...point })
-							match = group.points.length - 1
-						} else {
-							group.points[match].y += point.y
-						}
-
-						if (group.points[match].y > group.max) {
-							group.max = group.points[match].y
-						}
-						if (group.points[match].y < group.min) {
-							group.min = group.points[match].y
-						}
-
-					})
-				}
-			})
-
-			group.points.sort((a, b) => a.x.decimal - b.x.decimal)
-
-			groups.push(group)
-		})
-
-	}
-
-	// console.error('groups', groups, 'seriesSubCats', seriesSubCats)
-
-	return { groups, eventsSubCats, seriesSubCats }
-}
-
-// const initSeriesColours = function (series, groups) {
-// 	const indices = []
-// 	series.forEach((entry, index) => {
-// 		let subCatIndex = index
-// 		if (entry.subCategory != '') {
-// 			subCatIndex = indices.findIndex(cat => cat == entry.subCategory)
-// 			if (subCatIndex == -1) {
-// 				indices.push(entry.subCategory)
-// 				subCatIndex = indices.length - 1
-// 			}
-// 		}
-// 		entry.colourIndex = subCatIndex % COLOUR_SET.length
-// 		entry.symbolIndex = index % SYMBOLS
-// 	})
-// 	groups.forEach((entry, index) => {
-// 		let subCatIndex = index
-// 		if (entry.subCategory != '') {
-// 			subCatIndex = indices.findIndex(cat => cat == entry.subCategory)
-// 			if (subCatIndex == -1) {
-// 				indices.push(entry.subCategory)
-// 				subCatIndex = indices.length - 1
-// 			}
-// 		}
-// 		entry.colourIndex = subCatIndex % COLOUR_SET.length
-// 		entry.symbolIndex = index % SYMBOLS
-// 	})
-
-// 	// console.log('series',series)
-
-// 	return { series, groups }
-// }
-
-
 const setTaxonomyColours = function (taxonomy) {
 	taxonomy.forEach((item, index) => {
 		if (item.colour == '') item.colour = defaultColour(index)
 	})
 }
+
 
 const initEvents = function (events, settings, dataCategories, dataSubCategories) {
 	// Filter events according to optional categories and dsubcategories
@@ -555,6 +406,7 @@ const initSeries = function (series, settings, dataCategories, dataSubCategories
 	return filtered
 }
 
+
 /**
  * Convert raw json data ready for manipulating graphically, including
  * synthesising group series based on taxonomy and converting string
@@ -565,7 +417,7 @@ const initSeries = function (series, settings, dataCategories, dataSubCategories
  */
 const initDataset = function (data, settings) {
 	// debugger
-	console.log('raw events', data.events)
+	// console.log('raw events', data.events)
 	// Set taxonomy colours
 	setTaxonomyColours(data.categories)
 	setTaxonomyColours(data.subCategories)
@@ -587,8 +439,8 @@ const initDataset = function (data, settings) {
 			return aBeforeB(max, event.end) ? event.end : max
 		}, data.xRange.start)
 	}
-	console.log('data start', data.xRange.start)
-	console.log('data end', data.xRange.end)
+	// console.log('data start', data.xRange.start)
+	// console.log('data end', data.xRange.end)
 	// Process series
 	if (data.series.length > 0) {
 		// Optional filtering, set type and colours, group by taxonomies
@@ -618,18 +470,10 @@ const initDataset = function (data, settings) {
 		})
 	}
 	data.xRange.range = data.xRange.end.year - data.xRange.start.year
-	// Initialise x axis 
-	// data.xAxis = {
-	// 	values: [],
-	// 	ticks: [],
-	// 	labels: [],
-	// 	majorFirst: data.start.year,
-	// 	majorLast: data.end.year,
-	// 	majorRange: data.end.year - data.start.year
-	// }
-	console.log('dataset', data)
+	// console.log('dataset', data)
 	return data
 }
+
 
 /**
  * Filter the full set of events to return ones which match the filtering criteria. 
@@ -654,17 +498,10 @@ const processEvents = function (events, xRange, search, subCategories) {
 	// Sort events - has to happen each time as event position is based on the 
 	// date and sub category indices
 	sortEvents(filtered, subCategories)
-	console.log('filtered events', [...filtered])
+	// console.log('filtered events', [...filtered])
 	return filtered
 }
 
-
-// const filterEventsBySearch = function (events, search) {
-// 	if (search == '') return events
-// 	const pattern = new RegExp(search, 'i')
-// 	const filtered = events.filter(event => event.name.search(pattern) != -1)
-// 	return filtered
-// }
 
 /**
  * Filter the events by start/end times and category
@@ -746,6 +583,7 @@ function isLeap(year) {
 	return false
 }
 
+
 function getDecimalDate(date) {
 	const daysInYear = isLeap(date.year) ? 366 : 365
 	let total = 0
@@ -780,17 +618,13 @@ function getDecimalDate(date) {
  * @returns {undefined|String|Object}
  */
 const getDateParts = function (stringDate) {
-
 	// debugger
-
 	if (stringDate === undefined ||
 		stringDate === '-') {
 		return stringDate
 	}
-
 	// console.log('stringDate', stringDate)
 	stringDate = '' + stringDate
-
 	const parts = stringDate.split('-')
 	// console.log('parts',parts)
 	let year = 0
@@ -822,24 +656,6 @@ const getDateParts = function (stringDate) {
 	let date = { year, month, day }
 	date.decimal = getDecimalDate(date)
 	return date
-}
-
-
-const isDate = function (d) {
-	return d !== undefined &&
-		d.day !== undefined &&
-		d.month !== undefined &&
-		d.year !== undefined
-}
-
-const getYearOrValue = function (dv) {
-	if (isDate(dv)) {
-		return dv.year
-	}
-	if (typeof dv === 'number') {
-		return dv
-	}
-	return false
 }
 
 
@@ -875,7 +691,6 @@ const aBeforeB = function (a, b) {
 }
 
 
-
 /**
  * See getDateParts for description of date formats
  * @param {string|Object} a (may be undefined)
@@ -897,10 +712,6 @@ const compareDates = function (a, b) {
 		}
 		return 0;
 	}
-	// if (!isDate(a) && !isDate(b) &&
-	// 	typeof a !== 'number') {
-	// 	return 0
-	// }
 	// Year
 	if (a.year < b.year) {
 		return -1
@@ -932,35 +743,13 @@ const sortEventsByDate = function (a, b) {
 	return 0
 }
 
+
 const sortEventsBySubCategory = function (a, b) {
 	return a.sci - b.sci
 }
 
 
-
-// const sortEventsVertically = function (events, datasetSubCats) {
-// 	// console.error('sortEventsVertically events',events)
-// 	// console.log('subcats',datasetSubCats)
-// 	// A sort indices
-// 	// x sorted
-// 	events.sort(sortEventsByDate)
-// 	// Save the index and lookup/save category indices for subsequent category sort
-// 	events.forEach((e, i) => {
-// 		e.index = i
-// 		e.cIndex = datasetSubCats.findIndex(sc => sc == e.subCategory)
-// 	})
-// 	// console.error('sorted events series by decimal',[...events])
-// 	// Sub-category sorted
-// 	events.sort(sortEventsByCategory)
-// 	events.forEach((e, i) => e.scIndex = i)
-// 	// console.warn('sorted events by x-axis value and category',events)
-// 	return [...events]
-// }
-
-
-
 const processSeries = function (series, scale, xRange, filter, type, totalise) {
-
 	// Initialise the filtered list
 	let filtered = []
 	// Totalised values only?
@@ -977,25 +766,17 @@ const processSeries = function (series, scale, xRange, filter, type, totalise) {
 			filtered = filtered.filter(entry => entry.subCategory == filter)
 		}
 	}
-	console.warn('init filtered series', filtered)
-
+	// console.warn('init filtered series', filtered)
 	// console.warn('set',set)
 	// console.log('scale',scale)
 	// console.log('xStart',xStart)
 	// console.log('xEnd',xEnd)
-
 	// Filter data by start and end range and generate data from points
 	filtered.forEach((entry, index) => {
-
 		entry.data = []
-
 		entry.points.forEach((point, i) => {
-
-			// debugger
-
 			// Range test
 			if (dateInRange(xRange, point.x)) {
-
 				const valueX = point.x.decimal
 				const canvasX = Utils.CANVAS_PADDING_LEFT + (valueX - xRange.start.decimal) * scale
 				const newPoint = {
@@ -1007,65 +788,15 @@ const processSeries = function (series, scale, xRange, filter, type, totalise) {
 					value: point.y,
 					y: 0 // To be scaled in the component
 				}
-
 				filtered[index].data.push(newPoint)
 			}
 		})
 
 	})
-
-	console.error('filtered', filtered)
-
+	// console.error('filtered', filtered)
 	return filtered
 }
 
-/**
- * Scale and label the axis based on the current data range defined in xAxis
- * and constrained by the options range
- * @param {Object} xAxis 
- * @param {Number} drawingWidth 
- * @param {Object} optionsXRange 
- * @returns {Object}
- */
-// const scaleXAxis = function (xAxis, drawingWidth, optionsXRange) {
-
-// 	// console.warn('scaleXAxis: options x range', optionsXRange)
-// 	// console.log('scaleXAxis: old xAxis')
-// 	// console.table(xAxis)
-
-// 	// debugger
-// 	const intervals = Math.floor(drawingWidth / Utils.MIN_BOX_WIDTH)
-// 	const canvasInterval = Math.round(drawingWidth / intervals)
-// 	const dataInterval = Math.round(optionsXRange.range / intervals)
-
-// 	// console.log('scaleXAxis: intervals, canvasInterval, dataInterval', intervals, canvasInterval, dataInterval)
-
-// 	let canvasX = Utils.CANVAS_PADDING_LEFT
-// 	let dataX = optionsXRange.start
-// 	let newAxis = { ...xAxis }
-
-// 	// Initialise values, ticks and labels
-// 	newAxis.values = []
-// 	newAxis.ticks = []
-// 	newAxis.labels = []
-
-// 	for (let i = 0; i <= intervals; i++) {
-
-// 		newAxis.ticks.push(parseInt(canvasX))
-// 		newAxis.values.push(parseInt(dataX))
-// 		newAxis.labels.push(formatYear(parseInt(dataX)))
-
-// 		canvasX += canvasInterval
-// 		dataX += dataInterval
-// 	}
-
-// 	newAxis.majorLast = newAxis.labels[newAxis.labels.length - 1]
-// 	newAxis.majorRange = newAxis.majorLast - newAxis.majorFirst
-
-// 	// console.table(newAxis)
-
-// 	return newAxis
-// }
 
 /**
  * Smooth out user interaction
@@ -1086,19 +817,6 @@ const debounce = function (fn, delay) {
 		}, delay)
 	}
 }
-
-
-// const fetchData = async function (dataName) {
-// 	const post = await fetch(`/data/${dataName}.json`)
-// 	const data = await post.json()
-// 	return data
-// }
-
-// const fetchDataset = async function (datasetName) {
-// 	const post = await fetch(`/data/${datasetName}.json`)
-// 	const dataset = await post.json()
-// 	return processDataset(dataset)
-// }
 
 
 const getVersionHistory = function (history = []) {
@@ -1133,7 +851,6 @@ const Utils = {
 	processEvents,
 	processSeries,
 	eventDates,
-	// scaleXAxis,
 	debounce,
 	toPrecision,
 	formatNumber,
