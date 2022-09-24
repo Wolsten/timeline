@@ -127,6 +127,18 @@
                 options.search = detail.data
                 scaleX()
                 break
+            case "reset":
+                options.selectedEvent = false
+                options.selectedPoint = false
+                options.search = ""
+                options.filter = ""
+                options.sort = "x"
+                options.xRange = dataset.xRange
+                options.symbols = detail.data.symbols
+                options.categorise = detail.data.categorise
+                options.totalise = detail.data.totalise
+                scaleX()
+                break
         }
         if (detail.name != "search" && detail.name != "category") {
             options.search = ""

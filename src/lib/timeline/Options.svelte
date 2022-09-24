@@ -16,11 +16,19 @@
     export let options
 
     // console.log('seriesLength',seriesLength)
-    console.log("xRange", xRange)
+    // console.log("xRange", xRange)
 
     const dispatch = createEventDispatcher()
 
     const initialOptions = { ...options }
+
+    let reset = false
+    $: reset =
+        xRange.start.year != options.xRange.start.year ||
+        xRange.end.year != options.xRange.end.year ||
+        options.filter != "" ||
+        options.search != "" ||
+        options.sort != "x"
 
     options.zoomIn = () => {
         // console.log("Handling zoom in")
@@ -89,10 +97,8 @@
 
     function handleZoomIn(focus) {
         // console.log("Clicked event zoom in - selected=", options.selectedEvent)
-
         if (focus) {
             // console.log('Clicked focus')
-
             // Only respond if selected is set
             if (options.selectedEvent) {
                 if (options.selectedEvent.start === undefined) {
@@ -117,33 +123,35 @@
                 } else {
                     options.xRange.end = options.selectedEvent.end
                 }
-
                 options.xRange.range =
                     options.xRange.end.year - options.xRange.start.year
-
-                console.log("options.xRange", options.xRange)
-
+                // console.log("options.xRange", options.xRange)
                 dispatch("optionsChanged", {
                     name: "xRange",
                     data: options.xRange,
                 })
             }
         } else {
-            options.selectedEvent = false
-            options.search = ""
-            options.filter = ""
-            options.xRange = { ...xRange }
-            options.symbols = initialOptions.symbols
-            options.categorise = initialOptions.categorise
-            options.totalise = initialOptions.totalise
-
+            // @todo this approach goes against the
+            // options.selectedEvent = false
+            // options.search = ""
+            // options.filter = ""
+            // options.xRange = { ...xRange }
+            // options.symbols = initialOptions.symbols
+            // options.categorise = initialOptions.categorise
+            // options.totalise = initialOptions.totalise
+            // options.sort = "x"
+            // console.warn("resetting")
             dispatch("optionsChanged", {
-                name: "selectedEvent",
-                data: options.selectedEvent,
+                name: "reset",
+                data: {
+                    xRange: { ...xRange },
+                    symbols: initialOptions.symbols,
+                    categorise: initialOptions.categorise,
+                    totalise: initialOptions.totalise,
+                },
             })
-            dispatch("optionsChanged", { name: "xRange", data: options.xRange })
         }
-
         // console.error('xRange', dateRange)
     }
 </script>
@@ -161,12 +169,6 @@
                         data: options.symbols,
                     })}
             />
-
-            <!-- @todo
-                The scaling needs updating to handle negative values 
-                <Toggle name="logScale" label="Scale" bind:value={options.logScale}
-                    options={['Linear','Log']}
-                    on:changed={dispatch('optionsChanged', {name:'logScale', data:options.logScale})} /> -->
         {/if}
 
         {#if seriesLength > 1}
@@ -245,10 +247,7 @@
     <div class="buttons">
         <Button
             label="Reset"
-            disabled={xRange.start.year == options.xRange.start.year &&
-                xRange.end.year == options.xRange.end.year &&
-                options.filter == "" &&
-                options.search == ""}
+            disabled={!reset}
             on:clicked={() => handleZoomIn(false)}
         />
     </div>
