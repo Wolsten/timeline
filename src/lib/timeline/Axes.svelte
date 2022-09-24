@@ -15,7 +15,7 @@
     const MAJOR_TICK_Y1 = 0 //-4
     const MAJOR_TICK_HEIGHT = 10
 
-    options.xAxis = scaleXAxis(drawingWidth)
+    $: if (options.xRange) options.xAxis = scaleXAxis(drawingWidth)
 
     /**
      * Scale and label the axis based on the current data range defined in xAxis
