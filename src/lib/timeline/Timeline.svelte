@@ -201,8 +201,7 @@
             filteredSeries = Utils.processSeries(
                 dataset.series,
                 scale,
-                xStart,
-                xEnd,
+                options.xRange,
                 options.filter,
                 options.filterType,
                 options.totalise

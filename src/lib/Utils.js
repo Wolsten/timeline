@@ -529,14 +529,14 @@ const sortEvents = function (events, subCategories) {
 	})
 }
 
-const initSeries = function (series, settings, dataDategories, dataSubCategories) {
-	// Filter series according to optional categories and dsubcategories
+const initSeries = function (series, settings, dataCategories, dataSubCategories) {
+	// Filter series according to optional categories and sub categories
 	let filtered = [...series]
 	if (settings.categories.length > 0) {
-		filtered = filtered.filter(item => settings.categories.includes(item.category))
+		filtered = filtered.filter(item => settings.categories.includes(item.category.name))
 	}
 	if (settings.subCategories.length > 0) {
-		filtered = filtered.filter(item => settings.subCategories.includes(item.category))
+		filtered = filtered.filter(item => settings.subCategories.includes(item.category.name))
 	}
 	// Set original series type and colour property (if not set)
 	filtered.forEach((entry, index) => {
@@ -544,13 +544,14 @@ const initSeries = function (series, settings, dataDategories, dataSubCategories
 		if (!entry.colour) entry.colour = defaultColour(index)
 	})
 	// Generate and append category and sub-category groups to series
-	const categoryGroups = groupSeries(filtered, 'category', dataDategories)
+	const categoryGroups = groupSeries(filtered, 'category', dataCategories)
 	const subCategoryGroups = groupSeries(filtered, 'sub-category', dataSubCategories)
 	filtered = [
 		...filtered,
 		...categoryGroups,
 		...subCategoryGroups
 	]
+	// console.log('Initialiased series', filtered)
 	return filtered
 }
 
@@ -606,11 +607,10 @@ const initDataset = function (data, settings) {
 				entry.points = entry.points.filter(point => dateInRange(settings.xRange, point.x))
 			}
 			// Find x-range start and end, plus y range min and max
-			const start = data.xRange.start ? data.xRange.start : entry.points[0].x
-			const end = data.xRange.end ? data.xRange.end : entry.points[0].x
+			const start = data.xRange.range > 0 ? data.xRange.start : entry.points[0].x
+			const end = data.xRange.range > 0 ? data.xRange.end : entry.points[0].x
 			data.xRange.start = entry.points.reduce((min, point) => aBeforeB(point.x, min) ? point.x : min, start)
 			data.xRange.end = entry.points.reduce((max, point) => aBeforeB(point.x, max) ? max : point.x, end)
-
 			data.yRange = {
 				min: entry.points.reduce((min, point) => point.y < min ? point.y : min, entry.points[0].y),
 				max: entry.points.reduce((max, point) => point.y > max ? point.y : max, data.min)
@@ -651,7 +651,8 @@ const processEvents = function (events, xRange, search, subCategories) {
 	if (xRange.range > 0) {
 		filtered = filtered.filter(event => eventInRange(xRange, event))
 	}
-	// Sort events
+	// Sort events - has to happen each time as event position is based on the 
+	// date and sub category indices
 	sortEvents(filtered, subCategories)
 	console.log('filtered events', [...filtered])
 	return filtered
@@ -958,7 +959,7 @@ const sortEventsBySubCategory = function (a, b) {
 
 
 
-const processSeries = function (series, scale, xStart, xEnd, filter, type, totalise) {
+const processSeries = function (series, scale, xRange, filter, type, totalise) {
 
 	// Initialise the filtered list
 	let filtered = []
@@ -976,6 +977,7 @@ const processSeries = function (series, scale, xStart, xEnd, filter, type, total
 			filtered = filtered.filter(entry => entry.subCategory == filter)
 		}
 	}
+	console.warn('init filtered series', filtered)
 
 	// console.warn('set',set)
 	// console.log('scale',scale)
@@ -992,24 +994,14 @@ const processSeries = function (series, scale, xStart, xEnd, filter, type, total
 			// debugger
 
 			// Range test
-			const inRange = point.x.decimal >= xStart && point.x.decimal <= xEnd
+			if (dateInRange(xRange, point.x)) {
 
-			if (inRange) {
-
-				const valueX = isDate(point.x) ? point.x.decimal : point.x
-				const canvasX = Utils.CANVAS_PADDING_LEFT + (valueX - xStart) * scale
-
-				let xLabel = ''
-				if (isDate(point.x)) {
-					xLabel = formatDate(point.x)
-				} else {
-					xLabel = formatYear(point.x)
-				}
-
+				const valueX = point.x.decimal
+				const canvasX = Utils.CANVAS_PADDING_LEFT + (valueX - xRange.start.decimal) * scale
 				const newPoint = {
 					index,
 					i,
-					xLabel,
+					xLabel: formatDate(point.x),
 					x: parseInt(canvasX),
 					// @todo Will need to fix in component - think done in Canvas but need to check
 					value: point.y,

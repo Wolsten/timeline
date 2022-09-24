@@ -100,6 +100,8 @@
             // }
             let polyline = ""
 
+            // console.log(entry.data)
+
             entry.data.forEach((point, i) => {
                 let y = point.value
 
