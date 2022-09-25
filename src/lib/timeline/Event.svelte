@@ -20,16 +20,18 @@
     $: if (event) props = getProps()
 
     // If sorting selecting just need top coordinate
-    $: if (options.sort) props.top = getTop()
+    $: props.top = getTop(options.sort)
+
+    // If filtering get the new colours
+    $: props.colour = getColour(options.filter)
 
     // Catch event being selected
     $: selected =
         options.selectedEvent && options.selectedEvent.index == event.index
 
-    function getTop() {
+    function getTop(sort) {
         const top =
-            margin.top +
-            (options.sort == "x" ? event.index : event.scIndex) * height
+            margin.top + (sort == "x" ? event.index : event.scIndex) * height
         // console.log("Getting new top for event", event.name, top)
         return top
     }
@@ -39,7 +41,7 @@
             return { top: 0, left: 0, right: 0, width: 0 }
         const colour = getColour(options.filter)
         // Top
-        const top = getTop()
+        const top = getTop(options.sort)
         // Left
         let left = 0
         if (event.start === undefined) {

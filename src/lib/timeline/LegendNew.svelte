@@ -42,18 +42,18 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#if series.length > 1 && options.totalise == false}
+{#if series.length > 1 && options.group == false}
     <!-- Display individual series options if not totalising -->
     <aside class="series">
         <span class="title">Series:</span>
 
-        {#each series as entry, index}
+        {#each series as entry, seriesIndex}
             {@const colour = entry.colour}
             {@const isActive = active(
                 options.search,
                 entry.name,
                 options.selectedPoint,
-                index
+                seriesIndex
             )}
 
             <span
@@ -66,10 +66,9 @@
                         <svg width="8" height="8">
                             <g transform="translate(4,4)">
                                 <Symbol
-                                    i={0}
-                                    {index}
+                                    opIndex={0}
+                                    {seriesIndex}
                                     defaultColour={colour}
-                                    symbolIndex={entry.symbolIndex}
                                     symbols={options.symbols}
                                     selectedPoint={false}
                                 />
@@ -91,22 +90,16 @@
 {#if subCategories.length > 0}
     <aside>
         {#each categories as category}
-            {#if categories.length > 1}
-                <span
-                    class="category title"
-                    class:active={options.filter == category}
-                    on:click|stopPropagation={() =>
-                        handleClickCat(category.name)}
-                >
-                    <div
-                        class="box"
-                        style="background-color:{category.colour};"
-                    >
-                        &nbsp;
-                    </div>
-                    {category.name}:
-                </span>
-            {/if}
+            <span
+                class="category title"
+                class:active={options.filter == category}
+                on:click|stopPropagation={() => handleClickCat(category.name)}
+            >
+                <div class="box" style="background-color:{category.colour};">
+                    &nbsp;
+                </div>
+                {Utils.sentenceCase(category.name)}:
+            </span>
 
             {#each subCategories as subCategory}
                 {#if subCategory.category == category.name}
@@ -123,7 +116,7 @@
                         >
                             &nbsp;
                         </div>
-                        {subCategory.name}
+                        {Utils.sentenceCase(subCategory.name)}
                     </span>
                 {/if}
             {/each}

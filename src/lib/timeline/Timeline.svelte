@@ -113,10 +113,21 @@
                 options.categorise = detail.data
                 options.filter = ""
                 break
-            case "totalise":
-                options.totalise = detail.data
-                options.filter = ""
+            case "group":
+                options.group = detail.data
+                console.log("Set group to", options.group)
+                filteredSeries = Utils.processSeries(
+                    dataset.series,
+                    options.xRange,
+                    options.filter,
+                    options.filterType,
+                    options.group
+                )
                 break
+            // case "totalise":
+            //     options.totalise = detail.data
+            //     options.filter = ""
+            //     break
             case "sort":
                 options.sort = detail.data
                 break
@@ -143,9 +154,9 @@
                 break
         }
         // @todo why is this required, e.g. for sorting???
-        if (detail.name != "search" && detail.name != "category") {
-            // options.search = ""
-        }
+        // if (detail.name != "search" && detail.name != "category") {
+        //     // options.search = ""
+        // }
     }
 
     function handleClick() {
@@ -183,7 +194,7 @@
     }
 
     function scaleX() {
-        // console.error("scaleX: viewportWidth", viewportWidth)
+        console.error("scaleX: viewportWidth", viewportWidth)
         // Take off padding to get the drawing width
         drawingWidth =
             viewportWidth -
@@ -200,16 +211,16 @@
             dataset.subCategories
         )
         // console.log('filteredEvents', filteredEvents);
-        // console.log('series',series,'groups',groups,'scale',scale)
+        console.log("series", dataset.series, "scale", scale)
         if (dataset.series.length > 0)
             filteredSeries = Utils.processSeries(
                 dataset.series,
-                scale,
                 options.xRange,
                 options.filter,
                 options.filterType,
-                options.totalise
+                options.group
             )
+        console.log("filter series", filteredSeries, "scale", scale)
     }
 
     function scrollToSelected() {
@@ -274,12 +285,12 @@
 
             {#if filteredSeries.length > 0}
                 <CanvasNew
+                    {scale}
                     categories={dataset.categories}
                     subCategories={dataset.subCategories}
                     series={filteredSeries}
                     {viewportWidth}
                     {drawingWidth}
-                    paddingLeft={Utils.CANVAS_PADDING_LEFT}
                     {options}
                     on:optionsChanged={handleOptions}
                 />

@@ -114,21 +114,14 @@
             /> -->
 
             <Toggle
-                name="totalise"
-                label="Grouping"
-                bind:value={options.totalise}
+                name="group"
+                label="Group"
+                bind:value={options.group}
                 on:changed={() => {
                     dispatch("optionsChanged", {
-                        name: "totalise",
-                        data: options.totalise,
+                        name: "group",
+                        data: options.group,
                     })
-                    if (options.totalise) {
-                        options.categorise = true
-                        dispatch("optionsChanged", {
-                            name: "categorise",
-                            data: options.categorise,
-                        })
-                    }
                 }}
             />
         {/if}

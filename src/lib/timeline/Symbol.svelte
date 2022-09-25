@@ -1,10 +1,10 @@
 <script>
     // https://bennettfeely.com/clippy/
 
-    export let i
-    export let index
+    export let opIndex // Original point index
+    export let seriesIndex
     export let defaultColour
-    export let symbolIndex
+    // export let symbolIndex
     export let symbols // @todo Not required if wrap in test for symbols
     export let selectedPoint
 
@@ -14,14 +14,14 @@
 
     let active = false
     let colour = ""
-    let sIndex = symbolIndex
+    let sIndex //= symbolIndex
 
     $: sIndex =
-        selectedPoint.index == index && selectedPoint.i == i
+        selectedPoint.index == seriesIndex && selectedPoint.opIndex == opIndex
             ? "selected"
-            : symbolIndex
+            : seriesIndex % 6
 
-    $: active = selectedPoint && selectedPoint.index == index
+    $: active = selectedPoint && selectedPoint.index == seriesIndex
 
     $: {
         colour = "transparent"
@@ -29,7 +29,10 @@
             if (selectedPoint == false || active) {
                 colour = defaultColour
             }
-        } else if (selectedPoint.index == index && selectedPoint.i == i) {
+        } else if (
+            selectedPoint.index == seriesIndex &&
+            selectedPoint.i == opIndex
+        ) {
             colour = defaultColour
         }
     }

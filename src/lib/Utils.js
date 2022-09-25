@@ -143,6 +143,20 @@ const eventDates = function (event) {
 }
 
 
+const sentenceCase = function (str) {
+	if ((str === null) || (str === ''))
+		return '';
+	else
+		str = str.toString();
+
+	return str.replace(/\w\S*/g,
+		function (txt) {
+			return txt.charAt(0).toUpperCase() +
+				txt.substr(1).toLowerCase();
+		});
+}
+
+
 /**
  * Initialise the settings with any optional user supplied settings
  * @param {String} userSettings Command separate list of setting=value pairs
@@ -152,7 +166,7 @@ const initSettings = function (userSettings) {
 	let settings = {
 		symbols: false,
 		readonly: false,
-		totalise: false,
+		group: false,      // group by category or sub-category according to filter type
 		categorise: false,
 		search: '',
 		filter: '',
@@ -183,22 +197,19 @@ const initSettings = function (userSettings) {
 				switch (setting) {
 					case 'symbols':
 						if (value === 'true') settings.symbols = true
-						break;
+						break
 					case 'readonly':
 						if (value === 'true') settings.readonly = true
-						break;
-					case 'totalise':
-						if (value === 'true') {
-							settings.totalise = true
-							settings.categorise = true
-						}
-						break;
+						break
+					case 'group':
+						settings.group = value
+						break
 					case 'categorise':
 						if (value === 'true') settings.categorise = true
 						break;
 					case 'logscale':
 						if (value === 'true') settings.logscale = true
-						break;
+						break
 					case 'search':
 						settings.search = value
 						break
@@ -213,10 +224,10 @@ const initSettings = function (userSettings) {
 						break
 					case 'start':
 						start = getDateParts(value)
-						break;
+						break
 					case 'end':
 						end = getDateParts(value)
-						break;
+						break
 					case 'subCategories':
 						const subCats = value.split('|')
 						if (subCats.length > 0) {
@@ -503,87 +514,6 @@ const processEvents = function (events, xRange, search, subCategories) {
 }
 
 
-// const searchEvents = function (events, search, subCategories) {
-// 	if (search != '') {
-// 		const pattern = new RegExp(search, 'i')
-// 		const filtered = events.filter(event => event.name.search(pattern) != -1)
-// 		sortEvents(filtered, subCategories)
-// 		return filtered
-// 	}
-// 	return events
-// }
-
-
-/**
- * Filter the events by start/end times and category
- * @param {Array} events 
- * @param {Number} scale 
- * @param {Number} xStart 
- * @param {Number} xEnd 
- * @param {Array} datasetSubCats 
- * @returns {Array}
- */
-// const filterEventsByXRange = function (events, scale, xStart, xEnd, datasetSubCats) {
-// 	let filtered = []
-// 	// Scale each event
-// 	events.forEach((event, index) => {
-// 		// if (event.name == 'Liz Truss') {
-// 		// 	console.error('event', event)
-// 		// 	debugger
-// 		// }
-// 		// Check if starts in the the range defined by ()
-// 		const startsIn =
-// 			// Already started
-// 			event.start === '-' ||
-// 			// or started after reference startValue && started before reference end value
-// 			(event.start.year >= xStart && event.start.year <= xEnd)
-// 		// Check if ends in the range
-// 		const endsIn = event.end && event.end.year >= xStart && event.end.year <= xEnd
-
-// 		if (startsIn || endsIn) {
-
-// 			event.index = index
-
-// 			if (event.start.decimal !== undefined) {
-// 				event.left = Math.round((event.start.decimal - xStart) * scale)
-// 			} else {
-// 				event.left = Math.round((xStart) * scale)
-// 			}
-
-// 			let right = 0
-// 			if (event.end === undefined) {
-// 				right = event.left
-// 			} else if (event.end === '-') {
-// 				right = Math.round((xEnd - xStart) * scale)
-// 			} else {
-// 				right = Math.round((event.end.decimal - xStart) * scale)
-// 			}
-
-// 			event.width = right - event.left
-
-// 			event.left += Utils.CANVAS_PADDING_LEFT
-
-// 			if (event.width < MIN_EVENT_WIDTH) {
-// 				event.width = MIN_EVENT_WIDTH
-// 			}
-
-// 			let subCatIndex = datasetSubCats.findIndex(c => c == event.subCategory)
-// 			if (subCatIndex == -1) {
-// 				subCatIndex = 0
-// 			} else {
-// 				subCatIndex = subCatIndex % COLOUR_SET.length
-// 			}
-// 			event.colour = COLOUR_SET[subCatIndex]
-
-// 			filtered.push(event)
-// 		}
-// 	})
-
-// 	// console.log('filtered', filtered)
-// 	return filtered
-// }
-
-
 function isLeap(year) {
 	// three conditions to find out the leap year
 	if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
@@ -760,17 +690,23 @@ const sortEventsBySubCategory = function (a, b) {
 }
 
 
-const processSeries = function (series, scale, xRange, filter, type, totalise) {
+const processSeries = function (series, xRange, filter, type, group) {
+	console.warn('processing series')
+	if (group && (type == '' || type == 'single')) {
+		type = 'sub-category'
+		debugger
+	}
 	// Initialise the filtered list
 	let filtered = []
 	// Totalised values only?
-	if (totalise) {
-		filtered = series.filter((entry) => entry.type !== "single")
+	if (group) {
+		filtered = series.filter((entry) => entry.type === type)
 	} else {
 		filtered = series.filter((entry) => entry.type === "single")
 	}
 	// Filter by category or sub-category?
 	if (filter !== '') {
+
 		if (type === 'category') {
 			filtered = filtered.filter(entry => entry.category == filter)
 		} else {
@@ -783,28 +719,40 @@ const processSeries = function (series, scale, xRange, filter, type, totalise) {
 	// console.log('xStart',xStart)
 	// console.log('xEnd',xEnd)
 	// Filter data by start and end range and generate data from points
-	filtered.forEach((entry, index) => {
-		entry.data = []
-		entry.points.forEach((point, i) => {
+	filtered.forEach((entry, seriesIndex) => {
+
+		entry.filteredPoints = []
+		entry.min = Number.POSITIVE_INFINITY
+		entry.max = Number.NEGATIVE_INFINITY
+
+		entry.points.forEach((point, opIndex) => {
+
 			// Range test
+			// if (dateInRange(xRange, point.x)) {
+			// 	const valueX = fPoint.x.decimal
+			// 	const canvasX = Utils.CANVAS_PADDING_LEFT + (valueX - xRange.start.decimal) * scale
+			// 	const fPoint = {
+			// 		seriesIndex,
+			// 		i,
+			// 		xLabel: formatDate(fPoint.x),
+			// 		x: parseInt(canvasX),
+			// 		y: 0 // To be scaled in the component
+			// 		// @todo Will need to fix in component - think done in Canvas but need to check
+			// 		value: fPoint.y,
+			// 	}
+			// 	filtered[seriesIndex].data.push(fPoint)
+			// }
+
 			if (dateInRange(xRange, point.x)) {
-				const valueX = point.x.decimal
-				const canvasX = Utils.CANVAS_PADDING_LEFT + (valueX - xRange.start.decimal) * scale
-				const newPoint = {
-					index,
-					i,
-					xLabel: formatDate(point.x),
-					x: parseInt(canvasX),
-					// @todo Will need to fix in component - think done in Canvas but need to check
-					value: point.y,
-					y: 0 // To be scaled in the component
-				}
-				filtered[index].data.push(newPoint)
+				// Check ranges
+				if (point.y < entry.min) entry.min = point.y
+				if (point.y > entry.max) entry.max = point.y
+				// Add to the array of points to display
+				entry.filteredPoints.push(opIndex)
 			}
 		})
-
 	})
-	// console.error('filtered', filtered)
+	console.warn('filtered', [...filtered])
 	return filtered
 }
 
@@ -872,6 +820,7 @@ const Utils = {
 	defaultColour,
 	setRange,
 	setDate,
+	sentenceCase,
 	COLOUR_INACTIVE: 'var(--tl-material-grey-400)',
 	MIN_BOX_WIDTH: 80,
 	CANVAS_MIN_HEIGHT: 300,

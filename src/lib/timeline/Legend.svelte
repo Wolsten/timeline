@@ -87,8 +87,8 @@
                                 <svg width="8" height="8">
                                     <g transform="translate(4,4)">
                                         <Symbol
-                                            i={0}
-                                            {index}
+                                            opIndex={0}
+                                            {seriesIndex}
                                             defaultColour={Utils.colour(
                                                 index,
                                                 series.colourIndex,

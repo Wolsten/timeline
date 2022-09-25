@@ -324,8 +324,8 @@
                     >
                         {#if options.symbols}
                             <Symbol
-                                i={point.i}
-                                {index}
+                                opIndex={point.i}
+                                {seriesIndex}
                                 defaultColour={colour}
                                 symbolIndex={entry.symbolIndex}
                                 symbols={options.symbols}
