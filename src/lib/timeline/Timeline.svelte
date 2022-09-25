@@ -4,16 +4,13 @@
     import Utils from "../Utils.js"
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
-    // import Canvas from "./Canvas.svelte"
     import CanvasNew from "./CanvasNew.svelte"
-    // import Legend from "./Legend.svelte"
     import LegendNew from "./LegendNew.svelte"
     import Options from "./Options.svelte"
     import EventProperties from "./EventProperties.svelte"
     import CanvasProperties from "./CanvasProperties.svelte"
     import Caption from "./Caption.svelte"
     import XRange from "./XRange.svelte"
-    // import Error from "../components/Error.svelte"
     // import DebugTimeline from "$lib/timeline/DebugTimeline.svelte"
     import { windowWidth, touch } from "../stores"
 
@@ -121,11 +118,16 @@
                 options.filter = ""
                 break
             case "sort":
-                // options.sort = detail.data // x or category
+                options.sort = detail.data
                 break
             case "search":
                 options.search = detail.data
-                scaleX()
+                filteredEvents = Utils.processEvents(
+                    dataset.events,
+                    options.xRange,
+                    options.search,
+                    dataset.subCategories
+                )
                 break
             case "reset":
                 options.selectedEvent = false
@@ -140,8 +142,9 @@
                 scaleX()
                 break
         }
+        // @todo why is this required, e.g. for sorting???
         if (detail.name != "search" && detail.name != "category") {
-            options.search = ""
+            // options.search = ""
         }
     }
 
@@ -219,6 +222,11 @@
             }
         }
     }
+
+    function handleViewportClick() {
+        options.selectedEvent = false
+        options.selectedPoint = false
+    }
 </script>
 
 <!------------------------------------------------------------------------------
@@ -252,7 +260,7 @@
         />
     {/if}
 
-    <div class="viewport" bind:this={viewport}>
+    <div class="viewport" bind:this={viewport} on:click={handleViewportClick}>
         {#if scale !== 0}
             {#if filteredEvents.length > 0}
                 <Events

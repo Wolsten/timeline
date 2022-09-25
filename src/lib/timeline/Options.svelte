@@ -9,8 +9,7 @@
 
     export let categoriesLength
     export let subCategoriesLength
-    // export let xAxis
-    export let xRange // Original dataset xRange
+    export let xRange // Full dataset xRange (not potential options.xRange subset)
     export let seriesLength
     export let eventsLength
     export let options
@@ -31,68 +30,7 @@
         options.sort != "x"
 
     options.zoomIn = () => {
-        // console.log("Handling zoom in")
         handleZoomIn(true)
-    }
-    // $: console.error(options.xRange)
-
-    function OLDhandleZoomIn(focus) {
-        // console.log("Clicked event zoom in - selected=", options.selectedEvent)
-
-        if (focus) {
-            // console.log('Clicked focus')
-
-            if (initialXRange === undefined) {
-                initialXRange = { ...options.xRange }
-            }
-
-            // Only respond if selected is set
-            if (options.selectedEvent) {
-                options.xRange.start = options.selectedEvent.start.decimal
-
-                if (options.selectedEvent?.end?.decimal !== undefined) {
-                    options.xRange.end = options.selectedEvent.end.decimal
-                } else {
-                    if (options.selectedEvent?.end === "-") {
-                        options.xRange.end = xAxis.majorLast
-                    } else {
-                        // Calculate a sensible range if no end date
-                        let pseudoEnd =
-                            options.xRange.start + xAxis.majorRange / 20
-                        if (pseudoEnd > xAxis.majorLast) {
-                            pseudoEnd = xAxis.majorLast
-                        }
-                        // options.xRange.end = parseInt(pseudoEnd);
-                        options.xRange.end = pseudoEnd
-                    }
-                }
-
-                options.xRange.range = options.xRange.end - options.xRange.start
-
-                console.log("options.xRange", options.xRange)
-
-                dispatch("optionsChanged", {
-                    name: "xRange",
-                    data: options.xRange,
-                })
-            }
-        } else {
-            options.selectedEvent = false
-            options.search = ""
-            options.filter = ""
-            options.xRange = { ...initialXRange }
-            options.symbols = initialSymbols
-            options.categorise = initialCategorise
-            options.totalise = initialTotalise
-
-            dispatch("optionsChanged", {
-                name: "selectedEvent",
-                data: options.selectedEvent,
-            })
-            dispatch("optionsChanged", { name: "xRange", data: options.xRange })
-        }
-
-        // console.error('xRange', dateRange)
     }
 
     function handleZoomIn(focus) {
@@ -132,16 +70,6 @@
                 })
             }
         } else {
-            // @todo this approach goes against the
-            // options.selectedEvent = false
-            // options.search = ""
-            // options.filter = ""
-            // options.xRange = { ...xRange }
-            // options.symbols = initialOptions.symbols
-            // options.categorise = initialOptions.categorise
-            // options.totalise = initialOptions.totalise
-            // options.sort = "x"
-            // console.warn("resetting")
             dispatch("optionsChanged", {
                 name: "reset",
                 data: {

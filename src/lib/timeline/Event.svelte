@@ -14,27 +14,30 @@
 
     let selected = false
     let lastClickedMs = 0
-    let props = sizeEvent()
+    let props
 
+    // If event changes then get the new properties
+    $: if (event) props = getProps()
+
+    // If sorting selecting just need top coordinate
+    $: if (options.sort) props.top = getTop()
+
+    // Catch event being selected
     $: selected =
         options.selectedEvent && options.selectedEvent.index == event.index
 
-    $: if (scale > 0) {
-        props = sizeEvent()
-    }
-
-    $: if (options.sort) props.top = getTop()
-
     function getTop() {
-        return (
+        const top =
             margin.top +
             (options.sort == "x" ? event.index : event.scIndex) * height
-        )
+        // console.log("Getting new top for event", event.name, top)
+        return top
     }
 
-    function sizeEvent() {
+    function getProps() {
         if (!event || scale === 0)
             return { top: 0, left: 0, right: 0, width: 0 }
+        const colour = getColour(options.filter)
         // Top
         const top = getTop()
         // Left
@@ -87,10 +90,10 @@
         //     x,
         //     text
         // )
-        return { top, left, right, width, x, text }
+        return { colour, top, left, right, width, x, text }
     }
 
-    function rectColour(filter) {
+    function getColour(filter) {
         if (filter !== "") {
             if (options?.filterType === "category") {
                 if (event.category == options.filter) {
@@ -155,7 +158,7 @@
     <g
         class="event-group"
         transform="translate({props.left},{props.top})"
-        style="--event-rect-colour: {rectColour(options.filter)};"
+        style="--event-rect-colour: {props.colour};"
         class:selected
         on:click|stopPropagation={handleClick}
     >

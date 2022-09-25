@@ -503,6 +503,17 @@ const processEvents = function (events, xRange, search, subCategories) {
 }
 
 
+// const searchEvents = function (events, search, subCategories) {
+// 	if (search != '') {
+// 		const pattern = new RegExp(search, 'i')
+// 		const filtered = events.filter(event => event.name.search(pattern) != -1)
+// 		sortEvents(filtered, subCategories)
+// 		return filtered
+// 	}
+// 	return events
+// }
+
+
 /**
  * Filter the events by start/end times and category
  * @param {Array} events 
@@ -849,6 +860,7 @@ const Utils = {
 	initDataset,
 	initSettings,
 	processEvents,
+	// searchEvents,
 	processSeries,
 	eventDates,
 	debounce,
