@@ -5,20 +5,22 @@
 
     import Utils from "../Utils.js"
 
+    export let series
     export let options
     export let viewportWidth
 
+    console.log("series", series)
     // $: console.error("CanvasProperties: viewportWidth", viewportWidth)
 
     const dispatch = createEventDispatcher()
 
     let table
 
-    function selectPoint(i) {
-        options.selectedPoint.i = i
+    function selectPoint(opIndex) {
+        const newPoint = series.data.find((point) => point.opIndex == opIndex)
         dispatch("optionsChanged", {
-            name: "selected",
-            data: options.selectedPoint,
+            name: "selectedPoint",
+            data: newPoint,
         })
     }
 
@@ -41,15 +43,6 @@
 -------------------------------------------------------------------------------->
 
 {#if options.selectedPoint !== false}
-    <!-- <div
-        class="properties"
-        transition:slide={{ duration: 500 }}
-        style="max-width:{viewportWidth}px;
-               margin-left:{-Utils.CANVAS_PADDING_LEFT}px; 
-               margin-right:{-Utils.CANVAS_PADDING_RIGHT}px;
-               padding-left:{Utils.CANVAS_PADDING_LEFT}px; 
-               padding-right:{Utils.CANVAS_PADDING_RIGHT}px;"
-    > -->
     <div
         class="properties"
         transition:slide={{ duration: 500 }}
@@ -62,9 +55,7 @@
                padding-right:{Utils.CANVAS_PADDING_RIGHT}px;"
     >
         <h3>
-            Selected series: <span class="subtitle"
-                >{options.selectedPoint.name}</span
-            >
+            Selected series: <span class="subtitle">{series.name}</span>
         </h3>
 
         <div class="table">
@@ -74,25 +65,24 @@
             </header>
 
             <div class="body" bind:this={table}>
-                {#if options.series[options.selectedPoint.index] != undefined}
-                    {#each options.series[options.selectedPoint.index].data as point}
-                        <div
-                            class="col"
-                            class:active={options.selectedPoint.i == point.i}
-                            on:click|stopPropagation={() =>
-                                selectPoint(point.i)}
-                        >
-                            <div>{Utils.formatNumber(point.value)}</div>
-                            <div class="x">{point.xLabel}</div>
-                        </div>
-                    {/each}
-                {/if}
+                {#each series.data as point}
+                    <div
+                        class="col"
+                        class:active={options.selectedPoint.opIndex ==
+                            point.opIndex}
+                        on:click|stopPropagation={() =>
+                            selectPoint(point.opIndex)}
+                    >
+                        <div>{Utils.formatNumber(point.y)}</div>
+                        <div class="x">{point.xLabel}</div>
+                    </div>
+                {/each}
             </div>
         </div>
 
-        {#if options.selectedPoint.citations}
+        {#if series.citations}
             <h4>Source</h4>
-            {@html options.selectedPoint.citations}
+            {@html series.citations}
         {/if}
     </div>
 {/if}

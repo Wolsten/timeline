@@ -8,7 +8,7 @@
     import { fade } from "svelte/transition"
 
     import Utils from "../Utils.js"
-    import Symbol from "./Symbol.svelte"
+    import SymbolNew from "./SymbolNew.svelte"
 
     export let series // Filtered array of series (includes grouped series)
     export let scale
@@ -43,6 +43,8 @@
     let tooltipLeftArrow = ""
     let tooltipRightArrow = ""
 
+    let initalised = false
+
     // Things that can trigger initialisation
     // let totalise = false
     // let categorise = false
@@ -61,6 +63,8 @@
 
     $: if (group != options.group) init()
 
+    // $: if ( initialised && )
+
     init()
 
     function init() {
@@ -76,28 +80,37 @@
         // options.series = []
         polylines = []
         data = []
-        series.forEach((entry, seriesIndex) => {
-            let polyline = ""
-            let space = ""
-            data[seriesIndex] = []
+        series.forEach((entry, sIndex) => {
+            let coords = []
+            entry.data = []
+            // Turn the list of filtered point indices into data attached to the
+            // series so can be displayed if required in the canvas properties
             entry.filteredPoints.forEach((opIndex) => {
                 const originalPoint = entry.points[opIndex]
                 const pt = {
+                    sIndex,
                     opIndex,
                     name: entry.name,
+                    x: originalPoint.x,
+                    xLabel: Utils.formatDate(originalPoint.x),
+                    y: originalPoint.y,
                     scaledX: scaledX(originalPoint.x.decimal),
                     scaledY: scaledY(originalPoint.y, global.min),
                 }
-                // points.push(point)
-                polyline += `${space}${pt.scaledX},${pt.scaledY}`
-                space = " "
-                data[seriesIndex].push(pt)
+                coords.push(`${pt.scaledX},${pt.scaledY}`)
+                entry.data = [...entry.data, pt]
+                // data[seriesIndex].push(pt)
             })
-            polylines.push(polyline)
+            polylines = [...polylines, coords.join(" ")]
         })
-
-        console.log("polylines", polylines)
-        console.table("y-scaled series", series)
+        // console.log("polylines", polylines)
+        // data.forEach((entry) => {
+        //     entry.forEach((point) => {
+        //         console.table(point)
+        //     })
+        // })
+        // console.log("data", data)
+        // initalised = true
     }
 
     // @todo here
@@ -155,33 +168,21 @@
         return Math.round(HEIGHT * (1 - (value - min) / global.range))
     }
 
-    function handleClickedSymbol(point, seriesIndex) {
-        // console.warn('clicked point',point)
-
+    function handleClickedSymbol(point) {
+        let newPoint = false
         if (
             options.selectedPoint === false ||
-            options.selectedPoint.index != seriesIndex ||
+            options.selectedPoint.sIndex != point.sIndex ||
             options.selectedPoint.opIndex != point.opIndex
         ) {
             // console.log({items})
-
-            options.selectedPoint = {
-                // @todo only need the two indices?
-                type: "series",
-                name: series[seriesIndex].legend || series[seriesIndex].name,
-                seriesIndex, // Index into filtered series
-                opIndex: point.opIndex, // Index into points in that series or group
-                citations: series[seriesIndex].citations,
-            }
-
-            // console.error('selected',options.selectedPoint)
-        } else {
-            options.selectedPoint = false
+            newPoint = { ...point }
+            console.log("selected new point on canvas", newPoint)
         }
 
         dispatch("optionsChanged", {
             name: "selectedPoint",
-            data: options.selectedPoint,
+            data: newPoint,
         })
     }
 
@@ -189,40 +190,26 @@
         if (options.selectedPoint == false) {
             tooltipText = ""
             tooltip.style = `opacity:0`
-        } else if (
-            options.selectedPoint.type === "series" &&
-            options.selectedPoint.i != -1
-        ) {
-            if (
-                series[options.selectedPoint.index] == undefined ||
-                series[options.selectedPoint.index].data == undefined
-            ) {
-                console.error(
-                    "Found undefined series for selected",
-                    options.selectedPoint
-                )
-            }
-            const point = series[options.selectedPoint.index].data.find(
-                (pt) => pt.i == options.selectedPoint.i
+        } else {
+            tooltipText = `${Utils.formatNumber(options.selectedPoint.y)}
+                            <br>${options.selectedPoint.xLabel}`
+            console.warn(
+                "options.selectedPoint",
+                options.selectedPoint,
+                tooltipText
             )
-            if (point) {
-                // console.warn("point", point)
-                tooltipText = `${Utils.formatNumber(point.value)}<br>${
-                    point.xLabel
-                }`
-                // Fit to right of point if there is room
-                const top = point.scaledY - 14
-                if (viewportWidth - point.scaledX > 120) {
-                    const left = point.scaledX + 5
-                    tooltip.style = `opacity:1;left:${left}px;top:${top}px; text-align:right;`
-                    tooltipLeftArrow = "&larr;"
-                    tooltipRightArrow = ""
-                } else {
-                    const right = viewportWidth - point.scaledX + 10
-                    tooltip.style = `opacity:1;right:${right}px;top:${top}px`
-                    tooltipLeftArrow = ""
-                    tooltipRightArrow = "&rarr;"
-                }
+            // Fit to right of point if there is room
+            const top = options.selectedPoint.scaledY - 14
+            if (viewportWidth - options.selectedPoint.scaledX > 120) {
+                const left = options.selectedPoint.scaledX + 5
+                tooltip.style = `opacity:1;left:${left}px;top:${top}px; text-align:right;`
+                tooltipLeftArrow = "&larr;"
+                tooltipRightArrow = ""
+            } else {
+                const right = viewportWidth - options.selectedPoint.scaledX + 10
+                tooltip.style = `opacity:1;right:${right}px;top:${top}px`
+                tooltipLeftArrow = ""
+                tooltipRightArrow = "&rarr;"
             }
         }
     }
@@ -292,16 +279,6 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#each data as entry}
-    {#each entry as point}
-        {#if point.scaledX === undefined || point.scaledY === undefined || point.opIndex === undefined}
-            <p>
-                entry name {entry.name}, {point.scaledX}, {point.scaledY}
-            </p>
-        {/if}
-    {/each}
-{/each}
-
 {#if polylines.length > 0}
     <svg height={HEIGHT} width={viewportWidth}>
         <!-- Y axis -->
@@ -323,37 +300,36 @@
             {/if}
         {/each}
 
-        <!-- Date series -->
-        {#each data as points, seriesIndex}
+        <!-- Data series -->
+        {#each series as entry, sIndex}
             {@const colour = getColour(
                 options.selectedPoint,
                 options.filter,
-                seriesIndex
+                sIndex
             )}
             {@const width = colour == Utils.COLOUR_INACTIVE ? 1 : 2}
+            {@const symbolIndex = sIndex}
 
             <!-- Line -->
             <polyline
-                points={polylines[seriesIndex]}
+                points={polylines[sIndex]}
                 transition:fade
                 style="stroke-width:{width}; stroke:{colour};"
             />
 
             <!-- Symbols - if no filter or active -->
             {#if width != 1}
-                {#each points as point}
+                {#each entry.data as point}
                     <g
                         class="symbol"
                         transform="translate({point.scaledX},{point.scaledY})"
                         on:click|stopPropagation={() =>
-                            handleClickedSymbol(point, seriesIndex)}
+                            handleClickedSymbol(point)}
                     >
-                        <Symbol
-                            opIndex={point.opIndex}
-                            {seriesIndex}
-                            defaultColour={colour}
-                            symbols={options.symbols}
-                            selectedPoint={options.selectedPoint}
+                        <SymbolNew
+                            index={sIndex}
+                            colour={options.symbols ? colour : "transparent"}
+                            wrapped={false}
                         />
                     </g>
                 {/each}
@@ -374,7 +350,7 @@
 <style>
     svg {
         /* border: 1px solid rgb(218, 177, 177); */
-        overflow: hidden;
+        /* overflow: hidden; */
         position: relative;
         width: 100%;
     }

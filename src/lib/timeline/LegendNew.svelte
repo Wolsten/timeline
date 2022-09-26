@@ -1,13 +1,14 @@
 <script>
     import { createEventDispatcher } from "svelte"
 
-    import Symbol from "./Symbol.svelte"
+    import SymbolNew from "./SymbolNew.svelte"
     import Utils from "../Utils"
 
     export let series
     export let categories
     export let subCategories
     export let options
+
     // export let filteredEvents
 
     // const eventsSubCats = subCategories.filter((item) => item.type === "event")
@@ -19,13 +20,6 @@
         dispatch("optionsChanged", { name: "filter", data: filter })
     }
 
-    function handleClickSubCat(subCatName) {
-        if (subCatName == options.subCategory) {
-            subCatName = ""
-        }
-        dispatch("optionsChanged", { name: "sub-category", data: subCatName })
-    }
-
     function handleClickCat(catName) {
         if (catName == options.category) {
             catName = ""
@@ -33,9 +27,16 @@
         dispatch("optionsChanged", { name: "category", data: catName })
     }
 
-    function active(optionsFilter, filter, sel, index) {
-        return optionsFilter == filter || (sel && sel.index == index)
+    function handleClickSubCat(subCatName) {
+        if (subCatName == options.subCategory) {
+            subCatName = ""
+        }
+        dispatch("optionsChanged", { name: "sub-category", data: subCatName })
     }
+
+    // function active(optionsFilter, filter, sel, index) {
+    //     return optionsFilter == filter || (sel && sel.index == index)
+    // }
 </script>
 
 <!------------------------------------------------------------------------------
@@ -47,39 +48,18 @@
     <aside class="series">
         <span class="title">Series:</span>
 
-        {#each series as entry, seriesIndex}
+        {#each series as entry, sIndex}
             {@const colour = entry.colour}
-            {@const isActive = active(
-                options.search,
-                entry.name,
-                options.selectedPoint,
-                seriesIndex
-            )}
+            {@const isActive = options.filter == entry.legend}
+            {@const symbolIndex = options.symbols ? sIndex : 0}
 
             <span
+                class="symbol series"
                 class:active={isActive}
                 on:click|stopPropagation={() => handleClickSeries(entry.legend)}
                 title="Click to highlight this series"
             >
-                {#if options.symbols}
-                    <span class="symbol">
-                        <svg width="8" height="8">
-                            <g transform="translate(4,4)">
-                                <Symbol
-                                    opIndex={0}
-                                    {seriesIndex}
-                                    defaultColour={colour}
-                                    symbols={options.symbols}
-                                    selectedPoint={false}
-                                />
-                            </g>
-                        </svg>
-                    </span>
-                {:else}
-                    <div class="box" style="background-color:{colour};">
-                        &nbsp;
-                    </div>
-                {/if}
+                <SymbolNew index={symbolIndex} {colour} wrapped={true} />
 
                 {entry.legend}
             </span>
@@ -89,33 +69,42 @@
 
 {#if subCategories.length > 0}
     <aside>
-        {#each categories as category}
-            <span
-                class="category title"
-                class:active={options.filter == category}
-                on:click|stopPropagation={() => handleClickCat(category.name)}
-            >
-                <div class="box" style="background-color:{category.colour};">
-                    &nbsp;
-                </div>
-                {Utils.sentenceCase(category.name)}:
-            </span>
+        {#each categories as category, cIndex}
+            {#if categories.length > 1 || options.group}
+                {@const colour = category.colour}
+                {@const isActive = options.filter == category.name}
+                {@const symbolIndex = options.symbols ? cIndex : 0}
+                <span
+                    class="symbol category title"
+                    class:active={isActive}
+                    on:click|stopPropagation={() =>
+                        handleClickCat(category.name)}
+                >
+                    <SymbolNew index={symbolIndex} {colour} wrapped={true} />
 
-            {#each subCategories as subCategory}
+                    {Utils.sentenceCase(category.name)}:
+                </span>
+            {:else}
+                <span class="title">{Utils.sentenceCase(category.name)}:</span>
+            {/if}
+
+            {#each subCategories as subCategory, scIndex}
                 {#if subCategory.category == category.name}
+                    {@const colour = subCategory.colour}
+                    {@const isActive = options.filter == subCategory.name}
+                    {@const symbolIndex = options.symbols ? scIndex : 0}
                     <span
-                        class="sub-category"
-                        class:active={options.filter == subCategory.name}
+                        class="symbol sub-category"
+                        class:active={isActive}
                         title="Click to highlight this event category"
                         on:click|stopPropagation={() =>
                             handleClickSubCat(subCategory.name)}
                     >
-                        <div
-                            class="box"
-                            style:background-color={subCategory.colour}
-                        >
-                            &nbsp;
-                        </div>
+                        <SymbolNew
+                            index={symbolIndex}
+                            {colour}
+                            wrapped={true}
+                        />
                         {Utils.sentenceCase(subCategory.name)}
                     </span>
                 {/if}
@@ -152,7 +141,7 @@
         display: flex;
         align-items: center;
         column-gap: 0;
-        padding: 0.5rem 0 0.2rem 0;
+        padding: 0.3rem 0.2rem;
         margin: 0 0.4rem;
         border-bottom: 4px solid transparent;
         cursor: pointer;
@@ -160,7 +149,7 @@
         text-align: center;
     }
 
-    .symbol {
+    svg {
         margin-right: 0.2rem;
     }
 
@@ -173,8 +162,13 @@
         cursor: pointer;
     }
 
-    span:hover .box,
-    span.active .box {
+    .symbol:hover,
+    .symbol.active {
         outline: solid 0.2rem var(--tl-colour-legend-highlight);
     }
+
+    /* span:hover .box,
+    span.active .box {
+        outline: solid 0.2rem var(--tl-colour-legend-highlight);
+    } */
 </style>

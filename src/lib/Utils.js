@@ -692,10 +692,6 @@ const sortEventsBySubCategory = function (a, b) {
 
 const processSeries = function (series, xRange, filter, type, group) {
 	console.warn('processing series')
-	if (group && (type == '' || type == 'single')) {
-		type = 'sub-category'
-		debugger
-	}
 	// Initialise the filtered list
 	let filtered = []
 	// Totalised values only?
@@ -815,6 +811,7 @@ const Utils = {
 	toPrecision,
 	formatNumber,
 	formatYear,
+	formatDate,
 	colour,
 	findNormalisedMin,
 	defaultColour,
@@ -826,7 +823,7 @@ const Utils = {
 	CANVAS_MIN_HEIGHT: 300,
 	CANVAS_PADDING_LEFT: 30,  // 20
 	CANVAS_PADDING_RIGHT: 30,  // 20
-	NAV_BREAK: 600,
+	NAV_BREAK: 600
 }
 
 export default Utils

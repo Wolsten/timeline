@@ -1,8 +1,10 @@
 <script>
     // https://bennettfeely.com/clippy/
 
+    import Utils from "../Utils.js"
+
     export let opIndex // Original point index
-    export let seriesIndex
+    export let sIndex
     export let defaultColour
     // export let symbolIndex
     export let symbols // @todo Not required if wrap in test for symbols
@@ -10,18 +12,16 @@
 
     // $: console.log('selectedPoint',selectedPoint)
 
-    const symbolSize = 10
-
     let active = false
     let colour = ""
-    let sIndex //= symbolIndex
+    let symbolIndex
 
-    $: sIndex =
-        selectedPoint.index == seriesIndex && selectedPoint.opIndex == opIndex
+    $: symbolIndex =
+        selectedPoint.sIndex == sIndex && selectedPoint.opIndex == opIndex
             ? "selected"
-            : seriesIndex % 6
+            : sIndex % 6
 
-    $: active = selectedPoint && selectedPoint.index == seriesIndex
+    $: active = selectedPoint && selectedPoint.sIndex == sIndex
 
     $: {
         colour = "transparent"
@@ -30,8 +30,8 @@
                 colour = defaultColour
             }
         } else if (
-            selectedPoint.index == seriesIndex &&
-            selectedPoint.i == opIndex
+            selectedPoint.sIndex == sIndex &&
+            selectedPoint.opIndex == opIndex
         ) {
             colour = defaultColour
         }
@@ -43,12 +43,12 @@
 -------------------------------------------------------------------------------->
 
 <rect
-    class="symbol-{sIndex}"
+    class="symbol-{symbolIndex}"
     style:fill={colour}
-    x={-symbolSize / 2}
-    y={-symbolSize / 2}
-    width={symbolSize}
-    height={symbolSize}
+    x={-Utils.SYMBOL_SIZE / 2}
+    y={-Utils.SYMBOL_SIZE / 2}
+    width={Utils.SYMBOL_SIZE}
+    height={Utils.SYMBOL_SIZE}
 />
 
 <!------------------------------------------------------------------------------
@@ -75,7 +75,7 @@
         ); /* Smaller square */
     }
     .symbol-1 {
-        clip-path: circle(50% at 0 0);
+        clip-path: circle(50% at 50% 50%);
     }
     .symbol-2 {
         clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Diamond */

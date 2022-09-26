@@ -17,7 +17,10 @@
     // As pass in by the user
     export let data
     export let settings
+
     export let viewportWidth
+
+    console.log("viewportWidth", viewportWidth)
 
     // Convert string settings to object
     const userSettings = Utils.initSettings(settings)
@@ -42,7 +45,8 @@
     // console.log("options", options)
 
     let viewport
-    let drawingWidth = 0
+    let drawingWidth =
+        viewportWidth - Utils.CANVAS_PADDING_LEFT - Utils.CANVAS_PADDING_RIGHT
     let scale = 0
 
     // Events, series and groups filtered by date range (search and subCats)
@@ -56,6 +60,7 @@
         const generalTouchEnabled =
             "ontouchstart" in document.createElement("div")
         $touch = msTouchEnabled || generalTouchEnabled
+        console.log("onMount viewport width", viewport?.clientWidth)
     })
 
     //
@@ -77,6 +82,7 @@
         switch (detail.name) {
             case "selectedPoint":
                 options.selectedPoint = detail.data
+                console.error("Got new selected point", options.selectedPoint)
                 break
             case "selectedEvent":
                 options.selectedEvent = detail.data
@@ -114,7 +120,14 @@
                 options.filter = ""
                 break
             case "group":
-                options.group = detail.data
+                // options.group = detail.data
+                if (
+                    options.group &&
+                    (options.filterType == "" || options.filterType == "single")
+                ) {
+                    options.filterType = "sub-category"
+                    // debugger
+                }
                 console.log("Set group to", options.group)
                 filteredSeries = Utils.processSeries(
                     dataset.series,
@@ -171,8 +184,11 @@
         // console.log("Handling resize with viewport", viewport?.clientWidth)
         // Stop if we don;t yet have a viewport
         if (viewport === undefined) return
+
         // If we have a viewport with a non-zero size use this
         if (viewport.clientWidth !== 0) {
+            console.log("New viewport width", viewport.clientWidth)
+
             // Viewport is the main drawing area which includes non-drawing
             // areas in the x-axis which are the left and right padding, though
             // the viewport itself is NOT padded using CSS
@@ -181,8 +197,17 @@
                 Utils.CANVAS_PADDING_LEFT +
                 Utils.CANVAS_PADDING_RIGHT
         }
+
         // If the width has changed then rescale the x-axis
         if (viewport.clientWidth != viewportWidth) {
+            console.log("4. viewport width", viewport.clientWidth)
+
+            // The drawing width is the clientWidth
+            drawingWidth =
+                viewportWidth -
+                Utils.CANVAS_PADDING_LEFT -
+                Utils.CANVAS_PADDING_RIGHT
+
             scaleX()
             // Non-intuitive behaviour on touch devices
             if ($touch == false) {
@@ -195,11 +220,7 @@
 
     function scaleX() {
         console.error("scaleX: viewportWidth", viewportWidth)
-        // Take off padding to get the drawing width
-        drawingWidth =
-            viewportWidth -
-            Utils.CANVAS_PADDING_LEFT -
-            Utils.CANVAS_PADDING_RIGHT
+        console.error("scaleX: drawingWidth", drawingWidth)
         // scale in pixels/x-unit
         scale = drawingWidth / options.xRange.range
         // console.log("scaleX: scale (pixels/x unit)", scale)
@@ -305,13 +326,6 @@
         <XRange {drawingWidth} {options} on:optionsChanged={handleOptions} />
     {/if}
 
-    <!-- <Legend
-        eventsSubCats={dataset.eventsSubCats}
-        {filteredEvents}
-        {options}
-        on:optionsChanged={handleOptions}
-    /> -->
-
     <LegendNew
         series={filteredSeries}
         categories={dataset.categories}
@@ -324,11 +338,16 @@
         selectedEvent={options.selectedEvent}
         on:optionsChanged={handleOptions}
     />
-    <CanvasProperties
-        {options}
-        {viewportWidth}
-        on:optionsChanged={handleOptions}
-    />
+
+    {#if options.selectedPoint?.sIndex}
+        {@const series = filteredSeries[options.selectedPoint.sIndex]}
+        <CanvasProperties
+            {series}
+            {options}
+            {viewportWidth}
+            on:optionsChanged={handleOptions}
+        />
+    {/if}
 </figure>
 
 <style>
