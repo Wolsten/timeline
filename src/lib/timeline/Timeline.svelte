@@ -96,39 +96,30 @@
                 options.selectedPoint = false
                 scaleX()
                 break
-            case "category":
-                options.filter = detail.data
-                options.filterType = "category"
-                options.selectedEvent = false
-                options.selectedPoint = false
-                break
-            case "sub-category":
-                options.filter = detail.data
-                options.filterType = "sub-category"
-                options.selectedEvent = false
-                options.selectedPoint = false
-                break
+            // Filter or just highlight series
+            // depending on group settings
             case "filter":
-                // console.log('Filtering')
-                options.filter = detail.data
-                options.filterType = "single"
+                options.filter = detail.data.value
+                options.filterType = detail.data.taxonomy
                 options.selectedEvent = false
                 options.selectedPoint = false
-                break
-            case "categorise":
-                options.categorise = detail.data
-                options.filter = ""
+                if (options.group) {
+                    filteredSeries = Utils.processSeries(
+                        dataset.series,
+                        options.xRange,
+                        options.filter,
+                        options.filterType,
+                        options.group
+                    )
+                }
                 break
             case "group":
-                // options.group = detail.data
-                if (
-                    options.group &&
-                    (options.filterType == "" || options.filterType == "single")
-                ) {
+                options.filter = ""
+                if (options.group) {
                     options.filterType = "sub-category"
-                    // debugger
+                } else {
+                    options.filterType = ""
                 }
-                console.log("Set group to", options.group)
                 filteredSeries = Utils.processSeries(
                     dataset.series,
                     options.xRange,
@@ -137,10 +128,6 @@
                     options.group
                 )
                 break
-            // case "totalise":
-            //     options.totalise = detail.data
-            //     options.filter = ""
-            //     break
             case "sort":
                 options.sort = detail.data
                 break
@@ -283,8 +270,6 @@
     {#if options.readonly === false}
         <Options
             {options}
-            categoriesLength={dataset.categories.length}
-            subCategoriesLength={dataset.subCategories.length}
             xRange={dataset.xRange}
             seriesLength={dataset.series.length}
             eventsLength={dataset.events.length}
@@ -307,9 +292,10 @@
             {#if filteredSeries.length > 0}
                 <CanvasNew
                     {scale}
+                    yRange={dataset.yRange}
                     categories={dataset.categories}
                     subCategories={dataset.subCategories}
-                    series={filteredSeries}
+                    {filteredSeries}
                     {viewportWidth}
                     {drawingWidth}
                     {options}

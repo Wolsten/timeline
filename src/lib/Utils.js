@@ -311,6 +311,8 @@ const groupSeries = function (series, taxonomy, list) {
 						group.min = group.points[match].y
 					}
 				})
+				// Sort points in date order
+				group.points.sort((a, b) => a.x - b.x)
 			}
 		})
 		groups.push(group)
@@ -418,6 +420,37 @@ const initSeries = function (series, settings, dataCategories, dataSubCategories
 }
 
 
+function initYRange(yRange) {
+	// Normalise the minimum value
+	yRange.range = yRange.max - yRange.min
+	yRange.range = toPrecision(yRange.range, 1)
+	const step = yRange.range / 10
+	// console.log('step, global.min % step',step, global.min % step)
+	yRange.min = findNormalisedMin(step, yRange.min)
+	console.log(
+		"Normalised global min,max,step",
+		yRange.min,
+		yRange.max,
+		step
+	)
+	// Normalise the maximum value and range and get y intervals (horizontals)
+	let y = yRange.min
+	let horizontals = []
+	while (y < yRange.max) {
+		horizontals.push({
+			y,
+			label: y,
+		})
+		y += step * 2
+	}
+	yRange.max = y
+	yRange.range = yRange.max - yRange.min
+	yRange.horizontals = horizontals
+	return yRange
+}
+
+
+
 /**
  * Convert raw json data ready for manipulating graphically, including
  * synthesising group series based on taxonomy and converting string
@@ -453,6 +486,12 @@ const initDataset = function (data, settings) {
 	// console.log('data start', data.xRange.start)
 	// console.log('data end', data.xRange.end)
 	// Process series
+	data.yRange = {
+		min: Number.POSITIVE_INFINITY,
+		max: Number.NEGATIVE_INFINITY,
+		range: 0,
+		horizontals: []
+	}
 	if (data.series.length > 0) {
 		// Optional filtering, set type and colours, group by taxonomies
 		data.series = initSeries(data.series, settings, data.categories, data.subCategories)
@@ -474,14 +513,13 @@ const initDataset = function (data, settings) {
 			const end = data.xRange.range > 0 ? data.xRange.end : entry.points[0].x
 			data.xRange.start = entry.points.reduce((min, point) => aBeforeB(point.x, min) ? point.x : min, start)
 			data.xRange.end = entry.points.reduce((max, point) => aBeforeB(point.x, max) ? max : point.x, end)
-			data.yRange = {
-				min: entry.points.reduce((min, point) => point.y < min ? point.y : min, entry.points[0].y),
-				max: entry.points.reduce((max, point) => point.y > max ? point.y : max, data.min)
-			}
+			data.yRange.min = entry.points.reduce((min, point) => point.y < min ? point.y : min, data.yRange.min)
+			data.yRange.max = entry.points.reduce((max, point) => point.y > max ? point.y : max, data.yRange.max)
 		})
 	}
 	data.xRange.range = data.xRange.end.year - data.xRange.start.year
-	// console.log('dataset', data)
+	data.yRange = initYRange(data.yRange)
+	console.log('dataset', data)
 	return data
 }
 
@@ -632,47 +670,47 @@ const aBeforeB = function (a, b) {
 }
 
 
-/**
+/*
  * See getDateParts for description of date formats
  * @param {string|Object} a (may be undefined)
  * @param {string|Object} b  (may be undefined)
  * @returns {number} a < b -1, a == b 0,  a > b 1
  */
-const compareDates = function (a, b) {
-	// console.log('compareDates a and b', a, b)
-	// Either undefined
-	if (a === undefined || b === undefined) {
-		return 0;
-	}
-	// Already started or ongoing?
-	if (a === '-' || b === '-') {
-		if (a === '-' || b !== '-') {
-			return -1;
-		} else if (a !== '-' || b === '-') {
-			return 1;
-		}
-		return 0;
-	}
-	// Year
-	if (a.year < b.year) {
-		return -1
-	} else if (a.year > b.year) {
-		return 1
-	}
-	// Month
-	if (a.month < b.month) {
-		return -1
-	} else if (a.month > b.month) {
-		return 1
-	}
-	// Day
-	if (a.day < b.day) {
-		return -1
-	} else if (a.day > b.day) {
-		return 1
-	}
-	return 0
-}
+// const compareDates = function (a, b) {
+// 	// console.log('compareDates a and b', a, b)
+// 	// Either undefined
+// 	if (a === undefined || b === undefined) {
+// 		return 0;
+// 	}
+// 	// Already started or ongoing?
+// 	if (a === '-' || b === '-') {
+// 		if (a === '-' || b !== '-') {
+// 			return -1;
+// 		} else if (a !== '-' || b === '-') {
+// 			return 1;
+// 		}
+// 		return 0;
+// 	}
+// 	// Year
+// 	if (a.year < b.year) {
+// 		return -1
+// 	} else if (a.year > b.year) {
+// 		return 1
+// 	}
+// 	// Month
+// 	if (a.month < b.month) {
+// 		return -1
+// 	} else if (a.month > b.month) {
+// 		return 1
+// 	}
+// 	// Day
+// 	if (a.day < b.day) {
+// 		return -1
+// 	} else if (a.day > b.day) {
+// 		return 1
+// 	}
+// 	return 0
+// }
 
 const sortEventsByDate = function (a, b) {
 	// console.log('a', a, 'b', b)
@@ -691,18 +729,19 @@ const sortEventsBySubCategory = function (a, b) {
 
 
 const processSeries = function (series, xRange, filter, type, group) {
-	console.warn('processing series')
+	console.warn('processing series with type and group', type, group)
 	// Initialise the filtered list
 	let filtered = []
 	// Totalised values only?
 	if (group) {
+		console.log('Filtering grouped data from series', series)
 		filtered = series.filter((entry) => entry.type === type)
 	} else {
+		console.log('Filtering single data from series', series)
 		filtered = series.filter((entry) => entry.type === "single")
 	}
 	// Filter by category or sub-category?
-	if (filter !== '') {
-
+	if (group && filter !== '') {
 		if (type === 'category') {
 			filtered = filtered.filter(entry => entry.category == filter)
 		} else {
@@ -718,6 +757,8 @@ const processSeries = function (series, xRange, filter, type, group) {
 	filtered.forEach((entry, seriesIndex) => {
 
 		entry.filteredPoints = []
+
+		// @todo - probably don;t need this
 		entry.min = Number.POSITIVE_INFINITY
 		entry.max = Number.NEGATIVE_INFINITY
 

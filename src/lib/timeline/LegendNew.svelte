@@ -16,22 +16,31 @@
 
     const dispatch = createEventDispatcher()
 
-    function handleClickSeries(filter) {
-        dispatch("optionsChanged", { name: "filter", data: filter })
+    function handleClickSeries(value) {
+        dispatch("optionsChanged", {
+            name: "filter",
+            data: { taxonomy: "single", value },
+        })
     }
 
-    function handleClickCat(catName) {
-        if (catName == options.category) {
-            catName = ""
+    function handleClickCat(value) {
+        if (value == options.category) {
+            value = ""
         }
-        dispatch("optionsChanged", { name: "category", data: catName })
+        dispatch("optionsChanged", {
+            name: "filter",
+            data: { taxonomy: "category", value },
+        })
     }
 
-    function handleClickSubCat(subCatName) {
-        if (subCatName == options.subCategory) {
-            subCatName = ""
+    function handleClickSubCat(value) {
+        if (value == options.subCategory) {
+            value = ""
         }
-        dispatch("optionsChanged", { name: "sub-category", data: subCatName })
+        dispatch("optionsChanged", {
+            name: "filter",
+            data: { taxonomy: "sub-category", value },
+        })
     }
 
     // function active(optionsFilter, filter, sel, index) {
@@ -129,28 +138,16 @@
         font-size: 0.8rem;
     }
 
-    .box {
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        margin-right: 0.3rem;
-        outline: none;
-    }
-
     span {
         display: flex;
         align-items: center;
         column-gap: 0;
-        padding: 0.3rem 0.2rem;
-        margin: 0 0.4rem;
-        border-bottom: 4px solid transparent;
+        padding: 0.1rem 0.2rem;
+        margin: 0.2rem 0.4rem;
+        /* border-bottom: 4px solid transparent; */
         cursor: pointer;
         transition: all ease-in 300ms;
         text-align: center;
-    }
-
-    svg {
-        margin-right: 0.2rem;
     }
 
     .title {
@@ -162,13 +159,10 @@
         cursor: pointer;
     }
 
-    .symbol:hover,
+    .symbol:hover {
+        outline: solid 0.1rem var(--tl-colour-legend-highlight);
+    }
     .symbol.active {
         outline: solid 0.2rem var(--tl-colour-legend-highlight);
     }
-
-    /* span:hover .box,
-    span.active .box {
-        outline: solid 0.2rem var(--tl-colour-legend-highlight);
-    } */
 </style>

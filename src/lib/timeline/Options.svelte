@@ -7,8 +7,8 @@
     import Toggle from "../components/Inputs/Toggle.svelte"
     import Utils from "../Utils.js"
 
-    export let categoriesLength
-    export let subCategoriesLength
+    // export let categoriesLength
+    // export let subCategoriesLength
     export let xRange // Full dataset xRange (not potential options.xRange subset)
     export let seriesLength
     export let eventsLength
