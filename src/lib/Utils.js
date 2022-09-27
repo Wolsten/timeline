@@ -420,9 +420,22 @@ const initSeries = function (series, settings, dataCategories, dataSubCategories
 }
 
 
-function initYRange(yRange) {
+function getYRange(series) {
+	const min = series.reduce(
+		(min, entry) => (entry.min < min ? entry.min : min),
+		Number.POSITIVE_INFINITY
+	)
+	const max = series.reduce(
+		(max, entry) => (entry.max > max ? entry.max : max),
+		Number.NEGATIVE_INFINITY
+	)
+	let yRange = {
+		min,
+		max,
+		range: max - min,
+		horizontals: [],
+	}
 	// Normalise the minimum value
-	yRange.range = yRange.max - yRange.min
 	yRange.range = toPrecision(yRange.range, 1)
 	const step = yRange.range / 10
 	// console.log('step, global.min % step',step, global.min % step)
@@ -513,12 +526,12 @@ const initDataset = function (data, settings) {
 			const end = data.xRange.range > 0 ? data.xRange.end : entry.points[0].x
 			data.xRange.start = entry.points.reduce((min, point) => aBeforeB(point.x, min) ? point.x : min, start)
 			data.xRange.end = entry.points.reduce((max, point) => aBeforeB(point.x, max) ? max : point.x, end)
-			data.yRange.min = entry.points.reduce((min, point) => point.y < min ? point.y : min, data.yRange.min)
-			data.yRange.max = entry.points.reduce((max, point) => point.y > max ? point.y : max, data.yRange.max)
+			entry.min = entry.points.reduce((min, point) => point.y < min ? point.y : min, Number.POSITIVE_INFINITY)
+			entry.max = entry.points.reduce((max, point) => point.y > max ? point.y : max, Number.NEGATIVE_INFINITY)
 		})
 	}
 	data.xRange.range = data.xRange.end.year - data.xRange.start.year
-	data.yRange = initYRange(data.yRange)
+	// data.yRange = getYRange(data.yRange)
 	console.log('dataset', data)
 	return data
 }
@@ -844,6 +857,7 @@ const Utils = {
 	getVersionHistory,
 	initDataset,
 	initSettings,
+	getYRange,
 	processEvents,
 	// searchEvents,
 	processSeries,

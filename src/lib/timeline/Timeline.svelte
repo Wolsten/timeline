@@ -255,10 +255,8 @@
     on:click|stopPropagation={handleClick}
 >
     <Caption
-        nSeries={dataset.series.length > 1}
-        categorised={options.categorise}
-        grouped={options.totalise}
-        filter={options.filter}
+        multipleSeries={dataset.series.length > 1}
+        {options}
         title={options.title || dataset.name}
     />
 
@@ -287,7 +285,6 @@
             {#if filteredSeries.length > 0}
                 <CanvasNew
                     {scale}
-                    yRange={dataset.yRange}
                     categories={dataset.categories}
                     subCategories={dataset.subCategories}
                     {filteredSeries}

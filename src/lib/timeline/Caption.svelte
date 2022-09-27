@@ -1,20 +1,20 @@
 <script>
     export let title
-    export let nSeries
-    export let categorised
-    export let grouped
-    export let filter
+    export let multipleSeries
+    export let options
 
-    function setComments(g, c) {
+    function setComments(group, filter, type) {
         let comments = ""
-        if (g && c) {
-            comments = "series grouped and coloured by category"
-        } else if (c) {
-            comments = "individual series, coloured by category"
+        if (group) {
+            if (type == "category") {
+                comments = "series grouped and coloured by category"
+            } else if (type == "sub-category") {
+                comments = "series grouped and coloured by sub-category"
+            }
         } else {
-            comments = "individually coloured series"
+            comments = "individual series"
         }
-        if (filter) {
+        if (filter != "") {
             comments = comments + ", highlighting " + filter
         }
         return comments
@@ -24,9 +24,13 @@
 <figCaption>
     <h3>
         {title}
-        {#if nSeries > 1}
+        {#if multipleSeries}
             <span class="subtitle"
-                >({setComments(grouped, categorised, filter)})</span
+                >({setComments(
+                    options.group,
+                    options.filter,
+                    options.filterType
+                )})</span
             >
         {/if}
     </h3>

@@ -6,13 +6,13 @@
 
     import { createEventDispatcher } from "svelte"
     import { fade } from "svelte/transition"
+    import MinMaxRangeSlider from "../components/Inputs/MinMaxRangeSlider.svelte"
 
     import Utils from "../Utils.js"
     import SymbolNew from "./SymbolNew.svelte"
 
     export let filteredSeries // Filtered array of series (includes grouped series)
     export let scale
-    export let yRange
     export let categories
     export let subCategories
     export let options
@@ -25,6 +25,7 @@
     const HEIGHT = Math.min(viewportWidth / 2, Utils.CANVAS_MIN_HEIGHT)
 
     let series = []
+    let yRange
 
     // SVG coordinates for each series
     let polylines = []
@@ -56,6 +57,9 @@
         )
         // Create polylines and scaled data
         polylines = []
+        // Y range
+        yRange = Utils.getYRange(series)
+        // Process each set
         series.forEach((entry, sIndex) => {
             let coords = []
             entry.data = []
@@ -71,7 +75,7 @@
                     xLabel: Utils.formatDate(originalPoint.x),
                     y: originalPoint.y,
                     scaledX: scaledX(originalPoint.x.decimal),
-                    scaledY: scaledY(originalPoint.y, global.min),
+                    scaledY: scaledY(originalPoint.y, yRange.min),
                 }
                 coords.push(`${pt.scaledX},${pt.scaledY}`)
                 entry.data = [...entry.data, pt]
@@ -79,16 +83,16 @@
             polylines = [...polylines, coords.join(" ")]
         })
 
-        // Check the data
-        series.forEach((entry) => {
-            for (let i = 1; i < entry.data.length; i++) {
-                if (entry.data[i - 1].scaledX > entry.data[i].scaledX) {
-                    console.error(
-                        `Point ${i} out of order in series ${entry.name}`
-                    )
-                }
-            }
-        })
+        // // Check the data
+        // series.forEach((entry) => {
+        //     for (let i = 1; i < entry.data.length; i++) {
+        //         if (entry.data[i - 1].scaledX > entry.data[i].scaledX) {
+        //             console.error(
+        //                 `Point ${i} out of order in series ${entry.name}`
+        //             )
+        //         }
+        //     }
+        // })
         console.log("initialised new series", series)
     }
 
