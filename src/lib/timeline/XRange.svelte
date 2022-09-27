@@ -2,6 +2,7 @@
     import { createEventDispatcher } from "svelte"
 
     // import Utils from './Utils.js';
+    import TimelineDate from "../classes/TimelineDate.js"
     import MinMaxRangeSlider from "../components/Inputs/MinMaxRangeSlider.svelte"
     import Utils from "../Utils.js"
 
@@ -62,13 +63,15 @@
             // console.log("new start value", event.detail.value)
             minValue = event.detail.value
             startYear = axis.values[minValue]
-            options.xRange.start = Utils.setDate(startYear)
+            // options.xRange.start = Utils.setDate(startYear)
+            options.xRange.start = TimelineDate.setDate(startYear)
             options.xRange.range = options.xRange.end.year - startYear
         } else if (event.detail.type == "max") {
             // console.log("new end value", event.detail.value)
             maxValue = event.detail.value
             endYear = axis.values[maxValue]
-            options.xRange.end = Utils.setDate(endYear)
+            // options.xRange.end = Utils.setDate(endYear)
+            options.xRange.end = TimelineDate.setDate(endYear)
             options.xRange.range = endYear - options.xRange.start.year
         }
         // console.log("XRange: handleRange", options.xRange)

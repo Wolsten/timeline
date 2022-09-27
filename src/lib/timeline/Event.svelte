@@ -125,7 +125,7 @@
         let clickMs = Date.now()
         // console.log('event handling click to select',event)
         if (
-            options.selectedEvent === false ||
+            options.selectedEvent === undefined ||
             options.selectedEvent.index !== event.index
         ) {
             options.selectedEvent = { ...event }
@@ -140,7 +140,7 @@
                 // console.log("Double clicked true")
                 options.zoomIn()
             } else {
-                options.selectedEvent = false
+                options.selectedEvent = undefined
                 dispatch("optionsChanged", {
                     name: "selectedEvent",
                     data: options.selectedEvent,

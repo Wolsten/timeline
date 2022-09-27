@@ -2,10 +2,12 @@
     import { onMount } from "svelte"
 
     import Utils from "../Utils.js"
+    import TimelineEvent from "../classes/TimelineEvent"
+    import TimelineXRange from "../classes/TimelineXRange"
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
-    import CanvasNew from "./CanvasNew.svelte"
-    import LegendNew from "./LegendNew.svelte"
+    import Canvas from "./Canvas.svelte"
+    import Legend from "./Legend.svelte"
     import Options from "./Options.svelte"
     import EventProperties from "./EventProperties.svelte"
     import CanvasProperties from "./CanvasProperties.svelte"
@@ -31,18 +33,17 @@
 
     const options = {
         ...userSettings,
-        selectedEvent: false,
+        selectedEvent: undefined,
         selectedPoint: false,
         zoom: 1,
-        series: [],
     }
 
     // Check of we have an xRange from the user settings and if
     // not set to dataset range
     if (options.xRange.range === 0) {
-        options.xRange = { ...dataset.xRange }
+        options.xRange = dataset.xRange.copy()
     }
-    // console.log("options", options)
+    // console.log("options after", options)
 
     let viewport
     let drawingWidth =
@@ -60,7 +61,7 @@
         const generalTouchEnabled =
             "ontouchstart" in document.createElement("div")
         $touch = msTouchEnabled || generalTouchEnabled
-        console.log("onMount viewport width", viewport?.clientWidth)
+        // console.log("onMount viewport width", viewport?.clientWidth)
     })
 
     //
@@ -69,8 +70,7 @@
 
     $: if ($windowWidth) handleResize()
 
-    $: clickable =
-        options.selectedEvent !== false || options.selectedPoint !== false
+    $: clickable = options.selectedEvent || options.selectedPoint !== false
 
     //
     // Functions
@@ -92,7 +92,7 @@
                 break
             case "xRange":
                 options.xRange = detail.data
-                options.selectedEvent = false
+                options.selectedEvent = undefined
                 options.selectedPoint = false
                 scaleX()
                 break
@@ -101,7 +101,7 @@
             case "filter":
                 options.filter = detail.data.value
                 options.filterType = detail.data.taxonomy
-                options.selectedEvent = false
+                options.selectedEvent = undefined
                 options.selectedPoint = false
                 if (options.group) {
                     filteredSeries = Utils.processSeries(
@@ -133,7 +133,7 @@
                 break
             case "search":
                 options.search = detail.data
-                filteredEvents = Utils.processEvents(
+                filteredEvents = TimelineEvent.process(
                     dataset.events,
                     options.xRange,
                     options.search,
@@ -141,7 +141,7 @@
                 )
                 break
             case "reset":
-                options.selectedEvent = false
+                options.selectedEvent = undefined
                 options.selectedPoint = false
                 options.search = ""
                 options.filter = ""
@@ -207,7 +207,7 @@
         scale = drawingWidth / options.xRange.range
         // console.log("scaleX: scale (pixels/x unit)", scale)
         // console.log('data.events', data.events);
-        filteredEvents = Utils.processEvents(
+        filteredEvents = TimelineEvent.process(
             dataset.events,
             options.xRange,
             options.search,
@@ -238,7 +238,7 @@
     }
 
     function handleViewportClick() {
-        options.selectedEvent = false
+        options.selectedEvent = undefined
         options.selectedPoint = false
     }
 </script>
@@ -283,7 +283,7 @@
             {/if}
 
             {#if filteredSeries.length > 0}
-                <CanvasNew
+                <Canvas
                     {scale}
                     categories={dataset.categories}
                     subCategories={dataset.subCategories}
@@ -304,7 +304,7 @@
         <XRange {drawingWidth} {options} on:optionsChanged={handleOptions} />
     {/if}
 
-    <LegendNew
+    <Legend
         series={filteredSeries}
         categories={dataset.categories}
         subCategories={dataset.subCategories}

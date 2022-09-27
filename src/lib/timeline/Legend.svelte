@@ -2,113 +2,119 @@
     import { createEventDispatcher } from "svelte"
 
     import Symbol from "./Symbol.svelte"
-    import Utils from "../Utils"
+    import Utils from "../Utils.js"
 
-    export let eventsSubCats
+    export let series
+    export let categories
+    export let subCategories
     export let options
-    export let filteredEvents
+
+    // export let filteredEvents
+
+    // const eventsSubCats = subCategories.filter((item) => item.type === "event")
+    // const seriesSubCats = subCategories.filter((item) => item.type === "series")
 
     const dispatch = createEventDispatcher()
 
-    function handleClick(filter) {
-        // console.log('handleClick with:\n  filter=',filter,'\n  options.filter=',options.filter)
-        if (filter != options.filter) {
-            options.filter = filter
-        } else {
-            options.filter = ""
-        }
-        dispatch("optionsChanged", { name: "filter", data: options.filter })
+    function handleClickSeries(value) {
+        dispatch("optionsChanged", {
+            name: "filter",
+            data: { taxonomy: "single", value },
+        })
     }
 
-    function active(optionsFilter, filter, sel, index) {
-        return optionsFilter == filter || (sel && sel.index == index)
+    function handleClickCat(value) {
+        if (value == options.category) {
+            value = ""
+        }
+        dispatch("optionsChanged", {
+            name: "filter",
+            data: { taxonomy: "category", value },
+        })
     }
+
+    function handleClickSubCat(value) {
+        if (value == options.subCategory) {
+            value = ""
+        }
+        dispatch("optionsChanged", {
+            name: "filter",
+            data: { taxonomy: "sub-category", value },
+        })
+    }
+
+    // function active(optionsFilter, filter, sel, index) {
+    //     return optionsFilter == filter || (sel && sel.index == index)
+    // }
 </script>
 
 <!------------------------------------------------------------------------------
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#if (eventsSubCats.length > 0 && filteredEvents.length > 0) || options.series.length > 1}
+{#if series.length > 1 && options.group == false}
+    <!-- Display individual series options if not totalising -->
+    <aside class="series">
+        <span class="title">Series:</span>
+
+        {#each series as entry, sIndex}
+            {@const colour = entry.colour}
+            {@const isActive = options.filter == entry.legend}
+            {@const symbolIndex = options.symbols ? sIndex : 0}
+
+            <span
+                class="symbol series"
+                class:active={isActive}
+                on:click|stopPropagation={() => handleClickSeries(entry.legend)}
+                title="Click to highlight this series"
+            >
+                <Symbol index={symbolIndex} {colour} wrapped={true} />
+
+                {entry.legend}
+            </span>
+        {/each}
+    </aside>
+{/if}
+
+{#if subCategories.length > 0}
     <aside>
-        {#if eventsSubCats.length > 0 && filteredEvents.length > 0}
-            <div class="sub-categories">
-                <span class="title">Event categories:</span>
-
-                {#each eventsSubCats as cat, index}
-                    {#if filteredEvents.find((e) => e.subCategory == cat)}
-                        <span
-                            class="series"
-                            style:color={Utils.colour(
-                                index,
-                                index,
-                                options.categorise
-                            )}
-                            class:active={options.search == cat}
-                            title="Click to highlight this event category"
-                            on:click|stopPropagation={() => handleClick(cat)}
-                        >
-                            {cat}
-                        </span>
-                    {/if}
-                {/each}
-            </div>
-        {/if}
-
-        {#if options.series.length > 1}
-            <div class="series">
-                <span class="title"
-                    >{options.totalise ? "Series categories" : "Series"}:</span
+        {#each categories as category, cIndex}
+            {#if categories.length > 1 || options.group}
+                {@const colour = category.colour}
+                {@const isActive = options.filter == category.name}
+                {@const symbolIndex = options.symbols ? cIndex : 0}
+                <span
+                    class="symbol category title"
+                    class:active={isActive}
+                    on:click|stopPropagation={() =>
+                        handleClickCat(category.name)}
                 >
+                    <Symbol index={symbolIndex} {colour} wrapped={true} />
 
-                {#each options.series as series, index}
-                    {@const filter = options.totalise
-                        ? series.subCategory
-                        : series.name}
+                    {Utils.sentenceCase(category.name)}:
+                </span>
+            {:else}
+                <span class="title">{Utils.sentenceCase(category.name)}:</span>
+            {/if}
 
+            {#each subCategories as subCategory, scIndex}
+                {#if subCategory.category == category.name}
+                    {@const colour = subCategory.colour}
+                    {@const isActive = options.filter == subCategory.name}
+                    {@const symbolIndex = options.symbols ? scIndex : 0}
                     <span
-                        class="series"
-                        style:color={Utils.colour(
-                            index,
-                            series.colourIndex,
-                            options.categorise || options.totalise
-                        )}
-                        class:active={active(
-                            options.search,
-                            filter,
-                            options.selectedPoint,
-                            index
-                        )}
-                        on:click|stopPropagation={() => handleClick(filter)}
-                        title="Click to highlight this series"
+                        class="symbol sub-category"
+                        class:active={isActive}
+                        title="Click to highlight this event category"
+                        on:click|stopPropagation={() =>
+                            handleClickSubCat(subCategory.name)}
                     >
-                        {#if options.symbols}
-                            <span class="symbol">
-                                <svg width="8" height="8">
-                                    <g transform="translate(4,4)">
-                                        <Symbol
-                                            opIndex={0}
-                                            {seriesIndex}
-                                            defaultColour={Utils.colour(
-                                                index,
-                                                series.colourIndex,
-                                                options.totalise ||
-                                                    options.categorise
-                                            )}
-                                            symbolIndex={series.symbolIndex}
-                                            symbols={options.symbols}
-                                            selectedPoint={false}
-                                        />
-                                    </g>
-                                </svg>
-                            </span>
-                        {/if}
-
-                        {series.name}
+                        <Symbol index={symbolIndex} {colour} wrapped={true} />
+                        {Utils.sentenceCase(subCategory.name)}
                     </span>
-                {/each}
-            </div>
-        {/if}
+                {/if}
+            {/each}
+        {/each}
     </aside>
 {/if}
 
@@ -117,12 +123,8 @@
 -------------------------------------------------------------------------------->
 <style>
     aside {
-        margin-top: 2rem;
+        margin-top: 1rem;
         padding: 0.5rem;
-    }
-
-    div.sub-categories,
-    div.series {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -132,31 +134,31 @@
         font-size: 0.8rem;
     }
 
-    span.title {
-        padding-right: 0.5rem;
-    }
-
-    span.series {
+    span {
         display: flex;
         align-items: center;
         column-gap: 0;
-        padding: 0.5rem 0 0.2rem 0;
-        margin: 0 0.4rem;
-        border-bottom: 4px solid transparent;
+        padding: 0.1rem 0.2rem;
+        margin: 0.2rem 0.4rem;
+        /* border-bottom: 4px solid transparent; */
         cursor: pointer;
         transition: all ease-in 300ms;
         text-align: center;
     }
 
-    span.symbol {
-        margin-right: 0.2rem;
+    .title {
+        font-weight: bold;
+        cursor: default;
     }
 
-    span.series:hover {
-        border-color: var(--tl-colour-legend-highlight);
+    .category {
+        cursor: pointer;
     }
 
-    span.series.active {
-        border-color: inherit;
+    .symbol:hover {
+        outline: solid 0.1rem var(--tl-colour-legend-highlight);
+    }
+    .symbol.active {
+        outline: solid 0.2rem var(--tl-colour-legend-highlight);
     }
 </style>

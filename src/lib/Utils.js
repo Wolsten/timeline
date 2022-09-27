@@ -1,3 +1,8 @@
+import TimelineDate from "./classes/TimelineDate.js"
+import TimelineEvent from "./classes/TimelineEvent.js"
+import TimelineXRange from "./classes/TimelineXRange.js"
+
+
 const DAYS_IN_MONTH = [
 	31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 ]
@@ -37,21 +42,6 @@ const toPrecision = function (num, digits) {
 }
 
 
-const findNormalisedMin = function (step, min) {
-	let y = 0
-	// debugger
-	if (min < 0) {
-		while (y > min) {
-			y -= step
-		}
-	} else {
-		while (y < min) {
-			y += step
-		}
-	}
-	return y
-}
-
 
 const formatNumber = function (number, digits = 0) {
 	let suffix = ''
@@ -65,82 +55,87 @@ const formatNumber = function (number, digits = 0) {
 	return new Intl.NumberFormat('en-GB', { maximumSignificantDigits: digits }).format(number) + suffix
 }
 
+// @todo Added to class
+// const formatDate = function (date) {
+// 	let formatted = formatYear(date.year)
+// 	if (date.month > 0 && date.day > 0) {
+// 		formatted = `${date.day} ${getMonth(date.month)} ${formatted}`
+// 	}
+// 	return formatted
+// }
 
-const formatDate = function (date) {
-	let formatted = formatYear(date.year)
-	if (date.month > 0 && date.day > 0) {
-		formatted = `${date.day} ${getMonth(date.month)} ${formatted}`
-	}
-	return formatted
-}
+// @todo Added to class
+// const getMonth = function (m) {
+// 	return MONTHS[parseInt(m) - 1]
+// }
 
-
-const getMonth = function (m) {
-	return MONTHS[parseInt(m) - 1]
-}
-
-
-const setDate = function (year = 0, month = 0, day = 0) {
-	const date = { year, month, day }
-	const decimal = getDecimalDate(date)
-	return { ...date, decimal }
-}
-
-
-const setRange = function (date1, date2) {
-	const start = setDate(date1)
-	const end = setDate(date2)
-	return {
-		start,
-		end,
-		range: end.year - start.year
-	}
-}
+// @todo Add to range class
+// const setDate = function (year = 0, month = 0, day = 0) {
+// 	const date = { year, month, day }
+// 	const decimal = getDecimalDate(date)
+// 	return { ...date, decimal }
+// }
 
 
-const formatYear = function (year) {
-	const magnitude = Math.abs(year)
-	let millions = magnitude / 1000000
-	let thousands = millions * 1000
-	// let formatted = new Intl.NumberFormat().format(Math.round(millions))
-	// console.log(year,magnitude,millions,thousands,formatted)
-	if (millions > 1) {
-		// let formatted = new Intl.NumberFormat().format(Math.round(millions))
-		let formatted = Number.parseFloat(millions).toPrecision(2)
-		formatted = new Intl.NumberFormat().format(formatted)
-		if (year < 0) {
-			return formatted + 'mya'
-		}
-		return formatted + 'my'
-	} else if (thousands > 10) {
-		let formatted = parseInt(thousands / 100) * 100
-		if (year < 0) {
-			return formatted + 'tya'
-		}
-		return formatted + 'ty'
-	} else if (year < 0) {
-		return Math.abs(year) + 'bc'
-	}
-	return year
-}
+// const setRange = function (date1, date2) {
+// 	const start = setDate(date1)
+// 	const end = setDate(date2)
+// 	return {
+// 		start,
+// 		end,
+// 		range: end.year - start.year
+// 	}
+// }
 
 
-const eventDates = function (event) {
-	// debugger
-	let html = ''
-	if (event.start != '-') {
-		html += formatDate(event.start)
-	}
-	if (event.end) {
-		if (event.end == '-') {
-			html += ' - '
-		} else {
-			html += ` - ${formatDate(event.end)}`
-		}
-	}
-	html = `(${html})`
-	return html
-}
+// @todo Added to TimelineDate class
+// const formatYear = function (year) {
+// 	const magnitude = Math.abs(year)
+// 	let millions = magnitude / 1000000
+// 	let thousands = millions * 1000
+// 	// let formatted = new Intl.NumberFormat().format(Math.round(millions))
+// 	// console.log(year,magnitude,millions,thousands,formatted)
+// 	if (millions > 1) {
+// 		// let formatted = new Intl.NumberFormat().format(Math.round(millions))
+// 		// let formatted = Number.parseFloat(millions).toPrecision(2)
+// 		// formatted = new Intl.NumberFormat().format(formatted)
+// 		let formatted = millions.toPrecision(2)
+// 		if (year < 0) {
+// 			return formatted + 'mya'
+// 		}
+// 		return formatted + 'my'
+// 	} else if (thousands > 10) {
+// 		// let formatted = parseInt(thousands / 100) * 100
+// 		let formatted = (thousands / 100).toPrecision(2)
+// 		if (year < 0) {
+// 			return formatted + 'tya'
+// 		}
+// 		return formatted + 'ty'
+// 	} else if (year < 0) {
+// 		return Math.abs(year) + 'bc'
+// 	}
+// 	return year
+// }
+
+
+// const eventDates = function (event) {
+// 	// debugger
+// 	let html = ''
+// 	if (event.start != '-') {
+// 		// html += formatDate(event.start)
+// 		html += event.start.formatDate()
+// 	}
+// 	if (event.end) {
+// 		if (event.end == '-') {
+// 			html += ' - '
+// 		} else {
+// 			// html += ` - ${formatDate(event.end)}`
+// 			html += ` - ${event.end.formatDate()}`
+// 		}
+// 	}
+// 	html = `(${html})`
+// 	return html
+// }
 
 
 const sentenceCase = function (str) {
@@ -175,14 +170,10 @@ const initSettings = function (userSettings) {
 		sort: 'x',
 		categories: [],
 		subCategories: [],
-		xRange: {
-			start: setDate(),
-			end: setDate(),
-			range: 0
-		}
+		xRange: new TimelineXRange()
 	}
-	let start = { year: 0, month: 0, day: 0, decimal: 0 }
-	let end = { year: 0, month: 0, day: 0, decimal: 0 }
+	let start
+	let end
 	// Apply default settings where required
 	// Note that only non-defaults should be set in user settings
 	if (userSettings !== '') {
@@ -202,7 +193,7 @@ const initSettings = function (userSettings) {
 						if (value === 'true') settings.readonly = true
 						break
 					case 'group':
-						settings.group = value
+						settings.group = value ? true : false
 						break
 					case 'categorise':
 						if (value === 'true') settings.categorise = true
@@ -223,10 +214,12 @@ const initSettings = function (userSettings) {
 						settings.sort = value
 						break
 					case 'start':
-						start = getDateParts(value)
+						// start = getDateParts(value)
+						start = value
 						break
 					case 'end':
-						end = getDateParts(value)
+						// end = getDateParts(value)
+						end = value
 						break
 					case 'subCategories':
 						const subCats = value.split('|')
@@ -246,14 +239,10 @@ const initSettings = function (userSettings) {
 		})
 	}
 	// xRange
-	if (start.range != 0 && end.range !== 0) {
-		settings.xRange = {
-			start,
-			end,
-			range: end.year - start.year
-		}
+	if (start && end) {
+		settings.xRange = new TimelineXRange(start, end)
 	}
-	// console.log('initSettings', settings)
+	console.log('initSettings', settings)
 	return settings
 }
 
@@ -328,70 +317,48 @@ const setTaxonomyColours = function (taxonomy) {
 }
 
 
-const initEvents = function (events, settings, dataCategories, dataSubCategories) {
-	// Filter events according to optional categories and dsubcategories
-	let filtered = [...events]
-	if (settings.categories.length > 0) {
-		filtered = filtered.filter(event => settings.categories.includes(event.category))
-	}
-	if (settings.subCategories.length > 0) {
-		filtered = filtered.filter(event => settings.subCategories.includes(event.category))
-	}
-	// Convert string start and end dates to date objects and set taxonomy colours
-	//
-	// Event start dates can be on eof the following:
-	// 		a valid date string
-	// 		'-' - started before the start of the data range
-	// Event end dates can be one of the following:
-	// 		undefined - i.e. same as the start date 
-	// 		a valid date string
-	// 		'-' ended after the end of the data range
-	//
-	// Convert undefined end dates to match start dates
-	// In either case convert '-' to undefined
-	filtered.forEach((event) => {
-		if (event.start === '-') {
-			delete (event.start)
-		} else {
-			event.start = getDateParts(event.start)
-		}
-		if (event.end === undefined) {
-			event.end = event.start
-		} else if (event.end === '-') {
-			delete (event.end)
-		} else {
-			event.end = getDateParts(event.end)
-		}
-		event.categoryColour = dataCategories.find(item => item.name == event.category).colour
-		event.subCategoryColour = dataSubCategories.find(item => item.name == event.subCategory).colour
-	})
-	// If have user settings for start and end then filter events
-	if (settings.xRange.range != 0) {
-		filtered = filtered.filter(event => eventInRange(settings.xRange, event))
-	}
-	// Sort events
-	sortEvents(filtered, dataSubCategories)
-	// Return the filtered list of events
-	return filtered
-}
+// const initEvents = function (events, settings, dataCategories, dataSubCategories) {
+// 	// Filter events according to optional categories and dsubcategories
+// 	let filtered = [...events]
+// 	if (settings.categories.length > 0) {
+// 		filtered = filtered.filter(event => settings.categories.includes(event.category))
+// 	}
+// 	if (settings.subCategories.length > 0) {
+// 		filtered = filtered.filter(event => settings.subCategories.includes(event.category))
+// 	}
+// 	// Convert string start and end dates to objects
+// 	let newEvents = []
+// 	filtered.forEach((event) => {
+// 		newEvents.push(new TimelineEvent(event, dataCategories, dataSubCategories))
+// 	})
+// 	filtered = newEvents
+// 	// If have user settings for start and end then filter events
+// 	if (settings.xRange.range != 0) {
+// 		filtered = filtered.filter(event => eventInRange(settings.xRange, event))
+// 	}
+// 	// Sort events
+// 	TimelineEvent.sort(filtered, dataSubCategories)
+// 	// Return the filtered list of events
+// 	return filtered
+// }
 
 
-const sortEvents = function (events, subCategories) {
-	// Set event sorting indices
-	// First sort by date, 
-	// then set date ordering and sub category index
-	// Finally sort by this index
-	events.sort(sortEventsByDate)
-	events.forEach((event, index) => {
-		event.index = index
-		event.sci = subCategories.findIndex(sc => sc.name == event.subCategory)
-	})
-	events.sort(sortEventsBySubCategory)
-	events.forEach((event, index) => {
-		event.scIndex = index
-		delete (event.sci)
-	})
-}
+// const sortEvents = function (events, subCategories) {
+// 	// Set event sorting indices
+// 	// First sort by date, 
+// 	// then set date ordering and sub category index
+// 	// Finally sort by this index
+// 	events.sort(TimelineEvent.sortByDate)
+// 	events.forEach((event, index) => {
+// 		event.index = index
+// 		event.sci = subCategories.findIndex(sc => sc.name == event.subCategory)
+// 	})
+// 	events.sort(sortEventsBySubCategory)
+// 	events.forEach((event, index) => {
+// 		event.scIndex = index
+// 		delete (event.sci)
+// 	})
+// }
 
 const initSeries = function (series, settings, dataCategories, dataSubCategories) {
 	// Filter series according to optional categories and sub categories
@@ -420,49 +387,6 @@ const initSeries = function (series, settings, dataCategories, dataSubCategories
 }
 
 
-function getYRange(series) {
-	const min = series.reduce(
-		(min, entry) => (entry.min < min ? entry.min : min),
-		Number.POSITIVE_INFINITY
-	)
-	const max = series.reduce(
-		(max, entry) => (entry.max > max ? entry.max : max),
-		Number.NEGATIVE_INFINITY
-	)
-	let yRange = {
-		min,
-		max,
-		range: max - min,
-		horizontals: [],
-	}
-	// Normalise the minimum value
-	yRange.range = toPrecision(yRange.range, 1)
-	const step = yRange.range / 10
-	// console.log('step, global.min % step',step, global.min % step)
-	yRange.min = findNormalisedMin(step, yRange.min)
-	// console.log(
-	// 	"Normalised global min,max,step",
-	// 	yRange.min,
-	// 	yRange.max,
-	// 	step
-	// )
-	// Normalise the maximum value and range and get y intervals (horizontals)
-	let y = yRange.min
-	let horizontals = []
-	while (y < yRange.max) {
-		horizontals.push({
-			y,
-			label: y,
-		})
-		y += step * 2
-	}
-	yRange.max = y
-	yRange.range = yRange.max - yRange.min
-	yRange.horizontals = horizontals
-	return yRange
-}
-
-
 
 /**
  * Convert raw json data ready for manipulating graphically, including
@@ -473,20 +397,15 @@ function getYRange(series) {
  * @returns {Object} The process data datset
  */
 const initDataset = function (data, settings) {
-	// debugger
 	// console.log('raw events', data.events)
 	// Set taxonomy colours
 	setTaxonomyColours(data.categories)
 	setTaxonomyColours(data.subCategories)
 	// Process events
-	data.xRange = {
-		start: setDate(),
-		end: setDate(),
-		range: 0
-	}
+	data.xRange = new TimelineXRange()
 	if (data.events.length > 0) {
 		// Optional filtering, set start & end dates, and colours
-		data.events = initEvents(data.events, settings, data.categories, data.subCategories)
+		data.events = TimelineEvent.init(data.events, settings, data.categories, data.subCategories)
 		// Find min start value and max end value
 		data.xRange.start = data.events.reduce((min, event) => aBeforeB(event.start, min) ? event.start : min, data.events[0].start)
 		data.xRange.end = data.events.reduce((max, event) => {
@@ -499,12 +418,6 @@ const initDataset = function (data, settings) {
 	// console.log('data start', data.xRange.start)
 	// console.log('data end', data.xRange.end)
 	// Process series
-	data.yRange = {
-		min: Number.POSITIVE_INFINITY,
-		max: Number.NEGATIVE_INFINITY,
-		range: 0,
-		horizontals: []
-	}
 	if (data.series.length > 0) {
 		// Optional filtering, set type and colours, group by taxonomies
 		data.series = initSeries(data.series, settings, data.categories, data.subCategories)
@@ -512,7 +425,8 @@ const initDataset = function (data, settings) {
 		data.series.forEach((entry, index) => {
 			// Convert string dates to custom date objects and set colours
 			entry.points.forEach(point => {
-				point.x = getDateParts(point.x)
+				// point.x = getDateParts(point.x)
+				point.x = new TimelineDate(point.x)
 				point.colour = entry.colour ? entry.colour : defaultColour(index)
 				point.categoryColour = data.categories.find(item => item.name == entry.category).colour
 				point.subCategoryColour = data.subCategories.find(item => item.name == entry.subCategory).colour
@@ -531,7 +445,6 @@ const initDataset = function (data, settings) {
 		})
 	}
 	data.xRange.range = data.xRange.end.year - data.xRange.start.year
-	// data.yRange = getYRange(data.yRange)
 	console.log('dataset', data)
 	return data
 }
@@ -559,33 +472,33 @@ const processEvents = function (events, xRange, search, subCategories) {
 	}
 	// Sort events - has to happen each time as event position is based on the 
 	// date and sub category indices
-	sortEvents(filtered, subCategories)
+	TimelineEvent.sort(filtered, subCategories)
 	// console.log('filtered events', [...filtered])
 	return filtered
 }
 
 
-function isLeap(year) {
-	// three conditions to find out the leap year
-	if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
-		// console.log(year + ' is a leap year');
-		return true
-	}
-	//console.log(year + ' is not a leap year');
-	return false
-}
+// function isLeap(year) {
+// 	// three conditions to find out the leap year
+// 	if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
+// 		// console.log(year + ' is a leap year');
+// 		return true
+// 	}
+// 	//console.log(year + ' is not a leap year');
+// 	return false
+// }
 
 
-function getDecimalDate(date) {
-	const daysInYear = isLeap(date.year) ? 366 : 365
-	let total = 0
-	// Add days for previous months (month is 1-based)
-	for (let m = 1; m < date.month; m++) {
-		total += m == 2 && isLeap(date.year) ? 29 : DAYS_IN_MONTH[m - 1]
-	}
-	total += date.day
-	return toPrecision((date.year + total / daysInYear), 6)
-}
+// function getDecimalDate(date) {
+// 	const daysInYear = isLeap(date.year) ? 366 : 365
+// 	let total = 0
+// 	// Add days for previous months (month is 1-based)
+// 	for (let m = 1; m < date.month; m++) {
+// 		total += m == 2 && isLeap(date.year) ? 29 : DAYS_IN_MONTH[m - 1]
+// 	}
+// 	total += date.day
+// 	return toPrecision((date.year + total / daysInYear), 6)
+// }
 
 
 /**
@@ -609,62 +522,62 @@ function getDecimalDate(date) {
  * @param {Number|String} stringDate 
  * @returns {undefined|String|Object}
  */
-const getDateParts = function (stringDate) {
-	// debugger
-	if (stringDate === undefined ||
-		stringDate === '-') {
-		return stringDate
-	}
-	// console.log('stringDate', stringDate)
-	stringDate = '' + stringDate
-	const parts = stringDate.split('-')
-	// console.log('parts',parts)
-	let year = 0
-	let month = 0
-	let day = 0
-	// Format 1c), 2 or 3
-	if (parts.length == 1) {
-		parts[0] = parts[0].toLowerCase()
-		// Format 2 
-		if (parts[0].endsWith('bc')) {
-			year = -parseInt(parts[0].split('bc')[0])
-			// Format 3
-		} else if (parts[0].endsWith('mya')) {
-			year = -1000000 * parts[0].split('mya')[0]
-		} else if (parts[0].endsWith('my')) {
-			year = 1000000 * parts[0].split('my')[0]
-			// Format 1c)
-		} else {
-			year = parseInt(parts[0])
-		}
-	} else {
-		// Format 1b)
-		year = parseInt(parts[0])
-		month = parseInt(parts[1])
-		if (parts.length == 3) {
-			day = parseInt(parts[2])
-		}
-	}
-	let date = { year, month, day }
-	date.decimal = getDecimalDate(date)
-	return date
-}
+// const getDateParts = function (stringDate) {
+// 	// debugger
+// 	if (stringDate === undefined ||
+// 		stringDate === '-') {
+// 		return stringDate
+// 	}
+// 	// console.log('stringDate', stringDate)
+// 	stringDate = '' + stringDate
+// 	const parts = stringDate.split('-')
+// 	// console.log('parts',parts)
+// 	let year = 0
+// 	let month = 0
+// 	let day = 0
+// 	// Format 1c), 2 or 3
+// 	if (parts.length == 1) {
+// 		parts[0] = parts[0].toLowerCase()
+// 		// Format 2 
+// 		if (parts[0].endsWith('bc')) {
+// 			year = -parseInt(parts[0].split('bc')[0])
+// 			// Format 3
+// 		} else if (parts[0].endsWith('mya')) {
+// 			year = -1000000 * parts[0].split('mya')[0]
+// 		} else if (parts[0].endsWith('my')) {
+// 			year = 1000000 * parts[0].split('my')[0]
+// 			// Format 1c)
+// 		} else {
+// 			year = parseInt(parts[0])
+// 		}
+// 	} else {
+// 		// Format 1b)
+// 		year = parseInt(parts[0])
+// 		month = parseInt(parts[1])
+// 		if (parts.length == 3) {
+// 			day = parseInt(parts[2])
+// 		}
+// 	}
+// 	let date = { year, month, day }
+// 	date.decimal = getDecimalDate(date)
+// 	return date
+// }
 
 
-const dateInRange = function (range, date) {
-	return range.start.decimal <= date.decimal && date.decimal <= range.end.decimal
-}
+// const dateInRange = function (range, date) {
+// 	return range.start.decimal <= date.decimal && date.decimal <= range.end.decimal
+// }
 
 
-const eventInRange = function (range, event) {
-	// console.log('options xRange', range)
-	// Not in range if defined and doesn't fit in the range
-	if (event.start !== undefined && dateInRange(range, event.start) == false) {
-		return false
-	}
-	// Start in range, end in range if end is undefined or fites in date range
-	return event.end == undefined || dateInRange(range, event.end)
-}
+// const eventInRange = function (range, event) {
+// 	// console.log('options xRange', range)
+// 	// Not in range if defined and doesn't fit in the range
+// 	if (event.start !== undefined && dateInRange(range, event.start) == false) {
+// 		return false
+// 	}
+// 	// Start in range, end in range if end is undefined or fites in date range
+// 	return event.end == undefined || dateInRange(range, event.end)
+// }
 
 
 const aBeforeB = function (a, b) {
@@ -683,62 +596,20 @@ const aBeforeB = function (a, b) {
 }
 
 
-/*
- * See getDateParts for description of date formats
- * @param {string|Object} a (may be undefined)
- * @param {string|Object} b  (may be undefined)
- * @returns {number} a < b -1, a == b 0,  a > b 1
- */
-// const compareDates = function (a, b) {
-// 	// console.log('compareDates a and b', a, b)
-// 	// Either undefined
-// 	if (a === undefined || b === undefined) {
-// 		return 0;
-// 	}
-// 	// Already started or ongoing?
-// 	if (a === '-' || b === '-') {
-// 		if (a === '-' || b !== '-') {
-// 			return -1;
-// 		} else if (a !== '-' || b === '-') {
-// 			return 1;
-// 		}
-// 		return 0;
-// 	}
-// 	// Year
-// 	if (a.year < b.year) {
-// 		return -1
-// 	} else if (a.year > b.year) {
-// 		return 1
-// 	}
-// 	// Month
-// 	if (a.month < b.month) {
-// 		return -1
-// 	} else if (a.month > b.month) {
-// 		return 1
-// 	}
-// 	// Day
-// 	if (a.day < b.day) {
-// 		return -1
-// 	} else if (a.day > b.day) {
-// 		return 1
+// const sortEventsByDate = function (a, b) {
+// 	// console.log('a', a, 'b', b)
+// 	if (a.start === '-') return -1
+// 	if (b.start === '-') return 1
+// 	if (a.start.decimal !== undefined && b.start.decimal !== undefined) {
+// 		return a.start.decimal - b.start.decimal
 // 	}
 // 	return 0
 // }
 
-const sortEventsByDate = function (a, b) {
-	// console.log('a', a, 'b', b)
-	if (a.start === '-') return -1
-	if (b.start === '-') return 1
-	if (a.start.decimal !== undefined && b.start.decimal !== undefined) {
-		return a.start.decimal - b.start.decimal
-	}
-	return 0
-}
 
-
-const sortEventsBySubCategory = function (a, b) {
-	return a.sci - b.sci
-}
+// const sortEventsBySubCategory = function (a, b) {
+// 	return a.sci - b.sci
+// }
 
 
 const processSeries = function (series, xRange, filter, type, group) {
@@ -852,26 +723,31 @@ const getVersionHistory = function (history = []) {
 	return { created, updated, versions }
 }
 
+const copyXRange = function (xRange) {
+	console.error('range to copy', xRange)
+	let newXRange = new TimelineXRange(xRange.start.value, xRange.end.value)
+	console.error('new XRAnge', newXRange)
+	return newXRange
+}
+
 
 const Utils = {
 	getVersionHistory,
 	initDataset,
 	initSettings,
-	getYRange,
 	processEvents,
-	// searchEvents,
 	processSeries,
-	eventDates,
+	// eventDates,
 	debounce,
 	toPrecision,
 	formatNumber,
-	formatYear,
-	formatDate,
+	copyXRange,
+	// formatYear,
+	// formatDate,
 	colour,
-	findNormalisedMin,
 	defaultColour,
-	setRange,
-	setDate,
+	// setRange,
+	// setDate,
 	sentenceCase,
 	COLOUR_INACTIVE: 'var(--tl-material-grey-400)',
 	MIN_BOX_WIDTH: 80,

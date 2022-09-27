@@ -2,7 +2,7 @@
     import { createEventDispatcher } from "svelte"
     import { slide } from "svelte/transition"
 
-    import Utils from "../Utils"
+    // import Utils from "../Utils"
     import { mobile } from "../stores.js"
     import Button from "../components/Inputs/Button.svelte"
 
@@ -12,7 +12,7 @@
 
     function handleClick() {
         // console.log('Clicking props')
-        selectedEvent = false
+        selectedEvent = undefined
         dispatch("optionsChanged", {
             name: "selectedEvent",
             data: selectedEvent,
@@ -24,7 +24,7 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#if selectedEvent !== false}
+{#if selectedEvent}
     <div class="properties" class:mobile={$mobile} transition:slide>
         {#if selectedEvent.index != -1}
             <div class="button">
@@ -33,7 +33,8 @@
 
             <h3>
                 {selectedEvent.name}
-                <span>{Utils.eventDates(selectedEvent)}</span>
+                <!-- <span>{Utils.eventDates(selectedEvent)}</span> -->
+                <span>{selectedEvent.eventDates()}</span>
             </h3>
 
             <div class="summary">{@html selectedEvent.summary}</div>

@@ -8,34 +8,30 @@
     import { fade } from "svelte/transition"
 
     import Utils from "../Utils.js"
+    import YRange from "../classes/YRange.js"
     import Symbol from "./Symbol.svelte"
 
+    export let filteredSeries // Filtered array of series (includes grouped series)
+    export let scale
+    export let categories
+    export let subCategories
     export let options
-    export let series // Array of multiple series
-    export let groups // Array of multiple groups
     export let viewportWidth
     export let drawingWidth
-    export let paddingLeft
 
     const dispatch = createEventDispatcher()
 
-    // console.log('series',series)
-    // console.log('groups',groups)
-
     // Set viewport height to be proportional to width upto a max size
-    let height = Math.min(viewportWidth / 2, Utils.CANVAS_MIN_HEIGHT)
+    const HEIGHT = Math.min(viewportWidth / 2, Utils.CANVAS_MIN_HEIGHT)
 
-    // The active series or group depends on options.totalise and options.subCats
-    let items = []
+    // Initialised series based on filteredSeries
+    let series = []
+
+    // Y range min, max, range and horizonal lines/labels
+    let yRange
 
     // SVG coordinates for each series
     let polylines = []
-
-    // Global min and max values and horizontal axes
-    let globalMin
-    let globalMax
-    let range = 0
-    let horizontals = []
 
     // Tooltip handling
     let tooltip
@@ -43,159 +39,87 @@
     let tooltipLeftArrow = ""
     let tooltipRightArrow = ""
 
-    // Things that can trigger initialisation
-    let totalise = false
-    let categorise = false
-    let logScale = false
-    let subCats = [...options.subCats]
+    $: init(filteredSeries)
 
-    $: if (
-        series ||
-        groups ||
-        options.categorise != categorise ||
-        options.totalise != totalise ||
-        options.logScale != logScale ||
-        options.subCats.length != subCats.length
-    ) {
-        init()
-    }
-
-    // init()
-
-    function init() {
-        // console.error('initialising canvas with options', options);
-        totalise = options.totalise
-        categorise = options.categorise
-        logScale = options.logScale
-        items = totalise ? [...groups] : [...series]
-
-        // console.log('items',items)
-        // console.log('canvas init: totalise, series, groups, items',totalise,series,groups,items)
-
-        // Filter by category
-        if (options.subCats.length != 0) {
-            items = items.filter((entry) =>
-                options.subCats.includes(entry.subCategory)
-            )
-        }
-
-        // Set vertical range and horizontal axes
-        calculateYRange()
-
-        // Copy data from series in options and polylines, scaling y-values
-        // and checking category
-        options.series = []
+    function init(s) {
+        series = [...s]
+        console.error(
+            "initialising canvas with options and series",
+            options,
+            series
+        )
+        // Create polylines and scaled data
         polylines = []
-        items.forEach((entry, index) => {
-            // Set the range allowing for space at the top and bottom
-            let min = globalMin
-
-            options.series[index] = {
-                name: entry.legend || entry.name,
-                colourIndex: entry.colourIndex,
-                symbolIndex: entry.symbolIndex,
-                citations: entry.citations,
-                subCategory: entry.subCategory,
-                data: [],
-            }
-            polylines[index] = ""
-
-            entry.data.forEach((point, i) => {
-                let y = point.value
-
-                if (options.logScale) {
-                    y = y != 0 ? Math.log10(y) : 1
+        // Y range
+        // yRange = Utils.getYRange(series)
+        yRange = new YRange(series)
+        // Process each set
+        series.forEach((entry, sIndex) => {
+            let coords = []
+            entry.data = []
+            // Turn the list of filtered point indices into data attached to the
+            // series so can be displayed if required in the canvas properties
+            entry.filteredPoints.forEach((opIndex) => {
+                const originalPoint = entry.points[opIndex]
+                const pt = {
+                    sIndex,
+                    opIndex,
+                    x: originalPoint.x,
+                    // xLabel: Utils.formatDate(originalPoint.x),
+                    xLabel: originalPoint.x.formatDate(),
+                    y: originalPoint.y,
+                    scaledX: scaledX(originalPoint.x.decimal),
+                    scaledY: scaledY(originalPoint.y, yRange.min),
                 }
-
-                options.series[index].data.push(point)
-
-                point.scaledY = yValue(y, min)
-                polylines[index] += ` ${point.x},${point.scaledY}`
+                coords.push(`${pt.scaledX},${pt.scaledY}`)
+                entry.data = [...entry.data, pt]
             })
+            polylines = [...polylines, coords.join(" ")]
         })
 
-        // console.log('polylines', polylines);
-        console.table("options.series", options.series)
+        // // Check the data
+        // series.forEach((entry) => {
+        //     for (let i = 1; i < entry.data.length; i++) {
+        //         if (entry.data[i - 1].scaledX > entry.data[i].scaledX) {
+        //             console.error(
+        //                 `Point ${i} out of order in series ${entry.name}`
+        //             )
+        //         }
+        //     }
+        // })
+        console.log("initialised new series", series)
     }
 
-    function calculateYRange() {
-        // Max min values from the series selected
-        // debugger;
-        globalMin = Number.POSITIVE_INFINITY
-        globalMax = Number.NEGATIVE_INFINITY
-        items.forEach((entry) => {
-            if (entry.min < globalMin) globalMin = entry.min
-            if (entry.max > globalMax) globalMax = entry.max
-        })
-        // console.warn('Raw globalMin, globalMax', globalMin, globalMax);
-
-        // Log scale?
-        if (options.logScale) {
-            if (globalMin <= 0) {
-                globalMin = Math.round(Math.log10(globalMin))
-            } else {
-                globalMin = 1
-            }
-            globalMax = Math.round(Math.log10(globalMax))
-            // console.log('Log globalMin, globalMax',globalMin,globalMax)
-        }
-
-        // Normalise the minimum value
-        range = globalMax - globalMin
-        range = Utils.toPrecision(range, 1)
-        const step = options.logScale ? 0.5 : range / 10
-        // console.log('step, globalMin % step',step, globalMin % step)
-
-        // globalMin = Utils.toPrecision(globalMin - (globalMin % step), 1)
-        globalMin = Utils.findNormalisedMin(step, globalMin)
-        // console.log('Normalised global min,max,step', globalMin, globalMax,step)
-
-        // Normalise the maximum value and range and get y intervals (horizontals)
-        let y = globalMin
-        horizontals = []
-        while (y < globalMax) {
-            horizontals.push({
-                y,
-                label: options.logScale ? Math.pow(10, y) : y,
-            })
-            y += step * 2
-        }
-        globalMax = y
-        range = globalMax - globalMin
-
-        // console.warn('horizontals',horizontals)
+    function scaledX(x) {
+        const scaled = (x - options.xRange.start.decimal) * scale
+        return Math.round(Utils.CANVAS_PADDING_LEFT + scaled)
     }
 
-    function yValue(value, min) {
-        return parseInt(height * (1 - (value - min) / range))
+    /**
+     * Return the scaled y value to 0 decimal places
+     * @param {number} value
+     * @param {Number} min
+     * @returns {Number}
+     */
+    function scaledY(value, min) {
+        return Math.round(HEIGHT * (1 - (value - min) / yRange.range))
     }
 
-    function handleClickedSymbol(point, index) {
-        // console.warn('clicked point',point)
-
+    function handleClickedSymbol(point) {
+        let newPoint = false
         if (
             options.selectedPoint === false ||
-            options.selectedPoint.index != index ||
-            options.selectedPoint.i != point.i
+            options.selectedPoint.sIndex != point.sIndex ||
+            options.selectedPoint.opIndex != point.opIndex
         ) {
             // console.log({items})
-
-            options.selectedPoint = {
-                type: "series",
-                name: items[index].legend || items[index].name,
-                index, // Index into filtered options series
-                i: point.i, // Index into points in that series or group
-                citations: items[index].citations,
-            }
-
-            // console.error('selected',options.selectedPoint)
-        } else {
-            options.selectedPoint = false
+            newPoint = { ...point }
+            console.log("selected new point on canvas", newPoint)
         }
 
         dispatch("optionsChanged", {
             name: "selectedPoint",
-            data: options.selectedPoint,
+            data: newPoint,
         })
     }
 
@@ -203,66 +127,68 @@
         if (options.selectedPoint == false) {
             tooltipText = ""
             tooltip.style = `opacity:0`
-        } else if (
-            options.selectedPoint.type === "series" &&
-            options.selectedPoint.i != -1
-        ) {
-            if (
-                options.series[options.selectedPoint.index] == undefined ||
-                options.series[options.selectedPoint.index].data == undefined
-            ) {
-                console.error(
-                    "Found undefined series for selected",
-                    options.selectedPoint
-                )
-            }
-
-            const point = options.series[options.selectedPoint.index].data.find(
-                (pt) => pt.i == options.selectedPoint.i
+        } else {
+            tooltipText = `${Utils.formatNumber(options.selectedPoint.y)}
+                            <br>${options.selectedPoint.xLabel}`
+            console.warn(
+                "options.selectedPoint",
+                options.selectedPoint,
+                tooltipText
             )
-
-            if (point) {
-                // console.warn("point", point)
-                // tooltipText = `${point.xLabel}, ${Utils.formatNumber(
-                //     point.value
-                // )}`
-                tooltipText = `${Utils.formatNumber(point.value)}<br>${
-                    point.xLabel
-                }`
-
-                // Fit to right of point if there is room
-                const top = point.scaledY - 14
-                if (viewportWidth - point.x > 120) {
-                    const left = point.x + 5
-                    tooltip.style = `opacity:1;left:${left}px;top:${top}px; text-align:right;`
-                    tooltipLeftArrow = "&larr;"
-                    tooltipRightArrow = ""
-                } else {
-                    const right = viewportWidth - point.x + 10
-                    tooltip.style = `opacity:1;right:${right}px;top:${top}px`
-                    tooltipLeftArrow = ""
-                    tooltipRightArrow = "&rarr;"
-                }
+            // Fit to right of point if there is room
+            const top = options.selectedPoint.scaledY - 14
+            if (viewportWidth - options.selectedPoint.scaledX > 120) {
+                const left = options.selectedPoint.scaledX + 5
+                tooltip.style = `opacity:1;left:${left}px;top:${top}px; text-align:right;`
+                tooltipLeftArrow = "&larr;"
+                tooltipRightArrow = ""
+            } else {
+                const right = viewportWidth - options.selectedPoint.scaledX + 10
+                tooltip.style = `opacity:1;right:${right}px;top:${top}px`
+                tooltipLeftArrow = ""
+                tooltipRightArrow = "&rarr;"
             }
         }
     }
 
-    function getColour(sel, filter, index, colourIndex) {
+    function getColour(selPoint, filter, index) {
         let inActive = false
-        let colour = Utils.colour(index, colourIndex, options.categorise)
-        if (sel && sel.type == "series") {
-            if (sel.index != index) {
+        // Set the default colour
+        let colour = series[index].colour
+
+        // Utils.colour(index, colourIndex, options.categorise)
+
+        // Highlight selected series
+        if (selPoint && selPoint.type == "series") {
+            if (selPoint.index != index) {
                 inActive = true
             }
         } else if (filter !== "") {
-            if (options.totalise) {
-                if (items[index].subCategory != filter) {
-                    inActive = true
-                }
-            } else {
-                if (items[index].legend != filter) {
-                    inActive = true
-                }
+            switch (options.filterType) {
+                case "single":
+                    if (series[index].legend != filter) {
+                        inActive = true
+                    }
+                    break
+                case "category":
+                    if (series[index].category != filter) {
+                        inActive = true
+                    } else {
+                        colour = categories.find(
+                            (cat) => cat.name == filter
+                        ).colour
+                    }
+                    break
+                case "sub-category":
+                    if (series[index].subCategory != filter) {
+                        inActive = true
+                    } else {
+                        colour = subCategories.find(
+                            (subCat) => subCat.name == filter
+                        ).colour
+                    }
+                    break
+                default:
             }
         }
         if (inActive) {
@@ -270,45 +196,60 @@
         }
         return colour
     }
+
+    function getSymbolIndex(filter, sIndex) {
+        if (options.group == false) {
+            return sIndex
+        }
+        if (options.filterType == "category") {
+            const cIndex = categories.findIndex((cat) => cat.name == filter)
+            return cIndex
+        }
+        const scIndex = subCategories.findIndex(
+            (subCat) => subCat.name == filter
+        )
+        return scIndex
+    }
 </script>
 
 <!------------------------------------------------------------------------------
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#if options.series.length > 0}
-    <svg {height} {viewportWidth}>
+{#if polylines.length > 0}
+    <svg height={HEIGHT} width={viewportWidth}>
         <!-- Y axis -->
-        {#each horizontals as h, index}
+        {#each yRange.horizontals as h, index}
             <!-- line and label-->
             {#if index != 0}
+                {@const scaledHeight = scaledY(h.y, yRange.min)}
                 <line
                     class="y-line"
-                    x1={paddingLeft}
-                    x2={paddingLeft + drawingWidth}
-                    y1={yValue(h.y, globalMin)}
-                    y2={yValue(h.y, globalMin)}
+                    x1={Utils.CANVAS_PADDING_LEFT}
+                    x2={Utils.CANVAS_PADDING_LEFT + drawingWidth}
+                    y1={scaledHeight}
+                    y2={scaledHeight}
                 />
 
-                <text class="y-label" x={0} y={yValue(h.y, globalMin) - 6}>
+                <text class="y-label" x={0} y={scaledHeight - 6}>
                     {Utils.formatNumber(h.label, 2)}
                 </text>
             {/if}
         {/each}
 
-        <!-- Date series -->
-        {#each options.series as entry, index}
+        <!-- Data series -->
+        {#each series as entry, sIndex}
             {@const colour = getColour(
                 options.selectedPoint,
                 options.filter,
-                index,
-                entry.colourIndex
+                sIndex
             )}
             {@const width = colour == Utils.COLOUR_INACTIVE ? 1 : 2}
+            {@const symbolIndex = getSymbolIndex(options.filter, sIndex)}
 
             <!-- Line -->
             <polyline
-                points={polylines[index]}
+                points={polylines[sIndex]}
                 transition:fade
                 style="stroke-width:{width}; stroke:{colour};"
             />
@@ -318,20 +259,15 @@
                 {#each entry.data as point}
                     <g
                         class="symbol"
-                        transform="translate({point.x},{point.scaledY})"
+                        transform="translate({point.scaledX},{point.scaledY})"
                         on:click|stopPropagation={() =>
-                            handleClickedSymbol(point, index)}
+                            handleClickedSymbol(point)}
                     >
-                        {#if options.symbols}
-                            <Symbol
-                                opIndex={point.i}
-                                {seriesIndex}
-                                defaultColour={colour}
-                                symbolIndex={entry.symbolIndex}
-                                symbols={options.symbols}
-                                selectedPoint={options.selectedPoint}
-                            />
-                        {/if}
+                        <Symbol
+                            index={symbolIndex}
+                            colour={options.symbols ? colour : "transparent"}
+                            wrapped={false}
+                        />
                     </g>
                 {/each}
             {/if}
@@ -351,7 +287,8 @@
 <style>
     svg {
         /* border: 1px solid rgb(218, 177, 177); */
-        overflow: hidden;
+        /* overflow: hidden; */
+        overflow: visible;
         position: relative;
         width: 100%;
     }

@@ -6,6 +6,7 @@
     import TextSearch from "../components/Inputs/TextSearch.svelte"
     import Toggle from "../components/Inputs/Toggle.svelte"
     import Utils from "../Utils.js"
+    import TimelineDate from "../classes/TimelineDate.js"
 
     // export let categoriesLength
     // export let subCategoriesLength
@@ -39,30 +40,31 @@
             // console.log('Clicked focus')
             // Only respond if selected is set
             if (options.selectedEvent) {
-                if (options.selectedEvent.start === undefined) {
+                if (options.selectedEvent.started()) {
                     options.xRange.start = xRange.start
                 } else {
                     options.xRange.start = options.selectedEvent.start
                 }
-                if (options.selectedEvent.end === undefined) {
+                if (options.selectedEvent.continuing()) {
                     options.xRange.end = xRange.end
-                } else if (
-                    options.selectedEvent.start?.decimal ==
-                    options.selectedEvent.end.decimal
-                ) {
-                    // Start end end dates match so calculate a pseudo end date
-                    let pseudoEnd =
-                        options.xRange.start.year +
-                        xRange.range / Utils.MIN_BOX_WIDTH
-                    if (pseudoEnd > xRange.end.year) {
-                        pseudoEnd = xRange.end.year
-                    }
-                    options.xRange.end = Utils.setDate(pseudoEnd)
+                } else if (options.selectedEvent.isPoint()) {
+                    // // Start end end dates match so calculate a pseudo end date
+                    // let pseudoEnd =
+                    //     options.xRange.start.year +
+                    //     xRange.range / Utils.MIN_BOX_WIDTH
+                    // if (pseudoEnd > xRange.end.year) {
+                    //     pseudoEnd = xRange.end.year
+                    // }
+                    // // options.xRange.end = Utils.setDate(pseudoEnd)
+                    // options.xRange.end = TimelineDate.setDate(pseudoEnd)
+
+                    options.xRange.setPseudoEndDate(Utils.MIN_BOX_WIDTH, xRange)
                 } else {
                     options.xRange.end = options.selectedEvent.end
                 }
-                options.xRange.range =
-                    options.xRange.end.year - options.xRange.start.year
+                // options.xRange.range =
+                //     options.xRange.end.year - options.xRange.start.year
+                options.xRange.setRangeYears()
                 // console.log("options.xRange", options.xRange)
                 dispatch("optionsChanged", {
                     name: "xRange",
@@ -152,7 +154,7 @@
                 })
             }}
             on:clear={() => {
-                options.selectedEvent = false
+                options.selectedEvent = undefined
                 dispatch("optionsChanged", {
                     name: "search",
                     data: options.search,

@@ -2,6 +2,7 @@
     import { fade } from "svelte/transition"
 
     import Utils from "../Utils.js"
+    import TimelineDate from "../classes/TimelineDate.js"
 
     // export let xAxis
     export let options
@@ -24,9 +25,7 @@
      * @returns {Object}
      */
     function scaleXAxis(drawingWidth) {
-        // console.warn('scaleXAxis: options x range', optionsXRange)
-        // console.log('scaleXAxis: old xAxis')
-        // console.table(xAxis)
+        console.warn("scaleXAxis: options x range", options.xRange)
 
         // debugger
         const intervals = Math.floor(drawingWidth / Utils.MIN_BOX_WIDTH)
@@ -49,7 +48,7 @@
         for (let i = 0; i <= intervals; i++) {
             axis.ticks.push(parseInt(canvasX))
             axis.values.push(parseInt(x))
-            axis.labels.push(Utils.formatYear(parseInt(x)))
+            axis.labels.push(TimelineDate.formatYear(parseInt(x)))
             canvasX += canvasInterval
             x += dataInterval
         }
@@ -95,7 +94,7 @@
             x={x - Utils.MIN_BOX_WIDTH / 4}
             y={MAJOR_TICK_HEIGHT + 14}
         >
-            {Utils.formatYear(options.xAxis.labels[majorIndex])}
+            {TimelineDate.formatYear(options.xAxis.labels[majorIndex])}
         </text>
 
         <!-- {#if majorIndex < svgticks.length - 1 && svgMinorTicks.length > 0}
