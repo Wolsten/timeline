@@ -174,8 +174,6 @@
 
         // If we have a viewport with a non-zero size use this
         if (viewport.clientWidth !== 0) {
-            console.log("New viewport width", viewport.clientWidth)
-
             // Viewport is the main drawing area which includes non-drawing
             // areas in the x-axis which are the left and right padding, though
             // the viewport itself is NOT padded using CSS
@@ -187,14 +185,11 @@
 
         // If the width has changed then rescale the x-axis
         if (viewport.clientWidth != viewportWidth) {
-            console.log("4. viewport width", viewport.clientWidth)
-
             // The drawing width is the clientWidth
             drawingWidth =
                 viewportWidth -
                 Utils.CANVAS_PADDING_LEFT -
                 Utils.CANVAS_PADDING_RIGHT
-
             scaleX()
             // Non-intuitive behaviour on touch devices
             if ($touch == false) {
@@ -206,8 +201,8 @@
     }
 
     function scaleX() {
-        console.error("scaleX: viewportWidth", viewportWidth)
-        console.error("scaleX: drawingWidth", drawingWidth)
+        // console.error("scaleX: viewportWidth", viewportWidth)
+        // console.error("scaleX: drawingWidth", drawingWidth)
         // scale in pixels/x-unit
         scale = drawingWidth / options.xRange.range
         // console.log("scaleX: scale (pixels/x unit)", scale)

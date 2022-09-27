@@ -427,12 +427,12 @@ function initYRange(yRange) {
 	const step = yRange.range / 10
 	// console.log('step, global.min % step',step, global.min % step)
 	yRange.min = findNormalisedMin(step, yRange.min)
-	console.log(
-		"Normalised global min,max,step",
-		yRange.min,
-		yRange.max,
-		step
-	)
+	// console.log(
+	// 	"Normalised global min,max,step",
+	// 	yRange.min,
+	// 	yRange.max,
+	// 	step
+	// )
 	// Normalise the maximum value and range and get y intervals (horizontals)
 	let y = yRange.min
 	let horizontals = []

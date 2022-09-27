@@ -48,30 +48,33 @@
         cursor: pointer;
     }
 
+    /* Smaller square */
     .symbol-0 {
-        clip-path: polygon(
-            10% 10%,
-            90% 10%,
-            90% 90%,
-            10% 90%
-        ); /* Smaller square */
+        clip-path: polygon(10% 10%, 90% 10%, 90% 90%, 10% 90%);
     }
+
+    /* Circle */
     .symbol-1 {
         clip-path: circle(50% at 50% 50%);
     }
+    /* Diamond */
     .symbol-2 {
-        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Diamond */
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
     }
+    /* Up arrow */
     .symbol-3 {
-        clip-path: polygon(50% 0%, 100% 100%, 0% 100%); /* Up arrow */
+        clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
     }
+    /* Down arrow */
     .symbol-4 {
-        clip-path: polygon(0% 0%, 100% 0%, 50% 100%); /* Down arrow */
+        clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
     }
+    /* Right arrow */
     .symbol-5 {
-        clip-path: polygon(0% 0%, 100% 50%, 0% 100%); /* Right arrow */
+        clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
     }
+    /* Left arrow */
     .symbol-6 {
-        clip-path: polygon(0% 50%, 100% 0%, 100% 100%); /* Left arrow */
+        clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
     }
 </style>

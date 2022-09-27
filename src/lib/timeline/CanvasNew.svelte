@@ -19,7 +19,6 @@
     export let viewportWidth
     export let drawingWidth
 
-    console.error("yRange", yRange)
     const dispatch = createEventDispatcher()
 
     // Set viewport height to be proportional to width upto a max size
@@ -46,26 +45,6 @@
     let tooltipLeftArrow = ""
     let tooltipRightArrow = ""
 
-    // Things that can trigger initialisation
-    // let totalise = false
-    // let categorise = false
-
-    // $: if (
-    //     series ||
-    //     options.categorise != categorise ||
-    //     options.group != group // ||
-    //     // options.logScale != logScale ||
-    //     // options.subCats.length != subCats.length
-    // ) {
-    //     init()
-    // }
-
-    // let group = options.group
-
-    // $: if (group != options.group) init()
-
-    // $: if ( initialised && )
-
     $: init(filteredSeries)
 
     function init(s) {
@@ -75,16 +54,7 @@
             options,
             series
         )
-
-        // totalise = options.totalise
-        // categorise = options.categorise
-        // console.log('items',items)
-        console.error("canvas init: series", series)
-        // Set vertical range and horizontal axes
-        // calculateYRange()
-        // Copy data from series in options and polylines, scaling y-values
-        // and checking category
-        // options.series = []
+        // Create polylines and scaled data
         polylines = []
         series.forEach((entry, sIndex) => {
             let coords = []
@@ -105,7 +75,6 @@
                 }
                 coords.push(`${pt.scaledX},${pt.scaledY}`)
                 entry.data = [...entry.data, pt]
-                // data[seriesIndex].push(pt)
             })
             polylines = [...polylines, coords.join(" ")]
         })
@@ -120,51 +89,12 @@
                 }
             }
         })
+        console.log("initialised new series", series)
     }
-
-    // @todo here
 
     function scaledX(x) {
         const scaled = (x - options.xRange.start.decimal) * scale
         return Math.round(Utils.CANVAS_PADDING_LEFT + scaled)
-    }
-
-    function calculateYRange() {
-        // Global max and min values from the series selected
-        global.min = series.reduce(
-            (min, entry) => (entry.min < min ? entry.min : min),
-            Number.POSITIVE_INFINITY
-        )
-        global.max = series.reduce(
-            (max, entry) => (entry.max > max ? entry.max : max),
-            Number.NEGATIVE_INFINITY
-        )
-        // console.warn("Raw global.min, global.max", global.min, global.max)
-        // Normalise the minimum value
-        global.range = global.max - global.min
-        global.range = Utils.toPrecision(global.range, 1)
-        const step = global.range / 10
-        // console.log('step, global.min % step',step, global.min % step)
-        global.min = Utils.findNormalisedMin(step, global.min)
-        console.log(
-            "Normalised global min,max,step",
-            global.min,
-            global.max,
-            step
-        )
-        // Normalise the maximum value and range and get y intervals (horizontals)
-        let y = global.min
-        horizontals = []
-        while (y < global.max) {
-            horizontals.push({
-                y,
-                label: y,
-            })
-            y += step * 2
-        }
-        global.max = y
-        global.range = global.max - global.min
-        // console.warn('horizontals',horizontals)
     }
 
     /**
@@ -269,16 +199,18 @@
         return colour
     }
 
-    function getSymbolIndex(sIndex) {
+    function getSymbolIndex(filter, sIndex) {
         if (options.group == false) {
             return sIndex
         }
         if (options.filterType == "category") {
-            const category = series[sIndex].category
-            return categories.findIndex((cat) => cat.name == category)
+            const cIndex = categories.findIndex((cat) => cat.name == filter)
+            return cIndex
         }
-        const subCategory = series[sIndex].subCategory
-        return subCategories.findIndex((subCat) => subCat.name == subCategory)
+        const scIndex = subCategories.findIndex(
+            (subCat) => subCat.name == filter
+        )
+        return scIndex
     }
 </script>
 
@@ -315,7 +247,7 @@
                 sIndex
             )}
             {@const width = colour == Utils.COLOUR_INACTIVE ? 1 : 2}
-            {@const symbolIndex = getSymbolIndex(sIndex)}
+            {@const symbolIndex = getSymbolIndex(options.filter, sIndex)}
 
             <!-- Line -->
             <polyline
@@ -358,6 +290,7 @@
     svg {
         /* border: 1px solid rgb(218, 177, 177); */
         /* overflow: hidden; */
+        overflow: visible;
         position: relative;
         width: 100%;
     }
