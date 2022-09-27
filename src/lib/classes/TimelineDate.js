@@ -85,14 +85,6 @@ class TimelineDate {
         return Utils.toPrecision((this.year + total / daysInYear), 6)
     }
 
-    static isLeap(year) {
-        // three conditions to find out the leap year
-        if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
-            return true
-        }
-        return false
-    }
-
     formatDate() {
         if (this.value === '') {
             return '-'
@@ -102,6 +94,26 @@ class TimelineDate {
             formatted = `${this.day} ${TimelineDate.getMonth(this.month)} ${formatted}`
         }
         return formatted
+    }
+
+    before(date) {
+        if (this.value === '-' && date.value === '-') return true
+        if (this.decimal < date.decimal) return true
+        return false
+    }
+
+    after(date) {
+        if (this.value === '-' && date.value === '-') return true
+        if (this.decimal > date.decimal) return true
+        return false
+    }
+
+    static isLeap(year) {
+        // three conditions to find out the leap year
+        if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
+            return true
+        }
+        return false
     }
 
     static formatYear(year) {
@@ -141,6 +153,8 @@ class TimelineDate {
         d.decimal = d.getDecimalDate()
         return d
     }
+
+
 }
 
 

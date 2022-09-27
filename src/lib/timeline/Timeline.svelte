@@ -3,7 +3,7 @@
 
     import Utils from "../Utils.js"
     import TimelineEvent from "../classes/TimelineEvent"
-    import TimelineXRange from "../classes/TimelineXRange"
+    import TimelineOptions from "../classes/TimelineOptions"
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
     import Canvas from "./Canvas.svelte"
@@ -24,19 +24,11 @@
 
     console.log("viewportWidth", viewportWidth)
 
-    // Convert string settings to object
-    const userSettings = Utils.initSettings(settings)
+    const options = new TimelineOptions(settings)
 
     // Process the dataset
-    const dataset = Utils.initDataset(data, userSettings)
+    const dataset = Utils.initDataset(data, options)
     // console.error("Timeline dataset", dataset)
-
-    const options = {
-        ...userSettings,
-        selectedEvent: undefined,
-        selectedPoint: false,
-        zoom: 1,
-    }
 
     // Check of we have an xRange from the user settings and if
     // not set to dataset range

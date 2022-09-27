@@ -131,14 +131,14 @@ class TimelineEvent {
     }
 
 
-    static init(rawEvents, settings, dataCategories, dataSubCategories) {
+    static init(xRange, rawEvents, options, dataCategories, dataSubCategories) {
         // Filter events according to optional categories and dsubcategories
         let filtered = [...rawEvents]
-        if (settings.categories.length > 0) {
-            filtered = filtered.filter(event => settings.categories.includes(event.category))
+        if (options.categories.length > 0) {
+            filtered = filtered.filter(event => options.categories.includes(event.category))
         }
-        if (settings.subCategories.length > 0) {
-            filtered = filtered.filter(event => settings.subCategories.includes(event.category))
+        if (options.subCategories.length > 0) {
+            filtered = filtered.filter(event => options.subCategories.includes(event.category))
         }
         // Convert string start and end dates to objects
         let newEvents = []
@@ -147,11 +147,21 @@ class TimelineEvent {
         })
         filtered = newEvents
         // If have user settings for start and end then filter events
-        if (settings.xRange.range != 0) {
-            filtered = filtered.filter(event => settings.xRange.eventInRange(event))
+        if (options.xRange.range != 0) {
+            filtered = filtered.filter(event => options.xRange.eventInRange(event))
         }
         // Sort events
         TimelineEvent.sort(filtered, dataSubCategories)
+        // Find min start value and max end value
+        xRange.start = filtered.reduce((start, event) =>
+            event.start.before(start) ? event.start : start, filtered[0].start
+        )
+        xRange.end = filtered.reduce((end, event) => {
+            if (event.end === undefined) {
+                return end.after(event.start) ? end : event.start
+            }
+            return end.after(event.end) ? end : event.end
+        }, xRange.start)
         // Return the filtered list of events
         return filtered
     }

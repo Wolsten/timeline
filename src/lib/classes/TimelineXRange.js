@@ -15,12 +15,8 @@ class TimelineXRange {
     }
 
     copy() {
-        console.error('range to copy', this)
-        const newXRange = new TimelineXRange(this.start.value, this.end.value)
-        console.error('new XRAnge', newXRange)
-        return newXRange
+        return new TimelineXRange(this.start.value, this.end.value)
     }
-
 
     setPseudoEndDate(eventWidth, datasetXRange) {
         let pseudoEnd = this.start.year + datasetXRange.range / eventWidth

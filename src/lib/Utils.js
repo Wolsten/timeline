@@ -55,88 +55,6 @@ const formatNumber = function (number, digits = 0) {
 	return new Intl.NumberFormat('en-GB', { maximumSignificantDigits: digits }).format(number) + suffix
 }
 
-// @todo Added to class
-// const formatDate = function (date) {
-// 	let formatted = formatYear(date.year)
-// 	if (date.month > 0 && date.day > 0) {
-// 		formatted = `${date.day} ${getMonth(date.month)} ${formatted}`
-// 	}
-// 	return formatted
-// }
-
-// @todo Added to class
-// const getMonth = function (m) {
-// 	return MONTHS[parseInt(m) - 1]
-// }
-
-// @todo Add to range class
-// const setDate = function (year = 0, month = 0, day = 0) {
-// 	const date = { year, month, day }
-// 	const decimal = getDecimalDate(date)
-// 	return { ...date, decimal }
-// }
-
-
-// const setRange = function (date1, date2) {
-// 	const start = setDate(date1)
-// 	const end = setDate(date2)
-// 	return {
-// 		start,
-// 		end,
-// 		range: end.year - start.year
-// 	}
-// }
-
-
-// @todo Added to TimelineDate class
-// const formatYear = function (year) {
-// 	const magnitude = Math.abs(year)
-// 	let millions = magnitude / 1000000
-// 	let thousands = millions * 1000
-// 	// let formatted = new Intl.NumberFormat().format(Math.round(millions))
-// 	// console.log(year,magnitude,millions,thousands,formatted)
-// 	if (millions > 1) {
-// 		// let formatted = new Intl.NumberFormat().format(Math.round(millions))
-// 		// let formatted = Number.parseFloat(millions).toPrecision(2)
-// 		// formatted = new Intl.NumberFormat().format(formatted)
-// 		let formatted = millions.toPrecision(2)
-// 		if (year < 0) {
-// 			return formatted + 'mya'
-// 		}
-// 		return formatted + 'my'
-// 	} else if (thousands > 10) {
-// 		// let formatted = parseInt(thousands / 100) * 100
-// 		let formatted = (thousands / 100).toPrecision(2)
-// 		if (year < 0) {
-// 			return formatted + 'tya'
-// 		}
-// 		return formatted + 'ty'
-// 	} else if (year < 0) {
-// 		return Math.abs(year) + 'bc'
-// 	}
-// 	return year
-// }
-
-
-// const eventDates = function (event) {
-// 	// debugger
-// 	let html = ''
-// 	if (event.start != '-') {
-// 		// html += formatDate(event.start)
-// 		html += event.start.formatDate()
-// 	}
-// 	if (event.end) {
-// 		if (event.end == '-') {
-// 			html += ' - '
-// 		} else {
-// 			// html += ` - ${formatDate(event.end)}`
-// 			html += ` - ${event.end.formatDate()}`
-// 		}
-// 	}
-// 	html = `(${html})`
-// 	return html
-// }
-
 
 const sentenceCase = function (str) {
 	if ((str === null) || (str === ''))
@@ -149,101 +67,6 @@ const sentenceCase = function (str) {
 			return txt.charAt(0).toUpperCase() +
 				txt.substr(1).toLowerCase();
 		});
-}
-
-
-/**
- * Initialise the settings with any optional user supplied settings
- * @param {String} userSettings Command separate list of setting=value pairs
- * @returns {Object}
- */
-const initSettings = function (userSettings) {
-	let settings = {
-		symbols: false,
-		readonly: false,
-		group: false,      // group by category or sub-category according to filter type
-		categorise: false,
-		search: '',
-		filter: '',
-		filterType: '',
-		title: '',
-		sort: 'x',
-		categories: [],
-		subCategories: [],
-		xRange: new TimelineXRange()
-	}
-	let start
-	let end
-	// Apply default settings where required
-	// Note that only non-defaults should be set in user settings
-	if (userSettings !== '') {
-		const pairs = userSettings.split(',')
-		// console.log('pairs', pairs)
-		pairs.forEach(pair => {
-			// debugger
-			const parts = pair.split('=')
-			if (parts.length == 2) {
-				const setting = parts[0].trim()
-				const value = parts[1].trim()
-				switch (setting) {
-					case 'symbols':
-						if (value === 'true') settings.symbols = true
-						break
-					case 'readonly':
-						if (value === 'true') settings.readonly = true
-						break
-					case 'group':
-						settings.group = value ? true : false
-						break
-					case 'categorise':
-						if (value === 'true') settings.categorise = true
-						break;
-					case 'logscale':
-						if (value === 'true') settings.logscale = true
-						break
-					case 'search':
-						settings.search = value
-						break
-					case 'filter':
-						settings.filter = value
-						break
-					case 'title':
-						settings.title = value
-						break
-					case 'sort':
-						settings.sort = value
-						break
-					case 'start':
-						// start = getDateParts(value)
-						start = value
-						break
-					case 'end':
-						// end = getDateParts(value)
-						end = value
-						break
-					case 'subCategories':
-						const subCats = value.split('|')
-						if (subCats.length > 0) {
-							subCats.forEach(subCat => subCat.trim())
-							settings.subCats = subCats
-						}
-						break;
-					case 'categories':
-						const cats = value.split('|')
-						if (cats.length > 0) {
-							cats.forEach(cat => cat.trim())
-							settings.categories = cats
-						}
-				}
-			}
-		})
-	}
-	// xRange
-	if (start && end) {
-		settings.xRange = new TimelineXRange(start, end)
-	}
-	console.log('initSettings', settings)
-	return settings
 }
 
 
@@ -317,48 +140,6 @@ const setTaxonomyColours = function (taxonomy) {
 }
 
 
-// const initEvents = function (events, settings, dataCategories, dataSubCategories) {
-// 	// Filter events according to optional categories and dsubcategories
-// 	let filtered = [...events]
-// 	if (settings.categories.length > 0) {
-// 		filtered = filtered.filter(event => settings.categories.includes(event.category))
-// 	}
-// 	if (settings.subCategories.length > 0) {
-// 		filtered = filtered.filter(event => settings.subCategories.includes(event.category))
-// 	}
-// 	// Convert string start and end dates to objects
-// 	let newEvents = []
-// 	filtered.forEach((event) => {
-// 		newEvents.push(new TimelineEvent(event, dataCategories, dataSubCategories))
-// 	})
-// 	filtered = newEvents
-// 	// If have user settings for start and end then filter events
-// 	if (settings.xRange.range != 0) {
-// 		filtered = filtered.filter(event => eventInRange(settings.xRange, event))
-// 	}
-// 	// Sort events
-// 	TimelineEvent.sort(filtered, dataSubCategories)
-// 	// Return the filtered list of events
-// 	return filtered
-// }
-
-
-// const sortEvents = function (events, subCategories) {
-// 	// Set event sorting indices
-// 	// First sort by date, 
-// 	// then set date ordering and sub category index
-// 	// Finally sort by this index
-// 	events.sort(TimelineEvent.sortByDate)
-// 	events.forEach((event, index) => {
-// 		event.index = index
-// 		event.sci = subCategories.findIndex(sc => sc.name == event.subCategory)
-// 	})
-// 	events.sort(sortEventsBySubCategory)
-// 	events.forEach((event, index) => {
-// 		event.scIndex = index
-// 		delete (event.sci)
-// 	})
-// }
 
 const initSeries = function (series, settings, dataCategories, dataSubCategories) {
 	// Filter series according to optional categories and sub categories
@@ -393,34 +174,28 @@ const initSeries = function (series, settings, dataCategories, dataSubCategories
  * synthesising group series based on taxonomy and converting string
  * dates to app dates. This is called once per dataset on app load.
  * @param {Object} data The raw json data read from file
- * @param {Object} settings The processed user settings 
+ * @param {Object} options The processed user settings 
  * @returns {Object} The process data datset
  */
-const initDataset = function (data, settings) {
+const initDataset = function (data, options) {
 	// console.log('raw events', data.events)
 	// Set taxonomy colours
 	setTaxonomyColours(data.categories)
 	setTaxonomyColours(data.subCategories)
-	// Process events
+	// Initialise data range for events and series
 	data.xRange = new TimelineXRange()
+	// Process events
 	if (data.events.length > 0) {
 		// Optional filtering, set start & end dates, and colours
-		data.events = TimelineEvent.init(data.events, settings, data.categories, data.subCategories)
-		// Find min start value and max end value
-		data.xRange.start = data.events.reduce((min, event) => aBeforeB(event.start, min) ? event.start : min, data.events[0].start)
-		data.xRange.end = data.events.reduce((max, event) => {
-			if (event.end === undefined) {
-				return aBeforeB(max, event.start) ? event.start : max
-			}
-			return aBeforeB(max, event.end) ? event.end : max
-		}, data.xRange.start)
+		// data.xRange is also updated as passed by reference
+		data.events = TimelineEvent.init(data.xRange, data.events, options, data.categories, data.subCategories)
 	}
 	// console.log('data start', data.xRange.start)
 	// console.log('data end', data.xRange.end)
 	// Process series
 	if (data.series.length > 0) {
 		// Optional filtering, set type and colours, group by taxonomies
-		data.series = initSeries(data.series, settings, data.categories, data.subCategories)
+		data.series = initSeries(data.series, options, data.categories, data.subCategories)
 		// Process series (including newly created groups)
 		data.series.forEach((entry, index) => {
 			// Convert string dates to custom date objects and set colours
@@ -432,14 +207,14 @@ const initDataset = function (data, settings) {
 				point.subCategoryColour = data.subCategories.find(item => item.name == entry.subCategory).colour
 			})
 			// Filter by settings range?
-			if (settings.xRange.range > 0) {
-				entry.points = entry.points.filter(point => dateInRange(settings.xRange, point.x))
+			if (options.xRange.range > 0) {
+				entry.points = entry.points.filter(point => options.xRange.dateInRange(point.x))
 			}
 			// Find x-range start and end, plus y range min and max
 			const start = data.xRange.range > 0 ? data.xRange.start : entry.points[0].x
 			const end = data.xRange.range > 0 ? data.xRange.end : entry.points[0].x
-			data.xRange.start = entry.points.reduce((min, point) => aBeforeB(point.x, min) ? point.x : min, start)
-			data.xRange.end = entry.points.reduce((max, point) => aBeforeB(point.x, max) ? max : point.x, end)
+			data.xRange.start = entry.points.reduce((min, point) => point.x.before(min) ? point.x : min, start)
+			data.xRange.end = entry.points.reduce((max, point) => point.x.after(max) ? point.x : max, end)
 			entry.min = entry.points.reduce((min, point) => point.y < min ? point.y : min, Number.POSITIVE_INFINITY)
 			entry.max = entry.points.reduce((max, point) => point.y > max ? point.y : max, Number.NEGATIVE_INFINITY)
 		})
@@ -449,167 +224,6 @@ const initDataset = function (data, settings) {
 	return data
 }
 
-
-/**
- * Filter the full set of events to return ones which match the filtering criteria. 
- * Invoked when the date range or search text changes
- * @param {Object[]} events 
- * @param {Object} xRange Options xRange {start date, end date,range years} 
- * @param {String} search 
- * @param {Object[]} subCategories The data set sub categories
- * @returns {Object[]}
- */
-const processEvents = function (events, xRange, search, subCategories) {
-	let filtered = [...events]
-	// Search?
-	if (search != '') {
-		const pattern = new RegExp(search, 'i')
-		filtered = filtered.filter(event => event.name.search(pattern) != -1)
-	}
-	// Filter
-	if (xRange.range > 0) {
-		filtered = filtered.filter(event => eventInRange(xRange, event))
-	}
-	// Sort events - has to happen each time as event position is based on the 
-	// date and sub category indices
-	TimelineEvent.sort(filtered, subCategories)
-	// console.log('filtered events', [...filtered])
-	return filtered
-}
-
-
-// function isLeap(year) {
-// 	// three conditions to find out the leap year
-// 	if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {
-// 		// console.log(year + ' is a leap year');
-// 		return true
-// 	}
-// 	//console.log(year + ' is not a leap year');
-// 	return false
-// }
-
-
-// function getDecimalDate(date) {
-// 	const daysInYear = isLeap(date.year) ? 366 : 365
-// 	let total = 0
-// 	// Add days for previous months (month is 1-based)
-// 	for (let m = 1; m < date.month; m++) {
-// 		total += m == 2 && isLeap(date.year) ? 29 : DAYS_IN_MONTH[m - 1]
-// 	}
-// 	total += date.day
-// 	return toPrecision((date.year + total / daysInYear), 6)
-// }
-
-
-/**
- * Takes in a stringDate which can be one of the following:
- *   undefined
- *   '-'           Ongoing at end of date range or started before start of data range
- *   'YYYY'        e.g. 2020
- *   '[Y]YYYbc'    e.g. 500bc
- *   'YYYY-MM-DD'  e.g. 2020-06-28
- *   'XXXmya'      e.g. 100mya, i.e. 100 Million years ago
- * 
- * Returns one of:
- * 	 original string if was undefined or set to '-'
- * or
- *   custom date object with following properties:
- *     day      Integer day of the month
- *     month    Integer month of the year
- *     year     Integer year
- *     decimal  Number representing fractional year (e.g. 1 July 2020 => 2020.5)
- *   
- * @param {Number|String} stringDate 
- * @returns {undefined|String|Object}
- */
-// const getDateParts = function (stringDate) {
-// 	// debugger
-// 	if (stringDate === undefined ||
-// 		stringDate === '-') {
-// 		return stringDate
-// 	}
-// 	// console.log('stringDate', stringDate)
-// 	stringDate = '' + stringDate
-// 	const parts = stringDate.split('-')
-// 	// console.log('parts',parts)
-// 	let year = 0
-// 	let month = 0
-// 	let day = 0
-// 	// Format 1c), 2 or 3
-// 	if (parts.length == 1) {
-// 		parts[0] = parts[0].toLowerCase()
-// 		// Format 2 
-// 		if (parts[0].endsWith('bc')) {
-// 			year = -parseInt(parts[0].split('bc')[0])
-// 			// Format 3
-// 		} else if (parts[0].endsWith('mya')) {
-// 			year = -1000000 * parts[0].split('mya')[0]
-// 		} else if (parts[0].endsWith('my')) {
-// 			year = 1000000 * parts[0].split('my')[0]
-// 			// Format 1c)
-// 		} else {
-// 			year = parseInt(parts[0])
-// 		}
-// 	} else {
-// 		// Format 1b)
-// 		year = parseInt(parts[0])
-// 		month = parseInt(parts[1])
-// 		if (parts.length == 3) {
-// 			day = parseInt(parts[2])
-// 		}
-// 	}
-// 	let date = { year, month, day }
-// 	date.decimal = getDecimalDate(date)
-// 	return date
-// }
-
-
-// const dateInRange = function (range, date) {
-// 	return range.start.decimal <= date.decimal && date.decimal <= range.end.decimal
-// }
-
-
-// const eventInRange = function (range, event) {
-// 	// console.log('options xRange', range)
-// 	// Not in range if defined and doesn't fit in the range
-// 	if (event.start !== undefined && dateInRange(range, event.start) == false) {
-// 		return false
-// 	}
-// 	// Start in range, end in range if end is undefined or fites in date range
-// 	return event.end == undefined || dateInRange(range, event.end)
-// }
-
-
-const aBeforeB = function (a, b) {
-	// Either undefined
-	if (a === undefined || b === undefined) {
-		return false;
-	}
-	if (a === '-' && b !== '-') {
-		return true
-	}
-	// date
-	if (a?.decimal < b?.decimal) {
-		return true
-	}
-	return false
-}
-
-
-// const sortEventsByDate = function (a, b) {
-// 	// console.log('a', a, 'b', b)
-// 	if (a.start === '-') return -1
-// 	if (b.start === '-') return 1
-// 	if (a.start.decimal !== undefined && b.start.decimal !== undefined) {
-// 		return a.start.decimal - b.start.decimal
-// 	}
-// 	return 0
-// }
-
-
-// const sortEventsBySubCategory = function (a, b) {
-// 	return a.sci - b.sci
-// }
 
 
 const processSeries = function (series, xRange, filter, type, group) {
@@ -632,11 +246,6 @@ const processSeries = function (series, xRange, filter, type, group) {
 			filtered = filtered.filter(entry => entry.subCategory == filter)
 		}
 	}
-	// console.warn('init filtered series', filtered)
-	// console.warn('set',set)
-	// console.log('scale',scale)
-	// console.log('xStart',xStart)
-	// console.log('xEnd',xEnd)
 	// Filter data by start and end range and generate data from points
 	filtered.forEach((entry, seriesIndex) => {
 
@@ -645,26 +254,8 @@ const processSeries = function (series, xRange, filter, type, group) {
 		// @todo - probably don;t need this
 		entry.min = Number.POSITIVE_INFINITY
 		entry.max = Number.NEGATIVE_INFINITY
-
 		entry.points.forEach((point, opIndex) => {
-
-			// Range test
-			// if (dateInRange(xRange, point.x)) {
-			// 	const valueX = fPoint.x.decimal
-			// 	const canvasX = Utils.CANVAS_PADDING_LEFT + (valueX - xRange.start.decimal) * scale
-			// 	const fPoint = {
-			// 		seriesIndex,
-			// 		i,
-			// 		xLabel: formatDate(fPoint.x),
-			// 		x: parseInt(canvasX),
-			// 		y: 0 // To be scaled in the component
-			// 		// @todo Will need to fix in component - think done in Canvas but need to check
-			// 		value: fPoint.y,
-			// 	}
-			// 	filtered[seriesIndex].data.push(fPoint)
-			// }
-
-			if (dateInRange(xRange, point.x)) {
+			if (xRange.dateInRange(point.x)) {
 				// Check ranges
 				if (point.y < entry.min) entry.min = point.y
 				if (point.y > entry.max) entry.max = point.y
@@ -734,8 +325,8 @@ const copyXRange = function (xRange) {
 const Utils = {
 	getVersionHistory,
 	initDataset,
-	initSettings,
-	processEvents,
+	// initSettings,
+	// processEvents,
 	processSeries,
 	// eventDates,
 	debounce,
