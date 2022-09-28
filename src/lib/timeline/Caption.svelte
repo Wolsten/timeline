@@ -54,7 +54,7 @@
     span.subtitle {
         display: block;
         padding: 0;
-        font-size: 0.9rem;
+        font-size: smaller;
         font-weight: normal;
         color: var(--tl-colour-font);
     }

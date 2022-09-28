@@ -9,7 +9,7 @@
     export let subCategories
     export let options
 
-    console.warn("subCategories", subCategories)
+    // console.warn("subCategories", subCategories)
 
     const dispatch = createEventDispatcher()
 
@@ -74,8 +74,8 @@
 {/if}
 
 {#if subCategories.length > 0}
-    <aside>
-        {#each categories as category, cIndex}
+    {#each categories as category, cIndex}
+        <aside>
             {#if categories.length > 1 || options.group}
                 {@const colour = category.colour}
                 {@const isActive = options.filter == category.name}
@@ -111,8 +111,8 @@
                     </span>
                 {/if}
             {/each}
-        {/each}
-    </aside>
+        </aside>
+    {/each}
 {/if}
 
 <!------------------------------------------------------------------------------
@@ -120,7 +120,6 @@
 -------------------------------------------------------------------------------->
 <style>
     aside {
-        margin-top: 1rem;
         padding: 0.5rem;
         display: flex;
         flex-wrap: wrap;
@@ -128,7 +127,6 @@
         column-gap: 0;
         justify-content: center;
         width: 100%;
-        font-size: 0.8rem;
     }
 
     span {

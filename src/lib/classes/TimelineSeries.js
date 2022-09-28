@@ -78,6 +78,7 @@ class TimelineSeries {
 
 
     static process(series, xRange, filter, type, group) {
+        if (series.length == 0) return []
         // Initialise the filtered list
         let filtered = []
         // Totalised values only?
@@ -148,7 +149,8 @@ class TimelineSeries {
                         // Create new point or add existing to match
                         if (taxEntry.points.length == 0 || match == -1) {
                             // *** IMPORTANT *** MUST PUSH A COPY NOT THE ORIGINAL
-                            taxEntry.points.push({ ...point })
+                            // taxEntry.points.push({ ...point })
+                            taxEntry.points.push(point)
                             match = taxEntry.points.length - 1
                         } else {
                             taxEntry.points[match].y += point.y

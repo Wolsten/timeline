@@ -20,7 +20,6 @@
         color: var(--tl-colour-font);
         text-decoration: none;
         outline: none;
-        font-size: normal;
     }
 
     a {
@@ -28,8 +27,6 @@
         background: var(--tl-colour-background);
         border-radius: var(--tl-size-border-radius);
         padding: var(--tl-size-input-padding);
-        font-size: 1rem;
-        font-weight: normal;
     }
 
     a:hover {

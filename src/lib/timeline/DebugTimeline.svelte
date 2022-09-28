@@ -77,8 +77,6 @@
     <dd>{options.symbols}</dd>
     <dt>title</dt>
     <dd>{options.title || "none"}</dd>
-    <dt>categorise</dt>
-    <dd>{options.categorise}</dd>
     <dt>totalise</dt>
     <dd>{options.totalise}</dd>
     <dt>xRange</dt>

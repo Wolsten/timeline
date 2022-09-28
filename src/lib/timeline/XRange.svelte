@@ -95,6 +95,6 @@
 <style>
     div {
         width: 100%;
-        margin-top: 0.3rem;
+        margin: 0.5rem 0;
     }
 </style>

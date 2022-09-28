@@ -45,20 +45,8 @@ class TimelineXRange {
         return !event.continuing() || this.dateInRange(event.end)
     }
 
-    // static copy(xRange) {
-    //     console.error('range to copy', xRange)
-    //     let newXRange = new TimelineXRange(xRange.start.value, xRange.end.value)
-    //     console.error('new XRAnge', newXRange)
-    //     return newXRange
-    // }
-
 }
 
-// export const copyXRange = function(xRange){
-//     console.error('range to copy', xRange)
-//     let newXRange = new TimelineXRange(xRange.start.value, xRange.end.value)
-//     console.error('new XRAnge', newXRange)
-//     return newXRange
-// }
+
 
 export default TimelineXRange

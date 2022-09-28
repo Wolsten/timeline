@@ -92,8 +92,8 @@
 -------------------------------------------------------------------------------->
 <style>
     .properties {
-        font-size: 0.9rem;
-        line-height: 1.2rem;
+        /* font-size: 0.9rem; */
+        /* line-height: 1.2rem; */
         padding: 1rem;
         background-color: var(--tl-colour-range-slider-fill);
     }

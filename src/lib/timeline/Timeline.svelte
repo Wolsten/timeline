@@ -2,9 +2,14 @@
     import { onMount } from "svelte"
 
     import Utils from "../Utils.js"
+
     import TimelineEvent from "../classes/TimelineEvent"
     import TimelineSeries from "../classes/TimelineSeries"
     import TimelineOptions from "../classes/TimelineOptions"
+    import TimelineXRange from "../classes/TimelineXRange.js"
+    import TimelineCategory from "../classes/TimelineCategory.js"
+    import TimelineSubCategory from "../classes/TimelineSubCategory.js"
+
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
     import Canvas from "./Canvas.svelte"
@@ -14,39 +19,21 @@
     import CanvasProperties from "./CanvasProperties.svelte"
     import Caption from "./Caption.svelte"
     import XRange from "./XRange.svelte"
-    // import DebugTimeline from "$lib/timeline/DebugTimeline.svelte"
     import { windowWidth, touch } from "../stores"
 
-    // As pass in by the user
     export let data
     export let settings
-
     export let viewportWidth
 
-    console.log("viewportWidth", viewportWidth)
-
     const options = new TimelineOptions(settings)
-
-    // Process the dataset
-    const dataset = Utils.initDataset(data, options)
-    // console.error("Timeline dataset", dataset)
-
-    // Check of we have an xRange from the user settings and if
-    // not set to dataset range
-    if (options.xRange.range === 0) {
-        options.xRange = dataset.xRange.copy()
-    }
-    // console.log("options after", options)
+    const dataset = initDataset(data, options)
 
     let viewport
-    let drawingWidth =
-        viewportWidth - Utils.CANVAS_PADDING_LEFT - Utils.CANVAS_PADDING_RIGHT
     let scale = 0
-
-    // Events, series and groups filtered by date range (search and subCats)
-    // Filtering by subCats done in canvas component
     let filteredEvents = []
     let filteredSeries = []
+    let drawingWidth =
+        viewportWidth - Utils.CANVAS_PADDING_LEFT - Utils.CANVAS_PADDING_RIGHT
 
     // Wait for window to be mounted to test for touch devices
     onMount(() => {
@@ -54,7 +41,6 @@
         const generalTouchEnabled =
             "ontouchstart" in document.createElement("div")
         $touch = msTouchEnabled || generalTouchEnabled
-        // console.log("onMount viewport width", viewport?.clientWidth)
     })
 
     //
@@ -63,7 +49,20 @@
 
     $: if ($windowWidth) handleResize()
 
-    $: clickable = options.selectedEvent || options.selectedPoint
+    $: filteredEvents = TimelineEvent.process(
+        dataset.events,
+        options.xRange,
+        options.search,
+        dataset.subCategories
+    )
+
+    $: filteredSeries = TimelineSeries.process(
+        dataset.series,
+        options.xRange,
+        options.filter,
+        options.filterType,
+        options.group
+    )
 
     //
     // Functions
@@ -75,7 +74,6 @@
         switch (detail.name) {
             case "selectedPoint":
                 options.selectedPoint = detail.data
-                console.error("Got new selected point", options.selectedPoint)
                 break
             case "selectedEvent":
                 options.selectedEvent = detail.data
@@ -85,26 +83,13 @@
                 break
             case "xRange":
                 options.xRange = detail.data
-                options.selectedEvent = undefined
-                options.selectedPoint = undefined
-                scaleX()
+                reScale()
                 break
             // Filter or just highlight series
             // depending on group settings
             case "filter":
                 options.filter = detail.data.value
                 options.filterType = detail.data.taxonomy
-                options.selectedEvent = undefined
-                options.selectedPoint = undefined
-                if (options.group) {
-                    filteredSeries = TimelineSeries.process(
-                        dataset.series,
-                        options.xRange,
-                        options.filter,
-                        options.filterType,
-                        options.group
-                    )
-                }
                 break
             case "group":
                 options.filter = ""
@@ -113,43 +98,28 @@
                 } else {
                     options.filterType = ""
                 }
-                filteredSeries = TimelineSeries.process(
-                    dataset.series,
-                    options.xRange,
-                    options.filter,
-                    options.filterType,
-                    options.group
-                )
                 break
             case "sort":
                 options.sort = detail.data
                 break
             case "search":
                 options.search = detail.data
-                filteredEvents = TimelineEvent.process(
-                    dataset.events,
-                    options.xRange,
-                    options.search,
-                    dataset.subCategories
-                )
                 break
             case "reset":
-                options.selectedEvent = undefined
-                options.selectedPoint = undefined
-                options.search = ""
-                options.filter = ""
-                options.sort = "x"
-                options.xRange = dataset.xRange
-                options.symbols = detail.data.symbols
-                options.categorise = detail.data.categorise
-                options.totalise = detail.data.totalise
-                scaleX()
+                options.reset()
+                // Cannot do this in reset method as reactivity
+                // depending on this property does
+                // not work - this is a Svelte issue
+                options.xRange = dataset.xRange.copy()
+                reScale()
                 break
         }
-        // @todo why is this required, e.g. for sorting???
-        // if (detail.name != "search" && detail.name != "category") {
-        //     // options.search = ""
-        // }
+        if (detail.name !== "selectedPoint") {
+            options.selectedPoint = undefined
+        }
+        if (detail.name !== "selectedEvent") {
+            options.selectedEvent = undefined
+        }
     }
 
     function handleClick() {
@@ -178,12 +148,7 @@
 
         // If the width has changed then rescale the x-axis
         if (viewport.clientWidth != viewportWidth) {
-            // The drawing width is the clientWidth
-            drawingWidth =
-                viewportWidth -
-                Utils.CANVAS_PADDING_LEFT -
-                Utils.CANVAS_PADDING_RIGHT
-            scaleX()
+            reScale()
             // Non-intuitive behaviour on touch devices
             if ($touch == false) {
                 if (options.selectedEvent) {
@@ -193,30 +158,13 @@
         }
     }
 
-    function scaleX() {
-        // console.error("scaleX: viewportWidth", viewportWidth)
-        // console.error("scaleX: drawingWidth", drawingWidth)
-        // scale in pixels/x-unit
+    function reScale() {
+        // The drawing width is the clientWidth
+        drawingWidth =
+            viewportWidth -
+            Utils.CANVAS_PADDING_LEFT -
+            Utils.CANVAS_PADDING_RIGHT
         scale = drawingWidth / options.xRange.range
-        // console.log("scaleX: scale (pixels/x unit)", scale)
-        // console.log('data.events', data.events);
-        filteredEvents = TimelineEvent.process(
-            dataset.events,
-            options.xRange,
-            options.search,
-            dataset.subCategories
-        )
-        // console.log('filteredEvents', filteredEvents);
-        console.log("series", dataset.series, "scale", scale)
-        if (dataset.series.length > 0)
-            filteredSeries = TimelineSeries.process(
-                dataset.series,
-                options.xRange,
-                options.filter,
-                options.filterType,
-                options.group
-            )
-        console.log("filtered series", filteredSeries, "scale", scale)
     }
 
     function scrollToSelected() {
@@ -234,6 +182,55 @@
         options.selectedEvent = undefined
         options.selectedPoint = undefined
     }
+
+    /**
+     * Convert raw json data ready for manipulating graphically, including
+     * synthesising group series based on taxonomy and converting string
+     * dates to app dates. This is called once per dataset on app load.
+     * @param {Object} data The raw json data read from file
+     * @param {TimelineOptions} options The processed user settings
+     * @returns {Object} The process data datset
+     */
+    function initDataset(data, options) {
+        // console.log('raw events', data.events)
+        // Set taxonomy colours
+        data.categories = TimelineCategory.init(data.categories)
+        data.subCategories = TimelineSubCategory.init(data.subCategories)
+        // Initialise data range for events and series
+        data.xRange = new TimelineXRange()
+        // Process events
+        if (data.events.length > 0) {
+            // Optional filtering, set start & end dates, and colours
+            // data.xRange is also updated as passed by reference
+            data.events = TimelineEvent.init(
+                data.xRange,
+                data.events,
+                options,
+                data.categories,
+                data.subCategories
+            )
+        }
+        // console.log('data start', data.xRange.start)
+        // console.log('data end', data.xRange.end)
+        // Process series
+        if (data.series.length > 0) {
+            data.series = TimelineSeries.init(
+                data.xRange,
+                data.series,
+                options,
+                data.categories,
+                data.subCategories
+            )
+        }
+        data.xRange.range = data.xRange.end.year - data.xRange.start.year
+        console.log("dataset", data)
+        // Check of we have an xRange from the user settings and if
+        // not set to dataset range
+        if (options.xRange.range === 0) {
+            options.xRange = data.xRange.copy()
+        }
+        return data
+    }
 </script>
 
 <!------------------------------------------------------------------------------
@@ -244,7 +241,6 @@
 
 <figure
     class="timeline timeline-content"
-    class:clickable
     on:click|stopPropagation={handleClick}
 >
     <Caption
@@ -339,8 +335,4 @@
         margin: 0;
         padding: 0;
     }
-
-    /* .clickable {
-        cursor: zoom-out;
-    } */
 </style>

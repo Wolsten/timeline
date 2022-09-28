@@ -148,7 +148,7 @@
         color: var(--tl-colour-font);
 
         min-width: 50px;
-        font-size: 0.8rem;
+        /* font-size: 0.8rem; */
         text-align: center;
     }
 
@@ -180,6 +180,6 @@
         display: inline-block;
         position: static;
         text-align: center;
-        font-size: 1rem;
+        /* font-size: 1rem; */
     }
 </style>

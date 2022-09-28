@@ -52,8 +52,8 @@
 -------------------------------------------------------------------------------->
 <style>
     .properties {
-        font-size: 1rem;
-        line-height: 1.4rem;
+        /* font-size: 1rem;
+        line-height: 1.4rem; */
         position: fixed;
         top: 0;
         left: 0;
@@ -80,7 +80,7 @@
     }
 
     h3 {
-        font-size: 1.2rem;
+        /* font-size: 1.2rem; */
         font-weight: normal;
     }
 

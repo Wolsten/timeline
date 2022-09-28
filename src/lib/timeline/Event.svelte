@@ -31,7 +31,7 @@
 
     function getTop(sort) {
         const top =
-            margin.top + (sort == "x" ? event.index : event.scIndex) * height
+            margin.top + (sort == "date" ? event.index : event.scIndex) * height
         // console.log("Getting new top for event", event.name, top)
         return top
     }
@@ -128,7 +128,8 @@
             options.selectedEvent === undefined ||
             options.selectedEvent.index !== event.index
         ) {
-            options.selectedEvent = { ...event }
+            options.selectedEvent = event.copy()
+            // console.log("selected event", options.selectedEvent)
             lastClickedMs = clickMs
             setTimeout(handleDeferredClick, 500)
         } else {
@@ -203,7 +204,7 @@
 
     text {
         text-anchor: start;
-        font-size: 0.8rem;
+        /* font-size: 0.8rem; */
         fill: var(--tl-colour-text);
     }
 

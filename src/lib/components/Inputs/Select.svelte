@@ -49,7 +49,7 @@
         border: 1px solid var(--tl-colour-input-border);
         border-radius: var(--tl-size-border-radius);
         color: var(--tl-colour-font);
-        /* font-size: 1rem; */
+        font-size: 1rem;
     }
 
     select.mobile {

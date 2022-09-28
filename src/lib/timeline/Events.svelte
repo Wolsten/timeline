@@ -7,7 +7,7 @@
     export let viewportWidth
     export let scale
 
-    // console.error('events',events)
+    // $: console.error("events", events)
     // console.warn("options.xRange", options.xRange)
 
     const MIN_HEIGHT = 100

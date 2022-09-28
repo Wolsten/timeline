@@ -1,12 +1,9 @@
 <script>
     import { createEventDispatcher } from "svelte"
 
-    import Select from "../components/Inputs/Select.svelte"
     import Button from "../components/Inputs/Button.svelte"
     import TextSearch from "../components/Inputs/TextSearch.svelte"
     import Toggle from "../components/Inputs/Toggle.svelte"
-    import Utils from "../Utils.js"
-    import TimelineDate from "../classes/TimelineDate.js"
 
     // export let categoriesLength
     // export let subCategoriesLength
@@ -15,57 +12,33 @@
     export let eventsLength
     export let options
 
-    // console.log('seriesLength',seriesLength)
-    // console.log("xRange", xRange)
-
     const dispatch = createEventDispatcher()
 
-    const initialOptions = { ...options }
+    let sort = false
+    let search = ""
+    let disabled = false
 
-    let reset = false
-    $: reset =
+    $: sort = options.sort == "category"
+
+    $: disabled = !(
         xRange.start.year != options.xRange.start.year ||
         xRange.end.year != options.xRange.end.year ||
         options.filter != "" ||
         options.search != "" ||
-        options.sort != "x"
+        options.sort != "date" ||
+        options.group
+    )
 
     options.zoomIn = () => {
         handleZoomIn(true)
     }
 
     function handleZoomIn(focus) {
-        // console.log("Clicked event zoom in - selected=", options.selectedEvent)
         if (focus) {
             // console.log('Clicked focus')
             // Only respond if selected is set
             if (options.selectedEvent) {
-                if (options.selectedEvent.started()) {
-                    options.xRange.start = xRange.start
-                } else {
-                    options.xRange.start = options.selectedEvent.start
-                }
-                if (options.selectedEvent.continuing()) {
-                    options.xRange.end = xRange.end
-                } else if (options.selectedEvent.isPoint()) {
-                    // // Start end end dates match so calculate a pseudo end date
-                    // let pseudoEnd =
-                    //     options.xRange.start.year +
-                    //     xRange.range / Utils.MIN_BOX_WIDTH
-                    // if (pseudoEnd > xRange.end.year) {
-                    //     pseudoEnd = xRange.end.year
-                    // }
-                    // // options.xRange.end = Utils.setDate(pseudoEnd)
-                    // options.xRange.end = TimelineDate.setDate(pseudoEnd)
-
-                    options.xRange.setPseudoEndDate(Utils.MIN_BOX_WIDTH, xRange)
-                } else {
-                    options.xRange.end = options.selectedEvent.end
-                }
-                // options.xRange.range =
-                //     options.xRange.end.year - options.xRange.start.year
-                options.xRange.setRangeYears()
-                // console.log("options.xRange", options.xRange)
+                options.focus(xRange)
                 dispatch("optionsChanged", {
                     name: "xRange",
                     data: options.xRange,
@@ -74,15 +47,8 @@
         } else {
             dispatch("optionsChanged", {
                 name: "reset",
-                data: {
-                    xRange: { ...xRange },
-                    symbols: initialOptions.symbols,
-                    categorise: initialOptions.categorise,
-                    totalise: initialOptions.totalise,
-                },
             })
         }
-        // console.error('xRange', dateRange)
     }
 </script>
 
@@ -102,19 +68,6 @@
         {/if}
 
         {#if seriesLength > 1}
-            <!-- <Toggle
-                name="categorise"
-                label="Colour by"
-                bind:value={options.categorise}
-                options={["Series", "Category"]}
-                disabled={options.totalise}
-                on:changed={() =>
-                    dispatch("optionsChanged", {
-                        name: "categorise",
-                        data: options.categorise,
-                    })}
-            /> -->
-
             <Toggle
                 name="group"
                 label="Group"
@@ -130,38 +83,33 @@
     {/if}
 
     {#if eventsLength > 0}
-        <Select
+        <Toggle
             name="category"
-            bind:value={options.sort}
-            options={[
-                { value: "x", label: `Sort by date` },
-                { value: "category", label: "Sort by category" },
-            ]}
-            on:changed={() =>
+            label="Sort by"
+            options={["Date", "Category"]}
+            bind:value={sort}
+            on:changed={() => {
                 dispatch("optionsChanged", {
                     name: "sort",
-                    data: options.sort,
-                })}
+                    data: sort ? "date" : "category",
+                })
+            }}
         />
 
         <TextSearch
             placeholder="Find event"
-            bind:search={options.search}
+            bind:search
             on:search={() => {
                 dispatch("optionsChanged", {
                     name: "search",
-                    data: options.search,
+                    data: search,
                 })
             }}
             on:clear={() => {
-                options.selectedEvent = undefined
+                search = ""
                 dispatch("optionsChanged", {
                     name: "search",
-                    data: options.search,
-                })
-                dispatch("optionsChanged", {
-                    name: "selectedEvent",
-                    data: options.selectedEvent,
+                    data: search,
                 })
             }}
         />
@@ -170,8 +118,11 @@
     <div class="buttons">
         <Button
             label="Reset"
-            disabled={!reset}
-            on:clicked={() => handleZoomIn(false)}
+            {disabled}
+            on:clicked={() => {
+                search = ""
+                handleZoomIn(false)
+            }}
         />
     </div>
 </div>

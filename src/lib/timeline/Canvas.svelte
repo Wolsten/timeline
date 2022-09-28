@@ -136,8 +136,6 @@
         // Set the default colour
         let colour = series[index].colour
 
-        // Utils.colour(index, colourIndex, options.categorise)
-
         // Highlight selected series
         if (selPoint && selPoint.type == "series") {
             if (selPoint.index != index) {
@@ -314,7 +312,7 @@
         border: 1px solid var(--tl-colour-faint-lines);
         border-radius: var(--tl-size-border-radius);
 
-        font-size: 0.8rem;
+        /* font-size: 0.8rem; */
         font-weight: bold;
         padding: 0.3rem;
 
@@ -322,6 +320,6 @@
     }
 
     .tooltip-arrow {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 </style>

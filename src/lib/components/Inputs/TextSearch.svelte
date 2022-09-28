@@ -43,7 +43,7 @@
         padding: var(--tl-size-input-padding);
         border: 1px solid var(--tl-colour-input-border);
         border-radius: var(--tl-size-border-radius);
-        /* font-size: 1rem; */
+        font-size: 1rem;
         width: 100%;
     }
 

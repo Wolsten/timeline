@@ -1,7 +1,9 @@
 :root {
   /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 1em;
+  line-height: 1.4em;
+  /* font-weight: normal; */
   /* line-height: 24px;
   font-weight: 400; */
 
@@ -125,7 +127,8 @@ time-line a:hover {
 
 @media (max-width:599px) {
   body time-line * {
-    font-size: 18px;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
   }
 }
 
@@ -154,7 +157,7 @@ time-line h4 {
 }
 
 time-line p {
-  line-height: 2rem;
+  /* line-height: 2rem; */
   position: relative;
   /* font-family: Georgia, 'Times New Roman', Times, serif; */
 }

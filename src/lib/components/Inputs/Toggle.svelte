@@ -69,6 +69,7 @@
         display: inline-block;
         margin: 0;
         padding: var(--tl-size-input-padding);
+        line-height: normal;
         border: 1px solid var(--tl-colour-faint-lines);
         color: var(--tl-colour-font);
         cursor: pointer;

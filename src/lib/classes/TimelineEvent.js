@@ -1,27 +1,35 @@
-import TimelineDate from "./TimelineDate.js"
-import TimelineXRange from "./TimelineXRange.js"
+import TimelineDate from "./TimelineDate"
+import TimelineXRange from "./TimelineXRange"
 
-class TimelineEvent {
+class TimelineEvent extends Object {
 
-    // Raw event properties
+    // Raw event  properties
     // start and end properties optional, 
     // in practice start always specified
     start
     end
     name = ''
+    summary = ''
     category = ''
     subCategory = ''
     citations = ''
 
     // Derived event properties
-    index = 0               // Set in sortEvents
+    index = 0               // Set in sort method
     scIndex = 0             // Ditto
     categoryColour = ''
     subCategoryColour = ''
 
-    constructor(rawEvent, categories = [], subCategories = []) {
+    constructor(rawEvent = undefined, categories = [], subCategories = []) {
+        // Invoke super method as this class extends Object
+        // Required to take advantage of the assign method
+        super()
+        if (rawEvent === undefined) {
+            return
+        }
         // debugger
         this.name = rawEvent.name
+        this.summary = rawEvent.summary
         this.category = rawEvent.category
         this.subCategory = rawEvent.subCategory
         this.citations = rawEvent.citations
@@ -52,6 +60,11 @@ class TimelineEvent {
         return this.start?.decimal === this.end?.decimal
     }
 
+    copy() {
+        let copiedEvent = new TimelineEvent()
+        return TimelineEvent.assign(copiedEvent, this)
+    }
+
     eventDates() {
         // debugger
         let html = ''
@@ -64,14 +77,6 @@ class TimelineEvent {
         } else if (!this.isPoint()) {
             html += ` - ${this.end.formatDate()}`
         }
-        // if (this.end) {
-        //     if (this.end == '-') {
-        //         html += ' - '
-        //     } else {
-        //         // html += ` - ${formatDate(event.end)}`
-        //         html += ` - ${this.end.formatDate()}`
-        //     }
-        // }
         html = `(${html})`
         return html
     }
@@ -83,13 +88,14 @@ class TimelineEvent {
     }
 
     static sortBySubCategory(a, b) {
-        a.subCategoryIndex - b.subCategoryIndex
+        return a.sci - b.sci
     }
 
     static sort(events, subCategories) {
         // Set event sorting indices
         // First sort by date, 
         events.sort(TimelineEvent.sortByDate)
+        // debugger
         // Set index and sub category index
         events.forEach((event, index) => {
             event.index = index
@@ -107,7 +113,7 @@ class TimelineEvent {
      * Filter the full set of events to return ones which match the filtering criteria. 
      * Invoked when the date range or search text changes
      * @param {TimelineEvent[]} events 
-     * @param {XRange} xRange Options xRange
+     * @param {TimelineXRange} xRange Options xRange
      * @param {String} search 
      * @param {Object[]} subCategories The data set sub categories
      * @returns {Object[]}
@@ -132,6 +138,7 @@ class TimelineEvent {
 
 
     static init(xRange, rawEvents, options, dataCategories, dataSubCategories) {
+        if (rawEvents.length == 0) return []
         // Filter events according to optional settings
         let filtered = [...rawEvents]
         if (options.categories.length > 0) {

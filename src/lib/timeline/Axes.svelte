@@ -16,7 +16,8 @@
     const MAJOR_TICK_Y1 = 0 //-4
     const MAJOR_TICK_HEIGHT = 10
 
-    $: if (options.xRange) options.xAxis = scaleXAxis(drawingWidth)
+    // $: if (options.xRange) options.xAxis = scaleXAxis(drawingWidth)
+    $: options.xAxis = scaleXAxis(drawingWidth)
 
     /**
      * Scale and label the axis based on the current data range defined in xAxis
@@ -138,15 +139,11 @@
 
     .svg-major-label {
         fill: var(--tl-colour-font);
-        font-size: 0.8rem;
+        /* font-size: 0.8rem; */
     }
 
     /* .svg-minor-tick {
         stroke-width: 1;
         stroke: gray;
     }
-
-    .svg-minor-label {
-        font-size: 0.8rem;
-    } */
 </style>
