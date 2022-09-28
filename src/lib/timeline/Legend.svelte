@@ -9,10 +9,7 @@
     export let subCategories
     export let options
 
-    // export let filteredEvents
-
-    // const eventsSubCats = subCategories.filter((item) => item.type === "event")
-    // const seriesSubCats = subCategories.filter((item) => item.type === "series")
+    console.warn("subCategories", subCategories)
 
     const dispatch = createEventDispatcher()
 

@@ -112,7 +112,7 @@ class TimelineEvent {
      * @param {Object[]} subCategories The data set sub categories
      * @returns {Object[]}
      */
-    static process = function (events, xRange, search, subCategories) {
+    static process(events, xRange, search, subCategories) {
         let filtered = [...events]
         // Search?
         if (search != '') {
@@ -162,6 +162,8 @@ class TimelineEvent {
             }
             return end.after(event.end) ? end : event.end
         }, xRange.start)
+        // @todo gandle options.xRange if set
+        //
         // Return the filtered list of events
         return filtered
     }

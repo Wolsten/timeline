@@ -108,6 +108,10 @@ class TimelineDate {
         return false
     }
 
+    isUnset() {
+        return this.value === ''
+    }
+
     static isLeap(year) {
         // three conditions to find out the leap year
         if ((0 == year % 4) && (0 != year % 100) || (0 == year % 400)) {

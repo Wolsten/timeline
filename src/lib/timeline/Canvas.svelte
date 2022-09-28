@@ -72,6 +72,7 @@
                     scaledY: scaledY(originalPoint.y, yRange.min),
                 }
                 coords.push(`${pt.scaledX},${pt.scaledY}`)
+                // console.log("Adding filtered data point", pt)
                 entry.data = [...entry.data, pt]
             })
             polylines = [...polylines, coords.join(" ")]

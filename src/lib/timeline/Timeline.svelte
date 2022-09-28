@@ -3,6 +3,7 @@
 
     import Utils from "../Utils.js"
     import TimelineEvent from "../classes/TimelineEvent"
+    import TimelineEntry from "../classes/TimelineEntry"
     import TimelineOptions from "../classes/TimelineOptions"
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
@@ -96,7 +97,7 @@
                 options.selectedEvent = undefined
                 options.selectedPoint = false
                 if (options.group) {
-                    filteredSeries = Utils.processSeries(
+                    filteredSeries = TimelineEntry.process(
                         dataset.series,
                         options.xRange,
                         options.filter,
@@ -112,7 +113,7 @@
                 } else {
                     options.filterType = ""
                 }
-                filteredSeries = Utils.processSeries(
+                filteredSeries = TimelineEntry.process(
                     dataset.series,
                     options.xRange,
                     options.filter,
@@ -208,14 +209,14 @@
         // console.log('filteredEvents', filteredEvents);
         console.log("series", dataset.series, "scale", scale)
         if (dataset.series.length > 0)
-            filteredSeries = Utils.processSeries(
+            filteredSeries = TimelineEntry.process(
                 dataset.series,
                 options.xRange,
                 options.filter,
                 options.filterType,
                 options.group
             )
-        console.log("filter series", filteredSeries, "scale", scale)
+        console.log("filtered series", filteredSeries, "scale", scale)
     }
 
     function scrollToSelected() {

@@ -1,6 +1,9 @@
-import TimelineDate from "./classes/TimelineDate.js"
+
 import TimelineEvent from "./classes/TimelineEvent.js"
+import TimelineEntry from "./classes/TimelineEntry.js"
 import TimelineXRange from "./classes/TimelineXRange.js"
+import TimelineCategory from "./classes/TimelineCategory.js"
+import TimelineSubCategory from "./classes/TimelineSubCategory.js"
 
 
 const DAYS_IN_MONTH = [
@@ -70,104 +73,6 @@ const sentenceCase = function (str) {
 }
 
 
-/**
- * Group and return data series according taxonomy (by category or sub-category)
- * @param {Array} series The raw series
- * @param {String} taxonomy Either category or subcategory
- * @param {Array} list A list of strings of either categories or sub categories
- */
-const groupSeries = function (series, taxonomy, list) {
-	// Stop if have no series
-	if (series.length == 0) return []
-	// Initialise groups
-	let groups = []
-	list.forEach((item, index) => {
-		let group
-		series.forEach(entry => {
-			if ((taxonomy == 'category' && entry.category == item.name) ||
-				(taxonomy == 'sub-category' && entry.subCategory == item.name)) {
-				// Initialise group
-				if (!group) {
-					const name = item.name
-					group = {
-						...entry,
-						max: Number.NEGATIVE_INFINITY,
-						min: Number.POSITIVE_INFINITY,
-						points: [],
-						name,
-						legend: name,
-						type: taxonomy,
-						colour: item.colour ? item.colour : defaultColour(index),
-						summary: `Data grouped by ${taxonomy} ${name}`
-					}
-				}
-				// Accumulate data points
-				entry.points.forEach(point => {
-					// Look for point with same x
-					let match = group.points.findIndex(pt => {
-						return pt.x == point.x
-					})
-					// Create new point or add existing to match
-					if (group.points.length == 0 || match == -1) {
-						// *** IMPORTANT *** MUST PUSH A COPY NOT THE ORIGINAL
-						group.points.push({ ...point })
-						match = group.points.length - 1
-					} else {
-						group.points[match].y += point.y
-					}
-					// Update min and max values
-					if (group.points[match].y > group.max) {
-						group.max = group.points[match].y
-					}
-					if (group.points[match].y < group.min) {
-						group.min = group.points[match].y
-					}
-				})
-				// Sort points in date order
-				group.points.sort((a, b) => a.x - b.x)
-			}
-		})
-		groups.push(group)
-	})
-	return groups
-}
-
-
-const setTaxonomyColours = function (taxonomy) {
-	taxonomy.forEach((item, index) => {
-		if (item.colour == '') item.colour = defaultColour(index)
-	})
-}
-
-
-
-const initSeries = function (series, settings, dataCategories, dataSubCategories) {
-	// Filter series according to optional categories and sub categories
-	let filtered = [...series]
-	if (settings.categories.length > 0) {
-		filtered = filtered.filter(item => settings.categories.includes(item.category.name))
-	}
-	if (settings.subCategories.length > 0) {
-		filtered = filtered.filter(item => settings.subCategories.includes(item.category.name))
-	}
-	// Set original series type and colour property (if not set)
-	filtered.forEach((entry, index) => {
-		entry.type = 'single'
-		if (!entry.colour) entry.colour = defaultColour(index)
-	})
-	// Generate and append category and sub-category groups to series
-	const categoryGroups = groupSeries(filtered, 'category', dataCategories)
-	const subCategoryGroups = groupSeries(filtered, 'sub-category', dataSubCategories)
-	filtered = [
-		...filtered,
-		...categoryGroups,
-		...subCategoryGroups
-	]
-	// console.log('Initialiased series', filtered)
-	return filtered
-}
-
-
 
 /**
  * Convert raw json data ready for manipulating graphically, including
@@ -180,8 +85,8 @@ const initSeries = function (series, settings, dataCategories, dataSubCategories
 const initDataset = function (data, options) {
 	// console.log('raw events', data.events)
 	// Set taxonomy colours
-	setTaxonomyColours(data.categories)
-	setTaxonomyColours(data.subCategories)
+	data.categories = TimelineCategory.init(data.categories)
+	data.subCategories = TimelineSubCategory.init(data.subCategories)
 	// Initialise data range for events and series
 	data.xRange = new TimelineXRange()
 	// Process events
@@ -194,30 +99,7 @@ const initDataset = function (data, options) {
 	// console.log('data end', data.xRange.end)
 	// Process series
 	if (data.series.length > 0) {
-		// Optional filtering, set type and colours, group by taxonomies
-		data.series = initSeries(data.series, options, data.categories, data.subCategories)
-		// Process series (including newly created groups)
-		data.series.forEach((entry, index) => {
-			// Convert string dates to custom date objects and set colours
-			entry.points.forEach(point => {
-				// point.x = getDateParts(point.x)
-				point.x = new TimelineDate(point.x)
-				point.colour = entry.colour ? entry.colour : defaultColour(index)
-				point.categoryColour = data.categories.find(item => item.name == entry.category).colour
-				point.subCategoryColour = data.subCategories.find(item => item.name == entry.subCategory).colour
-			})
-			// Filter by settings range?
-			if (options.xRange.range > 0) {
-				entry.points = entry.points.filter(point => options.xRange.dateInRange(point.x))
-			}
-			// Find x-range start and end, plus y range min and max
-			const start = data.xRange.range > 0 ? data.xRange.start : entry.points[0].x
-			const end = data.xRange.range > 0 ? data.xRange.end : entry.points[0].x
-			data.xRange.start = entry.points.reduce((min, point) => point.x.before(min) ? point.x : min, start)
-			data.xRange.end = entry.points.reduce((max, point) => point.x.after(max) ? point.x : max, end)
-			entry.min = entry.points.reduce((min, point) => point.y < min ? point.y : min, Number.POSITIVE_INFINITY)
-			entry.max = entry.points.reduce((max, point) => point.y > max ? point.y : max, Number.NEGATIVE_INFINITY)
-		})
+		data.series = TimelineEntry.init(data.xRange, data.series, options, data.categories, data.subCategories)
 	}
 	data.xRange.range = data.xRange.end.year - data.xRange.start.year
 	console.log('dataset', data)
@@ -325,20 +207,12 @@ const copyXRange = function (xRange) {
 const Utils = {
 	getVersionHistory,
 	initDataset,
-	// initSettings,
-	// processEvents,
-	processSeries,
-	// eventDates,
 	debounce,
 	toPrecision,
 	formatNumber,
 	copyXRange,
-	// formatYear,
-	// formatDate,
 	colour,
 	defaultColour,
-	// setRange,
-	// setDate,
 	sentenceCase,
 	COLOUR_INACTIVE: 'var(--tl-material-grey-400)',
 	MIN_BOX_WIDTH: 80,
