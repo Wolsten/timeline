@@ -3,7 +3,7 @@
 
     import Utils from "../Utils.js"
     import TimelineEvent from "../classes/TimelineEvent"
-    import TimelineEntry from "../classes/TimelineEntry"
+    import TimelineSeries from "../classes/TimelineSeries"
     import TimelineOptions from "../classes/TimelineOptions"
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
@@ -63,7 +63,7 @@
 
     $: if ($windowWidth) handleResize()
 
-    $: clickable = options.selectedEvent || options.selectedPoint !== false
+    $: clickable = options.selectedEvent || options.selectedPoint
 
     //
     // Functions
@@ -86,7 +86,7 @@
             case "xRange":
                 options.xRange = detail.data
                 options.selectedEvent = undefined
-                options.selectedPoint = false
+                options.selectedPoint = undefined
                 scaleX()
                 break
             // Filter or just highlight series
@@ -95,9 +95,9 @@
                 options.filter = detail.data.value
                 options.filterType = detail.data.taxonomy
                 options.selectedEvent = undefined
-                options.selectedPoint = false
+                options.selectedPoint = undefined
                 if (options.group) {
-                    filteredSeries = TimelineEntry.process(
+                    filteredSeries = TimelineSeries.process(
                         dataset.series,
                         options.xRange,
                         options.filter,
@@ -113,7 +113,7 @@
                 } else {
                     options.filterType = ""
                 }
-                filteredSeries = TimelineEntry.process(
+                filteredSeries = TimelineSeries.process(
                     dataset.series,
                     options.xRange,
                     options.filter,
@@ -135,7 +135,7 @@
                 break
             case "reset":
                 options.selectedEvent = undefined
-                options.selectedPoint = false
+                options.selectedPoint = undefined
                 options.search = ""
                 options.filter = ""
                 options.sort = "x"
@@ -154,8 +154,8 @@
 
     function handleClick() {
         // console.error('Handling timeline click in dataset',data.name)
-        if (options.selectedPoint !== false) {
-            options.selectedPoint = false
+        if (options.selectedPoint) {
+            options.selectedPoint = undefined
         }
     }
 
@@ -209,7 +209,7 @@
         // console.log('filteredEvents', filteredEvents);
         console.log("series", dataset.series, "scale", scale)
         if (dataset.series.length > 0)
-            filteredSeries = TimelineEntry.process(
+            filteredSeries = TimelineSeries.process(
                 dataset.series,
                 options.xRange,
                 options.filter,
@@ -232,7 +232,7 @@
 
     function handleViewportClick() {
         options.selectedEvent = undefined
-        options.selectedPoint = false
+        options.selectedPoint = undefined
     }
 </script>
 

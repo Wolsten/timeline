@@ -132,7 +132,7 @@ class TimelineEvent {
 
 
     static init(xRange, rawEvents, options, dataCategories, dataSubCategories) {
-        // Filter events according to optional categories and dsubcategories
+        // Filter events according to optional settings
         let filtered = [...rawEvents]
         if (options.categories.length > 0) {
             filtered = filtered.filter(event => options.categories.includes(event.category))
@@ -140,10 +140,17 @@ class TimelineEvent {
         if (options.subCategories.length > 0) {
             filtered = filtered.filter(event => options.subCategories.includes(event.category))
         }
+        if (options.xRange.range > 0) {
+
+        }
         // Convert string start and end dates to objects
         let newEvents = []
         filtered.forEach((event) => {
-            newEvents.push(new TimelineEvent(event, dataCategories, dataSubCategories))
+            const evt = new TimelineEvent(event, dataCategories, dataSubCategories)
+            // Check for optional xRange filtering
+            if (options.xRange.range === 0 || options.xRange.eventInRange(evt)) {
+                newEvents.push(evt)
+            }
         })
         filtered = newEvents
         // If have user settings for start and end then filter events
@@ -162,8 +169,6 @@ class TimelineEvent {
             }
             return end.after(event.end) ? end : event.end
         }, xRange.start)
-        // @todo gandle options.xRange if set
-        //
         // Return the filtered list of events
         return filtered
     }

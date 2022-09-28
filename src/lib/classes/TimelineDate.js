@@ -46,7 +46,7 @@ class TimelineDate {
         // Make sure this is a string
         this.value = '' + date
         // Try to split dates into parts
-        const parts = date.split('-')
+        const parts = this.value.split('-')
         // Format 1, 2, 4 or 5
         if (parts.length == 1) {
             parts[0] = parts[0].toLowerCase()

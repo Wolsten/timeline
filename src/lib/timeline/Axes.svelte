@@ -120,6 +120,7 @@
 <style>
     svg {
         /* border: 1px solid rgb(143, 138, 233); */
+        margin-top: 0.5rem;
         position: relative;
         width: 100%;
         z-index: 1;

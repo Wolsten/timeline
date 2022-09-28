@@ -1,6 +1,6 @@
 
 import TimelineEvent from "./classes/TimelineEvent.js"
-import TimelineEntry from "./classes/TimelineEntry.js"
+import TimelineSeries from "./classes/TimelineSeries.js"
 import TimelineXRange from "./classes/TimelineXRange.js"
 import TimelineCategory from "./classes/TimelineCategory.js"
 import TimelineSubCategory from "./classes/TimelineSubCategory.js"
@@ -99,7 +99,7 @@ const initDataset = function (data, options) {
 	// console.log('data end', data.xRange.end)
 	// Process series
 	if (data.series.length > 0) {
-		data.series = TimelineEntry.init(data.xRange, data.series, options, data.categories, data.subCategories)
+		data.series = TimelineSeries.init(data.xRange, data.series, options, data.categories, data.subCategories)
 	}
 	data.xRange.range = data.xRange.end.year - data.xRange.start.year
 	console.log('dataset', data)

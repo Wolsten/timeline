@@ -42,7 +42,7 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#if options.selectedPoint !== false}
+{#if options.selectedPoint}
     <div
         class="properties"
         transition:slide={{ duration: 500 }}

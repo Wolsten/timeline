@@ -9,6 +9,7 @@
 
     import Utils from "../Utils.js"
     import YRange from "../classes/YRange.js"
+    import TimelinePoint from "../classes/TimelinePoint.js"
     import Symbol from "./Symbol.svelte"
 
     export let filteredSeries // Filtered array of series (includes grouped series)
@@ -51,7 +52,6 @@
         // Create polylines and scaled data
         polylines = []
         // Y range
-        // yRange = Utils.getYRange(series)
         yRange = new YRange(series)
         // Process each set
         series.forEach((entry, sIndex) => {
@@ -60,24 +60,19 @@
             // Turn the list of filtered point indices into data attached to the
             // series so can be displayed if required in the canvas properties
             entry.filteredPoints.forEach((opIndex) => {
-                const originalPoint = entry.points[opIndex]
-                const pt = {
-                    sIndex,
+                const point = entry.points[opIndex]
+                const dataPoint = point.dataPoint(
                     opIndex,
-                    x: originalPoint.x,
-                    // xLabel: Utils.formatDate(originalPoint.x),
-                    xLabel: originalPoint.x.formatDate(),
-                    y: originalPoint.y,
-                    scaledX: scaledX(originalPoint.x.decimal),
-                    scaledY: scaledY(originalPoint.y, yRange.min),
-                }
-                coords.push(`${pt.scaledX},${pt.scaledY}`)
-                // console.log("Adding filtered data point", pt)
-                entry.data = [...entry.data, pt]
+                    scale,
+                    options.xRange,
+                    yRange,
+                    HEIGHT
+                )
+                coords.push(`${dataPoint.scaledX},${dataPoint.scaledY}`)
+                entry.data = [...entry.data, dataPoint]
             })
             polylines = [...polylines, coords.join(" ")]
         })
-
         // // Check the data
         // series.forEach((entry) => {
         //     for (let i = 1; i < entry.data.length; i++) {
@@ -91,25 +86,10 @@
         console.log("initialised new series", series)
     }
 
-    function scaledX(x) {
-        const scaled = (x - options.xRange.start.decimal) * scale
-        return Math.round(Utils.CANVAS_PADDING_LEFT + scaled)
-    }
-
-    /**
-     * Return the scaled y value to 0 decimal places
-     * @param {number} value
-     * @param {Number} min
-     * @returns {Number}
-     */
-    function scaledY(value, min) {
-        return Math.round(HEIGHT * (1 - (value - min) / yRange.range))
-    }
-
     function handleClickedSymbol(point) {
         let newPoint = false
         if (
-            options.selectedPoint === false ||
+            options.selectedPoint === undefined ||
             options.selectedPoint.sIndex != point.sIndex ||
             options.selectedPoint.opIndex != point.opIndex
         ) {
@@ -117,7 +97,6 @@
             newPoint = { ...point }
             console.log("selected new point on canvas", newPoint)
         }
-
         dispatch("optionsChanged", {
             name: "selectedPoint",
             data: newPoint,
@@ -125,7 +104,7 @@
     }
 
     $: if (tooltip) {
-        if (options.selectedPoint == false) {
+        if (options.selectedPoint === undefined) {
             tooltipText = ""
             tooltip.style = `opacity:0`
         } else {
@@ -223,7 +202,11 @@
         {#each yRange.horizontals as h, index}
             <!-- line and label-->
             {#if index != 0}
-                {@const scaledHeight = scaledY(h.y, yRange.min)}
+                {@const scaledHeight = TimelinePoint.scaleY(
+                    h.y,
+                    yRange,
+                    HEIGHT
+                )}
                 <line
                     class="y-line"
                     x1={Utils.CANVAS_PADDING_LEFT}

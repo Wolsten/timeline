@@ -17,7 +17,7 @@ class TimelineOptions {
     subCategories = []
     xRange = new TimelineXRange()
     selectedEvent = undefined
-    selectedPoint = false
+    selectedPoint = undefined
     zoom = 1
 
     constructor(settings = '') {
