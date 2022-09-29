@@ -83,11 +83,12 @@
 <div id="placeholder">
     {#if ready}
         {#each timelines as timeline, i}
+            <!-- Subtract 18 to allow for padding and border -->
             <svelte:component
                 this={Timeline}
                 data={data[i]}
                 settings={settings[i]}
-                viewportWidth={timeline.clientWidth}
+                viewportWidth={timeline.clientWidth - 18}
             />
         {/each}
     {/if}

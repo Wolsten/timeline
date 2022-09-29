@@ -7,6 +7,12 @@ class TimelineXRange {
     end
     range = 0
 
+    // Accounting for quantising
+    scaledIntervals = 0
+    scaledInterval = 0
+    scaledRange = 0
+    scaledDrawingWidth = 0
+
     constructor(s = '', e = '') {
         this.start = new TimelineDate(s)
         this.end = new TimelineDate(e)
@@ -28,6 +34,7 @@ class TimelineXRange {
 
     setRangeYears() {
         this.range = this.end.year - this.start.year
+        this.scaledRange = this.range
     }
 
     dateInRange(date) {

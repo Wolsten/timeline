@@ -73,8 +73,7 @@
         border: 1px solid var(--tl-colour-faint-lines);
         color: var(--tl-colour-font);
         cursor: pointer;
-        /* text-transform: uppercase; */
-        /* font-size: 0.7rem; */
+        text-transform: capitalize;
         transition: all ease-in-out 300ms;
     }
 

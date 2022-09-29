@@ -18,7 +18,7 @@
     let search = ""
     let disabled = false
 
-    $: sort = options.sort == "category"
+    // $: sort = options.sort == "category"
 
     $: disabled = !(
         xRange.start.year != options.xRange.start.year ||
@@ -86,12 +86,12 @@
         <Toggle
             name="category"
             label="Sort by"
-            options={["Date", "Category"]}
+            options={["date", "category"]}
             bind:value={sort}
             on:changed={() => {
+                options.sort = sort ? "category" : "date"
                 dispatch("optionsChanged", {
                     name: "sort",
-                    data: sort ? "date" : "category",
                 })
             }}
         />
@@ -137,10 +137,6 @@
         margin-bottom: 0.5rem;
         gap: 0.5rem;
     }
-
-    /* .form :global(> *) {
-        font-size: 0.8rem;
-    } */
 
     .buttons {
         display: flex;

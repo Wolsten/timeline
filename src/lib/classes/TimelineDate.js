@@ -55,10 +55,10 @@ class TimelineDate {
                 this.year = -parseInt(parts[0].split('bc')[0])
                 // Format 4
             } else if (parts[0].endsWith('mya')) {
-                this.year = -1000000 * parts[0].split('mya')[0]
+                this.year = -1000000 * parseFloat(parts[0].split('mya')[0])
                 // Format 5
             } else if (parts[0].endsWith('my')) {
-                this.year = 1000000 * parts[0].split('my')[0]
+                this.year = 1000000 * parseFloat(parts[0].split('my')[0])
                 // Format 1
             } else {
                 this.year = parseInt(parts[0])

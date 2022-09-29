@@ -69,27 +69,27 @@
     //
 
     function handleOptions(event) {
-        const detail = event.detail
+        const dta = event.detail.data
         // console.log('Options changed',detail)
-        switch (detail.name) {
+        switch (event.detail.name) {
             case "selectedPoint":
-                options.selectedPoint = detail.data
+                options.selectedPoint = dta
                 break
             case "selectedEvent":
-                options.selectedEvent = detail.data
+                options.selectedEvent = dta
                 break
             case "symbols":
-                options.symbols = detail.data
+                options.symbols = dta
                 break
             case "xRange":
-                options.xRange = detail.data
+                options.xRange = dta
                 reScale()
                 break
             // Filter or just highlight series
             // depending on group settings
             case "filter":
-                options.filter = detail.data.value
-                options.filterType = detail.data.taxonomy
+                options.filter = dta.value
+                options.filterType = dta.taxonomy
                 break
             case "group":
                 options.filter = ""
@@ -100,10 +100,9 @@
                 }
                 break
             case "sort":
-                options.sort = detail.data
                 break
             case "search":
-                options.search = detail.data
+                options.search = dta
                 break
             case "reset":
                 options.reset()
@@ -114,10 +113,10 @@
                 reScale()
                 break
         }
-        if (detail.name !== "selectedPoint") {
+        if (event.detail.name !== "selectedPoint") {
             options.selectedPoint = undefined
         }
-        if (detail.name !== "selectedEvent") {
+        if (event.detail.name !== "selectedEvent") {
             options.selectedEvent = undefined
         }
     }
@@ -131,29 +130,19 @@
 
     function handleResize() {
         // Handle resizing - debouncing taken care of in App.svelte
-        // console.log("Handling resize with viewport", viewport?.clientWidth)
+        console.log("Handling resize with viewport", viewport?.clientWidth)
         // Stop if we don;t yet have a viewport
         if (viewport === undefined) return
-
         // If we have a viewport with a non-zero size use this
         if (viewport.clientWidth !== 0) {
-            // Viewport is the main drawing area which includes non-drawing
-            // areas in the x-axis which are the left and right padding, though
-            // the viewport itself is NOT padded using CSS
-            viewportWidth =
-                viewport.clientWidth +
-                Utils.CANVAS_PADDING_LEFT +
-                Utils.CANVAS_PADDING_RIGHT
+            viewportWidth = viewport.clientWidth
+            console.error("viewport client width used", viewportWidth)
         }
-
-        // If the width has changed then rescale the x-axis
-        if (viewport.clientWidth != viewportWidth) {
-            reScale()
-            // Non-intuitive behaviour on touch devices
-            if ($touch == false) {
-                if (options.selectedEvent) {
-                    setTimeout(scrollToSelected, 500)
-                }
+        reScale()
+        // Non-intuitive behaviour on touch devices
+        if ($touch == false) {
+            if (options.selectedEvent) {
+                setTimeout(scrollToSelected, 500)
             }
         }
     }
@@ -164,7 +153,21 @@
             viewportWidth -
             Utils.CANVAS_PADDING_LEFT -
             Utils.CANVAS_PADDING_RIGHT
+        // Initial scaling based on data range
         scale = drawingWidth / options.xRange.range
+        // Get scaled (quantised) intervals, interval and range
+        options.xRange.scaledIntervals = Math.round(
+            drawingWidth / Utils.MIN_BOX_WIDTH
+        )
+        options.xRange.scaledInterval = Math.ceil(
+            options.xRange.range / options.xRange.scaledIntervals
+        )
+        options.xRange.scaledRange =
+            options.xRange.scaledIntervals * options.xRange.scaledInterval
+        // console.debug(options.xRange)
+        // New scale value
+        scale = drawingWidth / options.xRange.scaledRange
+        console.log("new scale", scale)
     }
 
     function scrollToSelected() {
@@ -284,7 +287,6 @@
                 />
             {/if}
 
-            <!-- <Axes xAxis={dataset.xAxis} {viewportWidth} {drawingWidth} /> -->
             <Axes {options} {viewportWidth} {drawingWidth} />
         {/if}
     </div>

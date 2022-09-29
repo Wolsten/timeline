@@ -4,19 +4,14 @@
     import Utils from "../Utils.js"
     import TimelineDate from "../classes/TimelineDate.js"
 
-    // export let xAxis
     export let options
     export let viewportWidth
     export let drawingWidth
-    // export let xRange
-
-    // console.table(xAxis)
 
     const AXIS_HEIGHT = 35
-    const MAJOR_TICK_Y1 = 0 //-4
+    const MAJOR_TICK_Y1 = 0
     const MAJOR_TICK_HEIGHT = 10
 
-    // $: if (options.xRange) options.xAxis = scaleXAxis(drawingWidth)
     $: options.xAxis = scaleXAxis(drawingWidth)
 
     /**
@@ -26,18 +21,27 @@
      * @returns {Object}
      */
     function scaleXAxis(drawingWidth) {
-        console.warn("scaleXAxis: options x range", options.xRange)
+        console.warn(
+            "scaleXAxis: options x range",
+            options.xRange.start.year,
+            options.xRange.end.year,
+            options.xRange.range,
+            "\nscaled intervals",
+            options.xRange.scaledIntervals,
+            "\nscaled interval",
+            options.xRange.scaledInterval,
+            "\nscaled range",
+            options.xRange.scaledRange,
+            "\ndrawingWidth",
+            drawingWidth
+        )
 
-        // debugger
-        const intervals = Math.floor(drawingWidth / Utils.MIN_BOX_WIDTH)
-        const canvasInterval = Math.round(drawingWidth / intervals)
-        const dataInterval = Math.round(options.xRange.range / intervals)
-
-        // console.log('scaleXAxis: intervals, canvasInterval, dataInterval', intervals, canvasInterval, dataInterval)
-
+        // Canvas interval
+        const canvasInterval = drawingWidth / options.xRange.scaledIntervals
+        console.log("canvasInterval", canvasInterval)
         let canvasX = Utils.CANVAS_PADDING_LEFT
         let x = options.xRange.start.year
-        let axis = {
+        const axis = {
             values: [],
             ticks: [],
             labels: [],
@@ -46,81 +50,71 @@
             majorRange: 0,
         }
 
-        for (let i = 0; i <= intervals; i++) {
-            axis.ticks.push(parseInt(canvasX))
-            axis.values.push(parseInt(x))
-            axis.labels.push(TimelineDate.formatYear(parseInt(x)))
+        for (let i = 0; i <= options.xRange.scaledIntervals; i++) {
+            const tick = canvasX //Math.round(canvasX)
+            const value = x //(Math.round(x)
+            const label = TimelineDate.formatYear(x) //TimelineDate.formatYear(Math.round(x))
+            axis.ticks = [...axis.ticks, tick]
+            axis.values = [...axis.values, value]
+            axis.labels = [...axis.labels, label]
             canvasX += canvasInterval
-            x += dataInterval
+            x += options.xRange.scaledInterval
         }
 
         axis.majorLast = axis.labels[axis.labels.length - 1]
         axis.majorRange = axis.majorLast - axis.majorFirst
 
-        // console.table(newAxis)
+        console.table(axis)
 
         return axis
     }
-
-    // const MINOR_TICK_Y2 = 14
-
-    // console.log('padding left',paddingLeft)
 </script>
 
 <!------------------------------------------------------------------------------
 @section HTML
 -------------------------------------------------------------------------------->
-<!-- <p>viewportWidth={viewportWidth}, drawingWidth={drawingWidth}, nTicks={xAxis.ticks.length}</p> -->
+<p>viewportWidth={viewportWidth}, drawingWidth={drawingWidth}</p>
 
-<svg class="axis" width={viewportWidth} height={AXIS_HEIGHT} transition:fade>
-    <line
-        class="svg-major"
-        x1={Utils.CANVAS_PADDING_LEFT}
-        y1={MAJOR_TICK_Y1}
-        x2={Utils.CANVAS_PADDING_LEFT + drawingWidth}
-        y2={MAJOR_TICK_Y1}
-    />
-
-    {#each options.xAxis.ticks as x, majorIndex}
+{#if drawingWidth > 0}
+    <svg
+        class="axis"
+        width={viewportWidth}
+        height={AXIS_HEIGHT}
+        transition:fade
+    >
         <line
-            class="svg-major-tick"
-            x1={x}
+            class="svg-major"
+            x1={Utils.CANVAS_PADDING_LEFT}
             y1={MAJOR_TICK_Y1}
-            x2={x}
-            y2={MAJOR_TICK_HEIGHT}
+            x2={Utils.CANVAS_PADDING_LEFT + drawingWidth}
+            y2={MAJOR_TICK_Y1}
         />
 
-        <text
-            class="svg-major-label"
-            x={x - Utils.MIN_BOX_WIDTH / 4}
-            y={MAJOR_TICK_HEIGHT + 14}
-        >
-            {TimelineDate.formatYear(options.xAxis.labels[majorIndex])}
-        </text>
+        {#each options.xAxis.ticks as x, majorIndex}
+            <line
+                class="svg-major-tick"
+                x1={x}
+                y1={MAJOR_TICK_Y1}
+                x2={x}
+                y2={MAJOR_TICK_HEIGHT}
+            />
 
-        <!-- {#if majorIndex < svgticks.length - 1 && svgMinorTicks.length > 0}
-        
-            {#each svgMinorTicks as deltaX, minorIndex}
-
-                {#if minorIndex > 0 }
-                    <line class="svg-minor-tick" x1="{x+deltaX}" y1="{MAJOR_TICK_Y1}" x2="{x+deltaX}" y2="{MINOR_TICK_Y2}"/>
-                {/if}
-                
-                {#if svgMinorLabels[minorIndex] !== undefined }
-                    <text class="svg-minor-label" x="{x+deltaX+minorGap/2-8}" y="{MAJOR_TICK_Y1+12}">{@html svgMinorLabels[minorIndex]}</text>
-                {/if}
-            {/each}
-
-        {/if} -->
-    {/each}
-</svg>
+            <text
+                class="svg-major-label"
+                x={x - Utils.MIN_BOX_WIDTH / 4}
+                y={MAJOR_TICK_HEIGHT + 14}
+            >
+                {TimelineDate.formatYear(options.xAxis.labels[majorIndex])}
+            </text>
+        {/each}
+    </svg>
+{/if}
 
 <!------------------------------------------------------------------------------
 @section STYLES
 -------------------------------------------------------------------------------->
 <style>
     svg {
-        /* border: 1px solid rgb(143, 138, 233); */
         margin-top: 0.5rem;
         position: relative;
         width: 100%;

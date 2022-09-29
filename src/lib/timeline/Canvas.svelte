@@ -40,21 +40,18 @@
     let tooltipLeftArrow = ""
     let tooltipRightArrow = ""
 
-    $: init(filteredSeries)
+    // Trigger refresh when scale changes or filtered series changes
+    $: if (scale > 0) init(filteredSeries)
 
     function init(s) {
+        // @todo Magic required to make the update happen?
         series = [...s]
-        console.error(
-            "initialising canvas with options and series",
-            options,
-            series
-        )
         // Create polylines and scaled data
         polylines = []
         // Y range
         yRange = new YRange(series)
         // Process each set
-        series.forEach((entry, sIndex) => {
+        series.forEach((entry) => {
             let coords = []
             entry.data = []
             // Turn the list of filtered point indices into data attached to the
@@ -73,17 +70,7 @@
             })
             polylines = [...polylines, coords.join(" ")]
         })
-        // // Check the data
-        // series.forEach((entry) => {
-        //     for (let i = 1; i < entry.data.length; i++) {
-        //         if (entry.data[i - 1].scaledX > entry.data[i].scaledX) {
-        //             console.error(
-        //                 `Point ${i} out of order in series ${entry.name}`
-        //             )
-        //         }
-        //     }
-        // })
-        console.log("initialised new series", series)
+        console.log("Refreshed displayed series", series)
     }
 
     function handleClickedSymbol(point) {
