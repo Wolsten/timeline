@@ -7,7 +7,6 @@
     export let options
     export let margin
     export let height
-    export let scale
     export let viewportWidth
 
     const dispatch = createEventDispatcher()
@@ -37,7 +36,7 @@
     }
 
     function getProps() {
-        if (!event || scale === 0)
+        if (!event || options.xRange.scale === 0)
             return { top: 0, left: 0, right: 0, width: 0 }
         const colour = getColour(options.filter)
         // Top
@@ -45,19 +44,23 @@
         // Left
         let left = 0
         if (event.start === undefined) {
-            left = Math.round(options.xRange.start.decimal * scale)
+            left = Math.round(
+                options.xRange.start.decimal * options.xRange.scale
+            )
         } else {
             left = Math.round(
-                (event.start.decimal - options.xRange.start.decimal) * scale
+                (event.start.decimal - options.xRange.start.decimal) *
+                    options.xRange.scale
             )
         }
         // Right
         let right = 0
         if (event.end === undefined) {
-            right = Math.round(options.xRange.range * scale)
+            right = Math.round(options.xRange.range * options.xRange.scale)
         } else {
             right = Math.round(
-                (event.end.decimal - options.xRange.start.decimal) * scale
+                (event.end.decimal - options.xRange.start.decimal) *
+                    options.xRange.scale
             )
         }
         // Width

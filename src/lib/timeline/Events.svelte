@@ -5,7 +5,6 @@
     export let events
     export let options
     export let viewportWidth
-    export let scale
 
     // $: console.error("events", events)
     // console.warn("options.xRange", options.xRange)
@@ -35,7 +34,6 @@
     >
         {#each events as event}
             <Event
-                {scale}
                 {event}
                 {margin}
                 height={EVENT_HEIGHT}

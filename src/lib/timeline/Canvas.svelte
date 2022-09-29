@@ -13,7 +13,6 @@
     import Symbol from "./Symbol.svelte"
 
     export let filteredSeries // Filtered array of series (includes grouped series)
-    export let scale
     export let categories
     export let subCategories
     export let options
@@ -41,7 +40,7 @@
     let tooltipRightArrow = ""
 
     // Trigger refresh when scale changes or filtered series changes
-    $: if (scale > 0) init(filteredSeries)
+    $: if (options.xRange.scale > 0) init(filteredSeries)
 
     function init(s) {
         // @todo Magic required to make the update happen?
@@ -60,7 +59,6 @@
                 const point = entry.points[opIndex]
                 const dataPoint = point.dataPoint(
                     opIndex,
-                    scale,
                     options.xRange,
                     yRange,
                     HEIGHT

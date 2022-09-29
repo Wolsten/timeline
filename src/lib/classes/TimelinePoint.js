@@ -19,14 +19,14 @@ class TimelinePoint {
         this.subCategoryColour = subCategoryColour
     }
 
-    dataPoint(opIndex, scale, oXRange, yRange, canvasHeight) {
+    dataPoint(opIndex, oXRange, yRange, canvasHeight) {
         return {
             opIndex,
             sIndex: this.sIndex,
             x: this.x,
             y: this.y,
             xLabel: this.x.formatDate(),
-            scaledX: this.scaleX(scale, oXRange),
+            scaledX: this.scaleX(oXRange.scale, oXRange),
             scaledY: TimelinePoint.scaleY(this.y, yRange, canvasHeight)
         }
     }

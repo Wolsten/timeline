@@ -2,7 +2,8 @@
     import { touch } from "../../stores"
     import { createEventDispatcher } from "svelte"
 
-    export let drawingWidth
+    export let canvasInterval
+    // export let drawingWidth
     export let value
     export let min
     export let max
@@ -11,20 +12,30 @@
 
     const dispatch = createEventDispatcher()
 
-    let holder
-    let xOffset = 0
-    let dragging = false
-    let interval = parseInt(drawingWidth / labels.length)
-    let newValue = value
-    let label = ""
+    const sliderOffset = canvasInterval / 2
 
-    // console.log("interval", interval)
+    let holder
+    let rect
+    let xOffset
+
+    $: if (holder) {
+        rect = holder.parentNode.getBoundingClientRect()
+        xOffset = rect.left
+    }
+
+    let dragging = false
+    let newValue = value
+    let label = value
+    let left = (type == "min" ? min : max) * canvasInterval - sliderOffset
 
     // Update new value when the value changes
-    $: if (value != -1) {
-        newValue = value
-        label = value
-    }
+    // $: if (value != -1) {
+    //     newValue = value
+    //     label = value
+    // }
+
+    // When drop subtract the offset from the position
+    //$: left = canvasInterval * newValue // - (dragging ? 0 : sliderOffset)
 
     function handleDragStart() {
         if ($touch) {
@@ -33,42 +44,37 @@
 
         dragging = true
 
-        const minX = min * interval
-        const maxX = max * interval
-        // console.log('min',min,'max',max)
-
-        // Get the width of the slider container - this elements parent
-        // width = holder.parentNode.offsetWidth
-        // console.error('offset width of parent node', width)
+        const minX = min * canvasInterval
+        const maxX = max * canvasInterval
 
         // Get the position relative to the viewport
-        const rect = holder.parentNode.getBoundingClientRect()
-        xOffset = rect.left
-        // console.log('rect left',rect.left)
-
-        // interval = parseInt(width / size)
-        // console.log('width',width,'interval',interval)
+        // const rect = holder.parentNode.getBoundingClientRect()
+        // xOffset = rect.left
 
         document.body.onmousemove = (moveEvent) => {
-            // console.log('Dragging', moveEvent.offsetX)
             // Get the new delta position within the slider div
             // console.log('clientX', moveEvent.clientX)
             let x = moveEvent.clientX - xOffset
             // The dynamic position p is the left hand side
             // since user will typically grab in the middle.
-            // let p = x - holder.clientWidth/2
-            let p = x - interval / 2 - 5
-
-            // console.log('minX',minX,'maxX',maxX,'p',p)
+            // i.e. left is the screen coordinate for the
+            // left hand side of the slider so that the cursor
+            // does not suddenly switch away from the position selected
+            left = x - sliderOffset
+            // console.log('minX',minX,'maxX',maxX,'left',left)
             // Check against limits and if ok set position
-            if (p < minX) {
-                p = minX
-            } else if (p > maxX) {
-                p = maxX
+            // Allow for the slider offset
+            if (left + sliderOffset < minX) {
+                // console.log("hitting low limit")
+                left = minX - sliderOffset
+            } else if (left + sliderOffset > maxX) {
+                // console.log("hitting high limit")
+                left = maxX - sliderOffset
             }
-            newValue = p / interval
-            label = Math.floor(newValue)
-            // console.log('min, p, max, newValue = ',minX,p,maxX,newValue)
+            // Get new value correcting for the xOffset (see x above)
+            newValue = (xOffset + left) / canvasInterval
+            label = `${Math.round(newValue)}`
+            // console.log('min, left, max, newValue = ',minX,left,maxX,newValue)
         }
 
         const drop = function () {
@@ -128,7 +134,7 @@
         bind:this={holder}
         class="draggable"
         class:dragging
-        style={`min-width:${interval}px; left:${interval * newValue}px`}
+        style={`min-width:${canvasInterval}px; left:${left}px`}
         on:mousedown={handleDragStart}
     >
         {labels[label]}

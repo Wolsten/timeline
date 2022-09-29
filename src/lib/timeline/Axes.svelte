@@ -12,7 +12,7 @@
     const MAJOR_TICK_Y1 = 0
     const MAJOR_TICK_HEIGHT = 10
 
-    $: options.xAxis = scaleXAxis(drawingWidth)
+    $: options.xAxis = scaleXAxis(drawingWidth, options.xRange)
 
     /**
      * Scale and label the axis based on the current data range defined in xAxis
@@ -20,27 +20,26 @@
      * @param {Number} drawingWidth
      * @returns {Object}
      */
-    function scaleXAxis(drawingWidth) {
+    function scaleXAxis(drawingWidth, xRange) {
         console.warn(
-            "scaleXAxis: options x range",
-            options.xRange.start.year,
-            options.xRange.end.year,
-            options.xRange.range,
+            "\nscaleXAxis: options x range",
+            xRange.start.year,
+            xRange.end.year,
+            xRange.range,
             "\nscaled intervals",
-            options.xRange.scaledIntervals,
+            xRange.scaledIntervals,
             "\nscaled interval",
-            options.xRange.scaledInterval,
+            xRange.scaledInterval,
             "\nscaled range",
-            options.xRange.scaledRange,
+            xRange.scaledRange,
             "\ndrawingWidth",
             drawingWidth
         )
-
         // Canvas interval
-        const canvasInterval = drawingWidth / options.xRange.scaledIntervals
-        console.log("canvasInterval", canvasInterval)
+        const canvasInterval = drawingWidth / xRange.scaledIntervals
+        // console.log("canvasInterval", canvasInterval)
         let canvasX = Utils.CANVAS_PADDING_LEFT
-        let x = options.xRange.start.year
+        let x = xRange.start.year
         const axis = {
             values: [],
             ticks: [],
@@ -50,7 +49,7 @@
             majorRange: 0,
         }
 
-        for (let i = 0; i <= options.xRange.scaledIntervals; i++) {
+        for (let i = 0; i <= xRange.scaledIntervals; i++) {
             const tick = canvasX //Math.round(canvasX)
             const value = x //(Math.round(x)
             const label = TimelineDate.formatYear(x) //TimelineDate.formatYear(Math.round(x))
@@ -58,7 +57,7 @@
             axis.values = [...axis.values, value]
             axis.labels = [...axis.labels, label]
             canvasX += canvasInterval
-            x += options.xRange.scaledInterval
+            x += xRange.scaledInterval
         }
 
         axis.majorLast = axis.labels[axis.labels.length - 1]
@@ -73,7 +72,8 @@
 <!------------------------------------------------------------------------------
 @section HTML
 -------------------------------------------------------------------------------->
-<p>viewportWidth={viewportWidth}, drawingWidth={drawingWidth}</p>
+
+<!-- <p>viewportWidth={viewportWidth}, drawingWidth={drawingWidth}</p> -->
 
 {#if drawingWidth > 0}
     <svg

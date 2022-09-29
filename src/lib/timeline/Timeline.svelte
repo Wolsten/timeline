@@ -29,7 +29,6 @@
     const dataset = initDataset(data, options)
 
     let viewport
-    let scale = 0
     let filteredEvents = []
     let filteredSeries = []
     let drawingWidth =
@@ -153,21 +152,21 @@
             viewportWidth -
             Utils.CANVAS_PADDING_LEFT -
             Utils.CANVAS_PADDING_RIGHT
-        // Initial scaling based on data range
-        scale = drawingWidth / options.xRange.range
-        // Get scaled (quantised) intervals, interval and range
+        // Get the nearest whole no. of data intervals that fits in the range
         options.xRange.scaledIntervals = Math.round(
             drawingWidth / Utils.MIN_BOX_WIDTH
         )
+        // Calculate the size of a data interval (rounding up to make sure
+        // all data fits in range)
         options.xRange.scaledInterval = Math.ceil(
             options.xRange.range / options.xRange.scaledIntervals
         )
+        // Calculate the the new data range based on quantised interval
         options.xRange.scaledRange =
             options.xRange.scaledIntervals * options.xRange.scaledInterval
-        // console.debug(options.xRange)
         // New scale value
-        scale = drawingWidth / options.xRange.scaledRange
-        console.log("new scale", scale)
+        options.xRange.scale = drawingWidth / options.xRange.scaledRange
+        console.log("new scale", options.xRange.scale)
     }
 
     function scrollToSelected() {
@@ -263,11 +262,10 @@
     {/if}
 
     <div class="viewport" bind:this={viewport} on:click={handleViewportClick}>
-        {#if scale !== 0}
+        {#if options.xRange.scale !== 0}
             {#if filteredEvents.length > 0}
                 <Events
                     events={filteredEvents}
-                    {scale}
                     {viewportWidth}
                     {options}
                     on:optionsChanged={handleOptions}
@@ -276,7 +274,6 @@
 
             {#if filteredSeries.length > 0}
                 <Canvas
-                    {scale}
                     categories={dataset.categories}
                     subCategories={dataset.subCategories}
                     {filteredSeries}
@@ -291,8 +288,8 @@
         {/if}
     </div>
 
-    {#if drawingWidth != 0 && scale !== 0 && options.readonly === false}
-        <XRange {drawingWidth} {options} on:optionsChanged={handleOptions} />
+    {#if drawingWidth != 0 && options.xRange.scale !== 0 && options.readonly === false}
+        <XRange {options} on:optionsChanged={handleOptions} />
     {/if}
 
     <Legend

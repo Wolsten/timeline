@@ -8,6 +8,7 @@ class TimelineXRange {
     range = 0
 
     // Accounting for quantising
+    scale = 0
     scaledIntervals = 0
     scaledInterval = 0
     scaledRange = 0
@@ -20,6 +21,20 @@ class TimelineXRange {
         this.setRangeYears()
     }
 
+    scaleNotSameAs(xRange) {
+        return this.scaledIntervals != xRange.scaledIntervals ||
+            this.scaledInterval != this.scaledInterval
+    }
+
+    setStart(year = 0, month = 0, day = 0) {
+        this.start = TimelineDate.setDate(year, month = 0, day = 0)
+        this.setRangeYears()
+    }
+
+    setEnd(year = 0, month = 0, day = 0) {
+        this.end = TimelineDate.setDate(year, month = 0, day = 0)
+        this.setRangeYears()
+    }
     copy() {
         return new TimelineXRange(this.start.value, this.end.value)
     }
