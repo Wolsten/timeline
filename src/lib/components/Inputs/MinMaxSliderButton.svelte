@@ -2,79 +2,85 @@
     import { touch } from "../../stores"
     import { createEventDispatcher } from "svelte"
 
-    export let canvasInterval
-    // export let drawingWidth
-    export let value
-    export let min
-    export let max
-    export let type
+    export let drawingWidth
+    export let index // The current index value for this slider button
+    export let min // min index
+    export let max // max index
+    export let type // "min" or "max"
     export let labels
+    export let interval
 
     const dispatch = createEventDispatcher()
 
-    const sliderOffset = canvasInterval / 2
-
+    let buttonWidth = drawingWidth / (labels.length - 1)
+    let buttonOffset = buttonWidth / 2
     let holder
-    let rect
-    let xOffset
+    let dragging = false
+    let x = 0
+    // let interval = drawingWidth / labels.length
+    let value = index // Value is the decimal version of the index
+    let left = index * buttonWidth - buttonOffset
+    let minX = min * interval
+    let maxX = max * interval + buttonWidth
 
-    $: if (holder) {
-        rect = holder.parentNode.getBoundingClientRect()
-        xOffset = rect.left
+    $: if (drawingWidth) updateLeft()
+
+    export const reset = function () {
+        console.log("resetting")
     }
 
-    let dragging = false
-    let newValue = value
-    let label = value
-    let left = (type == "min" ? min : max) * canvasInterval - sliderOffset
+    function updateLeft() {
+        console.log("Updated button left, reset=", reset)
+        buttonWidth = boxWidth(holder)
+        buttonOffset = buttonWidth / 2
+        // interval = drawingWidth / labels.length
+        minX = min * interval
+        maxX = max * interval + buttonWidth
+        left = index * interval + (type == "min" ? -1 : 1) * buttonOffset
+    }
 
-    // Update new value when the value changes
-    // $: if (value != -1) {
-    //     newValue = value
-    //     label = value
-    // }
+    function box(element) {
+        return element.getBoundingClientRect()
+    }
 
-    // When drop subtract the offset from the position
-    //$: left = canvasInterval * newValue // - (dragging ? 0 : sliderOffset)
+    function boxWidth(button) {
+        if (button) {
+            return box(button).width
+        }
+        return drawingWidth / (labels.length - 1)
+    }
 
     function handleDragStart() {
-        if ($touch) {
-            return
-        }
-
+        // Touch devices use clicks not drag
+        if ($touch) return
+        // Flag drag started
         dragging = true
-
-        const minX = min * canvasInterval
-        const maxX = max * canvasInterval
-
         // Get the position relative to the viewport
-        // const rect = holder.parentNode.getBoundingClientRect()
-        // xOffset = rect.left
+        const xOffset = holder.parentNode.getBoundingClientRect().left
+        // Get accurate width and offset
+        buttonWidth = holder.getBoundingClientRect().width
+        buttonOffset = buttonWidth / 2
 
         document.body.onmousemove = (moveEvent) => {
             // Get the new delta position within the slider div
-            // console.log('clientX', moveEvent.clientX)
-            let x = moveEvent.clientX - xOffset
+            x = moveEvent.clientX - xOffset
+            // Check against limits
+            if (x < minX) {
+                console.log("hitting low limit", x)
+                x = minX
+            } else if (x > maxX) {
+                console.log("hitting high limit", x)
+                x = maxX
+            }
             // The dynamic position p is the left hand side
             // since user will typically grab in the middle.
-            // i.e. left is the screen coordinate for the
-            // left hand side of the slider so that the cursor
-            // does not suddenly switch away from the position selected
-            left = x - sliderOffset
-            // console.log('minX',minX,'maxX',maxX,'left',left)
-            // Check against limits and if ok set position
-            // Allow for the slider offset
-            if (left + sliderOffset < minX) {
-                // console.log("hitting low limit")
-                left = minX - sliderOffset
-            } else if (left + sliderOffset > maxX) {
-                // console.log("hitting high limit")
-                left = maxX - sliderOffset
-            }
+            left = x - buttonOffset
             // Get new value correcting for the xOffset (see x above)
-            newValue = (xOffset + left) / canvasInterval
-            label = `${Math.round(newValue)}`
-            // console.log('min, left, max, newValue = ',minX,left,maxX,newValue)
+            value = (xOffset + left) / interval
+            index = Math.round(value)
+            if (index > labels.length - 1) index = labels.length - 1
+            if (index < 0) index = 0
+            console.log("left, newValue, index => ", left, value, index)
         }
 
         const drop = function () {
@@ -82,11 +88,17 @@
             document.body.onmousemove = null
             document.body.onmouseup = null
             document.body.onmouseleave = null
-
-            value = Math.floor(newValue)
-            // console.log('Drag ended, final value = ',value)
-
-            dispatch("rangeChanged", { type, value })
+            // Get final index, chacking again for limits in case drag was
+            // interrupted, e.g. by going off screen
+            index = Math.floor(value)
+            if (index > labels.length - 1) index = labels.length - 1
+            if (index < 0) index = 0
+            // Dispatch event to XRange component
+            dispatch("rangeChanged", {
+                type,
+                index: index,
+                value: labels[index],
+            })
         }
 
         document.body.onmouseup = (e) => {
@@ -99,19 +111,19 @@
     }
 
     function handleTouchDown() {
-        value--
-        dispatch("rangeChanged", { type, value })
+        index--
+        dispatch("rangeChanged", { type, index: index, value: labels[index] })
     }
 
     function handleTouchUp() {
-        value++
-        dispatch("rangeChanged", { type, value })
+        index++
+        dispatch("rangeChanged", { type, index: index, value: labels[index] })
     }
 </script>
 
 {#if $touch}
     <div class="touch">
-        {#if value > min}
+        {#if index > min}
             <button type="button" on:click|stopPropagation={handleTouchDown}>
                 &#9664;
             </button>
@@ -119,9 +131,9 @@
             &nbsp;
         {/if}
 
-        {labels[value]}
+        {labels[index]}
 
-        {#if value < max}
+        {#if index < max}
             <button type="button" on:click|stopPropagation={handleTouchUp}>
                 &#9654;
             </button>
@@ -134,17 +146,17 @@
         bind:this={holder}
         class="draggable"
         class:dragging
-        style={`min-width:${canvasInterval}px; left:${left}px`}
+        style={`XXXmin-width:${buttonWidth}px; left:${left}px`}
         on:mousedown={handleDragStart}
     >
-        {labels[label]}
+        {labels[index]}
     </div>
 {/if}
 
 <style>
     div {
         position: absolute;
-        top: 0rem;
+        top: 0;
 
         padding: 0.2rem 0.4rem;
 
@@ -153,13 +165,12 @@
         background-color: var(--tl-colour-range-slider-fill);
         color: var(--tl-colour-font);
 
-        min-width: 50px;
-        /* font-size: 0.8rem; */
+        min-width: 40px;
         text-align: center;
     }
 
     div.draggable {
-        top: -0.5rem;
+        top: -0.7rem;
     }
 
     div.touch {

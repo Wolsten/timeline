@@ -82,7 +82,7 @@
                 break
             case "xRange":
                 options.xRange = dta
-                reScale()
+                reScale(false)
                 break
             // Filter or just highlight series
             // depending on group settings
@@ -137,7 +137,7 @@
             viewportWidth = viewport.clientWidth
             console.error("viewport client width used", viewportWidth)
         }
-        reScale()
+        reScale(true)
         // Non-intuitive behaviour on touch devices
         if ($touch == false) {
             if (options.selectedEvent) {
@@ -146,7 +146,7 @@
         }
     }
 
-    function reScale() {
+    function reScale(reSized) {
         // The drawing width is the clientWidth
         drawingWidth =
             viewportWidth -
@@ -166,6 +166,8 @@
             options.xRange.scaledIntervals * options.xRange.scaledInterval
         // New scale value
         options.xRange.scale = drawingWidth / options.xRange.scaledRange
+        // Flag if resized
+        options.reSized = reSized
         console.log("new scale", options.xRange.scale)
     }
 
@@ -289,7 +291,7 @@
     </div>
 
     {#if drawingWidth != 0 && options.xRange.scale !== 0 && options.readonly === false}
-        <XRange {options} on:optionsChanged={handleOptions} />
+        <XRange {drawingWidth} {options} on:optionsChanged={handleOptions} />
     {/if}
 
     <Legend

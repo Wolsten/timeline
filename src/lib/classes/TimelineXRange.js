@@ -21,10 +21,10 @@ class TimelineXRange {
         this.setRangeYears()
     }
 
-    scaleNotSameAs(xRange) {
-        return this.scaledIntervals != xRange.scaledIntervals ||
-            this.scaledInterval != this.scaledInterval
-    }
+    // scaleNotSameAs(xRange) {
+    //     return this.scaledIntervals != xRange.scaledIntervals ||
+    //         this.scaledInterval != this.scaledInterval
+    // }
 
     setStart(year = 0, month = 0, day = 0) {
         this.start = TimelineDate.setDate(year, month = 0, day = 0)

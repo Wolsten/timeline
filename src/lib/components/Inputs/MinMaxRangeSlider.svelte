@@ -2,33 +2,47 @@
     import { touch } from "../../stores"
     import MinMaxSliderButton from "./MinMaxSliderButton.svelte"
 
-    export let canvasInterval
+    export let drawingWidth
     export let labels
-    export let minValue
-    export let maxValue
+    export let minIndex
+    export let maxIndex
+
+    export const reset = function () {
+        MinMaxSliderButton.reset()
+        MinMaxSliderButton.reset()
+    }
+
+    let interval // The size of the interval in pixels
+
+    // Update interval when the drawing with or labels change
+    $: interval = drawingWidth / labels.length
 </script>
 
 <p>
-    interval={canvasInterval}, Min value = {minValue}, Max value = {maxValue},
-    Range = {labels.length - 1}
+    interval={interval}, Min value = {minIndex}, Max value = {maxIndex}, Range = {labels.length -
+        1}
 </p>
 
 <div class="date-range" class:touch={$touch}>
     <MinMaxSliderButton
-        {canvasInterval}
-        value={minValue}
+        bind:reset
+        {drawingWidth}
+        {interval}
+        index={minIndex}
         {labels}
         min={0}
-        max={maxValue - 1}
+        max={maxIndex - 1}
         type="min"
         on:rangeChanged
     />
     <MinMaxSliderButton
-        {canvasInterval}
-        value={maxValue}
+        bind:reset
+        {drawingWidth}
+        {interval}
+        index={maxIndex}
         {labels}
-        min={minValue + 1}
-        max={maxValue}
+        min={minIndex + 1}
+        max={labels.length - 1}
         type="max"
         on:rangeChanged
     />

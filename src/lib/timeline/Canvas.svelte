@@ -68,7 +68,7 @@
             })
             polylines = [...polylines, coords.join(" ")]
         })
-        console.log("Refreshed displayed series", series)
+        // console.log("Refreshed displayed series", series)
     }
 
     function handleClickedSymbol(point) {
@@ -80,7 +80,7 @@
         ) {
             // console.log({items})
             newPoint = { ...point }
-            console.log("selected new point on canvas", newPoint)
+            // console.log("selected new point on canvas", newPoint)
         }
         dispatch("optionsChanged", {
             name: "selectedPoint",
@@ -95,11 +95,11 @@
         } else {
             tooltipText = `${Utils.formatNumber(options.selectedPoint.y)}
                             <br>${options.selectedPoint.xLabel}`
-            console.warn(
-                "options.selectedPoint",
-                options.selectedPoint,
-                tooltipText
-            )
+            // console.warn(
+            //     "options.selectedPoint",
+            //     options.selectedPoint,
+            //     tooltipText
+            // )
             // Fit to right of point if there is room
             const top = options.selectedPoint.scaledY - 14
             if (viewportWidth - options.selectedPoint.scaledX > 120) {

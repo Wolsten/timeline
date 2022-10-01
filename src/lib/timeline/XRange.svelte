@@ -4,76 +4,75 @@
     import MinMaxRangeSlider from "../components/Inputs/MinMaxRangeSlider.svelte"
     import Utils from "../Utils.js"
 
+    export let drawingWidth
     export let options
 
     const dispatch = createEventDispatcher()
 
     let xAxis
-    let xRange
-    let canvasInterval = 0
-    let minValue = 0
-    let maxValue = options.xAxis.values.length - 1
+    let minIndex = 0
+    let maxIndex = 0
     let labels = []
-    let start = options.xAxis.majorFirst
-    let end = options.xAxis.majorLast
+    let start = 0
+    let end = 0
+    let reset = false
 
-    // Only update the xRange slider when the scaling changes due to the
-    // window being resized
-    $: if (xRange === undefined || options.xRange.scaleNotSameAs(xRange))
-        initXRange()
+    $: if (options.reSet === true) initXRange()
+
+    initXRange()
 
     function initXRange() {
-        console.warn("Resetting xRange with start and end", start, end)
-        // Save the new values
-        xRange = { ...options.xRange }
+        minIndex = 0
+        maxIndex = options.xAxis.values.length - 1
+        start = options.xAxis.majorFirst
+        end = options.xAxis.majorLast
+
         xAxis = { ...options.xAxis }
-        canvasInterval = options.xRange.scaledInterval * options.xRange.scale
         labels = xAxis.labels
-        // Find the min value in the original axis
-        minValue = 0
+        // Find the min index in the original axis
+        minIndex = 0
         for (let i = 0; i < xAxis.values.length - 1; i++) {
             // console.log("Checking for min value", i)
             if (start >= xAxis.values[i]) {
-                minValue = i
+                minIndex = i
+                console.log("Found matching min index", i)
                 start = xAxis.values[i]
             } else {
                 break
             }
         }
-
         // Find the max value - defaults to the last value
-        maxValue = xAxis.values.length - 1
+        maxIndex = xAxis.values.length - 1
         // Loop around all but the last value
-        for (let i = xAxis.values.length - 2; i > minValue; i--) {
+        for (let i = xAxis.values.length - 2; i > minIndex; i--) {
             // console.log("Checking for max value", i)
             if (end >= xAxis.values[i]) {
                 // Find out which interval it is nearest to - this one or the next
                 const deltaBefore = end - xAxis.values[i]
                 const deltaAfter = xAxis.values[i + 1] - end
-                maxValue = deltaBefore <= deltaAfter ? i : i + 1
-                end = xAxis.values[maxValue]
+                maxIndex = deltaBefore <= deltaAfter ? i : i + 1
+                end = xAxis.values[maxIndex]
+                console.log("Found matching max index", maxIndex)
                 break
             }
         }
-        console.error(
-            "resetting xRange slider with xAxis",
-            start,
-            end,
-            canvasInterval,
-            minValue,
-            maxValue
-        )
+        reset++
+        console.error("Reset xRange", start, end, minIndex, maxIndex)
     }
 
     function handleRange(event) {
         // console.warn("Handling date range changed by child", event.detail)
         if (event.detail.type == "min") {
-            minValue = event.detail.value
-            start = xAxis.values[minValue]
+            // minIndex = event.detail.value
+            // start = xAxis.values[minIndex]
+            minIndex = event.detail.index
+            start = event.detail.value
             options.xRange.setStart(start)
         } else if (event.detail.type == "max") {
-            maxValue = event.detail.value
-            end = xAxis.values[maxValue]
+            // maxIndex = event.detail.value
+            // end = xAxis.values[maxIndex]
+            maxIndex = event.detail.index
+            end = event.detail.value
             options.xRange.setEnd(end)
         }
         // console.log("XRange: handleRange", options.xRange)
@@ -86,10 +85,11 @@
 	       padding-right:{Utils.CANVAS_PADDING_RIGHT}px;"
 >
     <MinMaxRangeSlider
-        {canvasInterval}
+        {drawingWidth}
         {labels}
-        {minValue}
-        {maxValue}
+        {minIndex}
+        {maxIndex}
+        {reset}
         on:rangeChanged={handleRange}
     />
 </div>

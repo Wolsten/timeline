@@ -111,7 +111,7 @@ class TimelineSeries {
                 }
             })
         })
-        console.warn('filtered', [...filtered])
+        // console.warn('filtered', [...filtered])
         return filtered
     }
 
