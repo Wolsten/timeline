@@ -17,7 +17,6 @@
     let holder
     let dragging = false
     let x = 0
-    // let interval = drawingWidth / labels.length
     let value = index // Value is the decimal version of the index
     let left = index * buttonWidth - buttonOffset
     let minX = min * interval
@@ -25,15 +24,20 @@
 
     $: if (drawingWidth) updateLeft()
 
-    export const reset = function () {
-        console.log("resetting")
-    }
-
     function updateLeft() {
-        console.log("Updated button left, reset=", reset)
         buttonWidth = boxWidth(holder)
+        if (buttonWidth > interval) {
+            buttonWidth = interval
+        }
+        console.log(
+            "Updated button",
+            type,
+            "width",
+            buttonWidth,
+            "interval",
+            interval
+        )
         buttonOffset = buttonWidth / 2
-        // interval = drawingWidth / labels.length
         minX = min * interval
         maxX = max * interval + buttonWidth
         left = index * interval + (type == "min" ? -1 : 1) * buttonOffset
@@ -66,10 +70,10 @@
             x = moveEvent.clientX - xOffset
             // Check against limits
             if (x < minX) {
-                console.log("hitting low limit", x)
+                // console.log("hitting low limit", x)
                 x = minX
             } else if (x > maxX) {
-                console.log("hitting high limit", x)
+                // console.log("hitting high limit", x)
                 x = maxX
             }
             // The dynamic position p is the left hand side
@@ -80,7 +84,7 @@
             index = Math.round(value)
             if (index > labels.length - 1) index = labels.length - 1
             if (index < 0) index = 0
-            console.log("left, newValue, index => ", left, value, index)
+            // console.log("left, newValue, index => ", left, value, index)
         }
 
         const drop = function () {
@@ -96,8 +100,8 @@
             // Dispatch event to XRange component
             dispatch("rangeChanged", {
                 type,
-                index: index,
-                value: labels[index],
+                index,
+                // value: labels[index],
             })
         }
 
@@ -112,12 +116,20 @@
 
     function handleTouchDown() {
         index--
-        dispatch("rangeChanged", { type, index: index, value: labels[index] })
+        dispatch("rangeChanged", {
+            type,
+            index,
+            // value: labels[index],
+        })
     }
 
     function handleTouchUp() {
         index++
-        dispatch("rangeChanged", { type, index: index, value: labels[index] })
+        dispatch("rangeChanged", {
+            type,
+            index,
+            // value: labels[index],
+        })
     }
 </script>
 
@@ -146,7 +158,7 @@
         bind:this={holder}
         class="draggable"
         class:dragging
-        style={`XXXmin-width:${buttonWidth}px; left:${left}px`}
+        style={`left:${left}px`}
         on:mousedown={handleDragStart}
     >
         {labels[index]}

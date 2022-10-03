@@ -5,78 +5,75 @@
     import Utils from "../Utils.js"
 
     export let drawingWidth
-    export let options
+    export let xAxis
+    export let reset
 
     const dispatch = createEventDispatcher()
 
-    let xAxis
     let minIndex = 0
     let maxIndex = 0
-    let labels = []
     let start = 0
     let end = 0
-    let reset = false
 
-    $: if (options.reSet === true) initXRange()
+    // Save the original x axis as this should only
+    // be refreshed when the options are reset, i.e the
+    // xRange slider always has the full range of xRange
+    // values for the dataset
+    let oAxis = { ...xAxis }
 
-    initXRange()
+    $: if (drawingWidth > 0) init()
 
-    function initXRange() {
+    $: if (reset) {
+        console.error("Resetting xRange")
+        oAxis = { ...xAxis }
+        init()
+    }
+
+    /**
+     * Run this function when:
+     * a) first displaying or
+     * b) if the window size changes
+     */
+    function init() {
         minIndex = 0
-        maxIndex = options.xAxis.values.length - 1
-        start = options.xAxis.majorFirst
-        end = options.xAxis.majorLast
+        maxIndex = oAxis.values.length - 1
+        start = oAxis.majorFirst
+        end = oAxis.majorLast
 
-        xAxis = { ...options.xAxis }
-        labels = xAxis.labels
         // Find the min index in the original axis
         minIndex = 0
-        for (let i = 0; i < xAxis.values.length - 1; i++) {
+        for (let i = 0; i < oAxis.values.length - 1; i++) {
             // console.log("Checking for min value", i)
-            if (start >= xAxis.values[i]) {
+            if (start >= oAxis.values[i]) {
                 minIndex = i
                 console.log("Found matching min index", i)
-                start = xAxis.values[i]
+                start = oAxis.values[i]
             } else {
                 break
             }
         }
         // Find the max value - defaults to the last value
-        maxIndex = xAxis.values.length - 1
+        maxIndex = oAxis.values.length - 1
         // Loop around all but the last value
-        for (let i = xAxis.values.length - 2; i > minIndex; i--) {
+        for (let i = oAxis.values.length - 2; i > minIndex; i--) {
             // console.log("Checking for max value", i)
-            if (end >= xAxis.values[i]) {
+            if (end >= oAxis.values[i]) {
                 // Find out which interval it is nearest to - this one or the next
-                const deltaBefore = end - xAxis.values[i]
-                const deltaAfter = xAxis.values[i + 1] - end
+                const deltaBefore = end - oAxis.values[i]
+                const deltaAfter = oAxis.values[i + 1] - end
                 maxIndex = deltaBefore <= deltaAfter ? i : i + 1
-                end = xAxis.values[maxIndex]
+                end = oAxis.values[maxIndex]
                 console.log("Found matching max index", maxIndex)
                 break
             }
         }
-        reset++
-        console.error("Reset xRange", start, end, minIndex, maxIndex)
+        console.error("Initialised xRange", start, end, minIndex, maxIndex)
     }
 
     function handleRange(event) {
-        // console.warn("Handling date range changed by child", event.detail)
-        if (event.detail.type == "min") {
-            // minIndex = event.detail.value
-            // start = xAxis.values[minIndex]
-            minIndex = event.detail.index
-            start = event.detail.value
-            options.xRange.setStart(start)
-        } else if (event.detail.type == "max") {
-            // maxIndex = event.detail.value
-            // end = xAxis.values[maxIndex]
-            maxIndex = event.detail.index
-            end = event.detail.value
-            options.xRange.setEnd(end)
-        }
-        // console.log("XRange: handleRange", options.xRange)
-        dispatch("optionsChanged", { name: "xRange", data: options.xRange })
+        const name = event.detail.type == "min" ? "start" : "end"
+        const data = oAxis.values[event.detail.index]
+        dispatch("optionsChanged", { name, data })
     }
 </script>
 
@@ -86,10 +83,9 @@
 >
     <MinMaxRangeSlider
         {drawingWidth}
-        {labels}
+        labels={oAxis.labels}
         {minIndex}
         {maxIndex}
-        {reset}
         on:rangeChanged={handleRange}
     />
 </div>

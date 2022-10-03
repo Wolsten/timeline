@@ -15,6 +15,7 @@ class TimelineXRange {
     scaledDrawingWidth = 0
 
     constructor(s = '', e = '') {
+        // debugger
         this.start = new TimelineDate(s)
         this.end = new TimelineDate(e)
         // @todo may need refining for small ranges

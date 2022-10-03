@@ -7,25 +7,20 @@
     export let minIndex
     export let maxIndex
 
-    export const reset = function () {
-        MinMaxSliderButton.reset()
-        MinMaxSliderButton.reset()
-    }
+    // The size of the interval in pixels
+    let interval // = drawingWidth / labels.length
 
-    let interval // The size of the interval in pixels
-
-    // Update interval when the drawing with or labels change
+    // Update interval when the drawing width or labels change
     $: interval = drawingWidth / labels.length
 </script>
 
-<p>
+<!-- <p>
     interval={interval}, Min value = {minIndex}, Max value = {maxIndex}, Range = {labels.length -
         1}
-</p>
+</p> -->
 
 <div class="date-range" class:touch={$touch}>
     <MinMaxSliderButton
-        bind:reset
         {drawingWidth}
         {interval}
         index={minIndex}
@@ -36,7 +31,6 @@
         on:rangeChanged
     />
     <MinMaxSliderButton
-        bind:reset
         {drawingWidth}
         {interval}
         index={maxIndex}

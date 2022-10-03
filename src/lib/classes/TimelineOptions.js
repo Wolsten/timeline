@@ -20,8 +20,6 @@ class TimelineOptions {
     selectedEvent = undefined
     selectedPoint = undefined
     zoom = 1
-    reSized = false
-    reSet = false
 
     constructor(settings = '') {
 
@@ -115,7 +113,7 @@ class TimelineOptions {
         this.xRange.setRangeYears()
     }
 
-    reset() {
+    reset(xRange) {
         this.selectedEvent = undefined
         this.selectedPoint = undefined
         this.search = ""
@@ -123,8 +121,7 @@ class TimelineOptions {
         this.sort = "date"
         this.symbols = false
         this.group = false
-        this.reSized = false
-        this.reSet = true
+        this.xRange = xRange.copy()
     }
 }
 

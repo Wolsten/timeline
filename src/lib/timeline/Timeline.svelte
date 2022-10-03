@@ -9,6 +9,7 @@
     import TimelineXRange from "../classes/TimelineXRange.js"
     import TimelineCategory from "../classes/TimelineCategory.js"
     import TimelineSubCategory from "../classes/TimelineSubCategory.js"
+    import TimelineXAxis from "../classes/TimelineXAxis.js"
 
     import Axes from "./Axes.svelte"
     import Events from "./Events.svelte"
@@ -33,6 +34,10 @@
     let filteredSeries = []
     let drawingWidth =
         viewportWidth - Utils.CANVAS_PADDING_LEFT - Utils.CANVAS_PADDING_RIGHT
+    let xAxis
+
+    // Bound to component reset functions
+    let resetXRange
 
     // Wait for window to be mounted to test for touch devices
     onMount(() => {
@@ -68,27 +73,31 @@
     //
 
     function handleOptions(event) {
-        const dta = event.detail.data
+        const eventData = event.detail.data
         // console.log('Options changed',detail)
         switch (event.detail.name) {
             case "selectedPoint":
-                options.selectedPoint = dta
+                options.selectedPoint = eventData
                 break
             case "selectedEvent":
-                options.selectedEvent = dta
+                options.selectedEvent = eventData
                 break
             case "symbols":
-                options.symbols = dta
+                options.symbols = eventData
                 break
-            case "xRange":
-                options.xRange = dta
-                reScale(false)
+            case "start":
+                options.xRange.setStart(eventData)
+                reScale()
+                break
+            case "end":
+                options.xRange.setEnd(eventData)
+                reScale()
                 break
             // Filter or just highlight series
             // depending on group settings
             case "filter":
-                options.filter = dta.value
-                options.filterType = dta.taxonomy
+                options.filter = eventData.value
+                options.filterType = eventData.taxonomy
                 break
             case "group":
                 options.filter = ""
@@ -101,15 +110,12 @@
             case "sort":
                 break
             case "search":
-                options.search = dta
+                options.search = eventData
                 break
             case "reset":
-                options.reset()
-                // Cannot do this in reset method as reactivity
-                // depending on this property does
-                // not work - this is a Svelte issue
-                options.xRange = dataset.xRange.copy()
+                options.reset(dataset.xRange)
                 reScale()
+                resetXRange = true
                 break
         }
         if (event.detail.name !== "selectedPoint") {
@@ -137,7 +143,7 @@
             viewportWidth = viewport.clientWidth
             console.error("viewport client width used", viewportWidth)
         }
-        reScale(true)
+        reScale()
         // Non-intuitive behaviour on touch devices
         if ($touch == false) {
             if (options.selectedEvent) {
@@ -146,7 +152,7 @@
         }
     }
 
-    function reScale(reSized) {
+    function reScale() {
         // The drawing width is the clientWidth
         drawingWidth =
             viewportWidth -
@@ -158,6 +164,7 @@
         )
         // Calculate the size of a data interval (rounding up to make sure
         // all data fits in range)
+        // debugger
         options.xRange.scaledInterval = Math.ceil(
             options.xRange.range / options.xRange.scaledIntervals
         )
@@ -166,9 +173,14 @@
             options.xRange.scaledIntervals * options.xRange.scaledInterval
         // New scale value
         options.xRange.scale = drawingWidth / options.xRange.scaledRange
-        // Flag if resized
-        options.reSized = reSized
-        console.log("new scale", options.xRange.scale)
+        console.warn("new scale", options.xRange.scale)
+        // Update the axis with the new scaling
+        xAxis = new TimelineXAxis(
+            drawingWidth,
+            options.xRange.scaledIntervals,
+            options.xRange.start.year,
+            options.xRange.scaledInterval
+        )
     }
 
     function scrollToSelected() {
@@ -202,6 +214,7 @@
         data.subCategories = TimelineSubCategory.init(data.subCategories)
         // Initialise data range for events and series
         data.xRange = new TimelineXRange()
+        console.error("initDataset xRange", data.xRange)
         // Process events
         if (data.events.length > 0) {
             // Optional filtering, set start & end dates, and colours
@@ -217,6 +230,7 @@
         // console.log('data start', data.xRange.start)
         // console.log('data end', data.xRange.end)
         // Process series
+        // data.xRange is also updated as passed by reference
         if (data.series.length > 0) {
             data.series = TimelineSeries.init(
                 data.xRange,
@@ -226,7 +240,7 @@
                 data.subCategories
             )
         }
-        data.xRange.range = data.xRange.end.year - data.xRange.start.year
+        data.xRange.setRangeYears()
         console.log("dataset", data)
         // Check of we have an xRange from the user settings and if
         // not set to dataset range
@@ -286,12 +300,17 @@
                 />
             {/if}
 
-            <Axes {options} {viewportWidth} {drawingWidth} />
+            <Axes {xAxis} {viewportWidth} {drawingWidth} />
         {/if}
     </div>
 
     {#if drawingWidth != 0 && options.xRange.scale !== 0 && options.readonly === false}
-        <XRange {drawingWidth} {options} on:optionsChanged={handleOptions} />
+        <XRange
+            {xAxis}
+            {drawingWidth}
+            reset={resetXRange}
+            on:optionsChanged={handleOptions}
+        />
     {/if}
 
     <Legend
