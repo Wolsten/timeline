@@ -159,27 +159,21 @@
             Utils.CANVAS_PADDING_LEFT -
             Utils.CANVAS_PADDING_RIGHT
         // Get the nearest whole no. of data intervals that fits in the range
-        options.xRange.scaledIntervals = Math.round(
-            drawingWidth / Utils.MIN_BOX_WIDTH
-        )
+        const noIntervals = Math.round(drawingWidth / Utils.MIN_BOX_WIDTH)
         // Calculate the size of a data interval (rounding up to make sure
         // all data fits in range)
-        // debugger
-        options.xRange.scaledInterval = Math.ceil(
-            options.xRange.range / options.xRange.scaledIntervals
-        )
+        const intervalSize = Math.ceil(options.xRange.range / noIntervals)
         // Calculate the the new data range based on quantised interval
-        options.xRange.scaledRange =
-            options.xRange.scaledIntervals * options.xRange.scaledInterval
+        const scaledRange = noIntervals * intervalSize
         // New scale value
-        options.xRange.scale = drawingWidth / options.xRange.scaledRange
+        options.xRange.scale = drawingWidth / scaledRange
         console.warn("new scale", options.xRange.scale)
         // Update the axis with the new scaling
         xAxis = new TimelineXAxis(
             drawingWidth,
-            options.xRange.scaledIntervals,
+            noIntervals,
             options.xRange.start.year,
-            options.xRange.scaledInterval
+            intervalSize
         )
     }
 

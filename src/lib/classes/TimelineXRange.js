@@ -9,10 +9,10 @@ class TimelineXRange {
 
     // Accounting for quantising
     scale = 0
-    scaledIntervals = 0
-    scaledInterval = 0
-    scaledRange = 0
-    scaledDrawingWidth = 0
+    // scaledIntervals = 0
+    // scaledInterval = 0
+    // scaledRange = 0
+    // scaledDrawingWidth = 0
 
     constructor(s = '', e = '') {
         // debugger
@@ -21,11 +21,6 @@ class TimelineXRange {
         // @todo may need refining for small ranges
         this.setRangeYears()
     }
-
-    // scaleNotSameAs(xRange) {
-    //     return this.scaledIntervals != xRange.scaledIntervals ||
-    //         this.scaledInterval != this.scaledInterval
-    // }
 
     setStart(year = 0, month = 0, day = 0) {
         this.start = TimelineDate.setDate(year, month = 0, day = 0)
@@ -50,7 +45,7 @@ class TimelineXRange {
 
     setRangeYears() {
         this.range = this.end.year - this.start.year
-        this.scaledRange = this.range
+        // this.scaledRange = this.range
     }
 
     dateInRange(date) {

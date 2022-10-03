@@ -11,7 +11,7 @@
     const dispatch = createEventDispatcher()
 
     let minIndex = 0
-    let maxIndex = 0
+    let maxIndex = xAxis.values.length - 1
     let start = 0
     let end = 0
 
@@ -24,9 +24,12 @@
     $: if (drawingWidth > 0) init()
 
     $: if (reset) {
-        console.error("Resetting xRange")
         oAxis = { ...xAxis }
-        init()
+        minIndex = 0
+        maxIndex = oAxis.values.length - 1
+        start = oAxis.majorFirst
+        end = oAxis.majorLast
+        console.error("Reset xRange", start, end, minIndex, maxIndex)
     }
 
     /**
@@ -41,19 +44,17 @@
         end = oAxis.majorLast
 
         // Find the min index in the original axis
-        minIndex = 0
         for (let i = 0; i < oAxis.values.length - 1; i++) {
             // console.log("Checking for min value", i)
             if (start >= oAxis.values[i]) {
                 minIndex = i
-                console.log("Found matching min index", i)
+                // console.log("Found matching min index", i)
                 start = oAxis.values[i]
             } else {
                 break
             }
         }
-        // Find the max value - defaults to the last value
-        maxIndex = oAxis.values.length - 1
+        // Find the max value
         // Loop around all but the last value
         for (let i = oAxis.values.length - 2; i > minIndex; i--) {
             // console.log("Checking for max value", i)
@@ -63,7 +64,7 @@
                 const deltaAfter = oAxis.values[i + 1] - end
                 maxIndex = deltaBefore <= deltaAfter ? i : i + 1
                 end = oAxis.values[maxIndex]
-                console.log("Found matching max index", maxIndex)
+                // console.log("Found matching max index", maxIndex)
                 break
             }
         }

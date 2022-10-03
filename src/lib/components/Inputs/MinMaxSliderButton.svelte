@@ -8,7 +8,6 @@
     export let max // max index
     export let type // "min" or "max"
     export let labels
-    export let interval
 
     const dispatch = createEventDispatcher()
 
@@ -19,12 +18,16 @@
     let x = 0
     let value = index // Value is the decimal version of the index
     let left = index * buttonWidth - buttonOffset
+    let interval = drawingWidth / labels.length
     let minX = min * interval
     let maxX = max * interval + buttonWidth
 
-    $: if (drawingWidth) updateLeft()
+    $: if (drawingWidth || labels) updateLeft()
+
+    // $: console.log("2. new labels", labels)
 
     function updateLeft() {
+        interval = drawingWidth / labels.length
         buttonWidth = boxWidth(holder)
         if (buttonWidth > interval) {
             buttonWidth = interval
@@ -32,10 +35,18 @@
         console.log(
             "Updated button",
             type,
+            "index",
+            index,
             "width",
             buttonWidth,
             "interval",
-            interval
+            interval,
+            "min",
+            min,
+            "max",
+            max,
+            "labels",
+            labels
         )
         buttonOffset = buttonWidth / 2
         minX = min * interval
