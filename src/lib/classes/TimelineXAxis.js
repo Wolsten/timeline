@@ -33,8 +33,8 @@ class TimelineXAxis {
         this.majorLast = this.labels[this.labels.length - 1]
         this.majorRange = this.majorLast - this.majorFirst
 
-        console.warn("Initialised xAxis")
-        console.table(this)
+        // console.warn("Initialised xAxis")
+        // console.table(this)
     }
 
 

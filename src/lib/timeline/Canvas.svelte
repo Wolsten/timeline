@@ -45,6 +45,7 @@
     function init(s) {
         // @todo Magic required to make the update happen?
         series = [...s]
+        console.log("series", series)
         // Create polylines and scaled data
         polylines = []
         // Y range
@@ -117,6 +118,7 @@
     }
 
     function getColour(selPoint, filter, index) {
+        // console.error("Getting colour for series", index, "with filter", filter)
         let inActive = false
         // Set the default colour
         let colour = series[index].colour

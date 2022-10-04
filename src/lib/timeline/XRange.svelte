@@ -6,69 +6,23 @@
 
     export let drawingWidth
     export let xAxis
-    export let reset
+    export let reset // This must be bound to the component to work bi-directionally
 
     const dispatch = createEventDispatcher()
 
-    let minIndex = 0
-    let maxIndex = xAxis.values.length - 1
-    let start = 0
-    let end = 0
-
-    // Save the original x axis as this should only
-    // be refreshed when the options are reset, i.e the
-    // xRange slider always has the full range of xRange
+    // Save the original x axis as this should only be refreshed when the options
+    // are reset, i.e the xRange slider always has the full range of xRange
     // values for the dataset
     let oAxis = { ...xAxis }
-
-    $: if (drawingWidth > 0) init()
+    let minIndex = 0
+    let maxIndex = xAxis.values.length - 1
 
     $: if (reset) {
+        console.log("Resetting XRange")
         oAxis = { ...xAxis }
         minIndex = 0
         maxIndex = oAxis.values.length - 1
-        start = oAxis.majorFirst
-        end = oAxis.majorLast
-        console.error("Reset xRange", start, end, minIndex, maxIndex)
-    }
-
-    /**
-     * Run this function when:
-     * a) first displaying or
-     * b) if the window size changes
-     */
-    function init() {
-        minIndex = 0
-        maxIndex = oAxis.values.length - 1
-        start = oAxis.majorFirst
-        end = oAxis.majorLast
-
-        // Find the min index in the original axis
-        for (let i = 0; i < oAxis.values.length - 1; i++) {
-            // console.log("Checking for min value", i)
-            if (start >= oAxis.values[i]) {
-                minIndex = i
-                // console.log("Found matching min index", i)
-                start = oAxis.values[i]
-            } else {
-                break
-            }
-        }
-        // Find the max value
-        // Loop around all but the last value
-        for (let i = oAxis.values.length - 2; i > minIndex; i--) {
-            // console.log("Checking for max value", i)
-            if (end >= oAxis.values[i]) {
-                // Find out which interval it is nearest to - this one or the next
-                const deltaBefore = end - oAxis.values[i]
-                const deltaAfter = oAxis.values[i + 1] - end
-                maxIndex = deltaBefore <= deltaAfter ? i : i + 1
-                end = oAxis.values[maxIndex]
-                // console.log("Found matching max index", maxIndex)
-                break
-            }
-        }
-        console.error("Initialised xRange", start, end, minIndex, maxIndex)
+        reset = false
     }
 
     function handleRange(event) {

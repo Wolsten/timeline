@@ -15,54 +15,45 @@
     let buttonOffset = buttonWidth / 2
     let holder
     let dragging = false
-    let x = 0
-    let value = index // Value is the decimal version of the index
-    let left = index * buttonWidth - buttonOffset
-    let interval = drawingWidth / labels.length
-    let minX = min * interval
-    let maxX = max * interval + buttonWidth
+    let value // Value is the decimal version of the index
+    let left // The left position in pixels of the slider button
+    let interval // The size in pixels of each range interval
+    let minX // The minimum pixels left
+    let maxX // The maximum pixels right
 
-    $: if (drawingWidth || labels) updateLeft()
+    $: if (drawingWidth) updateLeft()
 
-    // $: console.log("2. new labels", labels)
+    $: if (labels) resetButton()
+
+    function resetButton() {
+        // console.warn("Resetting", type, "button")
+        index = type == "min" ? min : max
+        value = index
+        updateLeft()
+    }
 
     function updateLeft() {
         interval = drawingWidth / labels.length
-        buttonWidth = boxWidth(holder)
-        if (buttonWidth > interval) {
-            buttonWidth = interval
-        }
-        console.log(
-            "Updated button",
-            type,
-            "index",
-            index,
-            "width",
-            buttonWidth,
-            "interval",
-            interval,
-            "min",
-            min,
-            "max",
-            max,
-            "labels",
-            labels
-        )
+        buttonWidth = boxWidth(holder, interval)
         buttonOffset = buttonWidth / 2
         minX = min * interval
         maxX = max * interval + buttonWidth
-        left = index * interval + (type == "min" ? -1 : 1) * buttonOffset
+        left = index * interval + (type == "min" ? -0.8 : 1.2) * buttonOffset
     }
 
     function box(element) {
         return element.getBoundingClientRect()
     }
 
-    function boxWidth(button) {
+    function boxWidth(button, int) {
+        let width = int
         if (button) {
-            return box(button).width
+            width = box(button).width
+            if (width > int) {
+                width = int
+            }
         }
-        return drawingWidth / (labels.length - 1)
+        return width
     }
 
     function handleDragStart() {
@@ -78,7 +69,7 @@
 
         document.body.onmousemove = (moveEvent) => {
             // Get the new delta position within the slider div
-            x = moveEvent.clientX - xOffset
+            let x = moveEvent.clientX - xOffset
             // Check against limits
             if (x < minX) {
                 // console.log("hitting low limit", x)

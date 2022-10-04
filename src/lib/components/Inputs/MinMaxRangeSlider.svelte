@@ -6,15 +6,11 @@
     export let labels
     export let minIndex
     export let maxIndex
-
-    $: console.log("1. new labels", labels)
-
-    // $: if (resetSlider) resetButton = true
 </script>
 
-<p>
+<!-- <p>
     Min value = {minIndex}, Max value = {maxIndex}, Range = {labels.length - 1}
-</p>
+</p> -->
 
 <div class="date-range" class:touch={$touch}>
     <MinMaxSliderButton

@@ -38,7 +38,9 @@ class TimelinePoint {
 
     // Static as also invoked directly in canvas
     static scaleY(y, yRange, canvasHeight) {
-        return Math.round(canvasHeight * (1 - (y - yRange.min) / yRange.range))
+        const yFraction = (y - yRange.min) / yRange.range
+        // console.log('yFraction', yFraction)
+        return Math.round(canvasHeight * (1 - yFraction))
     }
 
 }

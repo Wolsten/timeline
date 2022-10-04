@@ -6,13 +6,7 @@ class TimelineXRange {
     start
     end
     range = 0
-
-    // Accounting for quantising
     scale = 0
-    // scaledIntervals = 0
-    // scaledInterval = 0
-    // scaledRange = 0
-    // scaledDrawingWidth = 0
 
     constructor(s = '', e = '') {
         // debugger

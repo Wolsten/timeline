@@ -9,8 +9,8 @@ class TimelineSeries {
     subCategory = ''
     summary = ''
     colour = ''
-    categoryColour = ''
-    subCategoryColour = ''
+    // categoryColour = ''
+    // subCategoryColour = ''
     // @todo Min and max are generated so not required in raw data
     min = 0
     max = 0
@@ -29,9 +29,20 @@ class TimelineSeries {
         this.max = rawEntry.max
         this.type = rawEntry.type ? rawEntry.type : "single"
         // Set colours
-        this.colour = rawEntry.colour ? rawEntry.colour : Utils.defaultColour(sIndex)
-        this.categoryColour = dataCategories.find(item => item.name == rawEntry.category).colour
-        this.subCategoryColour = dataSubCategories.find(item => item.name == rawEntry.subCategory).colour
+        switch (this.type) {
+            case "single":
+                this.colour = rawEntry.colour ? rawEntry.colour : Utils.defaultColour(sIndex)
+                break
+            case "category":
+                this.colour = dataCategories.find(item => item.name == rawEntry.category).colour
+                break
+            case "sub-category":
+                this.colour = dataSubCategories.find(item => item.name == rawEntry.subCategory).colour
+                break
+        }
+        // this.colour = rawEntry.colour ? rawEntry.colour : Utils.defaultColour(sIndex)
+        // this.categoryColour = dataCategories.find(item => item.name == rawEntry.category).colour
+        // this.subCategoryColour = dataSubCategories.find(item => item.name == rawEntry.subCategory).colour
         // Points
         rawEntry.points.forEach(point => {
             const pt = new TimelinePoint(sIndex, point, this.colour, this.categoryColour, this.subCategoryColour)

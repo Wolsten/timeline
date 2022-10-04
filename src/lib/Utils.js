@@ -42,7 +42,7 @@ const toPrecision = function (num, digits) {
 
 const formatNumber = function (number, digits = 0) {
 	let suffix = ''
-	if (number > 1000000) {
+	if (number >= 1000000) {
 		number = number / 1000000
 		suffix = 'M'
 	}

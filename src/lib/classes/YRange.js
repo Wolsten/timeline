@@ -52,6 +52,7 @@ class YRange {
             while (y < min) {
                 y += step
             }
+            y -= step
         }
         return y
     }

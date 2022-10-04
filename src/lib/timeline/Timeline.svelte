@@ -37,7 +37,7 @@
     let xAxis
 
     // Bound to component reset functions
-    let resetXRange
+    let resetXRange = false
 
     // Wait for window to be mounted to test for touch devices
     onMount(() => {
@@ -135,13 +135,13 @@
 
     function handleResize() {
         // Handle resizing - debouncing taken care of in App.svelte
-        console.log("Handling resize with viewport", viewport?.clientWidth)
+        // console.log("Handling resize with viewport", viewport?.clientWidth)
         // Stop if we don;t yet have a viewport
         if (viewport === undefined) return
         // If we have a viewport with a non-zero size use this
         if (viewport.clientWidth !== 0) {
             viewportWidth = viewport.clientWidth
-            console.error("viewport client width used", viewportWidth)
+            // console.error("viewport client width used", viewportWidth)
         }
         reScale()
         // Non-intuitive behaviour on touch devices
@@ -167,7 +167,7 @@
         const scaledRange = noIntervals * intervalSize
         // New scale value
         options.xRange.scale = drawingWidth / scaledRange
-        console.warn("new scale", options.xRange.scale)
+        // console.warn("new scale", options.xRange.scale)
         // Update the axis with the new scaling
         xAxis = new TimelineXAxis(
             drawingWidth,
@@ -302,7 +302,7 @@
         <XRange
             {xAxis}
             {drawingWidth}
-            reset={resetXRange}
+            bind:reset={resetXRange}
             on:optionsChanged={handleOptions}
         />
     {/if}
