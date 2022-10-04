@@ -45,7 +45,7 @@
     function init(s) {
         // @todo Magic required to make the update happen?
         series = [...s]
-        console.log("series", series)
+        // console.log("series", series)
         // Create polylines and scaled data
         polylines = []
         // Y range

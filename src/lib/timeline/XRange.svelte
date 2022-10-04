@@ -18,7 +18,7 @@
     let maxIndex = xAxis.values.length - 1
 
     $: if (reset) {
-        console.log("Resetting XRange")
+        // console.log("Resetting XRange")
         oAxis = { ...xAxis }
         minIndex = 0
         maxIndex = oAxis.values.length - 1

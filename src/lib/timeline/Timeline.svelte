@@ -39,6 +39,8 @@
     // Bound to component reset functions
     let resetXRange = false
 
+    let selectedSeries
+
     // Wait for window to be mounted to test for touch devices
     onMount(() => {
         const msTouchEnabled = window.navigator.msMaxTouchPoints
@@ -63,7 +65,6 @@
     $: filteredSeries = TimelineSeries.process(
         dataset.series,
         options.xRange,
-        options.filter,
         options.filterType,
         options.group
     )
@@ -78,6 +79,8 @@
         switch (event.detail.name) {
             case "selectedPoint":
                 options.selectedPoint = eventData
+                selectedSeries = filteredSeries[options.selectedPoint.sIndex]
+                // console.log("Selected series", selectedSeries)
                 break
             case "selectedEvent":
                 options.selectedEvent = eventData
@@ -208,7 +211,7 @@
         data.subCategories = TimelineSubCategory.init(data.subCategories)
         // Initialise data range for events and series
         data.xRange = new TimelineXRange()
-        console.error("initDataset xRange", data.xRange)
+        // console.error("initDataset xRange", data.xRange)
         // Process events
         if (data.events.length > 0) {
             // Optional filtering, set start & end dates, and colours
@@ -235,7 +238,7 @@
             )
         }
         data.xRange.setRangeYears()
-        console.log("dataset", data)
+        // console.log("dataset", data)
         // Check of we have an xRange from the user settings and if
         // not set to dataset range
         if (options.xRange.range === 0) {
@@ -320,10 +323,9 @@
         on:optionsChanged={handleOptions}
     />
 
-    {#if options.selectedPoint?.sIndex}
-        {@const series = filteredSeries[options.selectedPoint.sIndex]}
+    {#if options.selectedPoint}
         <CanvasProperties
-            {series}
+            series={selectedSeries}
             {options}
             {viewportWidth}
             on:optionsChanged={handleOptions}

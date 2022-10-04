@@ -3,6 +3,7 @@ import TimelinePoint from "../classes/TimelinePoint.js"
 
 class TimelineSeries {
 
+    sIndex = -1
     name = ''
     legend = ''
     category = ''
@@ -71,24 +72,23 @@ class TimelineSeries {
         // Generate grouped series
         const categoryGroups = TimelineSeries.groupSeries(rawSeries, 'category', dataCategories)
         const subCategoryGroups = TimelineSeries.groupSeries(rawSeries, 'sub-category', dataSubCategories)
-        rawSeries = [
-            ...rawSeries,
-            ...categoryGroups,
-            ...subCategoryGroups
-        ]
-        // Generate new entries for each series
+        // Generate new entries for each series ... do this individually to make sure the sIndex is restarted for each set
         const series = []
         rawSeries.forEach((entry, sIndex) => {
             series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
         })
-        // @todo Filter range if options xRange set (ditto in events)
-
+        categoryGroups.forEach((entry, sIndex) => {
+            series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
+        })
+        subCategoryGroups.forEach((entry, sIndex) => {
+            series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
+        })
         // console.log('Initialiased series', series)
         return series
     }
 
 
-    static process(series, xRange, filter, type, group) {
+    static process(series, xRange, type, group) {
         if (series.length == 0) return []
         // Initialise the filtered list
         let filtered = []
@@ -98,16 +98,8 @@ class TimelineSeries {
         } else {
             filtered = series.filter((entry) => entry.type === "single")
         }
-        // Filter by category or sub-category?
-        if (group && filter !== '') {
-            if (type === 'category') {
-                filtered = filtered.filter(entry => entry.category == filter)
-            } else {
-                filtered = filtered.filter(entry => entry.subCategory == filter)
-            }
-        }
         // Filter data by start and end range and generate data from points
-        filtered.forEach((entry, seriesIndex) => {
+        filtered.forEach((entry) => {
             entry.filteredPoints = []
             entry.min = Number.POSITIVE_INFINITY
             entry.max = Number.NEGATIVE_INFINITY
