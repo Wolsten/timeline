@@ -3,7 +3,7 @@
     import { createEventDispatcher } from "svelte"
 
     export let drawingWidth
-    export let index // The current index value for this slider button
+    export let index // The current imposed index value for this slider button
     export let min // min index
     export let max // max index
     export let type // "min" or "max"
@@ -20,25 +20,38 @@
     let interval // The size in pixels of each range interval
     let minX // The minimum pixels left
     let maxX // The maximum pixels right
+    let currentIndex
 
-    $: if (drawingWidth) updateLeft()
+    // $: if (drawingWidth) updateLeft()
 
     $: if (labels) resetButton()
 
+    $: if (index != -1) {
+        // console.warn("Setting new index", index)
+        currentIndex = index
+        index = -1
+        left =
+            currentIndex * interval +
+            (type == "min" ? -0.8 : 1.2) * buttonOffset
+    }
+
     function resetButton() {
         // console.warn("Resetting", type, "button")
-        index = type == "min" ? min : max
-        value = index
+        currentIndex = type == "min" ? min : max
+        value = currentIndex
         updateLeft()
     }
 
     function updateLeft() {
+        // console.log("update left")
         interval = drawingWidth / labels.length
         buttonWidth = boxWidth(holder, interval)
         buttonOffset = buttonWidth / 2
         minX = min * interval
         maxX = max * interval + buttonWidth
-        left = index * interval + (type == "min" ? -0.8 : 1.2) * buttonOffset
+        left =
+            currentIndex * interval +
+            (type == "min" ? -0.8 : 1.2) * buttonOffset
     }
 
     function box(element) {
@@ -83,9 +96,10 @@
             left = x - buttonOffset
             // Get new value correcting for the xOffset (see x above)
             value = (xOffset + left) / interval
-            index = Math.round(value)
-            if (index > labels.length - 1) index = labels.length - 1
-            if (index < 0) index = 0
+            currentIndex = Math.round(value)
+            if (currentIndex > labels.length - 1)
+                currentIndex = labels.length - 1
+            if (currentIndex < 0) currentIndex = 0
             // console.log("left, newValue, index => ", left, value, index)
         }
 
@@ -96,13 +110,14 @@
             document.body.onmouseleave = null
             // Get final index, chacking again for limits in case drag was
             // interrupted, e.g. by going off screen
-            index = Math.floor(value)
-            if (index > labels.length - 1) index = labels.length - 1
-            if (index < 0) index = 0
+            currentIndex = Math.floor(value)
+            if (currentIndex > labels.length - 1)
+                currentIndex = labels.length - 1
+            if (currentIndex < 0) currentIndex = 0
             // Dispatch event to XRange component
             dispatch("rangeChanged", {
                 type,
-                index,
+                index: currentIndex,
                 // value: labels[index],
             })
         }
@@ -117,19 +132,19 @@
     }
 
     function handleTouchDown() {
-        index--
+        currentIndex--
         dispatch("rangeChanged", {
             type,
-            index,
+            index: currentIndex,
             // value: labels[index],
         })
     }
 
     function handleTouchUp() {
-        index++
+        currentIndex++
         dispatch("rangeChanged", {
             type,
-            index,
+            index: currentIndex,
             // value: labels[index],
         })
     }
@@ -137,7 +152,7 @@
 
 {#if $touch}
     <div class="touch">
-        {#if index > min}
+        {#if currentIndex > min}
             <button type="button" on:click|stopPropagation={handleTouchDown}>
                 &#9664;
             </button>
@@ -145,9 +160,9 @@
             &nbsp;
         {/if}
 
-        {labels[index]}
+        {labels[currentIndex]}
 
-        {#if index < max}
+        {#if currentIndex < max}
             <button type="button" on:click|stopPropagation={handleTouchUp}>
                 &#9654;
             </button>
@@ -163,7 +178,7 @@
         style={`left:${left}px`}
         on:mousedown={handleDragStart}
     >
-        {labels[index]}
+        {labels[currentIndex]}
     </div>
 {/if}
 

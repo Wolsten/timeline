@@ -18,7 +18,7 @@
     let search = ""
     let disabled = false
 
-    // $: sort = options.sort == "category"
+    $: sort = options.sort == "category"
 
     $: disabled = !(
         xRange.start.year != options.xRange.start.year ||
@@ -29,27 +29,27 @@
         options.group
     )
 
-    options.zoomIn = () => {
-        handleZoomIn(true)
-    }
+    // options.zoomIn = () => {
+    //     handleZoomIn(true)
+    // }
 
-    function handleZoomIn(focus) {
-        if (focus) {
-            // console.log('Clicked focus')
-            // Only respond if selected is set
-            if (options.selectedEvent) {
-                options.focus(xRange)
-                dispatch("optionsChanged", {
-                    name: "xRange",
-                    data: options.xRange,
-                })
-            }
-        } else {
-            dispatch("optionsChanged", {
-                name: "reset",
-            })
-        }
-    }
+    // function handleZoomIn(focus) {
+    //     if (focus) {
+    //         console.log("Clicked focus")
+    //         // Only respond if selected is set
+    //         if (options.selectedEvent) {
+    //             // options.focus(xRange)
+    //             dispatch("optionsChanged", {
+    //                 name: "xRange",
+    //                 data: options.xRange,
+    //             })
+    //         }
+    //     } else {
+    //         dispatch("optionsChanged", {
+    //             name: "reset",
+    //         })
+    //     }
+    // }
 </script>
 
 <div class="form">
@@ -89,9 +89,9 @@
             options={["date", "category"]}
             bind:value={sort}
             on:changed={() => {
-                options.sort = sort ? "category" : "date"
                 dispatch("optionsChanged", {
                     name: "sort",
+                    data: sort ? "date" : "category",
                 })
             }}
         />
@@ -115,13 +115,27 @@
         />
     {/if}
 
-    <div class="buttons">
+    <!-- <div class="buttons">
         <Button
             label="Reset"
             {disabled}
             on:clicked={() => {
                 search = ""
                 handleZoomIn(false)
+            }}
+        />
+    </div> -->
+
+    <div class="buttons">
+        <Button
+            label="Reset"
+            {disabled}
+            on:clicked={() => {
+                search = ""
+                sort = false
+                dispatch("optionsChanged", {
+                    name: "reset",
+                })
             }}
         />
     </div>

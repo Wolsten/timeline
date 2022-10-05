@@ -142,7 +142,11 @@
                 clickMs - lastClickedMs < 500
             ) {
                 // console.log("Double clicked true")
-                options.zoomIn()
+                // options.zoomIn()
+                dispatch("optionsChanged", {
+                    name: "focus",
+                    data: options.selectedEvent,
+                })
             } else {
                 options.selectedEvent = undefined
                 dispatch("optionsChanged", {
@@ -170,7 +174,7 @@
     >
         <rect x={0} y={-height / 2} width={props.width} height={height * 0.9} />
 
-        <text x={props.x} class={props.text} y={height / 7}>
+        <text x={props.x} class={props.text} y={height / 6}>
             {event.name}
         </text>
     </g>

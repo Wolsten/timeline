@@ -48,13 +48,9 @@ class TimelineXRange {
     }
 
     eventInRange(event) {
-        // console.log('options xRange', range)
-        // Not in range if defined and doesn't fit in the range
-        if (!event.started() && !this.dateInRange(event.start)) {
-            return false
-        }
-        // Start in range, end in range if end is undefined or fites in date range
-        return !event.continuing() || this.dateInRange(event.end)
+        // Already started or starts in range AND continuing or ends in range
+        return (event.started() || this.dateInRange(event.start)) &&
+            (event.continuing() || this.dateInRange(event.end))
     }
 
 }

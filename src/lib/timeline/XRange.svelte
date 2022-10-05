@@ -6,6 +6,7 @@
 
     export let drawingWidth
     export let xAxis
+    export let focus // Bound to component. Set to options.xRange or undefined
     export let reset // This must be bound to the component to work bi-directionally
 
     const dispatch = createEventDispatcher()
@@ -16,13 +17,40 @@
     let oAxis = { ...xAxis }
     let minIndex = 0
     let maxIndex = xAxis.values.length - 1
+    let startIndex = -1
+    let endIndex = -1
 
     $: if (reset) {
         // console.log("Resetting XRange")
         oAxis = { ...xAxis }
         minIndex = 0
         maxIndex = oAxis.values.length - 1
+        startIndex = -1
+        endIndex = -1
         reset = false
+    }
+
+    $: if (focus !== undefined) handleFocus()
+
+    function handleFocus() {
+        console.log("focus xRange", focus, "\noAxis", oAxis)
+        startIndex = 0
+        // Find the start and end indices on the x axis
+        for (let i = 0; i < oAxis.values.length; i++) {
+            if (focus.start.decimal < oAxis.values[i]) {
+                startIndex = i == 0 ? 0 : i - 1
+                console.log("xRange set new start index", startIndex)
+                break
+            }
+        }
+        endIndex = oAxis.values.length - 1
+        for (let i = oAxis.values.length - 1; i > 0; i--) {
+            if (focus.end.decimal > oAxis.values[i]) {
+                endIndex = i == oAxis.values.length - 1 ? i : i + 1
+                console.log("xRange set new end index", endIndex)
+                break
+            }
+        }
     }
 
     function handleRange(event) {
@@ -41,6 +69,8 @@
         labels={oAxis.labels}
         {minIndex}
         {maxIndex}
+        {startIndex}
+        {endIndex}
         on:rangeChanged={handleRange}
     />
 </div>

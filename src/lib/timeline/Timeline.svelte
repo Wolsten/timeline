@@ -111,9 +111,15 @@
                 }
                 break
             case "sort":
+                options.sort = eventData
                 break
             case "search":
                 options.search = eventData
+                break
+            case "focus":
+                options.selectedEvent = eventData
+                options.setFocus(dataset.xRange)
+                reScale()
                 break
             case "reset":
                 options.reset(dataset.xRange)
@@ -252,8 +258,6 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
-<!-- <DebugTimeline {data} {options} /> -->
-
 <figure
     class="timeline timeline-content"
     on:click|stopPropagation={handleClick}
@@ -306,6 +310,7 @@
             {xAxis}
             {drawingWidth}
             bind:reset={resetXRange}
+            focus={options.focus}
             on:optionsChanged={handleOptions}
         />
     {/if}

@@ -72,7 +72,8 @@ class TimelineSeries {
         // Generate grouped series
         const categoryGroups = TimelineSeries.groupSeries(rawSeries, 'category', dataCategories)
         const subCategoryGroups = TimelineSeries.groupSeries(rawSeries, 'sub-category', dataSubCategories)
-        // Generate new entries for each series ... do this individually to make sure the sIndex is restarted for each set
+        // Generate new entries for each series ... do this individually to make sure the sIndex is restarted 
+        // for each set as when displayed they are displayed in these sets only
         const series = []
         rawSeries.forEach((entry, sIndex) => {
             series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))

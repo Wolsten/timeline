@@ -10,7 +10,7 @@
     // console.warn("options.xRange", options.xRange)
 
     const MIN_HEIGHT = 100
-    const EVENT_HEIGHT = 20
+    const EVENT_HEIGHT = 23
 
     const margin = {
         top: 20,

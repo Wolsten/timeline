@@ -6,6 +6,8 @@
     export let labels
     export let minIndex
     export let maxIndex
+    export let startIndex
+    export let endIndex
 </script>
 
 <!-- <p>
@@ -15,7 +17,7 @@
 <div class="date-range" class:touch={$touch}>
     <MinMaxSliderButton
         {drawingWidth}
-        index={minIndex}
+        index={startIndex}
         {labels}
         min={0}
         max={maxIndex - 1}
@@ -24,7 +26,7 @@
     />
     <MinMaxSliderButton
         {drawingWidth}
-        index={maxIndex}
+        index={endIndex}
         {labels}
         min={minIndex + 1}
         max={labels.length - 1}

@@ -20,6 +20,7 @@ class TimelineOptions {
     selectedEvent = undefined
     selectedPoint = undefined
     zoom = 1
+    focus = undefined
 
     constructor(settings = '') {
 
@@ -96,7 +97,10 @@ class TimelineOptions {
         }
     }
 
-    focus(dsXRange) {
+    setFocus(dsXRange) {
+        if (this.selectedEvent === undefined) {
+            return
+        }
         if (this.selectedEvent.started()) {
             this.xRange.start = dsXRange.start
         } else {
@@ -111,11 +115,14 @@ class TimelineOptions {
             this.xRange.end = this.selectedEvent.end
         }
         this.xRange.setRangeYears()
+        this.focus = this.xRange.copy()
+        console.log('options.xRange', this.xRange)
     }
 
     reset(xRange) {
         this.selectedEvent = undefined
         this.selectedPoint = undefined
+        this.focus = undefined
         this.search = ""
         this.filter = ""
         this.sort = "date"
