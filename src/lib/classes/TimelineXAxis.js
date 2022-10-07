@@ -44,7 +44,6 @@ class TimelineXAxis {
         let canvasX = 0
         let decimal = xRange.start.decimal
 
-
         if (this.units == 'months') {
             month = xRange.start.month
         } else if (this.units == 'quarters') {
@@ -66,6 +65,11 @@ class TimelineXAxis {
                 label = 'Q' + quarter
                 if (quarter === 4) quarter = 0
                 quarter++
+
+                // if (label == 'Q1') {
+                //     const date = TimelineDate.setDateFromDecimal(decimal)
+                //     label = `${date.year}`
+                // }
             } else {
                 label = TimelineDate.formatYear(year)
                 year = Math.floor(year + interval)

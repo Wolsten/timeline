@@ -4,15 +4,14 @@
 
     export let drawingWidth
     export let labels
-    export let minIndex
-    export let maxIndex
     export let startIndex
     export let endIndex
 </script>
 
-<p>
-    Min value = {minIndex}, Max value = {maxIndex}, Range = {labels.length - 1}
-</p>
+<!-- <p>
+    Min value = {startIndex}, Max value = {endIndex}, Range = {labels.length -
+        1}
+</p> -->
 
 <div class="date-range" class:touch={$touch}>
     <MinMaxSliderButton
@@ -20,7 +19,7 @@
         index={startIndex}
         {labels}
         min={0}
-        max={maxIndex - 1}
+        max={endIndex - 1}
         type="min"
         on:rangeChanged
     />
@@ -28,7 +27,7 @@
         {drawingWidth}
         index={endIndex}
         {labels}
-        min={minIndex + 1}
+        min={startIndex + 1}
         max={labels.length - 1}
         type="max"
         on:rangeChanged

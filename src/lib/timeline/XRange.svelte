@@ -15,18 +15,18 @@
     // are reset, i.e the xRange slider always has the full range of xRange
     // values for the dataset
     let oAxis = { ...xAxis }
-    let minIndex = 0
-    let maxIndex = xAxis.values.length - 1
-    let startIndex = -1
-    let endIndex = -1
+    // let minIndex = 0
+    // let maxIndex = xAxis.values.length - 1
+    let startIndex = 0
+    let endIndex = xAxis.values.length - 1
 
     $: if (reset) {
         // console.log("Resetting XRange")
         oAxis = { ...xAxis }
-        minIndex = 0
-        maxIndex = oAxis.values.length - 1
-        startIndex = -1
-        endIndex = -1
+        // minIndex = 0
+        // maxIndex = oAxis.values.length - 1
+        startIndex = 0
+        endIndex = oAxis.values.length - 1
         reset = false
     }
 
@@ -55,9 +55,15 @@
 
     function handleRange(event) {
         const name = event.detail.type == "min" ? "start" : "end"
-        const value = oAxis.values[event.detail.index]
+        const data = oAxis.values[event.detail.index]
 
-        dispatch("optionsChanged", { name, data: value })
+        if (name == "start") {
+            startIndex = event.detail.index
+        } else {
+            endIndex = event.detail.index
+        }
+
+        dispatch("optionsChanged", { name, data })
     }
 </script>
 
@@ -68,8 +74,6 @@
     <MinMaxRangeSlider
         {drawingWidth}
         labels={oAxis.labels}
-        {minIndex}
-        {maxIndex}
         {startIndex}
         {endIndex}
         on:rangeChanged={handleRange}

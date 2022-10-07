@@ -74,38 +74,6 @@ class TimelineDate {
         this.decimal = this.getDecimalDate()
     }
 
-    // add(decimal) {
-    //     // Get rough additions
-    //     const years = Math.floor(decimal)
-    //     const months = Math.floor((decimal - years) * 12)
-    //     const days = Math.floor((decimal - years - months) * 30)
-
-    //     let day = this.day + days
-    //     let month = this.month + months
-
-    //     // Basic check
-    //     if (day > 30) {
-    //         this.day = day - 30
-    //         this.month += 1
-    //     }
-    //     if (month > 12) {
-    //         this.month = month - 12
-    //         this.year += 1
-    //     }
-
-    //     // Rollover checks
-    //     let limit = DAYS_IN_MONTH[this.month - 1]
-    //     if (this.month == 1 && TimelineDate.isLeap(this.year)) {
-    //         limit = 29
-    //     }
-
-    //     if (this.day > limit) {
-    //         this.day = limit - this.day
-    //         this.month += 1
-    //     }
-
-    //     this.decimal += decimal
-    // }
 
     static setDateFromDecimal(decimal) {
         let year = Math.floor(decimal)
@@ -196,7 +164,7 @@ class TimelineDate {
         } else if (year < 0) {
             return Math.abs(year) + 'bc'
         }
-        return year
+        return '' + year
     }
 
     static getMonth(oneBasedNumber) {

@@ -3,6 +3,8 @@
 
     import Utils from "../Utils.js"
     import TimelineDate from "../classes/TimelineDate.js"
+    import { ER_SP_LABEL_MISMATCH } from "mysql/lib/protocol/constants/errors.js"
+    import { tick } from "svelte"
 
     export let xAxis
     export let viewportWidth
@@ -11,6 +13,10 @@
     const AXIS_HEIGHT = 35
     const MAJOR_TICK_Y1 = 0
     const MAJOR_TICK_HEIGHT = 10
+    const CHAR_WIDTH = 10 // Approx
+
+    $: alignWithTicks = xAxis.units != "months" && xAxis.units != "quarters"
+    $: interval = xAxis.ticks[1]
 </script>
 
 <!------------------------------------------------------------------------------
@@ -27,30 +33,39 @@
         transition:fade
     >
         <line
-            class="svg-major"
+            class="x-axis"
             x1={Utils.CANVAS_PADDING_LEFT}
             y1={MAJOR_TICK_Y1}
             x2={Utils.CANVAS_PADDING_LEFT + drawingWidth}
             y2={MAJOR_TICK_Y1}
         />
 
-        {#each xAxis.ticks as x, majorIndex}
+        {#each xAxis.ticks as x, index}
             {@const paddedX = Utils.CANVAS_PADDING_LEFT + x}
+            {@const label = xAxis.labels[index]}
+            {@const labelWidth = label.length * CHAR_WIDTH}
+            {@const offsetX = alignWithTicks
+                ? labelWidth / 2
+                : -(interval - labelWidth) / 2}
+
             <line
-                class="svg-major-tick"
+                class="tick"
+                class:major={xAxis.units == "quarters" && label == "Q1"}
                 x1={paddedX}
                 y1={MAJOR_TICK_Y1}
                 x2={paddedX}
                 y2={MAJOR_TICK_HEIGHT}
             />
 
-            <text
-                class="svg-major-label"
-                x={paddedX - Utils.MIN_BOX_WIDTH / 4}
-                y={MAJOR_TICK_HEIGHT + 14}
-            >
-                {TimelineDate.formatYear(xAxis.labels[majorIndex])}
-            </text>
+            {#if alignWithTicks || index < xAxis.ticks.length - 1}
+                <text
+                    class="label"
+                    x={paddedX - offsetX}
+                    y={MAJOR_TICK_HEIGHT + 16}
+                >
+                    {label}
+                </text>
+            {/if}
         {/each}
     </svg>
 {/if}
@@ -66,23 +81,21 @@
         z-index: 1;
     }
 
-    .svg-major {
+    .x-axis {
         stroke-width: 4;
         stroke: var(--tl-colour-lines);
     }
 
-    .svg-major-tick {
+    .tick {
         stroke-width: 2;
         stroke: var(--tl-colour-lines);
     }
 
-    .svg-major-label {
-        fill: var(--tl-colour-font);
-        /* font-size: 0.8rem; */
+    .tick.major {
+        stroke-width: 4;
     }
 
-    /* .svg-minor-tick {
-        stroke-width: 1;
-        stroke: gray;
+    .label {
+        fill: var(--tl-colour-font);
     }
 </style>
