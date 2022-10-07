@@ -10,9 +10,6 @@ class TimelineSeries {
     subCategory = ''
     summary = ''
     colour = ''
-    // categoryColour = ''
-    // subCategoryColour = ''
-    // @todo Min and max are generated so not required in raw data
     min = 0
     max = 0
     points = []
@@ -46,7 +43,8 @@ class TimelineSeries {
         // this.subCategoryColour = dataSubCategories.find(item => item.name == rawEntry.subCategory).colour
         // Points
         rawEntry.points.forEach(point => {
-            const pt = new TimelinePoint(sIndex, point, this.colour, this.categoryColour, this.subCategoryColour)
+            // const pt = new TimelinePoint(sIndex, point, this.colour, this.categoryColour, this.subCategoryColour)
+            const pt = new TimelinePoint(sIndex, point, this.colour)
             // If have options xRange set then constrain points accordingly
             if (oxRange.range === 0 || oxRange.dateInRange(pt.x)) {
                 this.points.push(pt)
@@ -106,6 +104,7 @@ class TimelineSeries {
             entry.max = Number.NEGATIVE_INFINITY
             entry.points.forEach((point, opIndex) => {
                 if (xRange.dateInRange(point.x)) {
+                    // console.log('point in range', point.x.formatDate())
                     // Check ranges
                     if (point.y < entry.min) entry.min = point.y
                     if (point.y > entry.max) entry.max = point.y
@@ -115,7 +114,7 @@ class TimelineSeries {
                 }
             })
         })
-        // console.warn('filtered', [...filtered])
+        // console.warn('processed series', [...filtered])
         return filtered
     }
 

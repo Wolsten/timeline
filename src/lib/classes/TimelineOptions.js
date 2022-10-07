@@ -114,7 +114,8 @@ class TimelineOptions {
         } else {
             this.xRange.end = this.selectedEvent.end
         }
-        this.xRange.setRangeYears()
+        // this.xRange.setRangeYears()
+        this.xRange.setRange()
         this.focus = this.xRange.copy()
         console.log('options.xRange', this.xRange)
     }

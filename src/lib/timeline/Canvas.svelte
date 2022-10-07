@@ -39,12 +39,12 @@
     let tooltipLeftArrow = ""
     let tooltipRightArrow = ""
 
-    // Trigger refresh when scale changes or filtered series changes
-    $: if (options.xRange.scale > 0) init(filteredSeries)
+    // Trigger refresh when filtered series changes
+    $: if (filteredSeries) init()
 
-    function init(s) {
-        // @todo Magic required to make the update happen?
-        series = [...s]
+    function init() {
+        // Need to create local copy as otherwise the updates trigger continual refreshes
+        series = [...filteredSeries]
         // console.log("series", series)
         // Create polylines and scaled data
         polylines = []
@@ -69,7 +69,7 @@
             })
             polylines = [...polylines, coords.join(" ")]
         })
-        // console.log("Refreshed displayed series", series)
+        console.log("Refreshed displayed series", series)
     }
 
     function handleClickedSymbol(point) {

@@ -55,8 +55,9 @@
 
     function handleRange(event) {
         const name = event.detail.type == "min" ? "start" : "end"
-        const data = oAxis.values[event.detail.index]
-        dispatch("optionsChanged", { name, data })
+        const value = oAxis.values[event.detail.index]
+
+        dispatch("optionsChanged", { name, data: value })
     }
 </script>
 

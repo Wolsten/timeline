@@ -1,6 +1,6 @@
 <script>
     import { touch } from "../../stores"
-    import { createEventDispatcher } from "svelte"
+    import { createEventDispatcher, onMount, afterUpdate } from "svelte"
 
     export let drawingWidth
     export let index // The current imposed index value for this slider button
@@ -11,60 +11,83 @@
 
     const dispatch = createEventDispatcher()
 
-    let buttonWidth = drawingWidth / (labels.length - 1)
-    let buttonOffset = buttonWidth / 2
-    let holder
+    let buttonWidth = 50 // Default value to use before button loaded on page
+    let holder // Bind to the slider button
     let dragging = false
-    let value // Value is the decimal version of the index
     let left // The left position in pixels of the slider button
-    let interval // The size in pixels of each range interval
-    let minX // The minimum pixels left
-    let maxX // The maximum pixels right
-    let currentIndex
+    let currentIndex = type == "min" ? min : max
+    let value = currentIndex // Value is the decimal version of the index
+    let checkReset = false
 
-    // $: if (drawingWidth) updateLeft()
+    onMount(() => {
+        // Wait for the dom slider button to be loaded to update the left position accurately
+        // setTimeout(updateLeft, 10)
+    })
+
+    afterUpdate(() => {
+        buttonWidth = boxWidth(holder, buttonWidth)
+    })
+
+    // The size in pixels of each range interval
+    $: interval = drawingWidth / (labels.length - 1)
+
+    $: if (drawingWidth) updateLeft()
+
+    // Set limits of where the x-drag position can be
+    $: minX = min * interval
+    $: maxX = max * interval
+
+    $: if (index != -1) {
+        console.warn("Setting new index", index)
+        currentIndex = index
+        index = -1
+        left = currentIndex * interval - buttonWidth / 2
+    }
 
     $: if (labels) resetButton()
 
-    $: if (index != -1) {
-        // console.warn("Setting new index", index)
-        currentIndex = index
-        index = -1
-        left =
-            currentIndex * interval +
-            (type == "min" ? -0.8 : 1.2) * buttonOffset
-    }
-
     function resetButton() {
-        // console.warn("Resetting", type, "button")
-        currentIndex = type == "min" ? min : max
-        value = currentIndex
-        updateLeft()
+        if (checkReset) {
+            console.warn("Resetting", type, "button")
+            currentIndex = type == "min" ? min : max
+            value = currentIndex
+            updateLeft()
+        }
+        checkReset = true
     }
 
     function updateLeft() {
         // console.log("update left")
-        interval = drawingWidth / labels.length
-        buttonWidth = boxWidth(holder, interval)
-        buttonOffset = buttonWidth / 2
-        minX = min * interval
-        maxX = max * interval + buttonWidth
-        left =
-            currentIndex * interval +
-            (type == "min" ? -0.8 : 1.2) * buttonOffset
+        // interval = drawingWidth / (labels.length - 1)
+        // buttonWidth = boxWidth(holder, buttonWidth)
+        console.log(
+            "update",
+            type,
+            "left with buttonWidth",
+            buttonWidth,
+            "currentIndex",
+            currentIndex,
+            "interval",
+            interval
+        )
+        // // Set limits of where the x-drag position can be
+        // minX = min * interval
+        // maxX = max * interval + buttonWidth
+        left = currentIndex * interval - buttonWidth / 2
     }
 
     function box(element) {
         return element.getBoundingClientRect()
     }
 
-    function boxWidth(button, int) {
-        let width = int
+    function boxWidth(button, defaultWidth) {
+        let width = defaultWidth
         if (button) {
+            // console.log("Getting actual size")
             width = box(button).width
-            if (width > int) {
-                width = int
-            }
+            // if (width > defaultWidth) {
+            //     width = defaultWidth
+            // }
         }
         return width
     }
@@ -76,9 +99,10 @@
         dragging = true
         // Get the position relative to the viewport
         const xOffset = holder.parentNode.getBoundingClientRect().left
-        // Get accurate width and offset
-        buttonWidth = holder.getBoundingClientRect().width
-        buttonOffset = buttonWidth / 2
+        // Get accurate width since button width may change as label changes
+        buttonWidth = boxWidth(holder, buttonWidth)
+
+        console.log("minX", minX, "maxX", maxX)
 
         document.body.onmousemove = (moveEvent) => {
             // Get the new delta position within the slider div
@@ -93,7 +117,7 @@
             }
             // The dynamic position p is the left hand side
             // since user will typically grab in the middle.
-            left = x - buttonOffset
+            left = x - buttonWidth / 2
             // Get new value correcting for the xOffset (see x above)
             value = (xOffset + left) / interval
             currentIndex = Math.round(value)

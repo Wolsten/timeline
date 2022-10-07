@@ -119,9 +119,7 @@ class TimelineEvent extends Object {
      * @returns {Object[]}
      */
     static process(events, xRange, search, subCategories) {
-        // console.log('events', [...events])
-        // const liz = events.find(event => event.name == "Liz Truss")
-        // console.error('Found ', liz)
+        // console.log('raw events', [...events])
         let filtered = [...events]
         // Search?
         if (search != '') {

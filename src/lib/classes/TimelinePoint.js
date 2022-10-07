@@ -10,13 +10,20 @@ class TimelinePoint {
     categoryColour = ''
     subCategoryColour = ''
 
-    constructor(sIndex, rawPoint, colour, categoryColour, subCategoryColour) {
+    // constructor(sIndex, rawPoint, colour, categoryColour, subCategoryColour) {
+    //     this.x = new TimelineDate(rawPoint.x)
+    //     this.y = parseFloat(rawPoint.y)
+    //     this.sIndex = sIndex
+    //     this.colour = colour
+    //     this.categoryColour = categoryColour
+    //     this.subCategoryColour = subCategoryColour
+    // }
+
+    constructor(sIndex, rawPoint, colour) {
         this.x = new TimelineDate(rawPoint.x)
         this.y = parseFloat(rawPoint.y)
         this.sIndex = sIndex
         this.colour = colour
-        this.categoryColour = categoryColour
-        this.subCategoryColour = subCategoryColour
     }
 
     dataPoint(opIndex, oXRange, yRange, canvasHeight) {
@@ -33,6 +40,9 @@ class TimelinePoint {
 
     scaleX(scale, oXRange) {
         const scaled = (this.x.decimal - oXRange.start.decimal) * scale
+        // @todo move padding into canvas.svelte
+        // @todo all distances could be turned in percentages and save rescaling?, 
+        //       NO polylines don't work like that - could they be scaled?
         return Math.round(Utils.CANVAS_PADDING_LEFT + scaled)
     }
 

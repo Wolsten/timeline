@@ -28,6 +28,7 @@
 
     const options = new TimelineOptions(settings)
     const dataset = initDataset(data, options)
+    console.log("dataset", dataset, "\noptions", options)
 
     let viewport
     let filteredEvents = []
@@ -62,12 +63,13 @@
         dataset.subCategories
     )
 
-    $: filteredSeries = TimelineSeries.process(
-        dataset.series,
-        options.xRange,
-        options.filterType,
-        options.group
-    )
+    $: if (xAxis)
+        filteredSeries = TimelineSeries.process(
+            dataset.series,
+            options.xRange,
+            options.filterType,
+            options.group
+        )
 
     //
     // Functions
@@ -161,29 +163,34 @@
         }
     }
 
+    // @todo need to set interval based on range years
     function reScale() {
         // The drawing width is the clientWidth
         drawingWidth =
             viewportWidth -
             Utils.CANVAS_PADDING_LEFT -
             Utils.CANVAS_PADDING_RIGHT
-        // Get the nearest whole no. of data intervals that fits in the range
-        const noIntervals = Math.round(drawingWidth / Utils.MIN_BOX_WIDTH)
-        // Calculate the size of a data interval (rounding up to make sure
-        // all data fits in range)
-        const intervalSize = Math.ceil(options.xRange.range / noIntervals)
-        // Calculate the the new data range based on quantised interval
-        const scaledRange = noIntervals * intervalSize
-        // New scale value
-        options.xRange.scale = drawingWidth / scaledRange
-        // console.warn("new scale", options.xRange.scale)
-        // Update the axis with the new scaling
-        xAxis = new TimelineXAxis(
-            drawingWidth,
-            noIntervals,
-            options.xRange.start.year,
-            intervalSize
-        )
+        // // Get the nearest whole no. of data intervals that fits in the range
+        // const noIntervals = Math.round(drawingWidth / Utils.MIN_BOX_WIDTH)
+        // // const noIntervals = Math.round(drawingWidth / options.xRange.range)
+        // // Calculate the size of a data interval (rounding up to make sure
+        // // all data fits in range)
+        // const intervalSize = Math.ceil(options.xRange.range / noIntervals)
+        // // Calculate the the new data range based on quantised interval
+        // const scaledRange = noIntervals * intervalSize
+        // // New scale value
+        // options.xRange.scale = drawingWidth / scaledRange
+        // // console.warn("new scale", options.xRange.scale)
+        // // Update the axis with the new scaling
+        // xAxis = new TimelineXAxis(
+        //     drawingWidth,
+        //     noIntervals,
+        //     options.xRange.start.year,
+        //     intervalSize
+        // )
+
+        // Get axis and set options.xRange.scale a side effect
+        xAxis = new TimelineXAxis(drawingWidth, options.xRange)
     }
 
     function scrollToSelected() {
@@ -243,7 +250,8 @@
                 data.subCategories
             )
         }
-        data.xRange.setRangeYears()
+        // data.xRange.setRangeYears()
+        data.xRange.setRange()
         // console.log("dataset", data)
         // Check of we have an xRange from the user settings and if
         // not set to dataset range

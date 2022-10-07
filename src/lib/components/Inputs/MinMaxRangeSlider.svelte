@@ -10,9 +10,9 @@
     export let endIndex
 </script>
 
-<!-- <p>
+<p>
     Min value = {minIndex}, Max value = {maxIndex}, Range = {labels.length - 1}
-</p> -->
+</p>
 
 <div class="date-range" class:touch={$touch}>
     <MinMaxSliderButton
