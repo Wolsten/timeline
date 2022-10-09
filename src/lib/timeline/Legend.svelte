@@ -5,9 +5,11 @@
     import Utils from "../Utils.js"
 
     export let series
-    export let categories
+    // export let categories
     export let subCategories
     export let options
+    export let rawSeriesLength
+    export let groupedSeriesLength
 
     // console.warn("subCategories", subCategories)
 
@@ -20,15 +22,15 @@
         })
     }
 
-    function handleClickCat(value) {
-        if (value == options.category) {
-            value = ""
-        }
-        dispatch("optionsChanged", {
-            name: "filter",
-            data: { taxonomy: "category", value },
-        })
-    }
+    // function handleClickCat(value) {
+    //     if (value == options.category) {
+    //         value = ""
+    //     }
+    //     dispatch("optionsChanged", {
+    //         name: "filter",
+    //         data: { taxonomy: "category", value },
+    //     })
+    // }
 
     function handleClickSubCat(value) {
         if (value == options.subCategory) {
@@ -57,11 +59,13 @@
         {#each series as entry, sIndex}
             {@const colour = entry.colour}
             {@const isActive = options.filter == entry.legend}
+            {@const isHighlighted = options.filter == entry.subCategory}
             {@const symbolIndex = options.symbols ? sIndex : 0}
 
             <span
                 class="symbol series"
                 class:active={isActive}
+                class:highlighted={isHighlighted}
                 on:click|stopPropagation={() => handleClickSeries(entry.legend)}
                 title="Click to highlight this series"
             >
@@ -73,10 +77,11 @@
     </aside>
 {/if}
 
-{#if subCategories.length > 0}
-    {#each categories as category, cIndex}
-        <aside>
-            {#if categories.length > 1 || options.group}
+{#if groupedSeriesLength > 0}
+    <!-- {#each categories as category, cIndex} -->
+    <aside>
+        <span class="title">Categories:</span>
+        <!-- {#if categories.length > 1 || options.group}
                 {@const colour = category.colour}
                 {@const isActive = options.filter == category.name}
                 {@const symbolIndex = options.symbols ? cIndex : 0}
@@ -92,27 +97,27 @@
                 </span>
             {:else}
                 <span class="title">{Utils.sentenceCase(category.name)}:</span>
-            {/if}
+            {/if} -->
 
-            {#each subCategories as subCategory, scIndex}
-                {#if subCategory.category == category.name}
-                    {@const colour = subCategory.colour}
-                    {@const isActive = options.filter == subCategory.name}
-                    {@const symbolIndex = options.symbols ? scIndex : 0}
-                    <span
-                        class="symbol sub-category"
-                        class:active={isActive}
-                        title="Click to highlight this event category"
-                        on:click|stopPropagation={() =>
-                            handleClickSubCat(subCategory.name)}
-                    >
-                        <Symbol index={symbolIndex} {colour} wrapped={true} />
-                        {Utils.sentenceCase(subCategory.name)}
-                    </span>
-                {/if}
-            {/each}
-        </aside>
-    {/each}
+        {#each subCategories as subCategory, scIndex}
+            <!-- {#if subCategory.category == category.name} -->
+            {@const colour = subCategory.colour}
+            {@const isActive = options.filter == subCategory.name}
+            {@const symbolIndex = options.symbols ? scIndex : 0}
+            <span
+                class="symbol sub-category"
+                class:active={isActive}
+                title="Click to highlight this event category"
+                on:click|stopPropagation={() =>
+                    handleClickSubCat(subCategory.name)}
+            >
+                <Symbol index={symbolIndex} {colour} wrapped={true} />
+                {Utils.sentenceCase(subCategory.name)}
+            </span>
+            <!-- {/if} -->
+        {/each}
+    </aside>
+    <!-- {/each} -->
 {/if}
 
 <!------------------------------------------------------------------------------
@@ -146,14 +151,17 @@
         cursor: default;
     }
 
-    .category {
+    /* .category {
         cursor: pointer;
-    }
+    } */
 
     .symbol:hover {
         outline: solid 0.1rem var(--tl-colour-legend-highlight);
     }
     .symbol.active {
         outline: solid 0.2rem var(--tl-colour-legend-highlight);
+    }
+    .symbol.highlighted {
+        outline: solid 0.1rem var(--tl-colour-legend-highlight);
     }
 </style>

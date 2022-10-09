@@ -26,21 +26,20 @@
     export let settings
     export let viewportWidth
 
-    const options = new TimelineOptions(settings)
-    const dataset = initDataset(data, options)
-    console.log("dataset", dataset, "\noptions", options)
-
     let viewport
     let filteredEvents = []
     let filteredSeries = []
     let drawingWidth =
         viewportWidth - Utils.CANVAS_PADDING_LEFT - Utils.CANVAS_PADDING_RIGHT
     let xAxis
-
-    // Bound to component reset functions
-    let resetXRange = false
-
     let selectedSeries
+    let resetXRange = false // Bound to component reset functions
+    let rawSeriesLength = 0
+    let groupedSeriesLength = 0
+
+    const options = new TimelineOptions(settings)
+    const dataset = initDataset(data, options)
+    console.log("dataset", dataset, "\noptions", options)
 
     // Wait for window to be mounted to test for touch devices
     onMount(() => {
@@ -82,7 +81,6 @@
             case "selectedPoint":
                 options.selectedPoint = eventData
                 selectedSeries = filteredSeries[options.selectedPoint.sIndex]
-                // console.log("Selected series", selectedSeries)
                 break
             case "selectedEvent":
                 options.selectedEvent = eventData
@@ -170,25 +168,6 @@
             viewportWidth -
             Utils.CANVAS_PADDING_LEFT -
             Utils.CANVAS_PADDING_RIGHT
-        // // Get the nearest whole no. of data intervals that fits in the range
-        // const noIntervals = Math.round(drawingWidth / Utils.MIN_BOX_WIDTH)
-        // // const noIntervals = Math.round(drawingWidth / options.xRange.range)
-        // // Calculate the size of a data interval (rounding up to make sure
-        // // all data fits in range)
-        // const intervalSize = Math.ceil(options.xRange.range / noIntervals)
-        // // Calculate the the new data range based on quantised interval
-        // const scaledRange = noIntervals * intervalSize
-        // // New scale value
-        // options.xRange.scale = drawingWidth / scaledRange
-        // // console.warn("new scale", options.xRange.scale)
-        // // Update the axis with the new scaling
-        // xAxis = new TimelineXAxis(
-        //     drawingWidth,
-        //     noIntervals,
-        //     options.xRange.start.year,
-        //     intervalSize
-        // )
-
         // Get axis and set options.xRange.scale a side effect
         xAxis = new TimelineXAxis(drawingWidth, options.xRange)
     }
@@ -242,6 +221,7 @@
         // Process series
         // data.xRange is also updated as passed by reference
         if (data.series.length > 0) {
+            rawSeriesLength = data.series.length
             data.series = TimelineSeries.init(
                 data.xRange,
                 data.series,
@@ -249,8 +229,8 @@
                 data.categories,
                 data.subCategories
             )
+            groupedSeriesLength = data.series.length - rawSeriesLength
         }
-        // data.xRange.setRangeYears()
         data.xRange.setRange()
         // console.log("dataset", data)
         // Check of we have an xRange from the user settings and if
@@ -280,7 +260,8 @@
         <Options
             {options}
             xRange={dataset.xRange}
-            seriesLength={dataset.series.length}
+            {rawSeriesLength}
+            {groupedSeriesLength}
             eventsLength={dataset.events.length}
             on:optionsChanged={handleOptions}
         />
@@ -325,6 +306,8 @@
 
     <Legend
         series={filteredSeries}
+        {rawSeriesLength}
+        {groupedSeriesLength}
         categories={dataset.categories}
         subCategories={dataset.subCategories}
         {options}

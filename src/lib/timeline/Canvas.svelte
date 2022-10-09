@@ -135,15 +135,15 @@
                         inActive = true
                     }
                     break
-                case "category":
-                    if (series[index].category != filter) {
-                        inActive = true
-                    } else {
-                        colour = categories.find(
-                            (cat) => cat.name == filter
-                        ).colour
-                    }
-                    break
+                // case "category":
+                //     if (series[index].category != filter) {
+                //         inActive = true
+                //     } else {
+                //         colour = categories.find(
+                //             (cat) => cat.name == filter
+                //         ).colour
+                //     }
+                //     break
                 case "sub-category":
                     if (series[index].subCategory != filter) {
                         inActive = true

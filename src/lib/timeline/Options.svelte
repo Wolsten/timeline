@@ -8,7 +8,8 @@
     // export let categoriesLength
     // export let subCategoriesLength
     export let xRange // Full dataset xRange (not potential options.xRange subset)
-    export let seriesLength
+    export let rawSeriesLength
+    export let groupedSeriesLength
     export let eventsLength
     export let options
 
@@ -28,33 +29,11 @@
         options.sort != "date" ||
         options.group
     )
-
-    // options.zoomIn = () => {
-    //     handleZoomIn(true)
-    // }
-
-    // function handleZoomIn(focus) {
-    //     if (focus) {
-    //         console.log("Clicked focus")
-    //         // Only respond if selected is set
-    //         if (options.selectedEvent) {
-    //             // options.focus(xRange)
-    //             dispatch("optionsChanged", {
-    //                 name: "xRange",
-    //                 data: options.xRange,
-    //             })
-    //         }
-    //     } else {
-    //         dispatch("optionsChanged", {
-    //             name: "reset",
-    //         })
-    //     }
-    // }
 </script>
 
 <div class="form">
     {#if options.readonly === false}
-        {#if seriesLength > 0}
+        {#if rawSeriesLength > 0}
             <Toggle
                 name="symbols"
                 label="Symbols"
@@ -67,7 +46,7 @@
             />
         {/if}
 
-        {#if seriesLength > 1}
+        {#if groupedSeriesLength > 0 && groupedSeriesLength < rawSeriesLength}
             <Toggle
                 name="group"
                 label="Group"
@@ -114,17 +93,6 @@
             }}
         />
     {/if}
-
-    <!-- <div class="buttons">
-        <Button
-            label="Reset"
-            {disabled}
-            on:clicked={() => {
-                search = ""
-                handleZoomIn(false)
-            }}
-        />
-    </div> -->
 
     <div class="buttons">
         <Button
