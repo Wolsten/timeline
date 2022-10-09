@@ -69,7 +69,7 @@
             })
             polylines = [...polylines, coords.join(" ")]
         })
-        console.log("Refreshed displayed series", series)
+        // console.log("Refreshed displayed series", series)
     }
 
     function handleClickedSymbol(point) {

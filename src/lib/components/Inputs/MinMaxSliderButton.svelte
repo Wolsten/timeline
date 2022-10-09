@@ -38,7 +38,7 @@
     $: maxX = max * interval
 
     $: if (index != -1) {
-        console.warn("Setting new index", index)
+        // console.warn("Setting new index", index)
         currentIndex = index
         index = -1
         left = currentIndex * interval - buttonWidth / 2
@@ -48,7 +48,7 @@
 
     function resetButton() {
         if (checkReset) {
-            console.warn("Resetting", type, "button")
+            // console.warn("Resetting", type, "button")
             currentIndex = type == "min" ? min : max
             value = currentIndex
             updateLeft()
@@ -57,22 +57,16 @@
     }
 
     function updateLeft() {
-        // console.log("update left")
-        // interval = drawingWidth / (labels.length - 1)
-        // buttonWidth = boxWidth(holder, buttonWidth)
-        console.log(
-            "update",
-            type,
-            "left with buttonWidth",
-            buttonWidth,
-            "currentIndex",
-            currentIndex,
-            "interval",
-            interval
-        )
-        // // Set limits of where the x-drag position can be
-        // minX = min * interval
-        // maxX = max * interval + buttonWidth
+        // console.log(
+        //     "update",
+        //     type,
+        //     "left with buttonWidth",
+        //     buttonWidth,
+        //     "currentIndex",
+        //     currentIndex,
+        //     "interval",
+        //     interval
+        // )
         left = currentIndex * interval - buttonWidth / 2
     }
 
@@ -102,7 +96,7 @@
         // Get accurate width since button width may change as label changes
         buttonWidth = boxWidth(holder, buttonWidth)
 
-        console.log("minX", minX, "maxX", maxX)
+        // console.log("minX", minX, "maxX", maxX)
 
         document.body.onmousemove = (moveEvent) => {
             // Get the new delta position within the slider div

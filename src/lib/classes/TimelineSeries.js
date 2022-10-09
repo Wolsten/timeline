@@ -64,25 +64,19 @@ class TimelineSeries {
             rawSeries = rawSeries.filter(entry => options.subCategories.includes(entry.category.name))
         }
         // Generate grouped series
-        // const categoryGroups = TimelineSeries.groupSeries(rawSeries, 'category', dataCategories)
-        const subCategoryGroups = TimelineSeries.groupSeries(rawSeries, 'sub-category', dataSubCategories)
+        const groups = TimelineSeries.groupSeries(rawSeries, 'sub-category', dataSubCategories)
         // Generate new entries for each series ... do this individually to make sure the sIndex is restarted 
         // for each set as when displayed they are displayed in these sets only
-        // console.log('categoryGroups', categoryGroups)
-        console.log('subCategoryGroups', subCategoryGroups)
         const series = []
         rawSeries.forEach((entry, sIndex) => {
             series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
         })
-        // categoryGroups.forEach((entry, sIndex) => {
-        //     series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
-        // })
-        if (subCategoryGroups.length < rawSeries.length) {
-            subCategoryGroups.forEach((entry, sIndex) => {
+        if (groups.length < rawSeries.length) {
+            groups.forEach((entry, sIndex) => {
                 series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
             })
         }
-        console.log('Initialiased series', series)
+        // console.log('Initialiased series', series)
         return series
     }
 

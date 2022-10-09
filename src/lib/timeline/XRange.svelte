@@ -15,16 +15,12 @@
     // are reset, i.e the xRange slider always has the full range of xRange
     // values for the dataset
     let oAxis = { ...xAxis }
-    // let minIndex = 0
-    // let maxIndex = xAxis.values.length - 1
     let startIndex = 0
     let endIndex = xAxis.values.length - 1
 
     $: if (reset) {
         // console.log("Resetting XRange")
         oAxis = { ...xAxis }
-        // minIndex = 0
-        // maxIndex = oAxis.values.length - 1
         startIndex = 0
         endIndex = oAxis.values.length - 1
         reset = false
@@ -33,13 +29,13 @@
     $: if (focus !== undefined) handleFocus()
 
     function handleFocus() {
-        console.log("focus xRange", focus, "\noAxis", oAxis)
+        // console.log("focus xRange", focus, "\noAxis", oAxis)
         startIndex = 0
         // Find the start and end indices on the x axis
         for (let i = 0; i < oAxis.values.length; i++) {
             if (focus.start.decimal < oAxis.values[i]) {
                 startIndex = i == 0 ? 0 : i - 1
-                console.log("xRange set new start index", startIndex)
+                // console.log("xRange set new start index", startIndex)
                 break
             }
         }
@@ -47,7 +43,7 @@
         for (let i = oAxis.values.length - 1; i > 0; i--) {
             if (focus.end.decimal > oAxis.values[i]) {
                 endIndex = i == oAxis.values.length - 1 ? i : i + 1
-                console.log("xRange set new end index", endIndex)
+                // console.log("xRange set new end index", endIndex)
                 break
             }
         }

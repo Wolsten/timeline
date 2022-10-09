@@ -10,7 +10,7 @@ class TimelineXAxis {
 
     constructor(drawingWidth, xRange) {
 
-        console.warn('xRange', xRange)
+        // console.warn('xRange', xRange)
 
         let interval = 0
         let intervals = 0
@@ -65,11 +65,6 @@ class TimelineXAxis {
                 label = 'Q' + quarter
                 if (quarter === 4) quarter = 0
                 quarter++
-
-                // if (label == 'Q1') {
-                //     const date = TimelineDate.setDateFromDecimal(decimal)
-                //     label = `${date.year}`
-                // }
             } else {
                 label = TimelineDate.formatYear(year)
                 year = Math.floor(year + interval)
@@ -82,45 +77,10 @@ class TimelineXAxis {
             decimal += interval
         }
 
-
-        // xRange.scale = drawingWidth / (decimal - interval)
         xRange.scale = drawingWidth / (interval * intervals)
-        // debugger
-        // this.majorFirst = this.labels[0]
-        // this.majorLast = this.labels[this.labels.length - 1]
-        // this.majorRange = this.majorLast - this.majorFirst
-
-        console.warn("Initialised xAxis with scale", xRange.scale)
-        console.table(this)
+        // console.warn("Initialised xAxis with scale", xRange.scale)
+        // console.table(this)
     }
-
-    // constructor(drawingWidth, intervals, startYear, interval) {
-    //     // Canvas interval
-    //     const canvasInterval = drawingWidth / intervals
-
-    //     let canvasX = 0
-    //     let value = startYear
-
-    //     this.values = []
-    //     this.ticks = []
-    //     this.labels = []
-    //     for (let i = 0; i <= intervals; i++) {
-    //         const tick = canvasX
-    //         this.ticks.push(tick)
-    //         this.values.push(value)
-    //         this.labels.push(TimelineDate.formatYear(value))
-    //         canvasX += canvasInterval
-    //         value += interval
-    //     }
-
-    //     this.majorFirst = this.labels[0]
-    //     this.majorLast = this.labels[this.labels.length - 1]
-    //     this.majorRange = this.majorLast - this.majorFirst
-
-    //     // console.warn("Initialised xAxis")
-    //     // console.table(this)
-    // }
-
 
 }
 

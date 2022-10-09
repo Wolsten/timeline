@@ -5,13 +5,9 @@
     import Utils from "../Utils.js"
 
     export let series
-    // export let categories
     export let subCategories
     export let options
-    export let rawSeriesLength
     export let groupedSeriesLength
-
-    // console.warn("subCategories", subCategories)
 
     const dispatch = createEventDispatcher()
 
@@ -22,16 +18,6 @@
         })
     }
 
-    // function handleClickCat(value) {
-    //     if (value == options.category) {
-    //         value = ""
-    //     }
-    //     dispatch("optionsChanged", {
-    //         name: "filter",
-    //         data: { taxonomy: "category", value },
-    //     })
-    // }
-
     function handleClickSubCat(value) {
         if (value == options.subCategory) {
             value = ""
@@ -41,10 +27,6 @@
             data: { taxonomy: "sub-category", value },
         })
     }
-
-    // function active(optionsFilter, filter, sel, index) {
-    //     return optionsFilter == filter || (sel && sel.index == index)
-    // }
 </script>
 
 <!------------------------------------------------------------------------------
@@ -78,26 +60,8 @@
 {/if}
 
 {#if groupedSeriesLength > 0}
-    <!-- {#each categories as category, cIndex} -->
     <aside>
         <span class="title">Categories:</span>
-        <!-- {#if categories.length > 1 || options.group}
-                {@const colour = category.colour}
-                {@const isActive = options.filter == category.name}
-                {@const symbolIndex = options.symbols ? cIndex : 0}
-                <span
-                    class="symbol category title"
-                    class:active={isActive}
-                    on:click|stopPropagation={() =>
-                        handleClickCat(category.name)}
-                >
-                    <Symbol index={symbolIndex} {colour} wrapped={true} />
-
-                    {Utils.sentenceCase(category.name)}:
-                </span>
-            {:else}
-                <span class="title">{Utils.sentenceCase(category.name)}:</span>
-            {/if} -->
 
         {#each subCategories as subCategory, scIndex}
             <!-- {#if subCategory.category == category.name} -->
@@ -114,10 +78,8 @@
                 <Symbol index={symbolIndex} {colour} wrapped={true} />
                 {Utils.sentenceCase(subCategory.name)}
             </span>
-            <!-- {/if} -->
         {/each}
     </aside>
-    <!-- {/each} -->
 {/if}
 
 <!------------------------------------------------------------------------------
@@ -151,16 +113,14 @@
         cursor: default;
     }
 
-    /* .category {
-        cursor: pointer;
-    } */
-
     .symbol:hover {
         outline: solid 0.1rem var(--tl-colour-legend-highlight);
     }
+
     .symbol.active {
         outline: solid 0.2rem var(--tl-colour-legend-highlight);
     }
+
     .symbol.highlighted {
         outline: solid 0.1rem var(--tl-colour-legend-highlight);
     }
