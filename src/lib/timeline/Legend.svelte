@@ -4,12 +4,39 @@
     import Symbol from "./Symbol.svelte"
     import Utils from "../Utils.js"
 
+    export let events
     export let series
+    export let categories
     export let subCategories
     export let options
     export let groupedSeriesLength
 
+    // console.log(events)
+    // console.log(categories)
+    // console.log(subCategories)
+
+    // Get list of event specific categories
+    let eventCategories = categories.filter((category) =>
+        events.find((event) => event.category == category.name)
+    )
+    // console.log(eventCategories)
+
+    // Get list of event specific sub categories
+    let eventSubCategories = subCategories.filter((subCategory) =>
+        eventCategories.find(
+            (category) => category.name == subCategory.category
+        )
+    )
+    // console.log(eventSubCategories)
+
     const dispatch = createEventDispatcher()
+
+    function handleClickCategory(value) {
+        dispatch("optionsChanged", {
+            name: "filter",
+            data: { taxonomy: "category", value },
+        })
+    }
 
     function handleClickSeries(value) {
         dispatch("optionsChanged", {
@@ -33,25 +60,61 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
+{#if eventCategories.length > 0}
+    {#each eventCategories as c}
+        <aside class="events">
+            {#if eventCategories.length > 1}
+                <span
+                    class="title symbol"
+                    class:active={options.filter == c.name &&
+                        options.filterType == "category"}
+                    on:click|stopPropagation={() => handleClickCategory(c.name)}
+                    title="Click to highlight this category"
+                >
+                    <Symbol index={0} colour={c.colour} wrapped={true} />
+                    {c.name}:
+                </span>
+            {/if}
+
+            {#each eventSubCategories as sc}
+                {#if sc.category == c.name}
+                    <span
+                        class="symbol events"
+                        class:active={options.filter == sc.name}
+                        class:highlighted={options.filter == sc.subCategory}
+                        on:click|stopPropagation={() =>
+                            handleClickSubCat(sc.name)}
+                        title="Click to highlight this category"
+                    >
+                        <Symbol index={0} colour={sc.colour} wrapped={true} />
+
+                        {sc.name}
+                    </span>
+                {/if}
+            {/each}
+        </aside>
+    {/each}
+{/if}
+
 {#if series.length > 1 && options.group == false}
-    <!-- Display individual series options if not totalising -->
     <aside class="series">
         <span class="title">Series:</span>
 
         {#each series as entry, sIndex}
-            {@const colour = entry.colour}
-            {@const isActive = options.filter == entry.legend}
-            {@const isHighlighted = options.filter == entry.subCategory}
             {@const symbolIndex = options.symbols ? sIndex : 0}
 
             <span
                 class="symbol series"
-                class:active={isActive}
-                class:highlighted={isHighlighted}
+                class:active={options.filter == entry.legend}
+                class:highlighted={options.filter == entry.subCategory}
                 on:click|stopPropagation={() => handleClickSeries(entry.legend)}
                 title="Click to highlight this series"
             >
-                <Symbol index={symbolIndex} {colour} wrapped={true} />
+                <Symbol
+                    index={symbolIndex}
+                    colour={entry.colour}
+                    wrapped={true}
+                />
 
                 {entry.legend}
             </span>

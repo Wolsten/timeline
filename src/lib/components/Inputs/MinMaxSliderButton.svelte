@@ -52,8 +52,9 @@
             currentIndex = type == "min" ? min : max
             value = currentIndex
             updateLeft()
+            checkReset = false
         }
-        checkReset = true
+        // checkReset = true
     }
 
     function updateLeft() {

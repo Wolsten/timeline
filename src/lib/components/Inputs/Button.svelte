@@ -27,7 +27,7 @@
     }
 
     button:disabled {
-        opacity: var(--opacity-faint);
+        opacity: var(--tl-opacity-faint);
     }
 
     button:not(:disabled):hover {

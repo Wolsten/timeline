@@ -76,7 +76,16 @@ class TimelineDate {
 
 
     static setDateFromDecimal(decimal) {
-        let year = Math.floor(decimal)
+        const year = Math.floor(decimal)
+        // Millions of years
+        if (Math.abs(year) >= 10000) {
+            return new TimelineDate(Math.abs(year / 1000000) + 'my' + (year < 0 ? 'a' : ''))
+        }
+        // bc year
+        if (year < 0) {
+            return new TimelineDate(Math.abs(year) + 'bc')
+        }
+        // Normal dates
         const leap = TimelineDate.isLeap(year)
         const daysInYear = leap ? 366 : 365
         let days = Math.round(daysInYear * (decimal - year))
@@ -95,6 +104,7 @@ class TimelineDate {
         }
         return new TimelineDate(`${year}-${month}-${days}`)
     }
+
 
     getDecimalDate() {
         const daysInYear = TimelineDate.isLeap(this.year) ? 366 : 365
@@ -143,28 +153,14 @@ class TimelineDate {
     }
 
     static formatYear(year) {
-        const magnitude = Math.abs(year)
-        let millions = magnitude / 1000000
-        let thousands = millions * 1000
-        if (millions > 1) {
-            // let formatted = Number.parseFloat(millions).toPrecision(2)
-            let formatted = millions.toPrecision(2)
-            // formatted = new Intl.NumberFormat().format(formatted)
-            if (year < 0) {
-                return formatted + 'mya'
-            }
-            return formatted + 'my'
-        } else if (thousands > 10) {
-            // let formatted = parseInt(thousands / 100) * 100
-            let formatted = (thousands / 100).toPrecision(2)
-            if (year < 0) {
-                return formatted + 'tya'
-            }
-            return formatted + 'ty'
-        } else if (year < 0) {
-            return Math.abs(year) + 'bc'
+        let magnitude = Math.abs(year)
+        // Straight years
+        if (magnitude < 10000) {
+            return Utils.stringifyToPrecision(magnitude, 4) + (year < 0 ? 'bc' : '')
         }
-        return '' + year
+        // Otherwise millions
+        magnitude = magnitude / 1000000
+        return Utils.stringifyToPrecision(magnitude, 2) + 'my' + (year < 0 ? 'a' : '')
     }
 
     static getMonth(oneBasedNumber) {

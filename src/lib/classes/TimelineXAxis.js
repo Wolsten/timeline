@@ -9,15 +9,12 @@ class TimelineXAxis {
     units = 'years'
 
     constructor(drawingWidth, xRange) {
-
         // console.warn('xRange', xRange)
-
         let interval = 0
         let intervals = 0
         let month = 0
         let quarter = 0
         let year = 0
-
         if (xRange.range < 1) {
             interval = 1 / 12
             intervals = Math.ceil(xRange.range / interval)
@@ -39,6 +36,8 @@ class TimelineXAxis {
             }
             this.units = `${interval} years`
         }
+
+        // console.log('interval=', interval)
 
         const canvasInterval = drawingWidth / intervals
         let canvasX = 0

@@ -50,8 +50,8 @@
                 timeline.getAttribute("data-settings") !== null
                     ? timeline.getAttribute("data-settings")
                     : ""
-            // console.log(slug, dataSettings)
 
+            // console.log(slug, dataSettings)
             // console.log("timeline width", timeline.clientWidth)
 
             // Grab the data

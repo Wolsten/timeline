@@ -39,6 +39,15 @@ const toPrecision = function (num, digits) {
 }
 
 
+const stringifyToPrecision = function (num, precision = 1) {
+	// console.log('num', num)
+	const power = Math.pow(10, precision)
+	num = Math.round(num * power) / power
+	// console.log('num', num)
+	return `${num}`;
+}
+
+
 
 const formatNumber = function (number, digits = 0) {
 	let suffix = ''
@@ -121,6 +130,7 @@ const Utils = {
 	getVersionHistory,
 	debounce,
 	toPrecision,
+	stringifyToPrecision,
 	formatNumber,
 	colour,
 	defaultColour,

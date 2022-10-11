@@ -1,1 +1,369 @@
-{"slug":"geologic-timescale","name":"Geologic timescale","summary":"The geologic time scale (GTS), a system of chronological dating that classifies geological strata (stratigraphy) in time.","categories":[{"name":"geologic timescale","colour":""}],"subCategories":[{"category":"geologic timescale","name":"eon","colour":""},{"category":"geologic timescale","name":"era","colour":""},{"category":"geologic timescale","name":"period","colour":""},{"category":"geologic timescale","name":"evolution","colour":""}],"events":[{"name":"Hadeon Eon","category":"geologic timescale","subCategory":"eon","start":"4600mya","summary":"<p>The Hadean is a geologic eon of Earth history preceding the Archean. It began with the formation of the Earth about 4.6 billion years ago and ended, as defined by the International Commission on Stratigraphy (ICS), 4 billion years ago.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 18). Hadean. In Wikipedia, The Free Encyclopedia. Retrieved 09:10, November 26, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Hadean&amp;oldid=1055869915\">https://en.wikipedia.org/w/index.php?title=Hadean&amp;oldid=1055869915</a></p>\n","end":"4000mya"},{"name":"Archean Eon","category":"geologic timescale","subCategory":"eon","start":"4000mya","summary":"<p>The Archean Eon (also spelled Archaean or Archæan) is the second of four geologic eons of Earth&apos;s history, representing the time from 4,000 to 2,500 million years ago. In this time, the Earth&apos;s crust had cooled enough for continents to form and for the earliest known life to start. Life was simple throughout the Archean, mostly represented by shallow-water microbial mats called stromatolites, and the atmosphere lacked free oxygen.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 21). Archean. In Wikipedia, The Free Encyclopedia. Retrieved 15:40, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Archean&amp;oldid=1061324183\">https://en.wikipedia.org/w/index.php?title=Archean&amp;oldid=1061324183</a></p>\n","end":"2500mya"},{"name":"Proterozoic Eon","category":"geologic timescale","subCategory":"eon","start":"2500mya","summary":"<p>The Proterozoic is a geological eon spanning the time interval from 2500 to 541 million years ago. It is the most recent part of the Precambrian &quot;supereon.&quot; It is also the longest eon of the Earth&apos;s geologic time scale, and it is subdivided into three geologic eras (from oldest to youngest): the Paleoproterozoic, Mesoproterozoic, and Neoproterozoic.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 8). Proterozoic. In Wikipedia, The Free Encyclopedia. Retrieved 09:45, December 6, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Proterozoic&amp;oldid=1054150443\">https://en.wikipedia.org/w/index.php?title=Proterozoic&amp;oldid=1054150443</a></p>\n","end":"541mya"},{"name":"Phanerozoic Eon","category":"geologic timescale","subCategory":"eon","start":"541mya","summary":"<p>The Phanerozoic Eon is the current geologic eon in the geologic time scale, and the one during which abundant animal and plant life has existed. It covers 541 million years to the present, and it began with the Cambrian Period when animals first developed hard shells preserved in the fossil record. The time before the Phanerozoic, called the Precambrian, is now divided into the Hadean, Archaean and Proterozoic eons.</p>\n","citations":"<p>Wikipedia contributors. (2021, October 17). Phanerozoic. In Wikipedia, The Free Encyclopedia. Retrieved 09:23, December 6, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Phanerozoic&amp;oldid=1050377580\">https://en.wikipedia.org/w/index.php?title=Phanerozoic&amp;oldid=1050377580</a></p>\n","end":"-"},{"name":"Eoarchean Era","category":"geologic timescale","subCategory":"era","start":"4000mya","summary":"<p>The Eoarchean (also spelled Eoarchaean) is the first era of the Archean Eon of the geologic record for which the Earth has a solid crust.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 10). Eoarchean. In Wikipedia, The Free Encyclopedia. Retrieved 07:26, December 13, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Eoarchean&amp;oldid=1054468622\">https://en.wikipedia.org/w/index.php?title=Eoarchean&amp;oldid=1054468622</a></p>\n","end":"3600mya"},{"name":"Paleoarchean Era","category":"geologic timescale","subCategory":"era","start":"3600mya","summary":"<p>The Paleoarchean, also spelled Palaeoarchaean (formerly known as early Archean), is a geologic era within the Archaean Eon. The name derives from Greek &quot;Palaios&quot; ancient. The era is defined chronometrically and is not referenced to a specific level of a rock section on Earth. The earliest confirmed evidence of life comes from this era, and Vaalbara, one of Earth&#39;s earliest supercontinents, may have formed during this era.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 12). Paleoarchean. In Wikipedia, The Free Encyclopedia. Retrieved 15:41, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Paleoarchean&amp;oldid=1059945369\">https://en.wikipedia.org/w/index.php?title=Paleoarchean&amp;oldid=1059945369</a></p>\n","end":"3200mya"},{"name":"Mesoarchean Era","category":"geologic timescale","subCategory":"era","start":"3200mya","summary":"<p>The Mesoarchean also spelled Mesoarchaean) is a geologic era in the Archean Eon, which contains the first evidence of modern-style plate subduction and expansion of microbial life. The era is defined chronometrically and is not referenced to a specific level in a rock section on Earth.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 30). Mesoarchean. In Wikipedia, The Free Encyclopedia. Retrieved 15:42, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Mesoarchean&amp;oldid=1057864079\">https://en.wikipedia.org/w/index.php?title=Mesoarchean&amp;oldid=1057864079</a></p>\n","end":"2800mya"},{"name":"Neoarchean Era","category":"geologic timescale","subCategory":"era","start":"2800mya","summary":"<p>The Neoarchean (also spelled Neoarchaean) is the last geologic era in the Archean eon — the period being defined chronometrically and not referencing a specific level in a rock section on Earth. The era is marked by major developments in complex life and continental formation.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 15). Neoarchean. In Wikipedia, The Free Encyclopedia. Retrieved 15:44, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Neoarchean&amp;oldid=1060405740\">https://en.wikipedia.org/w/index.php?title=Neoarchean&amp;oldid=1060405740</a></p>\n","end":"2500mya"},{"name":"Paleoproterozoic Era","category":"geologic timescale","subCategory":"era","start":"2500mya","summary":"<p>The Paleoproterozoic Era (also spelled Palaeoproterozoic), is the first of the three sub-divisions (eras) of the Proterozoic Eon. The Paleoproterozoic is also the longest era of the Earth&#39;s geological history. It was during this era that the continents first stabilized.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 20). Paleoproterozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:45, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Paleoproterozoic&amp;oldid=1056297996\">https://en.wikipedia.org/w/index.php?title=Paleoproterozoic&amp;oldid=1056297996</a></p>\n","end":"1600mya"},{"name":"Mesoproterozoic Era","category":"geologic timescale","subCategory":"era","start":"1600mya","summary":"<p>The Mesoproterozoic was the first era of Earth&#39;s history for which a fairly definitive geological record survives. Continents existed during the preceding era (the Paleoproterozoic), but little is known about them. The continental masses of the Mesoproterozoic were more or less the same ones that exist today.</p>\n","citations":"<p>Wikipedia contributors. (2021, October 1). Mesoproterozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:46, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Mesoproterozoic&amp;oldid=1047491864\">https://en.wikipedia.org/w/index.php?title=Mesoproterozoic&amp;oldid=1047491864</a></p>\n","end":"1000mya"},{"name":"Neoproterozoic Era","category":"geologic timescale","subCategory":"era","start":"1000mya","summary":"<p>It is the last era of the Precambrian Supereon and the Proterozoic Eon; it is subdivided into the Tonian, Cryogenian, and Ediacaran Periods. It is preceded by the Mesoproterozoic Era and succeeded by the Paleozoic Era of the Phanerozoic Eon.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 18). Neoproterozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:47, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Neoproterozoic&amp;oldid=1060877252\">https://en.wikipedia.org/w/index.php?title=Neoproterozoic&amp;oldid=1060877252</a></p>\n","end":"541mya"},{"name":"Paleozoic Era ","category":"geologic timescale","subCategory":"era","start":"541mya","summary":"<p>The Paleozoic (or Palaeozoic) Era ( from the Greek palaiós (παλαιός), &quot;old&quot; and zōḗ (ζωή), &quot;life&quot;, meaning &quot;ancient life&quot;) is the earliest of three geologic eras of the Phanerozoic Eon. It is the longest of the Phanerozoic eras and is subdivided into six geologic periods.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 14). Paleozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:49, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Paleozoic&amp;oldid=1060296427\">https://en.wikipedia.org/w/index.php?title=Paleozoic&amp;oldid=1060296427</a></p>\n","end":"252.17mya"},{"name":"Mesozoic Era","category":"geologic timescale","subCategory":"era","start":"252.17mya","summary":"<p>The Mesozoic Era, also called the Age of Reptiles and the Age of Conifers, is the second-to-last era of Earth&#39;s geological history. It is characterized by the dominance of archosaurian reptiles, like the dinosaurs; an abundance of conifers and ferns; a hot greenhouse climate; and the tectonic break-up of Pangaea. The Mesozoic is the middle of three eras since complex life evolved: the Paleozoic, the Mesozoic, and the Cenozoic.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 15). Mesozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:50, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Mesozoic&amp;oldid=1060451012\">https://en.wikipedia.org/w/index.php?title=Mesozoic&amp;oldid=1060451012</a></p>\n","end":"66mya"},{"name":"Cenozoic Era","category":"geologic timescale","subCategory":"era","start":"66mya","summary":"<p>The Cenozoic (lit. &#39;new life&#39;) is Earth&#39;s current geological era, representing the last 66 million years of Earth&#39;s history. It is characterized by the dominance of mammals, birds and flowering plants, a cooling and drying climate, and the current configuration of continents. It is the latest of three geological eras since complex life evolved, preceded by the Mesozoic and Paleozoic. It started with the Cretaceous–Paleogene extinction event, when many species, including the non-avian dinosaurs, became extinct in an event attributed by most experts to the impact of a large asteroid or other celestial body, the Chicxulub impactor.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 23). Cenozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:52, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Cenozoic&amp;oldid=1056810633\">https://en.wikipedia.org/w/index.php?title=Cenozoic&amp;oldid=1056810633</a></p>\n","end":"-"},{"name":"Siderian Period","category":"geologic timescale","subCategory":"period","start":"2500mya","summary":"<p>The Siderian Period (Ancient Greek: σίδηρος, romanized: sídēros, meaning &quot;iron&quot;) is the first geologic period in the Paleoproterozoic Era.</p>\n","citations":"<p>Wikipedia contributors. (2021, September 19). Siderian. In Wikipedia, The Free Encyclopedia. Retrieved 15:54, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Siderian&amp;oldid=1045136086\">https://en.wikipedia.org/w/index.php?title=Siderian&amp;oldid=1045136086</a></p>\n","end":"2300mya"},{"name":"Rhyacian Period","category":"geologic timescale","subCategory":"period","start":"2300mya","summary":"<p>The Rhyacian Period (Ancient Greek: ῥύαξ, romanized: rhýax, meaning &quot;stream of lava&quot;) is the second geologic period in the Paleoproterozoic Era.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 11). Rhyacian. In Wikipedia, The Free Encyclopedia. Retrieved 15:55, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Rhyacian&amp;oldid=1054634750\">https://en.wikipedia.org/w/index.php?title=Rhyacian&amp;oldid=1054634750</a></p>\n","end":"2050mya"},{"name":"Orosirian Period","category":"geologic timescale","subCategory":"period","start":"2050mya","summary":"<p>The Orosirian Period (Ancient Greek: ὀροσειρά, romanized: oroseirá, meaning &quot;mountain range&quot;) is the third geologic period in the Paleoproterozoic Era.</p>\n","citations":"<p>Wikipedia contributors. (2021, July 15). Orosirian. In Wikipedia, The Free Encyclopedia. Retrieved 15:55, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Orosirian&amp;oldid=1033697610\">https://en.wikipedia.org/w/index.php?title=Orosirian&amp;oldid=1033697610</a></p>\n","end":"1800mya"},{"name":"Statherian Period","category":"geologic timescale","subCategory":"period","start":"1800mya","summary":"<p>The Statherian Period ( Ancient Greek: σταθερός, romanized: statherós, meaning &quot;stable, firm&quot;) is the final geologic period in the Paleoproterozoic Era.</p>\n","citations":"<p>Wikipedia contributors. (2021, July 15). Statherian. In Wikipedia, The Free Encyclopedia. Retrieved 15:56, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Statherian&amp;oldid=1033697673\">https://en.wikipedia.org/w/index.php?title=Statherian&amp;oldid=1033697673</a></p>\n","end":"1600mya"},{"name":"Calymmian Period","category":"geologic timescale","subCategory":"period","start":"1600mya","summary":"<p>The Calymmian Period (from Ancient Greek: κάλυμμα, romanized: kálymma, meaning &quot;cover&quot;) is the first geologic period in the Mesoproterozoic Era.</p>\n","citations":"<p>Wikipedia contributors. (2021, July 15). Calymmian. In Wikipedia, The Free Encyclopedia. Retrieved 15:57, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Calymmian&amp;oldid=1033697741\">https://en.wikipedia.org/w/index.php?title=Calymmian&amp;oldid=1033697741</a></p>\n","end":"1400mya"},{"name":"Ectasian Period","category":"geologic timescale","subCategory":"period","start":"1400mya","summary":"<p>The Ectasian Period (from Ancient Greek: ἔκτασις, romanized: éktasis, meaning &quot;extension&quot;) is the second geologic period in the Mesoproterozoic Era.</p>\n","citations":"<p>Wikipedia contributors. (2021, July 15). Ectasian. In Wikipedia, The Free Encyclopedia. Retrieved 15:57, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Ectasian&amp;oldid=1033697788\">https://en.wikipedia.org/w/index.php?title=Ectasian&amp;oldid=1033697788</a></p>\n","end":"1200mya"},{"name":"Stenian Period","category":"geologic timescale","subCategory":"period","start":"1200mya","summary":"<p>The Stenian Period (from Ancient Greek: στενός, romanized: stenós, meaning &quot;narrow&quot;) is the final geologic period in the Mesoproterozoic Era. The name derives from narrow polymetamorphic belts formed over this period.</p>\n","citations":"<p>Wikipedia contributors. (2021, October 5). Stenian. In Wikipedia, The Free Encyclopedia. Retrieved 15:58, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Stenian&amp;oldid=1048394729\">https://en.wikipedia.org/w/index.php?title=Stenian&amp;oldid=1048394729</a></p>\n","end":"1000mya"},{"name":"Tonian Period","category":"geologic timescale","subCategory":"period","start":"1000mya","summary":"<p>The Tonian (from Ancient Greek: τόνος, romanized: tónos, meaning &quot;stretch&quot;) is the first geologic period of the Neoproterozoic Era.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 19). Tonian. In Wikipedia, The Free Encyclopedia. Retrieved 15:59, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Tonian&amp;oldid=1061088739\">https://en.wikipedia.org/w/index.php?title=Tonian&amp;oldid=1061088739</a></p>\n","end":"720mya"},{"name":"Cryogenian Period","category":"geologic timescale","subCategory":"period","start":"720mya","summary":"<p>The Cryogenian (from Ancient Greek: κρύος, romanized: krýos, meaning &quot;cold&quot; and γένεσις, romanized: génesis, meaning &quot;birth&quot;) is a geologic period.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 11). Cryogenian. In Wikipedia, The Free Encyclopedia. Retrieved 15:59, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Cryogenian&amp;oldid=1054716842\">https://en.wikipedia.org/w/index.php?title=Cryogenian&amp;oldid=1054716842</a></p>\n","end":"635mya"},{"name":"Ediacaran Period","category":"geologic timescale","subCategory":"period","start":"635mya","summary":"<p>The Ediacaran Period is a geological period that spans 94 million years. It is named after the Ediacara Hills of South Australia.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 12). Ediacaran. In Wikipedia, The Free Encyclopedia. Retrieved 16:00, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Ediacaran&amp;oldid=1054847035\">https://en.wikipedia.org/w/index.php?title=Ediacaran&amp;oldid=1054847035</a></p>\n","end":"541mya"},{"name":"Cambrian Period","category":"geologic timescale","subCategory":"period","start":"541mya","summary":"<p>The Cambrian Period (sometimes symbolized Ꞓ) was the first geological period of the Paleozoic Era, and of the Phanerozoic Eon. The Cambrian lasted 55.6 million years. Its subdivisions, and its base, are somewhat in flux. The period was established as &quot;Cambrian series&quot; by Adam Sedgwick, who named it after Cambria, the Latin name for &#39;Cymru&#39; (Wales), where Britain&#39;s Cambrian rocks are best exposed. Sedgwick identified the layer as part of his task, along with Roderick Murchison, to subdivide the large &quot;Transition Series&quot;, although the two geologists disagreed for a while on the appropriate categorization. The Cambrian is unique in its unusually high proportion of lagerstätte sedimentary deposits, sites of exceptional preservation where &quot;soft&quot; parts of organisms are preserved as well as their more resistant shells. As a result, our understanding of the Cambrian biology surpasses that of some later periods.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 20). Cambrian. In Wikipedia, The Free Encyclopedia. Retrieved 16:01, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Cambrian&amp;oldid=1061302135\">https://en.wikipedia.org/w/index.php?title=Cambrian&amp;oldid=1061302135</a></p>\n","end":"485.4mya"},{"name":"Ordovician Period","category":"geologic timescale","subCategory":"period","start":"485.4mya","summary":"<p>The Ordovician is a geologic period and system, the second of six periods of the Paleozoic Era.</p>\n<p>The Ordovician, named after the Welsh tribe of the Ordovices, was defined by Charles Lapworth in 1879 to resolve a dispute between followers of Adam Sedgwick and Roderick Murchison, who were placing the same rock beds in North Wales in the Cambrian and Silurian systems, respectively. Lapworth recognized that the fossil fauna in the disputed strata were different from those of either the Cambrian or the Silurian systems, and placed them in a system of their own. The Ordovician received international approval in 1960 (forty years after Lapworth&#39;s death), when it was adopted as an official period of the Paleozoic Era by the International Geological Congress.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 12). Ordovician. In Wikipedia, The Free Encyclopedia. Retrieved 16:02, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Ordovician&amp;oldid=1059983847\">https://en.wikipedia.org/w/index.php?title=Ordovician&amp;oldid=1059983847</a></p>\n","end":"443.4mya"},{"name":"Silurian Period","category":"geologic timescale","subCategory":"period","start":"443.4mya","summary":"<p>The Silurian is a geologic period and system spanning 24.6 million years. The Silurian is the shortest period of the Paleozoic Era. As with other geologic periods, the rock beds that define the period&#39;s start and end are well identified, but the exact dates are uncertain by a few million years. The base of the Silurian is set at a series of major Ordovician–Silurian extinction events when up to 60% of marine genera were wiped out.</p>\n<p>One important event in this period was the initial establishment of terrestrial life: vascular plants emerged from more primitive land plants, dikaryan fungi started expanding and diversifying along with glomeromycotan fungi, and 3 groups of arthropods (myriapods, arachnids and hexapods) became fully terrestrialized.</p>\n<p>A significant evolutionary milestone during the Silurian was the diversification of jawed fish and bony fish.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 21). Silurian. In Wikipedia, The Free Encyclopedia. Retrieved 16:03, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Silurian&amp;oldid=1061386046\">https://en.wikipedia.org/w/index.php?title=Silurian&amp;oldid=1061386046</a></p>\n","end":"419.2mya"},{"name":"Devonian Period","category":"geologic timescale","subCategory":"period","start":"419.2mya","summary":"<p>The Devonian is a geologic period and system of the Paleozoic, spanning 60.3 million years. It is named after Devon, England, where rocks from this period were first studied.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 17). Devonian. In Wikipedia, The Free Encyclopedia. Retrieved 16:04, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Devonian&amp;oldid=1060812612\">https://en.wikipedia.org/w/index.php?title=Devonian&amp;oldid=1060812612</a></p>\n","end":"358.9mya"},{"name":"Carboniferous Period","category":"geologic timescale","subCategory":"period","start":"358.9mya","summary":"<p>The Carboniferous is a geologic period and system of the Paleozoic that spans 60 million years.. The name Carboniferous means &quot;coal-bearing&quot;, from the Latin carbō (&quot;coal&quot;) and ferō (&quot;I bear, I carry&quot;), and refers to the many coal beds formed globally during that time.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 22). Carboniferous. In Wikipedia, The Free Encyclopedia. Retrieved 16:06, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Carboniferous&amp;oldid=1061527351\">https://en.wikipedia.org/w/index.php?title=Carboniferous&amp;oldid=1061527351</a></p>\n","end":"298.9mya"},{"name":"Permian Period","category":"geologic timescale","subCategory":"period","start":"298.9mya","summary":"<p>The Permian is a geologic period and stratigraphic system which spans 47 million years. The concept of the Permian was introduced in 1841 by geologist Sir Roderick Murchison, who named it after the region of Perm in Russia.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 18). Permian. In Wikipedia, The Free Encyclopedia. Retrieved 16:06, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Permian&amp;oldid=1060847367\">https://en.wikipedia.org/w/index.php?title=Permian&amp;oldid=1060847367</a></p>\n","end":"252.17mya"},{"name":"Triassic Period","category":"geologic timescale","subCategory":"period","start":"252.17mya","summary":"<p>The Triassic is a geologic period and system which spans 50.6 million years. The Triassic is the first and shortest period of the Mesozoic Era. Both the start and end of the period are marked by major extinction events. The Triassic Period is subdivided into three epochs: Early Triassic, Middle Triassic and Late Triassic.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 14). Triassic. In Wikipedia, The Free Encyclopedia. Retrieved 16:07, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Triassic&amp;oldid=1060290761\">https://en.wikipedia.org/w/index.php?title=Triassic&amp;oldid=1060290761</a></p>\n","end":"201.3mya"},{"name":"Jurassic Period","category":"geologic timescale","subCategory":"period","start":"201.3mya","summary":"<p>The Jurassic (/dʒʊˈræs.sɪk/ juu-RASS-ik) is a geologic period and stratigraphic system that spanned from the end of the Triassic Period 201.3 million years ago (Mya) to the beginning of the Cretaceous Period, approximately 145 Mya. The Jurassic constitutes the middle period of the Mesozoic Era and is named after the Jura Mountains, where limestone strata from the period were first identified.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 20). Jurassic. In Wikipedia, The Free Encyclopedia. Retrieved 16:08, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Jurassic&amp;oldid=1061199475\">https://en.wikipedia.org/w/index.php?title=Jurassic&amp;oldid=1061199475</a></p>\n","end":"145mya"},{"name":"Cretaceous Period","category":"geologic timescale","subCategory":"period","start":"145mya","summary":"<p>The Cretaceous is a geological period that lasted from about 145 to 66 million years ago (Mya). It is the third and final period of the Mesozoic Era, as well as the longest. At around 79 million years, it is the longest geological period of the entire Phanerozoic. The name is derived from the Latin creta, &quot;chalk&quot;, which is abundant in the latter half of the period. It is usually abbreviated K, for its German translation Kreide.</p>\n","citations":"<p>Wikipedia contributors. (2021, December 13). Cretaceous. In Wikipedia, The Free Encyclopedia. Retrieved 16:09, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Cretaceous&amp;oldid=1060077373\">https://en.wikipedia.org/w/index.php?title=Cretaceous&amp;oldid=1060077373</a></p>\n","end":"66mya"},{"name":"Paleogene Period","category":"geologic timescale","subCategory":"period","start":"66mya","summary":"<p>The Paleogene (also spelled Palaeogene or Palæogene; informally Lower Tertiary or Early Tertiary) is a geologic period and system that spans 43 million years. It is the beginning of the Cenozoic Era of the present Phanerozoic Eon. The earlier term Tertiary Period was used to define the span of time now covered by the Paleogene and subsequent Neogene Periods; despite no longer being recognised as a formal stratigraphic term, &#39;Tertiary&#39; is still widely found in earth science literature and remains in informal use. The Paleogene is most notable for being the time during which mammals diversified from relatively small, simple forms into a large group of diverse animals in the wake of the Cretaceous–Paleogene extinction event that ended the preceding Cretaceous Period. The United States Geological Survey uses the abbreviation PE for the Paleogene, but the more commonly used abbreviation is PG with PE being used for Paleocene, an epoch within the Paleogene.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 11). Paleogene. In Wikipedia, The Free Encyclopedia. Retrieved 16:09, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Paleogene&amp;oldid=1054676283\">https://en.wikipedia.org/w/index.php?title=Paleogene&amp;oldid=1054676283</a></p>\n","end":"23.03mya"},{"name":"Neogene Period","category":"geologic timescale","subCategory":"period","start":"23.03mya","summary":"<p>The Neogene (informally Upper Tertiary or Late Tertiary) is a geologic period and system that spans 20.45 million years. The Neogene is sub-divided into two epochs, the earlier Miocene and the later Pliocene. Some geologists assert that the Neogene cannot be clearly delineated from the modern geological period, the Quaternary. The term &quot;Neogene&quot; was coined in 1853 by the Austrian palaeontologist Moritz Hörnes (1815–1868).</p>\n","citations":"<p>Wikipedia contributors. (2021, December 6). Neogene. In Wikipedia, The Free Encyclopedia. Retrieved 16:11, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Neogene&amp;oldid=1058993331\">https://en.wikipedia.org/w/index.php?title=Neogene&amp;oldid=1058993331</a></p>\n","end":"2.588mya"},{"name":"Quaternary Period","category":"geologic timescale","subCategory":"period","start":"2.588mya","summary":"<p>The Quaternary is the current and most recent of the three periods of the Cenozoic Era in the geologic time scale of the International Commission on Stratigraphy (ICS). It follows the Neogene Period and spans from 2.588 ± 0.005 million years ago to the present. The Quaternary Period is divided into two epochs: the Pleistocene (2.588 million years ago to 11.7 thousand years ago) and the Holocene (11.7 thousand years ago to today, although a third epoch, the Anthropocene, has been proposed but is not yet officially recognized by the ICS). The informal term &quot;Late Quaternary&quot; refers to the past 0.5–1.0 million years.</p>\n","citations":"<p>Wikipedia contributors. (2021, November 27). Quaternary. In Wikipedia, The Free Encyclopedia. Retrieved 16:11, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Quaternary&amp;oldid=1057421148\">https://en.wikipedia.org/w/index.php?title=Quaternary&amp;oldid=1057421148</a></p>\n","end":"-"},{"name":"Human evolution","category":"geologic timescale","subCategory":"evolution","start":"65mya","summary":"<p>This period begins with the evolution of primates, human divergence and the appearance of australopithecus.</p>\n<p>The earliest documented representative of the genus Homo is Homo habilis, which evolved around 2.8 million years ago, and is arguably the earliest species for which there is positive evidence of the use of stone tools. The brains of these early hominins were about the same size as that of a chimpanzee, although it has been suggested that this was the time in which the human SRGAP2 gene doubled, producing a more rapid wiring of the frontal cortex. During the next million years a process of rapid encephalization occurred, and with the arrival of Homo erectus and Homo ergaster in the fossil record, cranial capacity had doubled to 850 cm3. (Such an increase in human brain size is equivalent to each generation having 125,000 more neurons than their parents.) It is believed that Homo erectus and Homo ergaster were the first to use fire and complex tools, and were the first of the hominin line to leave Africa, spreading throughout Africa, Asia, and Europe between 1.3 to 1.8 million years ago.</p>\n","citations":"<p>Wikipedia contributors. (2022, January 4). Human evolution. In Wikipedia, The Free Encyclopedia. Retrieved 15:37, January 10, 2022, from <a href=\"https://en.wikipedia.org/w/index.php?title=Human_evolution&amp;oldid=1063770824\">https://en.wikipedia.org/w/index.php?title=Human_evolution&amp;oldid=1063770824</a></p>\n","end":"-"}],"series":[]}
+{
+    "slug": "geologic-timescale",
+    "name": "Geologic timescale",
+    "summary": "The geologic time scale (GTS), a system of chronological dating that classifies geological strata (stratigraphy) in time.",
+    "categories": [
+        {
+            "name": "geologic timescale",
+            "colour": ""
+        }
+    ],
+    "subCategories": [
+        {
+            "category": "geologic timescale",
+            "name": "eon",
+            "colour": ""
+        },
+        {
+            "category": "geologic timescale",
+            "name": "era",
+            "colour": ""
+        },
+        {
+            "category": "geologic timescale",
+            "name": "period",
+            "colour": ""
+        },
+        {
+            "category": "geologic timescale",
+            "name": "evolution",
+            "colour": ""
+        }
+    ],
+    "events": [
+        {
+            "name": "Hadeon Eon",
+            "category": "geologic timescale",
+            "subCategory": "eon",
+            "start": "4600mya",
+            "summary": "<p>The Hadean is a geologic eon of Earth history preceding the Archean. It began with the formation of the Earth about 4.6 billion years ago and ended, as defined by the International Commission on Stratigraphy (ICS), 4 billion years ago.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 18). Hadean. In Wikipedia, The Free Encyclopedia. Retrieved 09:10, November 26, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Hadean&amp;oldid=1055869915\">https://en.wikipedia.org/w/index.php?title=Hadean&amp;oldid=1055869915</a></p>\n",
+            "end": "4000mya"
+        },
+        {
+            "name": "Archean Eon",
+            "category": "geologic timescale",
+            "subCategory": "eon",
+            "start": "4000mya",
+            "summary": "<p>The Archean Eon (also spelled Archaean or Archæan) is the second of four geologic eons of Earth&apos;s history, representing the time from 4,000 to 2,500 million years ago. In this time, the Earth&apos;s crust had cooled enough for continents to form and for the earliest known life to start. Life was simple throughout the Archean, mostly represented by shallow-water microbial mats called stromatolites, and the atmosphere lacked free oxygen.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 21). Archean. In Wikipedia, The Free Encyclopedia. Retrieved 15:40, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Archean&amp;oldid=1061324183\">https://en.wikipedia.org/w/index.php?title=Archean&amp;oldid=1061324183</a></p>\n",
+            "end": "2500mya"
+        },
+        {
+            "name": "Proterozoic Eon",
+            "category": "geologic timescale",
+            "subCategory": "eon",
+            "start": "2500mya",
+            "summary": "<p>The Proterozoic is a geological eon spanning the time interval from 2500 to 541 million years ago. It is the most recent part of the Precambrian &quot;supereon.&quot; It is also the longest eon of the Earth&apos;s geologic time scale, and it is subdivided into three geologic eras (from oldest to youngest): the Paleoproterozoic, Mesoproterozoic, and Neoproterozoic.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 8). Proterozoic. In Wikipedia, The Free Encyclopedia. Retrieved 09:45, December 6, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Proterozoic&amp;oldid=1054150443\">https://en.wikipedia.org/w/index.php?title=Proterozoic&amp;oldid=1054150443</a></p>\n",
+            "end": "541mya"
+        },
+        {
+            "name": "Phanerozoic Eon",
+            "category": "geologic timescale",
+            "subCategory": "eon",
+            "start": "541mya",
+            "summary": "<p>The Phanerozoic Eon is the current geologic eon in the geologic time scale, and the one during which abundant animal and plant life has existed. It covers 541 million years to the present, and it began with the Cambrian Period when animals first developed hard shells preserved in the fossil record. The time before the Phanerozoic, called the Precambrian, is now divided into the Hadean, Archaean and Proterozoic eons.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, October 17). Phanerozoic. In Wikipedia, The Free Encyclopedia. Retrieved 09:23, December 6, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Phanerozoic&amp;oldid=1050377580\">https://en.wikipedia.org/w/index.php?title=Phanerozoic&amp;oldid=1050377580</a></p>\n",
+            "end": "-"
+        },
+        {
+            "name": "Eoarchean Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "4000mya",
+            "summary": "<p>The Eoarchean (also spelled Eoarchaean) is the first era of the Archean Eon of the geologic record for which the Earth has a solid crust.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 10). Eoarchean. In Wikipedia, The Free Encyclopedia. Retrieved 07:26, December 13, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Eoarchean&amp;oldid=1054468622\">https://en.wikipedia.org/w/index.php?title=Eoarchean&amp;oldid=1054468622</a></p>\n",
+            "end": "3600mya"
+        },
+        {
+            "name": "Paleoarchean Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "3600mya",
+            "summary": "<p>The Paleoarchean, also spelled Palaeoarchaean (formerly known as early Archean), is a geologic era within the Archaean Eon. The name derives from Greek &quot;Palaios&quot; ancient. The era is defined chronometrically and is not referenced to a specific level of a rock section on Earth. The earliest confirmed evidence of life comes from this era, and Vaalbara, one of Earth&#39;s earliest supercontinents, may have formed during this era.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 12). Paleoarchean. In Wikipedia, The Free Encyclopedia. Retrieved 15:41, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Paleoarchean&amp;oldid=1059945369\">https://en.wikipedia.org/w/index.php?title=Paleoarchean&amp;oldid=1059945369</a></p>\n",
+            "end": "3200mya"
+        },
+        {
+            "name": "Mesoarchean Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "3200mya",
+            "summary": "<p>The Mesoarchean also spelled Mesoarchaean) is a geologic era in the Archean Eon, which contains the first evidence of modern-style plate subduction and expansion of microbial life. The era is defined chronometrically and is not referenced to a specific level in a rock section on Earth.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 30). Mesoarchean. In Wikipedia, The Free Encyclopedia. Retrieved 15:42, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Mesoarchean&amp;oldid=1057864079\">https://en.wikipedia.org/w/index.php?title=Mesoarchean&amp;oldid=1057864079</a></p>\n",
+            "end": "2800mya"
+        },
+        {
+            "name": "Neoarchean Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "2800mya",
+            "summary": "<p>The Neoarchean (also spelled Neoarchaean) is the last geologic era in the Archean eon — the period being defined chronometrically and not referencing a specific level in a rock section on Earth. The era is marked by major developments in complex life and continental formation.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 15). Neoarchean. In Wikipedia, The Free Encyclopedia. Retrieved 15:44, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Neoarchean&amp;oldid=1060405740\">https://en.wikipedia.org/w/index.php?title=Neoarchean&amp;oldid=1060405740</a></p>\n",
+            "end": "2500mya"
+        },
+        {
+            "name": "Paleoproterozoic Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "2500mya",
+            "summary": "<p>The Paleoproterozoic Era (also spelled Palaeoproterozoic), is the first of the three sub-divisions (eras) of the Proterozoic Eon. The Paleoproterozoic is also the longest era of the Earth&#39;s geological history. It was during this era that the continents first stabilized.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 20). Paleoproterozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:45, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Paleoproterozoic&amp;oldid=1056297996\">https://en.wikipedia.org/w/index.php?title=Paleoproterozoic&amp;oldid=1056297996</a></p>\n",
+            "end": "1600mya"
+        },
+        {
+            "name": "Mesoproterozoic Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "1600mya",
+            "summary": "<p>The Mesoproterozoic was the first era of Earth&#39;s history for which a fairly definitive geological record survives. Continents existed during the preceding era (the Paleoproterozoic), but little is known about them. The continental masses of the Mesoproterozoic were more or less the same ones that exist today.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, October 1). Mesoproterozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:46, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Mesoproterozoic&amp;oldid=1047491864\">https://en.wikipedia.org/w/index.php?title=Mesoproterozoic&amp;oldid=1047491864</a></p>\n",
+            "end": "1000mya"
+        },
+        {
+            "name": "Neoproterozoic Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "1000mya",
+            "summary": "<p>It is the last era of the Precambrian Supereon and the Proterozoic Eon; it is subdivided into the Tonian, Cryogenian, and Ediacaran Periods. It is preceded by the Mesoproterozoic Era and succeeded by the Paleozoic Era of the Phanerozoic Eon.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 18). Neoproterozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:47, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Neoproterozoic&amp;oldid=1060877252\">https://en.wikipedia.org/w/index.php?title=Neoproterozoic&amp;oldid=1060877252</a></p>\n",
+            "end": "541mya"
+        },
+        {
+            "name": "Paleozoic Era ",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "541mya",
+            "summary": "<p>The Paleozoic (or Palaeozoic) Era ( from the Greek palaiós (παλαιός), &quot;old&quot; and zōḗ (ζωή), &quot;life&quot;, meaning &quot;ancient life&quot;) is the earliest of three geologic eras of the Phanerozoic Eon. It is the longest of the Phanerozoic eras and is subdivided into six geologic periods.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 14). Paleozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:49, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Paleozoic&amp;oldid=1060296427\">https://en.wikipedia.org/w/index.php?title=Paleozoic&amp;oldid=1060296427</a></p>\n",
+            "end": "252.17mya"
+        },
+        {
+            "name": "Mesozoic Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "252.17mya",
+            "summary": "<p>The Mesozoic Era, also called the Age of Reptiles and the Age of Conifers, is the second-to-last era of Earth&#39;s geological history. It is characterized by the dominance of archosaurian reptiles, like the dinosaurs; an abundance of conifers and ferns; a hot greenhouse climate; and the tectonic break-up of Pangaea. The Mesozoic is the middle of three eras since complex life evolved: the Paleozoic, the Mesozoic, and the Cenozoic.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 15). Mesozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:50, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Mesozoic&amp;oldid=1060451012\">https://en.wikipedia.org/w/index.php?title=Mesozoic&amp;oldid=1060451012</a></p>\n",
+            "end": "66mya"
+        },
+        {
+            "name": "Cenozoic Era",
+            "category": "geologic timescale",
+            "subCategory": "era",
+            "start": "66mya",
+            "summary": "<p>The Cenozoic (lit. &#39;new life&#39;) is Earth&#39;s current geological era, representing the last 66 million years of Earth&#39;s history. It is characterized by the dominance of mammals, birds and flowering plants, a cooling and drying climate, and the current configuration of continents. It is the latest of three geological eras since complex life evolved, preceded by the Mesozoic and Paleozoic. It started with the Cretaceous–Paleogene extinction event, when many species, including the non-avian dinosaurs, became extinct in an event attributed by most experts to the impact of a large asteroid or other celestial body, the Chicxulub impactor.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 23). Cenozoic. In Wikipedia, The Free Encyclopedia. Retrieved 15:52, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Cenozoic&amp;oldid=1056810633\">https://en.wikipedia.org/w/index.php?title=Cenozoic&amp;oldid=1056810633</a></p>\n",
+            "end": "-"
+        },
+        {
+            "name": "Siderian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "2500mya",
+            "summary": "<p>The Siderian Period (Ancient Greek: σίδηρος, romanized: sídēros, meaning &quot;iron&quot;) is the first geologic period in the Paleoproterozoic Era.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, September 19). Siderian. In Wikipedia, The Free Encyclopedia. Retrieved 15:54, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Siderian&amp;oldid=1045136086\">https://en.wikipedia.org/w/index.php?title=Siderian&amp;oldid=1045136086</a></p>\n",
+            "end": "2300mya"
+        },
+        {
+            "name": "Rhyacian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "2300mya",
+            "summary": "<p>The Rhyacian Period (Ancient Greek: ῥύαξ, romanized: rhýax, meaning &quot;stream of lava&quot;) is the second geologic period in the Paleoproterozoic Era.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 11). Rhyacian. In Wikipedia, The Free Encyclopedia. Retrieved 15:55, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Rhyacian&amp;oldid=1054634750\">https://en.wikipedia.org/w/index.php?title=Rhyacian&amp;oldid=1054634750</a></p>\n",
+            "end": "2050mya"
+        },
+        {
+            "name": "Orosirian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "2050mya",
+            "summary": "<p>The Orosirian Period (Ancient Greek: ὀροσειρά, romanized: oroseirá, meaning &quot;mountain range&quot;) is the third geologic period in the Paleoproterozoic Era.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, July 15). Orosirian. In Wikipedia, The Free Encyclopedia. Retrieved 15:55, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Orosirian&amp;oldid=1033697610\">https://en.wikipedia.org/w/index.php?title=Orosirian&amp;oldid=1033697610</a></p>\n",
+            "end": "1800mya"
+        },
+        {
+            "name": "Statherian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "1800mya",
+            "summary": "<p>The Statherian Period ( Ancient Greek: σταθερός, romanized: statherós, meaning &quot;stable, firm&quot;) is the final geologic period in the Paleoproterozoic Era.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, July 15). Statherian. In Wikipedia, The Free Encyclopedia. Retrieved 15:56, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Statherian&amp;oldid=1033697673\">https://en.wikipedia.org/w/index.php?title=Statherian&amp;oldid=1033697673</a></p>\n",
+            "end": "1600mya"
+        },
+        {
+            "name": "Calymmian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "1600mya",
+            "summary": "<p>The Calymmian Period (from Ancient Greek: κάλυμμα, romanized: kálymma, meaning &quot;cover&quot;) is the first geologic period in the Mesoproterozoic Era.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, July 15). Calymmian. In Wikipedia, The Free Encyclopedia. Retrieved 15:57, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Calymmian&amp;oldid=1033697741\">https://en.wikipedia.org/w/index.php?title=Calymmian&amp;oldid=1033697741</a></p>\n",
+            "end": "1400mya"
+        },
+        {
+            "name": "Ectasian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "1400mya",
+            "summary": "<p>The Ectasian Period (from Ancient Greek: ἔκτασις, romanized: éktasis, meaning &quot;extension&quot;) is the second geologic period in the Mesoproterozoic Era.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, July 15). Ectasian. In Wikipedia, The Free Encyclopedia. Retrieved 15:57, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Ectasian&amp;oldid=1033697788\">https://en.wikipedia.org/w/index.php?title=Ectasian&amp;oldid=1033697788</a></p>\n",
+            "end": "1200mya"
+        },
+        {
+            "name": "Stenian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "1200mya",
+            "summary": "<p>The Stenian Period (from Ancient Greek: στενός, romanized: stenós, meaning &quot;narrow&quot;) is the final geologic period in the Mesoproterozoic Era. The name derives from narrow polymetamorphic belts formed over this period.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, October 5). Stenian. In Wikipedia, The Free Encyclopedia. Retrieved 15:58, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Stenian&amp;oldid=1048394729\">https://en.wikipedia.org/w/index.php?title=Stenian&amp;oldid=1048394729</a></p>\n",
+            "end": "1000mya"
+        },
+        {
+            "name": "Tonian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "1000mya",
+            "summary": "<p>The Tonian (from Ancient Greek: τόνος, romanized: tónos, meaning &quot;stretch&quot;) is the first geologic period of the Neoproterozoic Era.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 19). Tonian. In Wikipedia, The Free Encyclopedia. Retrieved 15:59, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Tonian&amp;oldid=1061088739\">https://en.wikipedia.org/w/index.php?title=Tonian&amp;oldid=1061088739</a></p>\n",
+            "end": "720mya"
+        },
+        {
+            "name": "Cryogenian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "720mya",
+            "summary": "<p>The Cryogenian (from Ancient Greek: κρύος, romanized: krýos, meaning &quot;cold&quot; and γένεσις, romanized: génesis, meaning &quot;birth&quot;) is a geologic period.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 11). Cryogenian. In Wikipedia, The Free Encyclopedia. Retrieved 15:59, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Cryogenian&amp;oldid=1054716842\">https://en.wikipedia.org/w/index.php?title=Cryogenian&amp;oldid=1054716842</a></p>\n",
+            "end": "635mya"
+        },
+        {
+            "name": "Ediacaran Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "635mya",
+            "summary": "<p>The Ediacaran Period is a geological period that spans 94 million years. It is named after the Ediacara Hills of South Australia.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 12). Ediacaran. In Wikipedia, The Free Encyclopedia. Retrieved 16:00, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Ediacaran&amp;oldid=1054847035\">https://en.wikipedia.org/w/index.php?title=Ediacaran&amp;oldid=1054847035</a></p>\n",
+            "end": "541mya"
+        },
+        {
+            "name": "Cambrian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "541mya",
+            "summary": "<p>The Cambrian Period (sometimes symbolized Ꞓ) was the first geological period of the Paleozoic Era, and of the Phanerozoic Eon. The Cambrian lasted 55.6 million years. Its subdivisions, and its base, are somewhat in flux. The period was established as &quot;Cambrian series&quot; by Adam Sedgwick, who named it after Cambria, the Latin name for &#39;Cymru&#39; (Wales), where Britain&#39;s Cambrian rocks are best exposed. Sedgwick identified the layer as part of his task, along with Roderick Murchison, to subdivide the large &quot;Transition Series&quot;, although the two geologists disagreed for a while on the appropriate categorization. The Cambrian is unique in its unusually high proportion of lagerstätte sedimentary deposits, sites of exceptional preservation where &quot;soft&quot; parts of organisms are preserved as well as their more resistant shells. As a result, our understanding of the Cambrian biology surpasses that of some later periods.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 20). Cambrian. In Wikipedia, The Free Encyclopedia. Retrieved 16:01, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Cambrian&amp;oldid=1061302135\">https://en.wikipedia.org/w/index.php?title=Cambrian&amp;oldid=1061302135</a></p>\n",
+            "end": "485.4mya"
+        },
+        {
+            "name": "Ordovician Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "485.4mya",
+            "summary": "<p>The Ordovician is a geologic period and system, the second of six periods of the Paleozoic Era.</p>\n<p>The Ordovician, named after the Welsh tribe of the Ordovices, was defined by Charles Lapworth in 1879 to resolve a dispute between followers of Adam Sedgwick and Roderick Murchison, who were placing the same rock beds in North Wales in the Cambrian and Silurian systems, respectively. Lapworth recognized that the fossil fauna in the disputed strata were different from those of either the Cambrian or the Silurian systems, and placed them in a system of their own. The Ordovician received international approval in 1960 (forty years after Lapworth&#39;s death), when it was adopted as an official period of the Paleozoic Era by the International Geological Congress.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 12). Ordovician. In Wikipedia, The Free Encyclopedia. Retrieved 16:02, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Ordovician&amp;oldid=1059983847\">https://en.wikipedia.org/w/index.php?title=Ordovician&amp;oldid=1059983847</a></p>\n",
+            "end": "443.4mya"
+        },
+        {
+            "name": "Silurian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "443.4mya",
+            "summary": "<p>The Silurian is a geologic period and system spanning 24.6 million years. The Silurian is the shortest period of the Paleozoic Era. As with other geologic periods, the rock beds that define the period&#39;s start and end are well identified, but the exact dates are uncertain by a few million years. The base of the Silurian is set at a series of major Ordovician–Silurian extinction events when up to 60% of marine genera were wiped out.</p>\n<p>One important event in this period was the initial establishment of terrestrial life: vascular plants emerged from more primitive land plants, dikaryan fungi started expanding and diversifying along with glomeromycotan fungi, and 3 groups of arthropods (myriapods, arachnids and hexapods) became fully terrestrialized.</p>\n<p>A significant evolutionary milestone during the Silurian was the diversification of jawed fish and bony fish.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 21). Silurian. In Wikipedia, The Free Encyclopedia. Retrieved 16:03, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Silurian&amp;oldid=1061386046\">https://en.wikipedia.org/w/index.php?title=Silurian&amp;oldid=1061386046</a></p>\n",
+            "end": "419.2mya"
+        },
+        {
+            "name": "Devonian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "419.2mya",
+            "summary": "<p>The Devonian is a geologic period and system of the Paleozoic, spanning 60.3 million years. It is named after Devon, England, where rocks from this period were first studied.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 17). Devonian. In Wikipedia, The Free Encyclopedia. Retrieved 16:04, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Devonian&amp;oldid=1060812612\">https://en.wikipedia.org/w/index.php?title=Devonian&amp;oldid=1060812612</a></p>\n",
+            "end": "358.9mya"
+        },
+        {
+            "name": "Carboniferous Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "358.9mya",
+            "summary": "<p>The Carboniferous is a geologic period and system of the Paleozoic that spans 60 million years.. The name Carboniferous means &quot;coal-bearing&quot;, from the Latin carbō (&quot;coal&quot;) and ferō (&quot;I bear, I carry&quot;), and refers to the many coal beds formed globally during that time.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 22). Carboniferous. In Wikipedia, The Free Encyclopedia. Retrieved 16:06, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Carboniferous&amp;oldid=1061527351\">https://en.wikipedia.org/w/index.php?title=Carboniferous&amp;oldid=1061527351</a></p>\n",
+            "end": "298.9mya"
+        },
+        {
+            "name": "Permian Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "298.9mya",
+            "summary": "<p>The Permian is a geologic period and stratigraphic system which spans 47 million years. The concept of the Permian was introduced in 1841 by geologist Sir Roderick Murchison, who named it after the region of Perm in Russia.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 18). Permian. In Wikipedia, The Free Encyclopedia. Retrieved 16:06, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Permian&amp;oldid=1060847367\">https://en.wikipedia.org/w/index.php?title=Permian&amp;oldid=1060847367</a></p>\n",
+            "end": "252.17mya"
+        },
+        {
+            "name": "Triassic Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "252.17mya",
+            "summary": "<p>The Triassic is a geologic period and system which spans 50.6 million years. The Triassic is the first and shortest period of the Mesozoic Era. Both the start and end of the period are marked by major extinction events. The Triassic Period is subdivided into three epochs: Early Triassic, Middle Triassic and Late Triassic.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 14). Triassic. In Wikipedia, The Free Encyclopedia. Retrieved 16:07, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Triassic&amp;oldid=1060290761\">https://en.wikipedia.org/w/index.php?title=Triassic&amp;oldid=1060290761</a></p>\n",
+            "end": "201.3mya"
+        },
+        {
+            "name": "Jurassic Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "201.3mya",
+            "summary": "<p>The Jurassic (/dʒʊˈræs.sɪk/ juu-RASS-ik) is a geologic period and stratigraphic system that spanned from the end of the Triassic Period 201.3 million years ago (Mya) to the beginning of the Cretaceous Period, approximately 145 Mya. The Jurassic constitutes the middle period of the Mesozoic Era and is named after the Jura Mountains, where limestone strata from the period were first identified.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 20). Jurassic. In Wikipedia, The Free Encyclopedia. Retrieved 16:08, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Jurassic&amp;oldid=1061199475\">https://en.wikipedia.org/w/index.php?title=Jurassic&amp;oldid=1061199475</a></p>\n",
+            "end": "145mya"
+        },
+        {
+            "name": "Cretaceous Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "145mya",
+            "summary": "<p>The Cretaceous is a geological period that lasted from about 145 to 66 million years ago (Mya). It is the third and final period of the Mesozoic Era, as well as the longest. At around 79 million years, it is the longest geological period of the entire Phanerozoic. The name is derived from the Latin creta, &quot;chalk&quot;, which is abundant in the latter half of the period. It is usually abbreviated K, for its German translation Kreide.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 13). Cretaceous. In Wikipedia, The Free Encyclopedia. Retrieved 16:09, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Cretaceous&amp;oldid=1060077373\">https://en.wikipedia.org/w/index.php?title=Cretaceous&amp;oldid=1060077373</a></p>\n",
+            "end": "66mya"
+        },
+        {
+            "name": "Paleogene Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "66mya",
+            "summary": "<p>The Paleogene (also spelled Palaeogene or Palæogene; informally Lower Tertiary or Early Tertiary) is a geologic period and system that spans 43 million years. It is the beginning of the Cenozoic Era of the present Phanerozoic Eon. The earlier term Tertiary Period was used to define the span of time now covered by the Paleogene and subsequent Neogene Periods; despite no longer being recognised as a formal stratigraphic term, &#39;Tertiary&#39; is still widely found in earth science literature and remains in informal use. The Paleogene is most notable for being the time during which mammals diversified from relatively small, simple forms into a large group of diverse animals in the wake of the Cretaceous–Paleogene extinction event that ended the preceding Cretaceous Period. The United States Geological Survey uses the abbreviation PE for the Paleogene, but the more commonly used abbreviation is PG with PE being used for Paleocene, an epoch within the Paleogene.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 11). Paleogene. In Wikipedia, The Free Encyclopedia. Retrieved 16:09, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Paleogene&amp;oldid=1054676283\">https://en.wikipedia.org/w/index.php?title=Paleogene&amp;oldid=1054676283</a></p>\n",
+            "end": "23.03mya"
+        },
+        {
+            "name": "Neogene Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "23.03mya",
+            "summary": "<p>The Neogene (informally Upper Tertiary or Late Tertiary) is a geologic period and system that spans 20.45 million years. The Neogene is sub-divided into two epochs, the earlier Miocene and the later Pliocene. Some geologists assert that the Neogene cannot be clearly delineated from the modern geological period, the Quaternary. The term &quot;Neogene&quot; was coined in 1853 by the Austrian palaeontologist Moritz Hörnes (1815–1868).</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, December 6). Neogene. In Wikipedia, The Free Encyclopedia. Retrieved 16:11, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Neogene&amp;oldid=1058993331\">https://en.wikipedia.org/w/index.php?title=Neogene&amp;oldid=1058993331</a></p>\n",
+            "end": "2.588mya"
+        },
+        {
+            "name": "Quaternary Period",
+            "category": "geologic timescale",
+            "subCategory": "period",
+            "start": "2.588mya",
+            "summary": "<p>The Quaternary is the current and most recent of the three periods of the Cenozoic Era in the geologic time scale of the International Commission on Stratigraphy (ICS). It follows the Neogene Period and spans from 2.588 ± 0.005 million years ago to the present. The Quaternary Period is divided into two epochs: the Pleistocene (2.588 million years ago to 11.7 thousand years ago) and the Holocene (11.7 thousand years ago to today, although a third epoch, the Anthropocene, has been proposed but is not yet officially recognized by the ICS). The informal term &quot;Late Quaternary&quot; refers to the past 0.5–1.0 million years.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2021, November 27). Quaternary. In Wikipedia, The Free Encyclopedia. Retrieved 16:11, December 22, 2021, from <a href=\"https://en.wikipedia.org/w/index.php?title=Quaternary&amp;oldid=1057421148\">https://en.wikipedia.org/w/index.php?title=Quaternary&amp;oldid=1057421148</a></p>\n",
+            "end": "-"
+        },
+        {
+            "name": "Human evolution",
+            "category": "geologic timescale",
+            "subCategory": "evolution",
+            "start": "65mya",
+            "summary": "<p>This period begins with the evolution of primates, human divergence and the appearance of australopithecus.</p>\n<p>The earliest documented representative of the genus Homo is Homo habilis, which evolved around 2.8 million years ago, and is arguably the earliest species for which there is positive evidence of the use of stone tools. The brains of these early hominins were about the same size as that of a chimpanzee, although it has been suggested that this was the time in which the human SRGAP2 gene doubled, producing a more rapid wiring of the frontal cortex. During the next million years a process of rapid encephalization occurred, and with the arrival of Homo erectus and Homo ergaster in the fossil record, cranial capacity had doubled to 850 cm3. (Such an increase in human brain size is equivalent to each generation having 125,000 more neurons than their parents.) It is believed that Homo erectus and Homo ergaster were the first to use fire and complex tools, and were the first of the hominin line to leave Africa, spreading throughout Africa, Asia, and Europe between 1.3 to 1.8 million years ago.</p>\n",
+            "citations": "<p>Wikipedia contributors. (2022, January 4). Human evolution. In Wikipedia, The Free Encyclopedia. Retrieved 15:37, January 10, 2022, from <a href=\"https://en.wikipedia.org/w/index.php?title=Human_evolution&amp;oldid=1063770824\">https://en.wikipedia.org/w/index.php?title=Human_evolution&amp;oldid=1063770824</a></p>\n",
+            "end": "-"
+        }
+    ],
+    "series": []
+}

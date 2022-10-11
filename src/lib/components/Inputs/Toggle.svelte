@@ -10,17 +10,32 @@
     export let options = ["Off", "On"]
     export let value = false
     export let disabled = false
+
+    // Must have a unique name for each toggle as otherwise multiple
+    // checkboxes in different instances of the component could
+    // interfere
+    const uniqueName = name + "-" + random_string()
+
+    function random_string(length = 8) {
+        const chars =
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let result = ""
+        for (let i = 0; i < length; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length))
+        }
+        return result
+    }
 </script>
 
 <!-- <p>Value = {value}</p> -->
 
-<label for={name} class:mobile={$mobile}>
+<label for={uniqueName} class:mobile={$mobile}>
     <span class="label">{label}</span>
 
     <input
         type="checkbox"
-        {name}
-        id={name}
+        name={uniqueName}
+        id={uniqueName}
         bind:checked={value}
         {disabled}
         on:change={() => dispatch("changed")}

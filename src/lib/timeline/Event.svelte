@@ -19,10 +19,10 @@
     $: if (event) props = getProps()
 
     // If sorting selecting just need top coordinate
-    $: props.top = getTop(options.sort)
+    // $: props.top = getTop(options.sort)
 
     // If filtering get the new colours
-    $: props.colour = getColour(options.filter)
+    //$: props.colour = getColour(options.filter)
 
     // Catch event being selected
     $: selected =
@@ -36,6 +36,7 @@
     }
 
     function getProps() {
+        // console.log("Getting props for", event.name)
         if (!event || options.xRange.scale === 0)
             return { top: 0, left: 0, right: 0, width: 0 }
         const colour = getColour(options.filter)
@@ -107,6 +108,7 @@
                 return "var(--tl-not-filtered)"
             } else if (options?.filterType === "sub-category") {
                 if (event.subCategory == options.filter) {
+                    console.log("returning sub-category colour")
                     return event.subCategoryColour
                 }
                 return "var(--tl-not-filtered)"

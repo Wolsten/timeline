@@ -5,8 +5,6 @@
     import TextSearch from "../components/Inputs/TextSearch.svelte"
     import Toggle from "../components/Inputs/Toggle.svelte"
 
-    // export let categoriesLength
-    // export let subCategoriesLength
     export let xRange // Full dataset xRange (not potential options.xRange subset)
     export let rawSeriesLength
     export let groupedSeriesLength
@@ -18,6 +16,7 @@
     let sort = false
     let search = ""
     let disabled = false
+    let optionsEvent = "optionsChanged"
 
     $: sort = options.sort == "category"
 
@@ -38,11 +37,13 @@
                 name="symbols"
                 label="Symbols"
                 bind:value={options.symbols}
-                on:changed={() =>
+                on:changed={() => {
+                    console.log("Toggled symbols")
                     dispatch("optionsChanged", {
                         name: "symbols",
                         data: options.symbols,
-                    })}
+                    })
+                }}
             />
         {/if}
 
@@ -66,9 +67,9 @@
             name="category"
             label="Sort by"
             options={["date", "category"]}
-            bind:value={sort}
+            value={sort}
             on:changed={() => {
-                dispatch("optionsChanged", {
+                dispatch(optionsEvent, {
                     name: "sort",
                     data: sort ? "date" : "category",
                 })

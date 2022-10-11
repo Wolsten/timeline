@@ -2,9 +2,7 @@
     import { fade } from "svelte/transition"
 
     import Utils from "../Utils.js"
-    import TimelineDate from "../classes/TimelineDate.js"
-    import { ER_SP_LABEL_MISMATCH } from "mysql/lib/protocol/constants/errors.js"
-    import { tick } from "svelte"
+    // import TimelineDate from "../classes/TimelineDate.js"
 
     export let xAxis
     export let viewportWidth

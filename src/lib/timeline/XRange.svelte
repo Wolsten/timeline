@@ -2,6 +2,7 @@
     import { createEventDispatcher } from "svelte"
 
     import MinMaxRangeSlider from "../components/Inputs/MinMaxRangeSlider.svelte"
+    import MinMaxSliderButton from "../components/Inputs/MinMaxSliderButton.svelte"
     import Utils from "../Utils.js"
 
     export let drawingWidth
@@ -52,13 +53,11 @@
     function handleRange(event) {
         const name = event.detail.type == "min" ? "start" : "end"
         const data = oAxis.values[event.detail.index]
-
         if (name == "start") {
             startIndex = event.detail.index
         } else {
             endIndex = event.detail.index
         }
-
         dispatch("optionsChanged", { name, data })
     }
 </script>

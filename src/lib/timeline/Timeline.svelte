@@ -76,7 +76,6 @@
 
     function handleOptions(event) {
         const eventData = event.detail.data
-        // console.log('Options changed',detail)
         switch (event.detail.name) {
             case "selectedPoint":
                 options.selectedPoint = eventData
@@ -304,8 +303,10 @@
     {/if}
 
     <Legend
+        events={filteredEvents}
         series={filteredSeries}
         {groupedSeriesLength}
+        categories={dataset.categories}
         subCategories={dataset.subCategories}
         {options}
         on:optionsChanged={handleOptions}
