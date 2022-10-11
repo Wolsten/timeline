@@ -8,6 +8,7 @@ class TimelineSeries {
     legend = ''
     category = ''
     subCategory = ''
+    citations = ''
     summary = ''
     colour = ''
     min = 0
@@ -20,6 +21,7 @@ class TimelineSeries {
         this.sIndex = sIndex
         this.name = rawEntry.name
         this.legend = rawEntry.legend
+        this.citations = rawEntry.citations
         this.category = rawEntry.category
         this.subCategory = rawEntry.subCategory
         this.summary = rawEntry.summary
