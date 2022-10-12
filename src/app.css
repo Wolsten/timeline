@@ -104,6 +104,10 @@
   color: var(--tl-colour-font);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 time-line {
   display: block;
   width: 100%;

@@ -10,6 +10,9 @@
     // console.warn("options.xRange", options.xRange)
 
     const MIN_HEIGHT = 100
+    const MAX_HEIGHT = options.maxEventsHeight
+        ? options.maxEventsHeight
+        : "none"
     const EVENT_HEIGHT = 23
 
     const margin = {
@@ -27,20 +30,28 @@
 </script>
 
 {#if viewportWidth}
-    <svg
-        class="events"
-        width={viewportWidth}
-        height={eventsHeight(events.length)}
-    >
-        {#each events as event}
-            <Event
-                {event}
-                {margin}
-                height={EVENT_HEIGHT}
-                {viewportWidth}
-                {options}
-                on:optionsChanged
-            />
-        {/each}
-    </svg>
+    <div class="events-holder" style="max-height:{MAX_HEIGHT};">
+        <svg
+            class="events"
+            width={viewportWidth}
+            height={eventsHeight(events.length)}
+        >
+            {#each events as event}
+                <Event
+                    {event}
+                    {margin}
+                    height={EVENT_HEIGHT}
+                    {viewportWidth}
+                    {options}
+                    on:optionsChanged
+                />
+            {/each}
+        </svg>
+    </div>
 {/if}
+
+<style>
+    div {
+        overflow-y: scroll;
+    }
+</style>

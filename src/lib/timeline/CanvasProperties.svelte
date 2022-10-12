@@ -9,7 +9,7 @@
     export let options
     export let viewportWidth
 
-    console.log("series", series)
+    // console.log("series", series)
     // $: console.error("CanvasProperties: viewportWidth", viewportWidth)
 
     const dispatch = createEventDispatcher()

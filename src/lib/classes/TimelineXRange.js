@@ -43,29 +43,11 @@ class TimelineXRange {
 
     setRangeYears() {
         this.range = Math.abs(this.end.year - this.start.year)
-        // this.scaledRange = this.range
     }
 
 
     setRange() {
         this.range = Math.abs(this.end.decimal - this.start.decimal)
-        // if (this.range < 0.2) {
-        //     this.units = 'weeks'
-        // } else if (this.range < 0.5) {
-        //     this.units = 'months'
-        // } else if (this.range < 2.5) {
-        //     this.units = 'quarters'
-        // } else if (this.range < 15) {
-        //     this.units = 'years'
-        // } else if (this.range < 100) {
-        //     this.units = 'decades'
-        // } else if (this.range < 1000) {
-        //     this.units = 'thousands'
-        // } else if (this.range < 1000000) {
-        //     this.units = 'millions'
-        // } else {
-        //     this.units = 'billions'
-        // }
     }
 
     dateInRange(date) {
@@ -74,9 +56,19 @@ class TimelineXRange {
     }
 
     eventInRange(event) {
+        // Starts or ends in range
+        if (this.dateInRange(event.start) || this.dateInRange(event.end)) return true
+        // Surrounds the range
+        const startedBefore = event.started() || event.start.before(this.start)
+        const endedAfter = event.continuing() || event.end.after(this.end)
+        if (startedBefore && endedAfter) return true
+        // Not in range
+        return false
         // Already started or starts in range AND continuing or ends in range
-        return (event.started() || this.dateInRange(event.start)) &&
-            (event.continuing() || this.dateInRange(event.end))
+        // OR starts before and ends after
+        // return ((event.started() || this.dateInRange(event.start)) &&
+        //     (event.continuing() || this.dateInRange(event.end))) ||
+        //     (event.start.before(this.start) && event.end.after(this.end))
     }
 
 

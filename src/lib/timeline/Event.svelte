@@ -108,7 +108,7 @@
                 return "var(--tl-not-filtered)"
             } else if (options?.filterType === "sub-category") {
                 if (event.subCategory == options.filter) {
-                    console.log("returning sub-category colour")
+                    // console.log("returning sub-category colour")
                     return event.subCategoryColour
                 }
                 return "var(--tl-not-filtered)"

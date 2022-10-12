@@ -19,13 +19,15 @@
     let value = currentIndex // Value is the decimal version of the index
     let checkReset = false
 
+    // console.log("labels", labels)
+
     onMount(() => {
         // Wait for the dom slider button to be loaded to update the left position accurately
         // setTimeout(updateLeft, 10)
     })
 
     afterUpdate(() => {
-        buttonWidth = boxWidth(holder, buttonWidth)
+        // buttonWidth = boxWidth(holder, buttonWidth)
     })
 
     // The size in pixels of each range interval
@@ -113,13 +115,26 @@
             // The dynamic position p is the left hand side
             // since user will typically grab in the middle.
             left = x - buttonWidth / 2
-            // Get new value correcting for the xOffset (see x above)
-            value = (xOffset + left) / interval
+            // Get new value
+            value = x / interval
             currentIndex = Math.round(value)
             if (currentIndex > labels.length - 1)
                 currentIndex = labels.length - 1
             if (currentIndex < 0) currentIndex = 0
-            // console.log("left, newValue, index => ", left, value, index)
+            // console.log(
+            //     "left",
+            //     left,
+            //     "value",
+            //     value,
+            //     "index",
+            //     currentIndex,
+            //     "xOffset",
+            //     xOffset,
+            //     "drawingWidth",
+            //     drawingWidth,
+            //     "interval",
+            //     interval
+            // )
         }
 
         const drop = function () {
@@ -129,7 +144,7 @@
             document.body.onmouseleave = null
             // Get final index, chacking again for limits in case drag was
             // interrupted, e.g. by going off screen
-            currentIndex = Math.floor(value)
+            currentIndex = Math.round(value)
             if (currentIndex > labels.length - 1)
                 currentIndex = labels.length - 1
             if (currentIndex < 0) currentIndex = 0

@@ -129,7 +129,8 @@ class TimelineDate {
     }
 
     before(date) {
-        if (this.value === '-' && date.value === '-') return true
+        // if (this.value === '-' && date.value === '-') return true
+        if (this.value === '-') return true
         if (this.decimal < date.decimal) return true
         return false
     }
@@ -158,9 +159,17 @@ class TimelineDate {
         if (magnitude < 10000) {
             return Utils.stringifyToPrecision(magnitude, 4) + (year < 0 ? 'bc' : '')
         }
-        // Otherwise millions
+        // Convert to millions
         magnitude = magnitude / 1000000
-        return Utils.stringifyToPrecision(magnitude, 2) + 'my' + (year < 0 ? 'a' : '')
+        // Millions if less than 100M?
+        if (magnitude < 100) {
+            if (magnitude > 1) return `${Math.round(magnitude)}my` + (year < 0 ? 'a' : '')
+            return Utils.stringifyToPrecision(magnitude, 1) + 'my' + (year < 0 ? 'a' : '')
+        }
+        // Convert to billions
+        magnitude = magnitude / 100
+        if (magnitude > 1) return `${Math.round(magnitude)}by` + (year < 0 ? 'a' : '')
+        return Utils.stringifyToPrecision(magnitude, 1) + 'by' + (year < 0 ? 'a' : '')
     }
 
     static getMonth(oneBasedNumber) {

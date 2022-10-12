@@ -146,10 +146,7 @@ class TimelineEvent extends Object {
             filtered = filtered.filter(event => options.categories.includes(event.category))
         }
         if (options.subCategories.length > 0) {
-            filtered = filtered.filter(event => options.subCategories.includes(event.category))
-        }
-        if (options.xRange.range > 0) {
-
+            filtered = filtered.filter(event => options.subCategories.includes(event.subCategory))
         }
         // Convert string start and end dates to objects
         let newEvents = []

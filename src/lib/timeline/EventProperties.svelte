@@ -54,7 +54,7 @@
     .properties {
         /* font-size: 1rem;
         line-height: 1.4rem; */
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         background: white;

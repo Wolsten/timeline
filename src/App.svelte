@@ -45,7 +45,7 @@
         // Process each one
         timelines.forEach((timeline) => {
             // Get custom data
-            const slug = timeline.getAttribute("data-slug")
+            const url = timeline.getAttribute("data-url")
             const dataSettings =
                 timeline.getAttribute("data-settings") !== null
                     ? timeline.getAttribute("data-settings")
@@ -55,7 +55,7 @@
             // console.log("timeline width", timeline.clientWidth)
 
             // Grab the data
-            fetch(slug)
+            fetch(url)
                 .then((response) => {
                     return response.json()
                 })

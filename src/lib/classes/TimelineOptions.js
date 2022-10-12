@@ -8,12 +8,12 @@ class TimelineOptions {
     symbols = false
     readonly = false
     group = false      // group by category or sub-category according to filter typ
-    categorise = false
     search = ''
     filter = ''
     filterType = ''
     title = ''
     sort = 'date'
+    maxEventsHeight = '' // can be set to any valid css value
     categories = []
     subCategories = []
     xRange = new TimelineXRange()
@@ -49,12 +49,6 @@ class TimelineOptions {
                     case 'group':
                         this.group = value ? true : false
                         break
-                    case 'categorise':
-                        if (value === 'true') this.categorise = true
-                        break;
-                    case 'logscale':
-                        if (value === 'true') this.logscale = true
-                        break
                     case 'search':
                         this.search = value
                         break
@@ -67,6 +61,9 @@ class TimelineOptions {
                     case 'sort':
                         this.sort = value
                         break
+                    case 'maxEventsHeight':
+                        this.maxEventsHeight = value
+                        break
                     case 'start':
                         // start = getDateParts(value)
                         start = value
@@ -76,11 +73,12 @@ class TimelineOptions {
                         end = value
                         break
                     case 'subCategories':
-                        const subCats = value.split('|')
-                        if (subCats.length > 0) {
-                            subCats.forEach(subCat => subCat.trim())
-                            this.subCats = subCats
+                        const subCategories = value.split('|')
+                        if (subCategories.length > 0) {
+                            subCategories.forEach(subCat => subCat.trim())
+                            this.subCategories = subCategories
                         }
+                        // console.log('subCategories', this.subCategories)
                         break;
                     case 'categories':
                         const cats = value.split('|')
@@ -88,6 +86,7 @@ class TimelineOptions {
                             cats.forEach(cat => cat.trim())
                             this.categories = cats
                         }
+                    // console.log('subCategories', this.categories)
                 }
             }
         })
@@ -95,6 +94,8 @@ class TimelineOptions {
         if (start && end) {
             this.xRange = new TimelineXRange(start, end)
         }
+
+        // console.log('options', this)
     }
 
     setFocus(dsXRange) {

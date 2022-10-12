@@ -231,6 +231,7 @@
         }
         data.xRange.setRange()
         // console.log("dataset", data)
+        // console.log("dataset xRange", data.xRange)
         // Check of we have an xRange from the user settings and if
         // not set to dataset range
         if (options.xRange.range === 0) {

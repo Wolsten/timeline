@@ -1,1 +1,893 @@
-{"slug":"modern-democracy-in-great-britain","name":"Modern democracy in Great Britain","summary":"A history of the modern monarchy and prime ministers since the political union of England and Scotland in 1707","categories":[{"name":"monarchs","colour":"rgb(112,48,160)"},{"name":"prime ministers","colour":"rgb(84,130,53)"}],"subCategories":[{"category":"monarchs","name":"stuart","colour":""},{"category":"monarchs","name":"hanover","colour":""},{"category":"monarchs","name":"saxe-coburg and gotha","colour":""},{"category":"monarchs","name":"saxe-coburg and gotha to windsor","colour":""},{"category":"monarchs","name":"windsor","colour":""},{"category":"prime ministers","name":"whig","colour":"rgb(237,125,49)"},{"category":"prime ministers","name":"tory","colour":"rgb(0,32,96)"},{"category":"prime ministers","name":"conservative","colour":"rgb(101,169,232)"},{"category":"prime ministers","name":"peelite","colour":"rgb(198,224,180)"},{"category":"prime ministers","name":"liberal","colour":"rgb(255,217,102)"},{"category":"prime ministers","name":"labour","colour":"rgb(255,0,0)"}],"events":[{"name":"Ann","category":"monarchs","subCategory":"stuart","start":"1707-05-01","summary":"<p>Anne (6 February 1665 – 1 August 1714) reigned as Queen of England, Scotland and Ireland from 8 March 1702 until 1 May 1707. On 1 May 1707, under the Acts of Union, the kingdoms of England and Scotland united as a single sovereign state known as Great Britain. Anne continued to reign as Queen of Great Britain and Ireland until her death in 1714.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Anne,_Queen_of_Great_Britain\">https://en.wikipedia.org/wiki/Anne,_Queen_of_Great_Britain</a></p>\n","end":"1714-08-01"},{"name":"George I","category":"monarchs","subCategory":"hanover","start":"1714-08-01","summary":"<p>George I (George Louis; German: Georg Ludwig; 28 May 1660 – 11 June 1727) was King of Great Britain and Ireland from 1 August 1714 and ruler of the Electorate of Hanover within the Holy Roman Empire from 23 January 1698 until his death in 1727. He was the first British monarch of the House of Hanover.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_I_of_Great_Britain\">https://en.wikipedia.org/wiki/George_I_of_Great_Britain</a></p>\n","end":"1727-06-11"},{"name":"George II","category":"monarchs","subCategory":"hanover","start":"1727-06-11","summary":"<p>George II (George Augustus; German: Georg August; 30 October / 9 November 1683 O.S./N.S. – 25 October 1760) was King of Great Britain and Ireland, Duke of Brunswick-Lüneburg (Hanover) and a prince-elector of the Holy Roman Empire from 11 June 1727 (O.S.) until his death in 1760.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_II_of_Great_Britain\">https://en.wikipedia.org/wiki/George_II_of_Great_Britain</a></p>\n","end":"1760-10-25"},{"name":"George III","category":"monarchs","subCategory":"hanover","start":"1760-10-25","summary":"<p>George III (George William Frederick; 4 June 1738[c] – 29 January 1820) was King of Great Britain and of Ireland from 25 October 1760 until the union of the two kingdoms on 1 January 1801, after which he was King of the United Kingdom of Great Britain and Ireland until his death in 1820, making him the longest reigning king in British history. He was concurrently Duke and Prince-elector of Brunswick-Lüneburg (&quot;Hanover&quot;) in the Holy Roman Empire before becoming King of Hanover on 12 October 1814. He was a monarch of the House of Hanover but, unlike his two predecessors, he was born in Great Britain, spoke English as his first language and never visited Hanover.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_III\">https://en.wikipedia.org/wiki/George_III</a></p>\n","end":"1820-01-29"},{"name":"George IV","category":"monarchs","subCategory":"hanover","start":"1820-01-29","summary":"<p>George IV (George Augustus Frederick; 12 August 1762 – 26 June 1830) was King of the United Kingdom of Great Britain and Ireland and King of Hanover from the death of his father, King George III, on 29 January 1820, until his own death ten years later. At the time of his accession to the throne, he was acting as Prince Regent, having done so since 5 February 1811, during his father&#39;s final mental illness.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_IV\">https://en.wikipedia.org/wiki/George_IV</a></p>\n","end":"1830-06-26"},{"name":"William IV","category":"monarchs","subCategory":"hanover","start":"1830-06-26","summary":"<p>William IV (William Henry; 21 August 1765 – 20 June 1837) was King of the United Kingdom of Great Britain and Ireland and King of Hanover from 26 June 1830 until his death in 1837. The third son of George III, William succeeded his elder brother George IV, becoming the last king and penultimate monarch of Britain&#39;s House of Hanover.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_IV\">https://en.wikipedia.org/wiki/William_IV</a></p>\n","end":"1837-06-20"},{"name":"Victoria","category":"monarchs","subCategory":"hanover","start":"1837-06-20","summary":"<p>Victoria (Alexandrina Victoria; 24 May 1819 – 22 January 1901) was Queen of the United Kingdom of Great Britain and Ireland from 20 June 1837 until her death in 1901. Her reign of 63 years and seven months was longer than that of any previous British monarch and is known as the Victorian era. It was a period of industrial, political, scientific, and military change within the United Kingdom, and was marked by a great expansion of the British Empire. In 1876, the British Parliament voted to grant her the additional title of Empress of India.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Queen_Victoria\">https://en.wikipedia.org/wiki/Queen_Victoria</a></p>\n","end":"1901-01-22"},{"name":"Edward VII","category":"monarchs","subCategory":"saxe-coburg and gotha","start":"1901-01-22","summary":"<p>Edward VII (Albert Edward; 9 November 1841 – 6 May 1910) was King of the United Kingdom of Great Britain and Ireland and the British Dominions, and Emperor of India, from 22 January 1901 until his death in 1910.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_VII\">https://en.wikipedia.org/wiki/Edward_VII</a></p>\n","end":"1910-05-06"},{"name":"George V","category":"monarchs","subCategory":"saxe-coburg and gotha to windsor","start":"1910-05-06","summary":"<p>George V (George Frederick Ernest Albert; 3 June 1865 – 20 January 1936) was King of the United Kingdom and the British Dominions, and Emperor of India, from 6 May 1910 until his death in 1936.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_V\">https://en.wikipedia.org/wiki/George_V</a></p>\n","end":"1936-01-20"},{"name":"Edward VIII","category":"monarchs","subCategory":"windsor","start":"1936-01-20","summary":"<p>Edward VIII (Edward Albert Christian George Andrew Patrick David; 23 June 1894 – 28 May 1972) was King of the United Kingdom and the Dominions of the British Empire and Emperor of India from 20 January 1936 until his abdication in December of the same year.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_VIII\">https://en.wikipedia.org/wiki/Edward_VIII</a></p>\n","end":"1936-12-11"},{"name":"George VI","category":"monarchs","subCategory":"windsor","start":"1936-12-11","summary":"<p>George VI (Albert Frederick Arthur George; 14 December 1895 – 6 February 1952) was King of the United Kingdom and the Dominions of the British Commonwealth from 11 December 1936 until his death in 1952. He was concurrently the last Emperor of India until August 1947, when the British Raj was dissolved.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_VI\">https://en.wikipedia.org/wiki/George_VI</a></p>\n","end":"1952-02-06"},{"name":"Elizabeth II","category":"monarchs","subCategory":"windsor","start":"1952-02-06","summary":"<p>Elizabeth II (Elizabeth Alexandra Mary; 21 April 1926 – 8 September 2022) was Queen of the United Kingdom and other Commonwealth realms from 6 February 1952 until her death in 2022. She was queen regnant of 32 sovereign states during her lifetime and 15 at the time of her death.[b] Her reign of 70 years and 214 days is the longest of any British monarch, the longest recorded of any female head of state in history, and the second-longest verified reign of any sovereign in history.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Elizabeth_II\">https://en.wikipedia.org/wiki/Elizabeth_II</a></p>\n","end":"2022-09-08"},{"name":"Charles III","category":"monarchs","subCategory":"windsor","start":"2022-09-08","summary":"<p>Charles III (Charles Philip Arthur George; born 14 November 1948) is King of the United Kingdom and 14 other Commonwealth realms. He acceded to the throne on 8 September 2022 upon the death of his mother, Elizabeth II. He was the longest-serving heir apparent in British history and, at the age of 73, is the oldest person to assume the British throne.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Charles_III\">https://en.wikipedia.org/wiki/Charles_III</a></p>\n","end":"-"},{"name":"Robert Walpole","category":"prime ministers","subCategory":"whig","start":"1721-04-03","summary":"<p>Robert Walpole, 1st Earl of Orford, KG PC (26 August 1676 – 18 March 1745; known between 1725 and 1742 as Sir Robert Walpole) was a British statesman and Whig politician who is generally regarded as the de facto first Prime Minister of Great Britain.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Walpole\">https://en.wikipedia.org/wiki/Robert_Walpole</a></p>\n","end":"1742-02-11"},{"name":"Spencer Compton, 1st Earl of Wilmington","category":"prime ministers","subCategory":"whig","start":"1742-02-16","summary":"<p>Spencer Compton, 1st Earl of Wilmington, KG, PC (c.  1674 – 2 July 1743)[1] was a British Whig statesman who served continuously in government from 1715 until his death. He sat in the English and British House of Commons between 1698 and 1728, and was then raised to the peerage and sat in the House of Lords. He served as the prime minister of Great Britain from 1742 until his death in 1743. He is considered to have been Britain&#39;s second prime minister, after Robert Walpole, but worked closely with the Secretary of State, Lord Carteret, in order to secure the support of the various factions making up the government.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Spencer_Compton,_1st_Earl_of_Wilmington\">https://en.wikipedia.org/wiki/Spencer_Compton,_1st_Earl_of_Wilmington</a></p>\n","end":"1743-07-02"},{"name":"Henry Pelham","category":"prime ministers","subCategory":"whig","start":"1743-08-27","summary":"<p>Henry Pelham FRS (25 September 1694 – 6 March 1754) was a British Whig statesman who served as Prime Minister of Great Britain from 1743 until his death in 1754. He was the younger brother of Thomas Pelham-Holles, 1st Duke of Newcastle, who served in Pelham&#39;s government and succeeded him as prime minister. Pelham is generally considered to have been Britain&#39;s third prime minister, after Robert Walpole and the Earl of Wilmington.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_Pelham\">https://en.wikipedia.org/wiki/Henry_Pelham</a></p>\n","end":"1754-03-06"},{"name":"Thomas Pelham-Holles, 1st Duke of Newcastle","category":"prime ministers","subCategory":"whig","start":"1754-03-16","summary":"<p>Thomas Pelham-Holles, 1st Duke of Newcastle upon Tyne and 1st Duke of Newcastle-under-Lyne, KG, PC, FRS (21 July 1693 – 17 November 1768) was a British Whig statesman, whose official life extended throughout the Whig supremacy of the 18th century. He is commonly known as the Duke of Newcastle.[1]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Thomas_Pelham-Holles,_1st_Duke_of_Newcastle\">https://en.wikipedia.org/wiki/Thomas_Pelham-Holles,_1st_Duke_of_Newcastle</a></p>\n","end":"1756-11-11"},{"name":"William Cavendish, 4th Duke of Devonshire","category":"prime ministers","subCategory":"whig","start":"1756-11-16","summary":"<p>William Cavendish, 4th Duke of Devonshire, KG, PC (8 May 1720 – 2 October 1764), styled Lord Cavendish before 1729, and Marquess of Hartington between 1729 and 1755, was a British Whig statesman and nobleman who was briefly nominal Prime Minister of Great Britain.[1] He was the first son of William Cavendish, 3rd Duke of Devonshire and his wife, Catherine Hoskins. He is also a great-great-great-great-great-grandfather of King Charles III through the king&#39;s maternal grandmother.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Cavendish,_4th_Duke_of_Devonshire\">https://en.wikipedia.org/wiki/William_Cavendish,_4th_Duke_of_Devonshire</a></p>\n","end":"1757-06-29"},{"name":"Thomas Pelham-Holles, 1st Duke of Newcastle","category":"prime ministers","subCategory":"whig","start":"1757-06-29","summary":"<p>Thomas Pelham-Holles, 1st Duke of Newcastle upon Tyne and 1st Duke of Newcastle-under-Lyne, KG, PC, FRS (21 July 1693 – 17 November 1768) was a British Whig statesman, whose official life extended throughout the Whig supremacy of the 18th century. He is commonly known as the Duke of Newcastle.[1]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Thomas_Pelham-Holles,_1st_Duke_of_Newcastle\">https://en.wikipedia.org/wiki/Thomas_Pelham-Holles,_1st_Duke_of_Newcastle</a></p>\n","end":"1762-05-26"},{"name":"John Stuart, 3rd Earl of Bute","category":"prime ministers","subCategory":"tory","start":"1762-05-26","summary":"<p>John Stuart, 3rd Earl of Bute, KG, PC, FSA Scot (/bjuːt/; 25 May 1713 – 10 March 1792), styled Lord Mount Stuart between 1713 and 1723, was a British nobleman who served as Prime Minister of Great Britain from 1762 to 1763 under George III. He was arguably the last important royal favourite in British politics. He was the first prime minister from Scotland following the Acts of Union in 1707 and the first Tory to have held the post. He was also elected as the first president of the Society of Antiquaries of Scotland when it was founded in 1780.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/John_Stuart,_3rd_Earl_of_Bute\">https://en.wikipedia.org/wiki/John_Stuart,_3rd_Earl_of_Bute</a></p>\n","end":"1763-04-08"},{"name":"George Grenville","category":"prime ministers","subCategory":"whig","start":"1763-04-16","summary":"<p>George Grenville (14 October 1712 – 13 November 1770) was a British Whig statesman who rose to the position of Prime Minister of Great Britain. Grenville was born into an influential political family and first entered Parliament in 1741 as an MP for Buckingham. He emerged as one of Cobham&#39;s Cubs, a group of young members of Parliament associated with Lord Cobham.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_Grenville\">https://en.wikipedia.org/wiki/George_Grenville</a></p>\n","end":"1765-07-10"},{"name":"Charles Watson-Wentworth, 2nd Marquess of Rockingham","category":"prime ministers","subCategory":"whig","start":"1765-07-13","summary":"<p>Charles Watson-Wentworth, 2nd Marquess of Rockingham, KG, PC, FRS (13 May 1730 – 1 July 1782; styled The Hon. Charles Watson-Wentworth before 1733, Viscount Higham between 1733 and 1746, Earl of Malton between 1746 and 1750 and The Marquess of Rockingham in 1750) was a British Whig statesman, most notable for his two terms as Prime Minister of Great Britain. He became the patron of many Whigs, known as the Rockingham Whigs, and served as a leading Whig grandee. He served in only two high offices during his lifetime (Prime Minister and Leader of the House of Lords) but was nonetheless very influential during his one and a half years of service.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham\">https://en.wikipedia.org/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham</a></p>\n","end":"1766-07-30"},{"name":"William Pitt, 1st Earl of Chatham","category":"prime ministers","subCategory":"whig","start":"1766-07-30","summary":"<p>William Pitt, 1st Earl of Chatham, PC, FRS (15 November 1708 – 11 May 1778) was a British statesman of the Whig group who served as Prime Minister of Great Britain from 1766 to 1768. Historians call him Chatham or William Pitt the Elder to distinguish him from his son, William Pitt the Younger, who was also a prime minister. Pitt was also known as the Great Commoner, because of his long-standing refusal to accept a title until 1766.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Pitt,_1st_Earl_of_Chatham\">https://en.wikipedia.org/wiki/William_Pitt,_1st_Earl_of_Chatham</a></p>\n","end":"1768-10-14"},{"name":"Augustus FitzRoy, 3rd Duke of Grafton","category":"prime ministers","subCategory":"whig","start":"1768-10-14","summary":"<p>Augustus Henry FitzRoy, 3rd Duke of Grafton, KG, PC (28 September 1735 – 14 March 1811), styled Earl of Euston between 1747 and 1757, was a British Whig statesman of the Georgian era. He is one of a handful of dukes who have served as prime minister.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Augustus_FitzRoy,_3rd_Duke_of_Grafton\">https://en.wikipedia.org/wiki/Augustus_FitzRoy,_3rd_Duke_of_Grafton</a></p>\n","end":"1770-01-28"},{"name":"Frederick North, Lord North","category":"prime ministers","subCategory":"tory","start":"1770-01-28","summary":"<p>Frederick North, 2nd Earl of Guilford KG, PC (13 April 1732 – 5 August 1792), better known by his courtesy title Lord North, which he used from 1752 to 1790, was Prime Minister of Great Britain from 1770 to 1782. He led Great Britain through most of the American War of Independence. He also held a number of other cabinet posts, including Home Secretary and Chancellor of the Exchequer.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Frederick_North,_Lord_North\">https://en.wikipedia.org/wiki/Frederick_North,_Lord_North</a></p>\n","end":"1782-03-27"},{"name":"Charles Watson-Wentworth, 2nd Marquess of Rockingham","category":"prime ministers","subCategory":"whig","start":"1782-03-27","summary":"<p>Charles Watson-Wentworth, 2nd Marquess of Rockingham, KG, PC, FRS (13 May 1730 – 1 July 1782; styled The Hon. Charles Watson-Wentworth before 1733, Viscount Higham between 1733 and 1746, Earl of Malton between 1746 and 1750 and The Marquess of Rockingham in 1750) was a British Whig statesman, most notable for his two terms as Prime Minister of Great Britain. He became the patron of many Whigs, known as the Rockingham Whigs, and served as a leading Whig grandee. He served in only two high offices during his lifetime (Prime Minister and Leader of the House of Lords) but was nonetheless very influential during his one and a half years of service.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham\">https://en.wikipedia.org/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham</a></p>\n","end":"1782-07-01"},{"name":"William Petty, 2nd Earl of Shelburne","category":"prime ministers","subCategory":"whig","start":"1782-07-04","summary":"<p>William Petty Fitzmaurice, 1st Marquess of Lansdowne, KG, PC (2 May 1737 – 7 May 1805; known as the Earl of Shelburne between 1761 and 1784, by which title he is generally known to history), was an Irish-born British Whig statesman who was the first home secretary in 1782 and then prime minister from 1782 to 1783 during the final months of the American War of Independence. He succeeded in securing peace with America and this feat remains his most notable legacy.[1]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Petty,_2nd_Earl_of_Shelburne\">https://en.wikipedia.org/wiki/William_Petty,_2nd_Earl_of_Shelburne</a></p>\n","end":"1783-03-26"},{"name":"William Cavendish-Bentinck, 3rd Duke of Portland","category":"prime ministers","subCategory":"whig","start":"1783-04-02","summary":"<p>William Henry Cavendish Cavendish-Bentinck, 3rd Duke of Portland, KG, PC, FRS (14 April 1738 – 30 October 1809) was a British Whig and then a Tory politician during the late Georgian era. He served as Chancellor of the University of Oxford (1792–1809) and twice as the Prime Minister of Great Britain (1783) and then of the United Kingdom (1807–1809). The 26 years between his two terms as Prime Minister is the longest gap between terms of office of any British Prime Minister. He was also the fourth great-grandfather of King Charles III through his great-granddaughter Cecilia Bowes-Lyon, Countess of Strathmore and Kinghorne.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Cavendish-Bentinck,_3rd_Duke_of_Portland\">https://en.wikipedia.org/wiki/William_Cavendish-Bentinck,_3rd_Duke_of_Portland</a></p>\n","end":"1783-12-18"},{"name":"William Pitt the Younger","category":"prime ministers","subCategory":"tory","start":"1783-12-19","summary":"<p>William Pitt the Younger (28 May 1759 – 23 January 1806) was a British statesman of the late eighteenth and early nineteenth centuries. He was the youngest and last Prime Minister of Great Britain (before the Acts of Union 1800) and then first Prime Minister of the United Kingdom (of Great Britain and Ireland) as of January 1801. He left office in March 1801, but served as prime minister again from 1804 until his death in 1806. He was also Chancellor of the Exchequer for all of his time as prime minister. He is known as &quot;Pitt the Younger&quot; to distinguish him from his father, William Pitt, 1st Earl of Chatham, who had previously served as prime minister, and is referred to as &quot;William Pitt the Elder&quot; (or &quot;Chatham&quot; by historians).</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Pitt_the_Younger\">https://en.wikipedia.org/wiki/William_Pitt_the_Younger</a></p>\n","end":"1801-03-14"},{"name":"Henry Addington","category":"prime ministers","subCategory":"tory","start":"1801-03-17","summary":"<p>Henry Addington, 1st Viscount Sidmouth, PC (30 May 1757 – 15 February 1844) was an English Tory statesman who served as Prime Minister of the United Kingdom from 1801 to 1804.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_Addington\">https://en.wikipedia.org/wiki/Henry_Addington</a></p>\n","end":"1804-05-10"},{"name":"William Pitt the Younger","category":"prime ministers","subCategory":"tory","start":"1804-05-10","summary":"<p>William Pitt the Younger (28 May 1759 – 23 January 1806) was a British statesman of the late eighteenth and early nineteenth centuries. He was the youngest and last Prime Minister of Great Britain (before the Acts of Union 1800) and then first Prime Minister of the United Kingdom (of Great Britain and Ireland) as of January 1801. He left office in March 1801, but served as prime minister again from 1804 until his death in 1806. He was also Chancellor of the Exchequer for all of his time as prime minister. He is known as &quot;Pitt the Younger&quot; to distinguish him from his father, William Pitt, 1st Earl of Chatham, who had previously served as prime minister, and is referred to as &quot;William Pitt the Elder&quot; (or &quot;Chatham&quot; by historians).</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Pitt_the_Younger\">https://en.wikipedia.org/wiki/William_Pitt_the_Younger</a></p>\n","end":"1806-01-23"},{"name":"William Grenville, 1st Baron Grenville","category":"prime ministers","subCategory":"whig","start":"1806-02-11","summary":"<p>William Wyndham Grenville, 1st Baron Grenville, PC, PC (Ire), FRS (25 October 1759 – 12 January 1834) was a British Pittite Tory politician who served as Prime Minister of the United Kingdom from 1806 to 1807, but was a supporter of the Whigs for the duration of the Napoleonic Wars.  As prime minister, his most significant achievement was the abolition of the slave trade in 1807.  However, his government failed to either make peace with France or to accomplish Catholic emancipation and it was dismissed in the same year.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Grenville,_1st_Baron_Grenville\">https://en.wikipedia.org/wiki/William_Grenville,_1st_Baron_Grenville</a></p>\n","end":"1807-03-25"},{"name":"William Cavendish-Bentinck, 3rd Duke of Portland","category":"prime ministers","subCategory":"tory","start":"1807-03-31","summary":"<p>William Henry Cavendish Cavendish-Bentinck, 3rd Duke of Portland, KG, PC, FRS (14 April 1738 – 30 October 1809) was a British Whig and then a Tory politician during the late Georgian era. He served as Chancellor of the University of Oxford (1792–1809) and twice as the Prime Minister of Great Britain (1783) and then of the United Kingdom (1807–1809). The 26 years between his two terms as Prime Minister is the longest gap between terms of office of any British Prime Minister. He was also the fourth great-grandfather of King Charles III through his great-granddaughter Cecilia Bowes-Lyon, Countess of Strathmore and Kinghorne.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Cavendish-Bentinck,_3rd_Duke_of_Portland\">https://en.wikipedia.org/wiki/William_Cavendish-Bentinck,_3rd_Duke_of_Portland</a></p>\n","end":"1809-10-04"},{"name":"Spencer Perceval","category":"prime ministers","subCategory":"tory","start":"1809-10-04","summary":"<p>Spencer Perceval KC (1 November 1762 – 11 May 1812) was a British statesman and barrister who served as Prime Minister of the United Kingdom from October 1809 until his assassination in May 1812. Perceval is the only British prime minister to have been assassinated, and the only solicitor-general or attorney-general to have become prime minister.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Spencer_Perceval\">https://en.wikipedia.org/wiki/Spencer_Perceval</a></p>\n","end":"1812-05-11"},{"name":"Robert Jenkinson, 2nd Earl of Liverpool","category":"prime ministers","subCategory":"tory","start":"1812-06-08","summary":"<p>Robert Banks Jenkinson, 2nd Earl of Liverpool, KG, PC, FRS (7 June 1770 – 4 December 1828) was a British Tory statesman who served as Prime Minister of the United Kingdom from 1812 to 1827. He held many important cabinet offices such as Foreign Secretary, Home Secretary and Secretary of State for War and the Colonies. He was also a member of the House of Lords and served as leader.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Jenkinson,_2nd_Earl_of_Liverpool\">https://en.wikipedia.org/wiki/Robert_Jenkinson,_2nd_Earl_of_Liverpool</a></p>\n","end":"1827-04-09"},{"name":"George Canning","category":"prime ministers","subCategory":"tory","start":"1827-04-12","summary":"<p>George Canning FRS (11 April 1770 – 8 August 1827) was a British Tory statesman. He held various senior cabinet positions under numerous prime ministers, including two important terms as Foreign Secretary, finally becoming Prime Minister of the United Kingdom for the last 118 days of his life, from April to August 1827.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_Canning\">https://en.wikipedia.org/wiki/George_Canning</a></p>\n","end":"1827-08-08"},{"name":"F. J. Robinson, 1st Viscount Goderich","category":"prime ministers","subCategory":"tory","start":"1827-08-31","summary":"<p>Frederick John Robinson, 1st Earl of Ripon, PC (1 November 1782 – 28 January 1859), styled The Honourable F. J. Robinson until 1827 and known between 1827 and 1833 as The Viscount Goderich (pronounced /ˈɡoʊdrɪtʃ/ GOHdrich[1]), the name by which he is best known to history, was a British politician who served as Prime Minister of the United Kingdom from 1827 to 1828.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/F._J._Robinson,_1st_Viscount_Goderich\">https://en.wikipedia.org/wiki/F._J._Robinson,_1st_Viscount_Goderich</a></p>\n","end":"1828-01-08"},{"name":"Arthur Wellesley, 1st Duke of Wellington","category":"prime ministers","subCategory":"tory","start":"1828-01-22","summary":"<p>Arthur Wellesley, 1st Duke of Wellington, KG, GCB, GCH, PC, FRS (1 May 1769 – 14 September 1852) was an Anglo-Irish soldier and Tory statesman who was one of the leading military and political figures of 19th-century Britain, serving twice as prime minister of the United Kingdom. He is among the commanders who won and ended the Napoleonic Wars when the coalition defeated Napoleon at the Battle of Waterloo in 1815.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Arthur_Wellesley,_1st_Duke_of_Wellington\">https://en.wikipedia.org/wiki/Arthur_Wellesley,_1st_Duke_of_Wellington</a></p>\n","end":"1830-11-16"},{"name":"Charles Grey, 2nd Earl Grey","category":"prime ministers","subCategory":"whig","start":"1830-11-22","summary":"<p>Charles Grey, 2nd Earl Grey, KG PC (13 March 1764 – 17 July 1845), known as Viscount Howick between 1806 and 1807, was a British politician who served as Prime Minister of the United Kingdom from 1830 to 1834. He was a descendant of the noble House of Grey and a member of the Whig Party.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Charles_Grey,_2nd_Earl_Grey\">https://en.wikipedia.org/wiki/Charles_Grey,_2nd_Earl_Grey</a></p>\n","end":"1834-07-09"},{"name":"William Lamb, 2nd Viscount Melbourne","category":"prime ministers","subCategory":"whig","start":"1834-07-16","summary":"<p>William Lamb, 2nd Viscount Melbourne, PC, PC (Ire), FRS (15 March 1779 – 24 November 1848),[1] in some sources called Henry William Lamb,[2][3] was a British Whig politician who served as Home Secretary (1830–1834) and Prime Minister (1834 and 1835–1841). His first premiership ended when he was dismissed by King William IV in 1834, the last British prime minister to be dismissed by a monarch. Five months later he was re-appointed and served for six more years, into the reign of Queen Victoria. He is best known for coaching the Queen in the ways of politics, acting almost as her private secretary. Historians do not rank Melbourne&#39;s tenure as prime minister favourably, as he had no great foreign wars or domestic issues to handle, and he was involved in several political scandals in the early years of Victoria&#39;s reign.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Lamb,_2nd_Viscount_Melbourne\">https://en.wikipedia.org/wiki/William_Lamb,_2nd_Viscount_Melbourne</a></p>\n","end":"1834-11-14"},{"name":"Arthur Wellesley, 1st Duke of Wellington","category":"prime ministers","subCategory":"tory","start":"1834-11-17","summary":"<p>Arthur Wellesley, 1st Duke of Wellington, KG, GCB, GCH, PC, FRS (1 May 1769 – 14 September 1852) was an Anglo-Irish soldier and Tory statesman who was one of the leading military and political figures of 19th-century Britain, serving twice as prime minister of the United Kingdom. He is among the commanders who won and ended the Napoleonic Wars when the coalition defeated Napoleon at the Battle of Waterloo in 1815.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Arthur_Wellesley,_1st_Duke_of_Wellington\">https://en.wikipedia.org/wiki/Arthur_Wellesley,_1st_Duke_of_Wellington</a></p>\n","end":"1834-12-09"},{"name":"Robert Peel","category":"prime ministers","subCategory":"conservative","start":"1834-12-10","summary":"<p>Sir Robert Peel, 2nd Baronet, FRS (5 February 1788 – 2 July 1850) was a British Conservative statesman who served twice as Prime Minister of the United Kingdom (1834–1835 and 1841–1846) simultaneously serving as Chancellor of the Exchequer (1834–1835) and twice as Home Secretary (1822–1827 and 1828–1830). He is regarded as the father of modern British policing, owing to his founding of the Metropolitan Police Service. Peel was one of the founders of the modern Conservative Party.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Peel\">https://en.wikipedia.org/wiki/Robert_Peel</a></p>\n","end":"1835-04-08"},{"name":"William Lamb, 2nd Viscount Melbourne","category":"prime ministers","subCategory":"whig","start":"1835-04-18","summary":"<p>William Lamb, 2nd Viscount Melbourne, PC, PC (Ire), FRS (15 March 1779 – 24 November 1848),[1] in some sources called Henry William Lamb,[2][3] was a British Whig politician who served as Home Secretary (1830–1834) and Prime Minister (1834 and 1835–1841). His first premiership ended when he was dismissed by King William IV in 1834, the last British prime minister to be dismissed by a monarch. Five months later he was re-appointed and served for six more years, into the reign of Queen Victoria. He is best known for coaching the Queen in the ways of politics, acting almost as her private secretary. Historians do not rank Melbourne&#39;s tenure as prime minister favourably, as he had no great foreign wars or domestic issues to handle, and he was involved in several political scandals in the early years of Victoria&#39;s reign.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Lamb,_2nd_Viscount_Melbourne\">https://en.wikipedia.org/wiki/William_Lamb,_2nd_Viscount_Melbourne</a></p>\n","end":"1841-08-30"},{"name":"Robert Peel","category":"prime ministers","subCategory":"conservative","start":"1841-08-30","summary":"<p>Sir Robert Peel, 2nd Baronet, FRS (5 February 1788 – 2 July 1850) was a British Conservative statesman who served twice as Prime Minister of the United Kingdom (1834–1835 and 1841–1846) simultaneously serving as Chancellor of the Exchequer (1834–1835) and twice as Home Secretary (1822–1827 and 1828–1830). He is regarded as the father of modern British policing, owing to his founding of the Metropolitan Police Service. Peel was one of the founders of the modern Conservative Party.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Peel\">https://en.wikipedia.org/wiki/Robert_Peel</a></p>\n","end":"1846-06-29"},{"name":"John Russell, 1st Earl Russell","category":"prime ministers","subCategory":"whig","start":"1846-06-30","summary":"<p>John Russell, 1st Earl Russell, KG, GCMG, PC, FRS (18 August 1792 – 28 May 1878), known by his courtesy title Lord John Russell before 1861, was a British Whig and Liberal statesman who served as Prime Minister of the United Kingdom from 1846 to 1852 and again from 1865 to 1866.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/John_Russell,_1st_Earl_Russell\">https://en.wikipedia.org/wiki/John_Russell,_1st_Earl_Russell</a></p>\n","end":"1852-02-21"},{"name":"Edward Smith-Stanley, 14th Earl of Derby","category":"prime ministers","subCategory":"conservative","start":"1852-02-23","summary":"<p>Edward George Geoffrey Smith-Stanley, 14th Earl of Derby, KG GCMG PC PC (Ire) (29 March 1799 – 23 October 1869, known before 1834 as Edward Stanley, and from 1834 to 1851 as Lord Stanley) was a British statesman, three-time Prime Minister of the United Kingdom and, to date, the longest-serving leader of the Conservative Party. He was scion of one of Britain&#39;s oldest, wealthiest and most powerful families. He is one of only four British prime ministers to have three or more separate periods in office.[1] However, his ministries each lasted less than two years and totalled three years and 280 days.  Derby introduced the state education system in Ireland, and reformed Parliament.[2]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby\">https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby</a></p>\n","end":"1852-12-17"},{"name":"George Hamilton-Gordon, 4th Earl of Aberdeen","category":"prime ministers","subCategory":"peelite","start":"1852-12-19","summary":"<p>George Hamilton-Gordon, 4th Earl of Aberdeen, KG, KT, PC, FRS, FRSE, FSA Scot (28 January 1784 – 14 December 1860[1]), styled Lord Haddo from 1791 to 1801, was a British statesman, diplomat and landowner, successively a Tory, Conservative and Peelite politician and specialist in foreign affairs. He served as Prime Minister from 1852 until 1855 in a coalition between the Whigs and Peelites, with Radical and Irish support. The Aberdeen ministry was filled with powerful and talented politicians, whom Aberdeen was largely unable to control and direct. Despite his trying to avoid this happening, it took Britain into the Crimean War, and fell when its conduct became unpopular, after which Aberdeen retired from politics.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_Hamilton-Gordon,_4th_Earl_of_Aberdeen\">https://en.wikipedia.org/wiki/George_Hamilton-Gordon,_4th_Earl_of_Aberdeen</a></p>\n","end":"1855-01-30"},{"name":"Henry John Temple, 3rd Viscount Palmerston","category":"prime ministers","subCategory":"whig","start":"1855-02-06","summary":"<p>Henry John Temple, 3rd Viscount Palmerston, KG, GCB, PC, FRS (20 October 1784 – 18 October 1865) was a British statesman who was twice Prime Minister of the United Kingdom in the mid-19th century. Palmerston dominated British foreign policy during the period 1830 to 1865, when Britain stood at the height of its imperial power. He held office almost continuously from 1807 until his death in 1865. He began his parliamentary career as a Tory, defected to the Whigs in 1830, and became the first prime minister from the newly formed Liberal Party in 1859. He was highly popular with the British public. David Brown argues that &quot;an important part of Palmerston&#39;s appeal lay in his dynamism and vigour&quot;.[2]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_John_Temple,_3rd_Viscount_Palmerston\">https://en.wikipedia.org/wiki/Henry_John_Temple,_3rd_Viscount_Palmerston</a></p>\n","end":"1858-02-19"},{"name":"Edward Smith-Stanley, 14th Earl of Derby","category":"prime ministers","subCategory":"conservative","start":"1858-02-20","summary":"<p>Edward George Geoffrey Smith-Stanley, 14th Earl of Derby, KG GCMG PC PC (Ire) (29 March 1799 – 23 October 1869, known before 1834 as Edward Stanley, and from 1834 to 1851 as Lord Stanley) was a British statesman, three-time Prime Minister of the United Kingdom and, to date, the longest-serving leader of the Conservative Party. He was scion of one of Britain&#39;s oldest, wealthiest and most powerful families. He is one of only four British prime ministers to have three or more separate periods in office.[1] However, his ministries each lasted less than two years and totalled three years and 280 days.  Derby introduced the state education system in Ireland, and reformed Parliament.[2]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby\">https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby</a></p>\n","end":"1859-06-11"},{"name":"Henry John Temple, 3rd Viscount Palmerston","category":"prime ministers","subCategory":"liberal","start":"1859-06-12","summary":"<p>Henry John Temple, 3rd Viscount Palmerston, KG, GCB, PC, FRS (20 October 1784 – 18 October 1865) was a British statesman who was twice Prime Minister of the United Kingdom in the mid-19th century. Palmerston dominated British foreign policy during the period 1830 to 1865, when Britain stood at the height of its imperial power. He held office almost continuously from 1807 until his death in 1865. He began his parliamentary career as a Tory, defected to the Whigs in 1830, and became the first prime minister from the newly formed Liberal Party in 1859. He was highly popular with the British public. David Brown argues that &quot;an important part of Palmerston&#39;s appeal lay in his dynamism and vigour&quot;.[2]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_John_Temple,_3rd_Viscount_Palmerston\">https://en.wikipedia.org/wiki/Henry_John_Temple,_3rd_Viscount_Palmerston</a></p>\n","end":"1865-10-18"},{"name":"John Russell, 1st Earl Russell","category":"prime ministers","subCategory":"liberal","start":"1865-10-29","summary":"<p>John Russell, 1st Earl Russell, KG, GCMG, PC, FRS (18 August 1792 – 28 May 1878), known by his courtesy title Lord John Russell before 1861, was a British Whig and Liberal statesman who served as Prime Minister of the United Kingdom from 1846 to 1852 and again from 1865 to 1866.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/John_Russell,_1st_Earl_Russell\">https://en.wikipedia.org/wiki/John_Russell,_1st_Earl_Russell</a></p>\n","end":"1866-06-26"},{"name":"Edward Smith-Stanley, 14th Earl of Derby","category":"prime ministers","subCategory":"conservative","start":"1866-06-28","summary":"<p>Edward George Geoffrey Smith-Stanley, 14th Earl of Derby, KG GCMG PC PC (Ire) (29 March 1799 – 23 October 1869, known before 1834 as Edward Stanley, and from 1834 to 1851 as Lord Stanley) was a British statesman, three-time Prime Minister of the United Kingdom and, to date, the longest-serving leader of the Conservative Party. He was scion of one of Britain&#39;s oldest, wealthiest and most powerful families. He is one of only four British prime ministers to have three or more separate periods in office.[1] However, his ministries each lasted less than two years and totalled three years and 280 days.  Derby introduced the state education system in Ireland, and reformed Parliament.[2]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby\">https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby</a></p>\n","end":"1868-02-25"},{"name":"Benjamin Disraeli","category":"prime ministers","subCategory":"conservative","start":"1868-02-27","summary":"<p>Benjamin Disraeli, 1st Earl of Beaconsfield, KG, PC, DL, JP, FRS[1] (21 December 1804 – 19 April 1881) was a British statesman and Conservative politician who twice served as Prime Minister of the United Kingdom. He played a central role in the creation of the modern Conservative Party, defining its policies and its broad outreach. Disraeli is remembered for his influential voice in world affairs, his political battles with the Liberal Party leader William Ewart Gladstone, and his one-nation conservatism or &quot;Tory democracy&quot;. He made the Conservatives the party most identified with the British Empire, and military action to expand it, both of which were popular among British voters. He is the only British prime minister to have been of Jewish origin. He was also a novelist, publishing works of fiction even as prime minister.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Benjamin_Disraeli\">https://en.wikipedia.org/wiki/Benjamin_Disraeli</a></p>\n","end":"1868-12-01"},{"name":"William Ewart Gladstone","category":"prime ministers","subCategory":"liberal","start":"1868-12-03","summary":"<p>William Ewart Gladstone FRS FSS (/ˈɡlædstən/; 29 December 1809 – 19 May 1898) was a British statesman and Liberal politician. In a career lasting over 60 years, he served for 12 years as Prime Minister of the United Kingdom, spread over four non-consecutive terms beginning in 1868 and ending in 1894. He also served as Chancellor of the Exchequer four times, serving over 12 years.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Ewart_Gladstone\">https://en.wikipedia.org/wiki/William_Ewart_Gladstone</a></p>\n","end":"1874-02-17"},{"name":"Benjamin Disraeli","category":"prime ministers","subCategory":"conservative","start":"1874-02-20","summary":"<p>Benjamin Disraeli, 1st Earl of Beaconsfield, KG, PC, DL, JP, FRS[1] (21 December 1804 – 19 April 1881) was a British statesman and Conservative politician who twice served as Prime Minister of the United Kingdom. He played a central role in the creation of the modern Conservative Party, defining its policies and its broad outreach. Disraeli is remembered for his influential voice in world affairs, his political battles with the Liberal Party leader William Ewart Gladstone, and his one-nation conservatism or &quot;Tory democracy&quot;. He made the Conservatives the party most identified with the British Empire, and military action to expand it, both of which were popular among British voters. He is the only British prime minister to have been of Jewish origin. He was also a novelist, publishing works of fiction even as prime minister.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Benjamin_Disraeli\">https://en.wikipedia.org/wiki/Benjamin_Disraeli</a></p>\n","end":"1880-04-21"},{"name":"William Ewart Gladstone","category":"prime ministers","subCategory":"liberal","start":"1880-04-23","summary":"<p>William Ewart Gladstone FRS FSS (/ˈɡlædstən/; 29 December 1809 – 19 May 1898) was a British statesman and Liberal politician. In a career lasting over 60 years, he served for 12 years as Prime Minister of the United Kingdom, spread over four non-consecutive terms beginning in 1868 and ending in 1894. He also served as Chancellor of the Exchequer four times, serving over 12 years.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Ewart_Gladstone\">https://en.wikipedia.org/wiki/William_Ewart_Gladstone</a></p>\n","end":"1885-06-09"},{"name":"Robert Gascoyne-Cecil, 3rd Marquess of Salisbury","category":"prime ministers","subCategory":"conservative","start":"1885-06-23","summary":"<p>Robert Arthur Talbot Gascoyne-Cecil, 3rd Marquess of Salisbury KG GCVO PC FRS DL (/ˈɡæskɔɪn ˈsɪsəl/;[1][2] 3 February 1830 – 22 August 1903) was a British statesman and Conservative politician who served as Prime Minister of the United Kingdom three times for a total of over thirteen years. He was also Foreign Secretary for much of his tenure, and during his last two years of office he was Lord Keeper of the Privy Seal. He avoided alignments or alliances, maintaining the policy of &quot;splendid isolation&quot;.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury\">https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury</a></p>\n","end":"1886-01-28"},{"name":"William Ewart Gladstone","category":"prime ministers","subCategory":"liberal","start":"1886-02-01","summary":"<p>William Ewart Gladstone FRS FSS (/ˈɡlædstən/; 29 December 1809 – 19 May 1898) was a British statesman and Liberal politician. In a career lasting over 60 years, he served for 12 years as Prime Minister of the United Kingdom, spread over four non-consecutive terms beginning in 1868 and ending in 1894. He also served as Chancellor of the Exchequer four times, serving over 12 years.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Ewart_Gladstone\">https://en.wikipedia.org/wiki/William_Ewart_Gladstone</a></p>\n","end":"1886-07-20"},{"name":"Robert Gascoyne-Cecil, 3rd Marquess of Salisbury","category":"prime ministers","subCategory":"conservative","start":"1886-07-25","summary":"<p>Robert Arthur Talbot Gascoyne-Cecil, 3rd Marquess of Salisbury KG GCVO PC FRS DL (/ˈɡæskɔɪn ˈsɪsəl/;[1][2] 3 February 1830 – 22 August 1903) was a British statesman and Conservative politician who served as Prime Minister of the United Kingdom three times for a total of over thirteen years. He was also Foreign Secretary for much of his tenure, and during his last two years of office he was Lord Keeper of the Privy Seal. He avoided alignments or alliances, maintaining the policy of &quot;splendid isolation&quot;.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury\">https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury</a></p>\n","end":"1892-08-11"},{"name":"William Ewart Gladstone","category":"prime ministers","subCategory":"liberal","start":"1892-08-15","summary":"<p>William Ewart Gladstone FRS FSS (/ˈɡlædstən/; 29 December 1809 – 19 May 1898) was a British statesman and Liberal politician. In a career lasting over 60 years, he served for 12 years as Prime Minister of the United Kingdom, spread over four non-consecutive terms beginning in 1868 and ending in 1894. He also served as Chancellor of the Exchequer four times, serving over 12 years.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Ewart_Gladstone\">https://en.wikipedia.org/wiki/William_Ewart_Gladstone</a></p>\n","end":"1894-03-02"},{"name":"Archibald Primrose, 5th Earl of Rosebery","category":"prime ministers","subCategory":"liberal","start":"1894-03-05","summary":"<p>Archibald Philip Primrose, 5th Earl of Rosebery, 1st Earl of Midlothian, KG KT PC FRS FBA (7 May 1847 – 21 May 1929) was a British Liberal Party politician who served as Prime Minister of the United Kingdom from March 1894 to June 1895. Between the death of his father, in 1851, and the death of his grandfather, the 4th Earl of Rosebery, in 1868, he was known by the courtesy title of Lord Dalmeny.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Archibald_Primrose,_5th_Earl_of_Rosebery\">https://en.wikipedia.org/wiki/Archibald_Primrose,_5th_Earl_of_Rosebery</a></p>\n","end":"1895-06-22"},{"name":"Robert Gascoyne-Cecil, 3rd Marquess of Salisbury","category":"prime ministers","subCategory":"conservative","start":"1895-06-25","summary":"<p>Robert Arthur Talbot Gascoyne-Cecil, 3rd Marquess of Salisbury KG GCVO PC FRS DL (/ˈɡæskɔɪn ˈsɪsəl/;[1][2] 3 February 1830 – 22 August 1903) was a British statesman and Conservative politician who served as Prime Minister of the United Kingdom three times for a total of over thirteen years. He was also Foreign Secretary for much of his tenure, and during his last two years of office he was Lord Keeper of the Privy Seal. He avoided alignments or alliances, maintaining the policy of &quot;splendid isolation&quot;.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury\">https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury</a></p>\n","end":"1902-07-11"},{"name":"Arthur Balfour","category":"prime ministers","subCategory":"conservative","start":"1902-07-12","summary":"<p>Arthur James Balfour, 1st Earl of Balfour, KG, OM, PC, FRS, FBA, DL (/ˈbælfər, -fɔːr/,[1] traditionally Scottish /bəlˈfʊər/;[2][3] 25 July 1848 – 19 March 1930), also known as Lord Balfour, was a British Conservative statesman who served as Prime Minister of the United Kingdom from 1902 to 1905. As foreign secretary in the Lloyd George ministry, he issued the Balfour Declaration of 1917 on behalf of the cabinet.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Arthur_Balfour\">https://en.wikipedia.org/wiki/Arthur_Balfour</a></p>\n","end":"1905-12-04"},{"name":"Henry Campbell-Bannerman","category":"prime ministers","subCategory":"liberal","start":"1905-12-05","summary":"<p>Sir Henry Campbell-Bannerman GCB PC (né Campbell; 7 September 1836 – 22 April 1908) was a British statesman and Liberal politician. He served as the Prime Minister of the United Kingdom from 1905 to 1908 and Leader of the Liberal Party from 1899 to 1908. He also served as Secretary of State for War twice, in the Cabinets of Gladstone and Rosebery. He was the first First Lord of the Treasury to be officially called the &quot;Prime Minister&quot;, the term only coming into official usage five days after he took office. He remains the only person to date to hold the positions of Prime Minister and Father of the House at the same time, and the last Liberal leader to gain a UK parliamentary majority.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_Campbell-Bannerman\">https://en.wikipedia.org/wiki/Henry_Campbell-Bannerman</a></p>\n","end":"1908-04-03"},{"name":"H. H. Asquith","category":"prime ministers","subCategory":"liberal","start":"1908-04-08","summary":"<p>Herbert Henry Asquith, 1st Earl of Oxford and Asquith, KG, PC, KC, FRS (12 September 1852 – 15 February 1928), generally known as H. H. Asquith, was a British statesman and Liberal Party politician who served as Prime Minister of the United Kingdom from 1908 to 1916. He was the last Liberal prime minister to command a majority government, and the most recent Liberal to have served as Leader of the Opposition. He played a major role in the design and passage of major liberal legislation and a reduction of the power of the House of Lords. In August 1914, Asquith took Great Britain and the British Empire into the First World War. During 1915, his government was vigorously attacked for a shortage of munitions and the failure of the Gallipoli Campaign. He formed a coalition government with other parties but failed to satisfy critics and was forced to resign in December 1916, and never regained power.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/H._H._Asquith\">https://en.wikipedia.org/wiki/H._H._Asquith</a></p>\n","end":"1916-12-05"},{"name":"David Lloyd George","category":"prime ministers","subCategory":"liberal","start":"1916-12-06","summary":"<p>David Lloyd George, 1st Earl Lloyd-George of Dwyfor, OM PC (17 January 1863 – 26 March 1945) was Prime Minister of the United Kingdom from 1916 to 1922. He was a Liberal Party politician from Wales, known for leading the United Kingdom during the First World War, social reform policies including the National Insurance Act 1911, his role in the Paris Peace Conference, negotiating the establishment of the Irish Free State, disestablishment of the Church of England in Wales and support of Welsh devolution in his early career. He was the last Liberal Party Prime Minister; the party fell into third party status shortly after the end of his premiership.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/David_Lloyd_George\">https://en.wikipedia.org/wiki/David_Lloyd_George</a></p>\n","end":"1922-10-19"},{"name":"Bonar Law","category":"prime ministers","subCategory":"conservative","start":"1922-10-23","summary":"<p>Andrew Bonar Law (/ˈbɒnə ˈlɔː/;[1] 16 September 1858 – 30 October 1923) was a British Conservative politician who served as Prime Minister of the United Kingdom from October 1922 to May 1923.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Bonar_Law\">https://en.wikipedia.org/wiki/Bonar_Law</a></p>\n","end":"1923-05-20"},{"name":"Stanley Baldwin","category":"prime ministers","subCategory":"conservative","start":"1923-05-22","summary":"<p>Stanley Baldwin, 1st Earl Baldwin of Bewdley, KG, PC, PC (Can), JP, FRS (3 August 1867 – 14 December 1947)[1] was a British Conservative Party politician who dominated the government of the United Kingdom between the world wars, serving as Prime Minister on three occasions, from May 1923 to January 1924, from November 1924 to June 1929, and from June 1935 to May 1937.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Stanley_Baldwin\">https://en.wikipedia.org/wiki/Stanley_Baldwin</a></p>\n","end":"1924-01-22"},{"name":"Ramsay MacDonald","category":"prime ministers","subCategory":"labour","start":"1924-01-22","summary":"<p>James Ramsay MacDonald FRS (né James McDonald Ramsay; 12 October 1866 – 9 November 1937) was a British politician who served as Prime Minister of the United Kingdom, the first who belonged to the Labour Party, leading minority Labour governments for nine months in 1924 and again between 1929 and 1931. From 1931 to 1935, he headed a National Government dominated by the Conservative Party and supported by only a few Labour members. MacDonald was expelled from the Labour Party as a result.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ramsay_MacDonald\">https://en.wikipedia.org/wiki/Ramsay_MacDonald</a></p>\n","end":"1924-11-04"},{"name":"Stanley Baldwin","category":"prime ministers","subCategory":"conservative","start":"1924-11-04","summary":"<p>Stanley Baldwin, 1st Earl Baldwin of Bewdley, KG, PC, PC (Can), JP, FRS (3 August 1867 – 14 December 1947)[1] was a British Conservative Party politician who dominated the government of the United Kingdom between the world wars, serving as Prime Minister on three occasions, from May 1923 to January 1924, from November 1924 to June 1929, and from June 1935 to May 1937.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Stanley_Baldwin\">https://en.wikipedia.org/wiki/Stanley_Baldwin</a></p>\n","end":"1929-06-04"},{"name":"Ramsay MacDonald","category":"prime ministers","subCategory":"labour","start":"1929-06-05","summary":"<p>James Ramsay MacDonald FRS (né James McDonald Ramsay; 12 October 1866 – 9 November 1937) was a British politician who served as Prime Minister of the United Kingdom, the first who belonged to the Labour Party, leading minority Labour governments for nine months in 1924 and again between 1929 and 1931. From 1931 to 1935, he headed a National Government dominated by the Conservative Party and supported by only a few Labour members. MacDonald was expelled from the Labour Party as a result.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ramsay_MacDonald\">https://en.wikipedia.org/wiki/Ramsay_MacDonald</a></p>\n","end":"1935-06-07"},{"name":"Stanley Baldwin","category":"prime ministers","subCategory":"conservative","start":"1935-06-07","summary":"<p>Stanley Baldwin, 1st Earl Baldwin of Bewdley, KG, PC, PC (Can), JP, FRS (3 August 1867 – 14 December 1947)[1] was a British Conservative Party politician who dominated the government of the United Kingdom between the world wars, serving as Prime Minister on three occasions, from May 1923 to January 1924, from November 1924 to June 1929, and from June 1935 to May 1937.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Stanley_Baldwin\">https://en.wikipedia.org/wiki/Stanley_Baldwin</a></p>\n","end":"1937-05-28"},{"name":"Neville Chamberlain","category":"prime ministers","subCategory":"conservative","start":"1937-05-28","summary":"<p>Arthur Neville Chamberlain FRS (/ˈtʃeɪmbərlɪn/; 18 March 1869 – 9 November 1940) was a British politician of the Conservative Party who served as Prime Minister of the United Kingdom from May 1937 to May 1940. He is best known for his foreign policy of appeasement, and in particular for his signing of the Munich Agreement on 30 September 1938, ceding the German-speaking Sudetenland region of Czechoslovakia to Nazi Germany led by Adolf Hitler. Following the German invasion of Poland on 1 September 1939, which marked the beginning of the Second World War, Chamberlain announced the declaration of war on Germany two days later and led the United Kingdom through the first eight months of the war until his resignation as prime minister on 10 May 1940.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Neville_Chamberlain\">https://en.wikipedia.org/wiki/Neville_Chamberlain</a></p>\n","end":"1940-05-10"},{"name":"Winston Churchill","category":"prime ministers","subCategory":"conservative","start":"1940-05-10","summary":"<p>Sir Winston Leonard Spencer Churchill,[a] KG, OM, CH, TD, DL, FRS, RA (30 November 1874 – 24 January 1965) was a British statesman, soldier and writer who served as Prime Minister of the United Kingdom from 1940 to 1945, during the Second World War, and again from 1951 to 1955. Apart from two years between 1922 and 1924, he was a Member of Parliament (MP) from 1900 to 1964 and represented a total of five constituencies. Ideologically an economic liberal and imperialist, he was for most of his career a member of the Conservative Party, which he led from 1940 to 1955. He was a member of the Liberal Party from 1904 to 1924.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Winston_Churchill\">https://en.wikipedia.org/wiki/Winston_Churchill</a></p>\n","end":"1945-07-26"},{"name":"Clement Attlee","category":"prime ministers","subCategory":"labour","start":"1945-07-26","summary":"<p>Clement Richard Attlee, 1st Earl Attlee, KG, OM, CH, PC, FRS (3 January 1883 – 8 October 1967) was a British politician who served as Prime Minister of the United Kingdom from 1945 to 1951 and Leader of the Labour Party from 1935 to 1955. He was Deputy Prime Minister during the wartime coalition government under Winston Churchill, and served twice as Leader of the Opposition from 1935 to 1940 and from 1951 to 1955.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Clement_Attlee\">https://en.wikipedia.org/wiki/Clement_Attlee</a></p>\n","end":"1951-10-26"},{"name":"Winston Churchill","category":"prime ministers","subCategory":"conservative","start":"1951-10-26","summary":"<p>Sir Winston Leonard Spencer Churchill,[a] KG, OM, CH, TD, DL, FRS, RA (30 November 1874 – 24 January 1965) was a British statesman, soldier and writer who served as Prime Minister of the United Kingdom from 1940 to 1945, during the Second World War, and again from 1951 to 1955. Apart from two years between 1922 and 1924, he was a Member of Parliament (MP) from 1900 to 1964 and represented a total of five constituencies. Ideologically an economic liberal and imperialist, he was for most of his career a member of the Conservative Party, which he led from 1940 to 1955. He was a member of the Liberal Party from 1904 to 1924.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Winston_Churchill\">https://en.wikipedia.org/wiki/Winston_Churchill</a></p>\n","end":"1955-04-05"},{"name":"Anthony Eden","category":"prime ministers","subCategory":"conservative","start":"1955-04-06","summary":"<p>Robert Anthony Eden, 1st Earl of Avon, KG, MC, PC (12 June 1897 – 14 January 1977) was a British Conservative Party politician who served as Prime Minister of the United Kingdom from 1955 until his resignation in 1957.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Anthony_Eden\">https://en.wikipedia.org/wiki/Anthony_Eden</a></p>\n","end":"1957-01-09"},{"name":"Harold Macmillan","category":"prime ministers","subCategory":"conservative","start":"1957-01-10","summary":"<p>Maurice Harold Macmillan, 1st Earl of Stockton, OM, PC, FRS (10 February 1894 – 29 December 1986) was a British Conservative statesman and politician who was Prime Minister of the United Kingdom from 1957 to 1963.[1] Caricatured as &quot;Supermac&quot;, he was known for his pragmatism, wit and unflappability.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Harold_Macmillan\">https://en.wikipedia.org/wiki/Harold_Macmillan</a></p>\n","end":"1963-10-18"},{"name":"Alec Douglas-Home","category":"prime ministers","subCategory":"conservative","start":"1963-10-19","summary":"<p>Alexander Frederick Douglas-Home, Baron Home of the Hirsel KT PC (/ˈhjuːm/; 2 July 1903 – 9 October 1995) was a British Conservative politician who served as Prime Minister from October 1963 to October 1964.  He is notable for being the last Prime Minister to hold office while being a member of the House of Lords, before renouncing his peerage and taking up a seat in the House of Commons for the remainder of his premiership. His reputation, however, rests more on his two spells as the UK&#39;s foreign secretary than on his brief premiership.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Alec_Douglas-Home\">https://en.wikipedia.org/wiki/Alec_Douglas-Home</a></p>\n","end":"1964-10-16"},{"name":"Harold Wilson","category":"prime ministers","subCategory":"labour","start":"1964-10-16","summary":"<p>James Harold Wilson, Baron Wilson of Rievaulx, KG, OBE, PC, FRS, FSS (11 March 1916 – 24 May 1995) was a British politician who was Prime Minister of the United Kingdom twice, from October 1964 to June 1970, and again from March 1974 to April 1976. He was the Leader of the Labour Party from 1963 to 1976, and was a Member of Parliament (MP) from 1945 to 1983. Wilson is the only Labour leader to have formed Labour administrations following four general elections.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Harold_Wilson\">https://en.wikipedia.org/wiki/Harold_Wilson</a></p>\n","end":"1970-06-19"},{"name":"Edward Heath","category":"prime ministers","subCategory":"conservative","start":"1970-06-19","summary":"<p>Sir Edward Richard George Heath KG MBE (9 July 1916 – 17 July 2005), often known as Ted Heath, was a British politician who served as Prime Minister of the United Kingdom from 1970 to 1974 and Leader of the Conservative Party from 1965 to 1975. Heath also served for 51 years as a Member of Parliament from 1950 to 2001. Outside of politics, Heath was a yachtsman, a musician, and an author.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_Heath\">https://en.wikipedia.org/wiki/Edward_Heath</a></p>\n","end":"1974-03-04"},{"name":"Harold Wilson","category":"prime ministers","subCategory":"labour","start":"1974-03-04","summary":"<p>James Harold Wilson, Baron Wilson of Rievaulx, KG, OBE, PC, FRS, FSS (11 March 1916 – 24 May 1995) was a British politician who was Prime Minister of the United Kingdom twice, from October 1964 to June 1970, and again from March 1974 to April 1976. He was the Leader of the Labour Party from 1963 to 1976, and was a Member of Parliament (MP) from 1945 to 1983. Wilson is the only Labour leader to have formed Labour administrations following four general elections.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Harold_Wilson\">https://en.wikipedia.org/wiki/Harold_Wilson</a></p>\n","end":"1976-04-05"},{"name":"James Callaghan","category":"prime ministers","subCategory":"labour","start":"1976-04-05","summary":"<p>Leonard James Callaghan, Baron Callaghan of Cardiff, KG, PC (/ˈkæləhæn/ KAL-ə-han; 27 March 1912 – 26 March 2005), commonly known as Jim Callaghan, was a British politician who served as Prime Minister of the United Kingdom from 1976 to 1979 and Leader of the Labour Party from 1976 to 1980. Callaghan is the only person to have held all four Great Offices of State, having served as Chancellor of the Exchequer from 1964 to 1967, Home Secretary from 1967 to 1970 and Foreign Secretary from 1974 to 1976. He was a Member of Parliament (MP) from 1945 to 1987.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/James_Callaghan\">https://en.wikipedia.org/wiki/James_Callaghan</a></p>\n","end":"1979-05-04"},{"name":"Margaret Thatcher","category":"prime ministers","subCategory":"conservative","start":"1979-05-04","summary":"<p>Margaret Hilda Thatcher, Baroness Thatcher, LG, OM, DStJ, PC, FRS, HonFRSC (née Roberts; 13 October 1925 – 8 April 2013), was Prime Minister of the United Kingdom from 1979 to 1990 and Leader of the Conservative Party from 1975 to 1990. She was the first female British prime minister and the longest-serving British prime minister of the 20th century. As prime minister, she implemented policies that became known as Thatcherism. A Soviet journalist dubbed her the &quot;Iron Lady&quot;, a nickname that became associated with her uncompromising politics and leadership style.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Margaret_Thatcher\">https://en.wikipedia.org/wiki/Margaret_Thatcher</a></p>\n","end":"1990-11-28"},{"name":"John Major","category":"prime ministers","subCategory":"conservative","start":"1990-11-28","summary":"<p>Sir John Major KG CH (born 29 March 1943) is a British former politician who served as Prime Minister of the United Kingdom and Leader of the Conservative Party from 1990 to 1997, and as Member of Parliament (MP) for Huntingdon, formerly Huntingdonshire, from 1979 to 2001. Prior to becoming prime minister, Major served as Chancellor of the Exchequer in the third Thatcher government.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/John_Major\">https://en.wikipedia.org/wiki/John_Major</a></p>\n","end":"1997-05-02"},{"name":"Tony Blair","category":"prime ministers","subCategory":"labour","start":"1997-05-02","summary":"<p>Sir Anthony Charles Lynton Blair KG (born 6 May 1953) is a British politician who served as Prime Minister of the United Kingdom from 1997 to 2007 and Leader of the Labour Party from 1994 to 2007. On his resignation he was appointed Special Envoy of the Quartet on the Middle East, a diplomatic post which he held until 2015. He has been the executive chairman of the Tony Blair Institute for Global Change since 2016. As prime minister, many of his policies reflected a centrist &quot;Third Way&quot; political philosophy.[b] He is one of only two Labour leaders to form three majority governments, the other being Harold Wilson.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Tony_Blair\">https://en.wikipedia.org/wiki/Tony_Blair</a></p>\n","end":"2007-06-27"},{"name":"Gordon Brown","category":"prime ministers","subCategory":"labour","start":"2007-06-27","summary":"<p>James Gordon Brown HonFRSE (born 20 February 1951) is a British politician who served as Prime Minister of the United Kingdom and Leader of the Labour Party from 2007 to 2010, the last Labour Prime Minister under Elizabeth II before her death in 2022. He served as Chancellor of the Exchequer in the Blair government from 1997 to 2007. Brown was a Member of Parliament (MP) from 1983 to 2015, first for Dunfermline East and later for Kirkcaldy and Cowdenbeath. He is the most recent Labour politician as well as the most recent Scottish politician to hold the office of Prime Minister.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Gordon_Brown\">https://en.wikipedia.org/wiki/Gordon_Brown</a></p>\n","end":"2010-05-11"},{"name":"David Cameron","category":"prime ministers","subCategory":"conservative","start":"2010-05-11","summary":"<p>David William Donald Cameron (born 9 October 1966) is a British politician and lobbyist who served as Prime Minister of the United Kingdom from 2010 to 2016. He was Member of Parliament (MP) for Witney from 2001 to 2016 and leader of the Conservative Party from 2005 to 2016. He identifies as a one-nation conservative, and has been associated with both economically liberal and socially liberal policies.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/David_Cameron\">https://en.wikipedia.org/wiki/David_Cameron</a></p>\n","end":"2016-07-13"},{"name":"Theresa May","category":"prime ministers","subCategory":"conservative","start":"2016-07-13","summary":"<p>Theresa Mary, Lady May (/təˈriːzə/;[1] née Brasier; born 1 October 1956) is a British politician who served as Prime Minister of the United Kingdom and Leader of the Conservative Party from 2016 to 2019. She served as Home Secretary from 2010 to 2016 in the Cameron government and has been the Member of Parliament (MP) for Maidenhead in Berkshire since 1997. Ideologically, May identifies herself as a one-nation conservative.[2]</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Theresa_May\">https://en.wikipedia.org/wiki/Theresa_May</a></p>\n","end":"2019-07-24"},{"name":"Boris Johnson","category":"prime ministers","subCategory":"conservative","start":"2019-07-24","summary":"<p>Alexander Boris de Pfeffel Johnson (/ˈfɛfəl/;[5] born 19 June 1964) is a British politician who served as Prime Minister of the United Kingdom and Leader of the Conservative Party from 2019 to 2022. He previously served as Secretary of State for Foreign and Commonwealth Affairs from 2016 to 2018 and as Mayor of London from 2008 to 2016. Johnson has been Member of Parliament (MP) for Uxbridge and South Ruislip since 2015, having previously been MP for Henley from 2001 to 2008.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Boris_Johnson\">https://en.wikipedia.org/wiki/Boris_Johnson</a></p>\n","end":"2022-09-06"},{"name":"Liz Truss","category":"prime ministers","subCategory":"conservative","start":"2022-09-06","summary":"<p>Mary Elizabeth Truss (born 26 July 1975)[1][2] is a British politician who is the current Prime Minister of the United Kingdom and Leader of the Conservative Party. Truss became Member of Parliament (MP) for South West Norfolk in 2010.[3] She held various Cabinet offices under prime ministers David Cameron, Theresa May and Boris Johnson, most recently as Foreign Secretary from 2021 to 2022. Truss was the last of fifteen British prime ministers who served Elizabeth II, who died on 8 September 2022, two days after appointing Truss to the office.</p>\n","citations":"<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Liz_Truss\">https://en.wikipedia.org/wiki/Liz_Truss</a></p>\n","end":"-"}],"series":[]}
+{
+    "name": "Modern democracy in Great Britain",
+    "summary": "A history of the modern monarchy and prime ministers since the political union of England and Scotland in 1707",
+    "categories": [
+        {
+            "name": "monarchs",
+            "colour": "rgb(112,48,160)"
+        },
+        {
+            "name": "prime ministers",
+            "colour": "rgb(84,130,53)"
+        }
+    ],
+    "subCategories": [
+        {
+            "category": "monarchs",
+            "name": "stuart",
+            "colour": ""
+        },
+        {
+            "category": "monarchs",
+            "name": "hanover",
+            "colour": ""
+        },
+        {
+            "category": "monarchs",
+            "name": "saxe-coburg and gotha",
+            "colour": ""
+        },
+        {
+            "category": "monarchs",
+            "name": "saxe-coburg and gotha to windsor",
+            "colour": ""
+        },
+        {
+            "category": "monarchs",
+            "name": "windsor",
+            "colour": ""
+        },
+        {
+            "category": "prime ministers",
+            "name": "whig",
+            "colour": "rgb(237,125,49)"
+        },
+        {
+            "category": "prime ministers",
+            "name": "tory",
+            "colour": "rgb(0,32,96)"
+        },
+        {
+            "category": "prime ministers",
+            "name": "conservative",
+            "colour": "rgb(101,169,232)"
+        },
+        {
+            "category": "prime ministers",
+            "name": "peelite",
+            "colour": "rgb(198,224,180)"
+        },
+        {
+            "category": "prime ministers",
+            "name": "liberal",
+            "colour": "rgb(255,217,102)"
+        },
+        {
+            "category": "prime ministers",
+            "name": "labour",
+            "colour": "rgb(255,0,0)"
+        }
+    ],
+    "events": [
+        {
+            "name": "Ann",
+            "category": "monarchs",
+            "subCategory": "stuart",
+            "start": "1707-05-01",
+            "summary": "<p>Anne (6 February 1665 – 1 August 1714) reigned as Queen of England, Scotland and Ireland from 8 March 1702 until 1 May 1707. On 1 May 1707, under the Acts of Union, the kingdoms of England and Scotland united as a single sovereign state known as Great Britain. Anne continued to reign as Queen of Great Britain and Ireland until her death in 1714.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Anne,_Queen_of_Great_Britain\">https://en.wikipedia.org/wiki/Anne,_Queen_of_Great_Britain</a></p>\n",
+            "end": "1714-08-01"
+        },
+        {
+            "name": "George I",
+            "category": "monarchs",
+            "subCategory": "hanover",
+            "start": "1714-08-01",
+            "summary": "<p>George I (George Louis; German: Georg Ludwig; 28 May 1660 – 11 June 1727) was King of Great Britain and Ireland from 1 August 1714 and ruler of the Electorate of Hanover within the Holy Roman Empire from 23 January 1698 until his death in 1727. He was the first British monarch of the House of Hanover.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_I_of_Great_Britain\">https://en.wikipedia.org/wiki/George_I_of_Great_Britain</a></p>\n",
+            "end": "1727-06-11"
+        },
+        {
+            "name": "George II",
+            "category": "monarchs",
+            "subCategory": "hanover",
+            "start": "1727-06-11",
+            "summary": "<p>George II (George Augustus; German: Georg August; 30 October / 9 November 1683 O.S./N.S. – 25 October 1760) was King of Great Britain and Ireland, Duke of Brunswick-Lüneburg (Hanover) and a prince-elector of the Holy Roman Empire from 11 June 1727 (O.S.) until his death in 1760.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_II_of_Great_Britain\">https://en.wikipedia.org/wiki/George_II_of_Great_Britain</a></p>\n",
+            "end": "1760-10-25"
+        },
+        {
+            "name": "George III",
+            "category": "monarchs",
+            "subCategory": "hanover",
+            "start": "1760-10-25",
+            "summary": "<p>George III (George William Frederick; 4 June 1738[c] – 29 January 1820) was King of Great Britain and of Ireland from 25 October 1760 until the union of the two kingdoms on 1 January 1801, after which he was King of the United Kingdom of Great Britain and Ireland until his death in 1820, making him the longest reigning king in British history. He was concurrently Duke and Prince-elector of Brunswick-Lüneburg (&quot;Hanover&quot;) in the Holy Roman Empire before becoming King of Hanover on 12 October 1814. He was a monarch of the House of Hanover but, unlike his two predecessors, he was born in Great Britain, spoke English as his first language and never visited Hanover.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_III\">https://en.wikipedia.org/wiki/George_III</a></p>\n",
+            "end": "1820-01-29"
+        },
+        {
+            "name": "George IV",
+            "category": "monarchs",
+            "subCategory": "hanover",
+            "start": "1820-01-29",
+            "summary": "<p>George IV (George Augustus Frederick; 12 August 1762 – 26 June 1830) was King of the United Kingdom of Great Britain and Ireland and King of Hanover from the death of his father, King George III, on 29 January 1820, until his own death ten years later. At the time of his accession to the throne, he was acting as Prince Regent, having done so since 5 February 1811, during his father&#39;s final mental illness.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_IV\">https://en.wikipedia.org/wiki/George_IV</a></p>\n",
+            "end": "1830-06-26"
+        },
+        {
+            "name": "William IV",
+            "category": "monarchs",
+            "subCategory": "hanover",
+            "start": "1830-06-26",
+            "summary": "<p>William IV (William Henry; 21 August 1765 – 20 June 1837) was King of the United Kingdom of Great Britain and Ireland and King of Hanover from 26 June 1830 until his death in 1837. The third son of George III, William succeeded his elder brother George IV, becoming the last king and penultimate monarch of Britain&#39;s House of Hanover.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_IV\">https://en.wikipedia.org/wiki/William_IV</a></p>\n",
+            "end": "1837-06-20"
+        },
+        {
+            "name": "Victoria",
+            "category": "monarchs",
+            "subCategory": "hanover",
+            "start": "1837-06-20",
+            "summary": "<p>Victoria (Alexandrina Victoria; 24 May 1819 – 22 January 1901) was Queen of the United Kingdom of Great Britain and Ireland from 20 June 1837 until her death in 1901. Her reign of 63 years and seven months was longer than that of any previous British monarch and is known as the Victorian era. It was a period of industrial, political, scientific, and military change within the United Kingdom, and was marked by a great expansion of the British Empire. In 1876, the British Parliament voted to grant her the additional title of Empress of India.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Queen_Victoria\">https://en.wikipedia.org/wiki/Queen_Victoria</a></p>\n",
+            "end": "1901-01-22"
+        },
+        {
+            "name": "Edward VII",
+            "category": "monarchs",
+            "subCategory": "saxe-coburg and gotha",
+            "start": "1901-01-22",
+            "summary": "<p>Edward VII (Albert Edward; 9 November 1841 – 6 May 1910) was King of the United Kingdom of Great Britain and Ireland and the British Dominions, and Emperor of India, from 22 January 1901 until his death in 1910.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_VII\">https://en.wikipedia.org/wiki/Edward_VII</a></p>\n",
+            "end": "1910-05-06"
+        },
+        {
+            "name": "George V",
+            "category": "monarchs",
+            "subCategory": "saxe-coburg and gotha to windsor",
+            "start": "1910-05-06",
+            "summary": "<p>George V (George Frederick Ernest Albert; 3 June 1865 – 20 January 1936) was King of the United Kingdom and the British Dominions, and Emperor of India, from 6 May 1910 until his death in 1936.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_V\">https://en.wikipedia.org/wiki/George_V</a></p>\n",
+            "end": "1936-01-20"
+        },
+        {
+            "name": "Edward VIII",
+            "category": "monarchs",
+            "subCategory": "windsor",
+            "start": "1936-01-20",
+            "summary": "<p>Edward VIII (Edward Albert Christian George Andrew Patrick David; 23 June 1894 – 28 May 1972) was King of the United Kingdom and the Dominions of the British Empire and Emperor of India from 20 January 1936 until his abdication in December of the same year.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_VIII\">https://en.wikipedia.org/wiki/Edward_VIII</a></p>\n",
+            "end": "1936-12-11"
+        },
+        {
+            "name": "George VI",
+            "category": "monarchs",
+            "subCategory": "windsor",
+            "start": "1936-12-11",
+            "summary": "<p>George VI (Albert Frederick Arthur George; 14 December 1895 – 6 February 1952) was King of the United Kingdom and the Dominions of the British Commonwealth from 11 December 1936 until his death in 1952. He was concurrently the last Emperor of India until August 1947, when the British Raj was dissolved.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_VI\">https://en.wikipedia.org/wiki/George_VI</a></p>\n",
+            "end": "1952-02-06"
+        },
+        {
+            "name": "Elizabeth II",
+            "category": "monarchs",
+            "subCategory": "windsor",
+            "start": "1952-02-06",
+            "summary": "<p>Elizabeth II (Elizabeth Alexandra Mary; 21 April 1926 – 8 September 2022) was Queen of the United Kingdom and other Commonwealth realms from 6 February 1952 until her death in 2022. She was queen regnant of 32 sovereign states during her lifetime and 15 at the time of her death.[b] Her reign of 70 years and 214 days is the longest of any British monarch, the longest recorded of any female head of state in history, and the second-longest verified reign of any sovereign in history.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Elizabeth_II\">https://en.wikipedia.org/wiki/Elizabeth_II</a></p>\n",
+            "end": "2022-09-08"
+        },
+        {
+            "name": "Charles III",
+            "category": "monarchs",
+            "subCategory": "windsor",
+            "start": "2022-09-08",
+            "summary": "<p>Charles III (Charles Philip Arthur George; born 14 November 1948) is King of the United Kingdom and 14 other Commonwealth realms. He acceded to the throne on 8 September 2022 upon the death of his mother, Elizabeth II. He was the longest-serving heir apparent in British history and, at the age of 73, is the oldest person to assume the British throne.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Charles_III\">https://en.wikipedia.org/wiki/Charles_III</a></p>\n",
+            "end": "-"
+        },
+        {
+            "name": "Robert Walpole",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1721-04-03",
+            "summary": "<p>Robert Walpole, 1st Earl of Orford, KG PC (26 August 1676 – 18 March 1745; known between 1725 and 1742 as Sir Robert Walpole) was a British statesman and Whig politician who is generally regarded as the de facto first Prime Minister of Great Britain.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Walpole\">https://en.wikipedia.org/wiki/Robert_Walpole</a></p>\n",
+            "end": "1742-02-11"
+        },
+        {
+            "name": "Spencer Compton, 1st Earl of Wilmington",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1742-02-16",
+            "summary": "<p>Spencer Compton, 1st Earl of Wilmington, KG, PC (c.  1674 – 2 July 1743)[1] was a British Whig statesman who served continuously in government from 1715 until his death. He sat in the English and British House of Commons between 1698 and 1728, and was then raised to the peerage and sat in the House of Lords. He served as the prime minister of Great Britain from 1742 until his death in 1743. He is considered to have been Britain&#39;s second prime minister, after Robert Walpole, but worked closely with the Secretary of State, Lord Carteret, in order to secure the support of the various factions making up the government.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Spencer_Compton,_1st_Earl_of_Wilmington\">https://en.wikipedia.org/wiki/Spencer_Compton,_1st_Earl_of_Wilmington</a></p>\n",
+            "end": "1743-07-02"
+        },
+        {
+            "name": "Henry Pelham",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1743-08-27",
+            "summary": "<p>Henry Pelham FRS (25 September 1694 – 6 March 1754) was a British Whig statesman who served as Prime Minister of Great Britain from 1743 until his death in 1754. He was the younger brother of Thomas Pelham-Holles, 1st Duke of Newcastle, who served in Pelham&#39;s government and succeeded him as prime minister. Pelham is generally considered to have been Britain&#39;s third prime minister, after Robert Walpole and the Earl of Wilmington.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_Pelham\">https://en.wikipedia.org/wiki/Henry_Pelham</a></p>\n",
+            "end": "1754-03-06"
+        },
+        {
+            "name": "Thomas Pelham-Holles, 1st Duke of Newcastle",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1754-03-16",
+            "summary": "<p>Thomas Pelham-Holles, 1st Duke of Newcastle upon Tyne and 1st Duke of Newcastle-under-Lyne, KG, PC, FRS (21 July 1693 – 17 November 1768) was a British Whig statesman, whose official life extended throughout the Whig supremacy of the 18th century. He is commonly known as the Duke of Newcastle.[1]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Thomas_Pelham-Holles,_1st_Duke_of_Newcastle\">https://en.wikipedia.org/wiki/Thomas_Pelham-Holles,_1st_Duke_of_Newcastle</a></p>\n",
+            "end": "1756-11-11"
+        },
+        {
+            "name": "William Cavendish, 4th Duke of Devonshire",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1756-11-16",
+            "summary": "<p>William Cavendish, 4th Duke of Devonshire, KG, PC (8 May 1720 – 2 October 1764), styled Lord Cavendish before 1729, and Marquess of Hartington between 1729 and 1755, was a British Whig statesman and nobleman who was briefly nominal Prime Minister of Great Britain.[1] He was the first son of William Cavendish, 3rd Duke of Devonshire and his wife, Catherine Hoskins. He is also a great-great-great-great-great-grandfather of King Charles III through the king&#39;s maternal grandmother.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Cavendish,_4th_Duke_of_Devonshire\">https://en.wikipedia.org/wiki/William_Cavendish,_4th_Duke_of_Devonshire</a></p>\n",
+            "end": "1757-06-29"
+        },
+        {
+            "name": "Thomas Pelham-Holles, 1st Duke of Newcastle",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1757-06-29",
+            "summary": "<p>Thomas Pelham-Holles, 1st Duke of Newcastle upon Tyne and 1st Duke of Newcastle-under-Lyne, KG, PC, FRS (21 July 1693 – 17 November 1768) was a British Whig statesman, whose official life extended throughout the Whig supremacy of the 18th century. He is commonly known as the Duke of Newcastle.[1]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Thomas_Pelham-Holles,_1st_Duke_of_Newcastle\">https://en.wikipedia.org/wiki/Thomas_Pelham-Holles,_1st_Duke_of_Newcastle</a></p>\n",
+            "end": "1762-05-26"
+        },
+        {
+            "name": "John Stuart, 3rd Earl of Bute",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1762-05-26",
+            "summary": "<p>John Stuart, 3rd Earl of Bute, KG, PC, FSA Scot (/bjuːt/; 25 May 1713 – 10 March 1792), styled Lord Mount Stuart between 1713 and 1723, was a British nobleman who served as Prime Minister of Great Britain from 1762 to 1763 under George III. He was arguably the last important royal favourite in British politics. He was the first prime minister from Scotland following the Acts of Union in 1707 and the first Tory to have held the post. He was also elected as the first president of the Society of Antiquaries of Scotland when it was founded in 1780.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/John_Stuart,_3rd_Earl_of_Bute\">https://en.wikipedia.org/wiki/John_Stuart,_3rd_Earl_of_Bute</a></p>\n",
+            "end": "1763-04-08"
+        },
+        {
+            "name": "George Grenville",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1763-04-16",
+            "summary": "<p>George Grenville (14 October 1712 – 13 November 1770) was a British Whig statesman who rose to the position of Prime Minister of Great Britain. Grenville was born into an influential political family and first entered Parliament in 1741 as an MP for Buckingham. He emerged as one of Cobham&#39;s Cubs, a group of young members of Parliament associated with Lord Cobham.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_Grenville\">https://en.wikipedia.org/wiki/George_Grenville</a></p>\n",
+            "end": "1765-07-10"
+        },
+        {
+            "name": "Charles Watson-Wentworth, 2nd Marquess of Rockingham",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1765-07-13",
+            "summary": "<p>Charles Watson-Wentworth, 2nd Marquess of Rockingham, KG, PC, FRS (13 May 1730 – 1 July 1782; styled The Hon. Charles Watson-Wentworth before 1733, Viscount Higham between 1733 and 1746, Earl of Malton between 1746 and 1750 and The Marquess of Rockingham in 1750) was a British Whig statesman, most notable for his two terms as Prime Minister of Great Britain. He became the patron of many Whigs, known as the Rockingham Whigs, and served as a leading Whig grandee. He served in only two high offices during his lifetime (Prime Minister and Leader of the House of Lords) but was nonetheless very influential during his one and a half years of service.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham\">https://en.wikipedia.org/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham</a></p>\n",
+            "end": "1766-07-30"
+        },
+        {
+            "name": "William Pitt, 1st Earl of Chatham",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1766-07-30",
+            "summary": "<p>William Pitt, 1st Earl of Chatham, PC, FRS (15 November 1708 – 11 May 1778) was a British statesman of the Whig group who served as Prime Minister of Great Britain from 1766 to 1768. Historians call him Chatham or William Pitt the Elder to distinguish him from his son, William Pitt the Younger, who was also a prime minister. Pitt was also known as the Great Commoner, because of his long-standing refusal to accept a title until 1766.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Pitt,_1st_Earl_of_Chatham\">https://en.wikipedia.org/wiki/William_Pitt,_1st_Earl_of_Chatham</a></p>\n",
+            "end": "1768-10-14"
+        },
+        {
+            "name": "Augustus FitzRoy, 3rd Duke of Grafton",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1768-10-14",
+            "summary": "<p>Augustus Henry FitzRoy, 3rd Duke of Grafton, KG, PC (28 September 1735 – 14 March 1811), styled Earl of Euston between 1747 and 1757, was a British Whig statesman of the Georgian era. He is one of a handful of dukes who have served as prime minister.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Augustus_FitzRoy,_3rd_Duke_of_Grafton\">https://en.wikipedia.org/wiki/Augustus_FitzRoy,_3rd_Duke_of_Grafton</a></p>\n",
+            "end": "1770-01-28"
+        },
+        {
+            "name": "Frederick North, Lord North",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1770-01-28",
+            "summary": "<p>Frederick North, 2nd Earl of Guilford KG, PC (13 April 1732 – 5 August 1792), better known by his courtesy title Lord North, which he used from 1752 to 1790, was Prime Minister of Great Britain from 1770 to 1782. He led Great Britain through most of the American War of Independence. He also held a number of other cabinet posts, including Home Secretary and Chancellor of the Exchequer.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Frederick_North,_Lord_North\">https://en.wikipedia.org/wiki/Frederick_North,_Lord_North</a></p>\n",
+            "end": "1782-03-27"
+        },
+        {
+            "name": "Charles Watson-Wentworth, 2nd Marquess of Rockingham",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1782-03-27",
+            "summary": "<p>Charles Watson-Wentworth, 2nd Marquess of Rockingham, KG, PC, FRS (13 May 1730 – 1 July 1782; styled The Hon. Charles Watson-Wentworth before 1733, Viscount Higham between 1733 and 1746, Earl of Malton between 1746 and 1750 and The Marquess of Rockingham in 1750) was a British Whig statesman, most notable for his two terms as Prime Minister of Great Britain. He became the patron of many Whigs, known as the Rockingham Whigs, and served as a leading Whig grandee. He served in only two high offices during his lifetime (Prime Minister and Leader of the House of Lords) but was nonetheless very influential during his one and a half years of service.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham\">https://en.wikipedia.org/wiki/Charles_Watson-Wentworth,_2nd_Marquess_of_Rockingham</a></p>\n",
+            "end": "1782-07-01"
+        },
+        {
+            "name": "William Petty, 2nd Earl of Shelburne",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1782-07-04",
+            "summary": "<p>William Petty Fitzmaurice, 1st Marquess of Lansdowne, KG, PC (2 May 1737 – 7 May 1805; known as the Earl of Shelburne between 1761 and 1784, by which title he is generally known to history), was an Irish-born British Whig statesman who was the first home secretary in 1782 and then prime minister from 1782 to 1783 during the final months of the American War of Independence. He succeeded in securing peace with America and this feat remains his most notable legacy.[1]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Petty,_2nd_Earl_of_Shelburne\">https://en.wikipedia.org/wiki/William_Petty,_2nd_Earl_of_Shelburne</a></p>\n",
+            "end": "1783-03-26"
+        },
+        {
+            "name": "William Cavendish-Bentinck, 3rd Duke of Portland",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1783-04-02",
+            "summary": "<p>William Henry Cavendish Cavendish-Bentinck, 3rd Duke of Portland, KG, PC, FRS (14 April 1738 – 30 October 1809) was a British Whig and then a Tory politician during the late Georgian era. He served as Chancellor of the University of Oxford (1792–1809) and twice as the Prime Minister of Great Britain (1783) and then of the United Kingdom (1807–1809). The 26 years between his two terms as Prime Minister is the longest gap between terms of office of any British Prime Minister. He was also the fourth great-grandfather of King Charles III through his great-granddaughter Cecilia Bowes-Lyon, Countess of Strathmore and Kinghorne.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Cavendish-Bentinck,_3rd_Duke_of_Portland\">https://en.wikipedia.org/wiki/William_Cavendish-Bentinck,_3rd_Duke_of_Portland</a></p>\n",
+            "end": "1783-12-18"
+        },
+        {
+            "name": "William Pitt the Younger",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1783-12-19",
+            "summary": "<p>William Pitt the Younger (28 May 1759 – 23 January 1806) was a British statesman of the late eighteenth and early nineteenth centuries. He was the youngest and last Prime Minister of Great Britain (before the Acts of Union 1800) and then first Prime Minister of the United Kingdom (of Great Britain and Ireland) as of January 1801. He left office in March 1801, but served as prime minister again from 1804 until his death in 1806. He was also Chancellor of the Exchequer for all of his time as prime minister. He is known as &quot;Pitt the Younger&quot; to distinguish him from his father, William Pitt, 1st Earl of Chatham, who had previously served as prime minister, and is referred to as &quot;William Pitt the Elder&quot; (or &quot;Chatham&quot; by historians).</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Pitt_the_Younger\">https://en.wikipedia.org/wiki/William_Pitt_the_Younger</a></p>\n",
+            "end": "1801-03-14"
+        },
+        {
+            "name": "Henry Addington",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1801-03-17",
+            "summary": "<p>Henry Addington, 1st Viscount Sidmouth, PC (30 May 1757 – 15 February 1844) was an English Tory statesman who served as Prime Minister of the United Kingdom from 1801 to 1804.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_Addington\">https://en.wikipedia.org/wiki/Henry_Addington</a></p>\n",
+            "end": "1804-05-10"
+        },
+        {
+            "name": "William Pitt the Younger",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1804-05-10",
+            "summary": "<p>William Pitt the Younger (28 May 1759 – 23 January 1806) was a British statesman of the late eighteenth and early nineteenth centuries. He was the youngest and last Prime Minister of Great Britain (before the Acts of Union 1800) and then first Prime Minister of the United Kingdom (of Great Britain and Ireland) as of January 1801. He left office in March 1801, but served as prime minister again from 1804 until his death in 1806. He was also Chancellor of the Exchequer for all of his time as prime minister. He is known as &quot;Pitt the Younger&quot; to distinguish him from his father, William Pitt, 1st Earl of Chatham, who had previously served as prime minister, and is referred to as &quot;William Pitt the Elder&quot; (or &quot;Chatham&quot; by historians).</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Pitt_the_Younger\">https://en.wikipedia.org/wiki/William_Pitt_the_Younger</a></p>\n",
+            "end": "1806-01-23"
+        },
+        {
+            "name": "William Grenville, 1st Baron Grenville",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1806-02-11",
+            "summary": "<p>William Wyndham Grenville, 1st Baron Grenville, PC, PC (Ire), FRS (25 October 1759 – 12 January 1834) was a British Pittite Tory politician who served as Prime Minister of the United Kingdom from 1806 to 1807, but was a supporter of the Whigs for the duration of the Napoleonic Wars.  As prime minister, his most significant achievement was the abolition of the slave trade in 1807.  However, his government failed to either make peace with France or to accomplish Catholic emancipation and it was dismissed in the same year.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Grenville,_1st_Baron_Grenville\">https://en.wikipedia.org/wiki/William_Grenville,_1st_Baron_Grenville</a></p>\n",
+            "end": "1807-03-25"
+        },
+        {
+            "name": "William Cavendish-Bentinck, 3rd Duke of Portland",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1807-03-31",
+            "summary": "<p>William Henry Cavendish Cavendish-Bentinck, 3rd Duke of Portland, KG, PC, FRS (14 April 1738 – 30 October 1809) was a British Whig and then a Tory politician during the late Georgian era. He served as Chancellor of the University of Oxford (1792–1809) and twice as the Prime Minister of Great Britain (1783) and then of the United Kingdom (1807–1809). The 26 years between his two terms as Prime Minister is the longest gap between terms of office of any British Prime Minister. He was also the fourth great-grandfather of King Charles III through his great-granddaughter Cecilia Bowes-Lyon, Countess of Strathmore and Kinghorne.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Cavendish-Bentinck,_3rd_Duke_of_Portland\">https://en.wikipedia.org/wiki/William_Cavendish-Bentinck,_3rd_Duke_of_Portland</a></p>\n",
+            "end": "1809-10-04"
+        },
+        {
+            "name": "Spencer Perceval",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1809-10-04",
+            "summary": "<p>Spencer Perceval KC (1 November 1762 – 11 May 1812) was a British statesman and barrister who served as Prime Minister of the United Kingdom from October 1809 until his assassination in May 1812. Perceval is the only British prime minister to have been assassinated, and the only solicitor-general or attorney-general to have become prime minister.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Spencer_Perceval\">https://en.wikipedia.org/wiki/Spencer_Perceval</a></p>\n",
+            "end": "1812-05-11"
+        },
+        {
+            "name": "Robert Jenkinson, 2nd Earl of Liverpool",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1812-06-08",
+            "summary": "<p>Robert Banks Jenkinson, 2nd Earl of Liverpool, KG, PC, FRS (7 June 1770 – 4 December 1828) was a British Tory statesman who served as Prime Minister of the United Kingdom from 1812 to 1827. He held many important cabinet offices such as Foreign Secretary, Home Secretary and Secretary of State for War and the Colonies. He was also a member of the House of Lords and served as leader.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Jenkinson,_2nd_Earl_of_Liverpool\">https://en.wikipedia.org/wiki/Robert_Jenkinson,_2nd_Earl_of_Liverpool</a></p>\n",
+            "end": "1827-04-09"
+        },
+        {
+            "name": "George Canning",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1827-04-12",
+            "summary": "<p>George Canning FRS (11 April 1770 – 8 August 1827) was a British Tory statesman. He held various senior cabinet positions under numerous prime ministers, including two important terms as Foreign Secretary, finally becoming Prime Minister of the United Kingdom for the last 118 days of his life, from April to August 1827.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_Canning\">https://en.wikipedia.org/wiki/George_Canning</a></p>\n",
+            "end": "1827-08-08"
+        },
+        {
+            "name": "F. J. Robinson, 1st Viscount Goderich",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1827-08-31",
+            "summary": "<p>Frederick John Robinson, 1st Earl of Ripon, PC (1 November 1782 – 28 January 1859), styled The Honourable F. J. Robinson until 1827 and known between 1827 and 1833 as The Viscount Goderich (pronounced /ˈɡoʊdrɪtʃ/ GOHdrich[1]), the name by which he is best known to history, was a British politician who served as Prime Minister of the United Kingdom from 1827 to 1828.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/F._J._Robinson,_1st_Viscount_Goderich\">https://en.wikipedia.org/wiki/F._J._Robinson,_1st_Viscount_Goderich</a></p>\n",
+            "end": "1828-01-08"
+        },
+        {
+            "name": "Arthur Wellesley, 1st Duke of Wellington",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1828-01-22",
+            "summary": "<p>Arthur Wellesley, 1st Duke of Wellington, KG, GCB, GCH, PC, FRS (1 May 1769 – 14 September 1852) was an Anglo-Irish soldier and Tory statesman who was one of the leading military and political figures of 19th-century Britain, serving twice as prime minister of the United Kingdom. He is among the commanders who won and ended the Napoleonic Wars when the coalition defeated Napoleon at the Battle of Waterloo in 1815.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Arthur_Wellesley,_1st_Duke_of_Wellington\">https://en.wikipedia.org/wiki/Arthur_Wellesley,_1st_Duke_of_Wellington</a></p>\n",
+            "end": "1830-11-16"
+        },
+        {
+            "name": "Charles Grey, 2nd Earl Grey",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1830-11-22",
+            "summary": "<p>Charles Grey, 2nd Earl Grey, KG PC (13 March 1764 – 17 July 1845), known as Viscount Howick between 1806 and 1807, was a British politician who served as Prime Minister of the United Kingdom from 1830 to 1834. He was a descendant of the noble House of Grey and a member of the Whig Party.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Charles_Grey,_2nd_Earl_Grey\">https://en.wikipedia.org/wiki/Charles_Grey,_2nd_Earl_Grey</a></p>\n",
+            "end": "1834-07-09"
+        },
+        {
+            "name": "William Lamb, 2nd Viscount Melbourne",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1834-07-16",
+            "summary": "<p>William Lamb, 2nd Viscount Melbourne, PC, PC (Ire), FRS (15 March 1779 – 24 November 1848),[1] in some sources called Henry William Lamb,[2][3] was a British Whig politician who served as Home Secretary (1830–1834) and Prime Minister (1834 and 1835–1841). His first premiership ended when he was dismissed by King William IV in 1834, the last British prime minister to be dismissed by a monarch. Five months later he was re-appointed and served for six more years, into the reign of Queen Victoria. He is best known for coaching the Queen in the ways of politics, acting almost as her private secretary. Historians do not rank Melbourne&#39;s tenure as prime minister favourably, as he had no great foreign wars or domestic issues to handle, and he was involved in several political scandals in the early years of Victoria&#39;s reign.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Lamb,_2nd_Viscount_Melbourne\">https://en.wikipedia.org/wiki/William_Lamb,_2nd_Viscount_Melbourne</a></p>\n",
+            "end": "1834-11-14"
+        },
+        {
+            "name": "Arthur Wellesley, 1st Duke of Wellington",
+            "category": "prime ministers",
+            "subCategory": "tory",
+            "start": "1834-11-17",
+            "summary": "<p>Arthur Wellesley, 1st Duke of Wellington, KG, GCB, GCH, PC, FRS (1 May 1769 – 14 September 1852) was an Anglo-Irish soldier and Tory statesman who was one of the leading military and political figures of 19th-century Britain, serving twice as prime minister of the United Kingdom. He is among the commanders who won and ended the Napoleonic Wars when the coalition defeated Napoleon at the Battle of Waterloo in 1815.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Arthur_Wellesley,_1st_Duke_of_Wellington\">https://en.wikipedia.org/wiki/Arthur_Wellesley,_1st_Duke_of_Wellington</a></p>\n",
+            "end": "1834-12-09"
+        },
+        {
+            "name": "Robert Peel",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1834-12-10",
+            "summary": "<p>Sir Robert Peel, 2nd Baronet, FRS (5 February 1788 – 2 July 1850) was a British Conservative statesman who served twice as Prime Minister of the United Kingdom (1834–1835 and 1841–1846) simultaneously serving as Chancellor of the Exchequer (1834–1835) and twice as Home Secretary (1822–1827 and 1828–1830). He is regarded as the father of modern British policing, owing to his founding of the Metropolitan Police Service. Peel was one of the founders of the modern Conservative Party.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Peel\">https://en.wikipedia.org/wiki/Robert_Peel</a></p>\n",
+            "end": "1835-04-08"
+        },
+        {
+            "name": "William Lamb, 2nd Viscount Melbourne",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1835-04-18",
+            "summary": "<p>William Lamb, 2nd Viscount Melbourne, PC, PC (Ire), FRS (15 March 1779 – 24 November 1848),[1] in some sources called Henry William Lamb,[2][3] was a British Whig politician who served as Home Secretary (1830–1834) and Prime Minister (1834 and 1835–1841). His first premiership ended when he was dismissed by King William IV in 1834, the last British prime minister to be dismissed by a monarch. Five months later he was re-appointed and served for six more years, into the reign of Queen Victoria. He is best known for coaching the Queen in the ways of politics, acting almost as her private secretary. Historians do not rank Melbourne&#39;s tenure as prime minister favourably, as he had no great foreign wars or domestic issues to handle, and he was involved in several political scandals in the early years of Victoria&#39;s reign.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Lamb,_2nd_Viscount_Melbourne\">https://en.wikipedia.org/wiki/William_Lamb,_2nd_Viscount_Melbourne</a></p>\n",
+            "end": "1841-08-30"
+        },
+        {
+            "name": "Robert Peel",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1841-08-30",
+            "summary": "<p>Sir Robert Peel, 2nd Baronet, FRS (5 February 1788 – 2 July 1850) was a British Conservative statesman who served twice as Prime Minister of the United Kingdom (1834–1835 and 1841–1846) simultaneously serving as Chancellor of the Exchequer (1834–1835) and twice as Home Secretary (1822–1827 and 1828–1830). He is regarded as the father of modern British policing, owing to his founding of the Metropolitan Police Service. Peel was one of the founders of the modern Conservative Party.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Peel\">https://en.wikipedia.org/wiki/Robert_Peel</a></p>\n",
+            "end": "1846-06-29"
+        },
+        {
+            "name": "John Russell, 1st Earl Russell",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1846-06-30",
+            "summary": "<p>John Russell, 1st Earl Russell, KG, GCMG, PC, FRS (18 August 1792 – 28 May 1878), known by his courtesy title Lord John Russell before 1861, was a British Whig and Liberal statesman who served as Prime Minister of the United Kingdom from 1846 to 1852 and again from 1865 to 1866.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/John_Russell,_1st_Earl_Russell\">https://en.wikipedia.org/wiki/John_Russell,_1st_Earl_Russell</a></p>\n",
+            "end": "1852-02-21"
+        },
+        {
+            "name": "Edward Smith-Stanley, 14th Earl of Derby",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1852-02-23",
+            "summary": "<p>Edward George Geoffrey Smith-Stanley, 14th Earl of Derby, KG GCMG PC PC (Ire) (29 March 1799 – 23 October 1869, known before 1834 as Edward Stanley, and from 1834 to 1851 as Lord Stanley) was a British statesman, three-time Prime Minister of the United Kingdom and, to date, the longest-serving leader of the Conservative Party. He was scion of one of Britain&#39;s oldest, wealthiest and most powerful families. He is one of only four British prime ministers to have three or more separate periods in office.[1] However, his ministries each lasted less than two years and totalled three years and 280 days.  Derby introduced the state education system in Ireland, and reformed Parliament.[2]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby\">https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby</a></p>\n",
+            "end": "1852-12-17"
+        },
+        {
+            "name": "George Hamilton-Gordon, 4th Earl of Aberdeen",
+            "category": "prime ministers",
+            "subCategory": "peelite",
+            "start": "1852-12-19",
+            "summary": "<p>George Hamilton-Gordon, 4th Earl of Aberdeen, KG, KT, PC, FRS, FRSE, FSA Scot (28 January 1784 – 14 December 1860[1]), styled Lord Haddo from 1791 to 1801, was a British statesman, diplomat and landowner, successively a Tory, Conservative and Peelite politician and specialist in foreign affairs. He served as Prime Minister from 1852 until 1855 in a coalition between the Whigs and Peelites, with Radical and Irish support. The Aberdeen ministry was filled with powerful and talented politicians, whom Aberdeen was largely unable to control and direct. Despite his trying to avoid this happening, it took Britain into the Crimean War, and fell when its conduct became unpopular, after which Aberdeen retired from politics.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/George_Hamilton-Gordon,_4th_Earl_of_Aberdeen\">https://en.wikipedia.org/wiki/George_Hamilton-Gordon,_4th_Earl_of_Aberdeen</a></p>\n",
+            "end": "1855-01-30"
+        },
+        {
+            "name": "Henry John Temple, 3rd Viscount Palmerston",
+            "category": "prime ministers",
+            "subCategory": "whig",
+            "start": "1855-02-06",
+            "summary": "<p>Henry John Temple, 3rd Viscount Palmerston, KG, GCB, PC, FRS (20 October 1784 – 18 October 1865) was a British statesman who was twice Prime Minister of the United Kingdom in the mid-19th century. Palmerston dominated British foreign policy during the period 1830 to 1865, when Britain stood at the height of its imperial power. He held office almost continuously from 1807 until his death in 1865. He began his parliamentary career as a Tory, defected to the Whigs in 1830, and became the first prime minister from the newly formed Liberal Party in 1859. He was highly popular with the British public. David Brown argues that &quot;an important part of Palmerston&#39;s appeal lay in his dynamism and vigour&quot;.[2]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_John_Temple,_3rd_Viscount_Palmerston\">https://en.wikipedia.org/wiki/Henry_John_Temple,_3rd_Viscount_Palmerston</a></p>\n",
+            "end": "1858-02-19"
+        },
+        {
+            "name": "Edward Smith-Stanley, 14th Earl of Derby",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1858-02-20",
+            "summary": "<p>Edward George Geoffrey Smith-Stanley, 14th Earl of Derby, KG GCMG PC PC (Ire) (29 March 1799 – 23 October 1869, known before 1834 as Edward Stanley, and from 1834 to 1851 as Lord Stanley) was a British statesman, three-time Prime Minister of the United Kingdom and, to date, the longest-serving leader of the Conservative Party. He was scion of one of Britain&#39;s oldest, wealthiest and most powerful families. He is one of only four British prime ministers to have three or more separate periods in office.[1] However, his ministries each lasted less than two years and totalled three years and 280 days.  Derby introduced the state education system in Ireland, and reformed Parliament.[2]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby\">https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby</a></p>\n",
+            "end": "1859-06-11"
+        },
+        {
+            "name": "Henry John Temple, 3rd Viscount Palmerston",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1859-06-12",
+            "summary": "<p>Henry John Temple, 3rd Viscount Palmerston, KG, GCB, PC, FRS (20 October 1784 – 18 October 1865) was a British statesman who was twice Prime Minister of the United Kingdom in the mid-19th century. Palmerston dominated British foreign policy during the period 1830 to 1865, when Britain stood at the height of its imperial power. He held office almost continuously from 1807 until his death in 1865. He began his parliamentary career as a Tory, defected to the Whigs in 1830, and became the first prime minister from the newly formed Liberal Party in 1859. He was highly popular with the British public. David Brown argues that &quot;an important part of Palmerston&#39;s appeal lay in his dynamism and vigour&quot;.[2]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_John_Temple,_3rd_Viscount_Palmerston\">https://en.wikipedia.org/wiki/Henry_John_Temple,_3rd_Viscount_Palmerston</a></p>\n",
+            "end": "1865-10-18"
+        },
+        {
+            "name": "John Russell, 1st Earl Russell",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1865-10-29",
+            "summary": "<p>John Russell, 1st Earl Russell, KG, GCMG, PC, FRS (18 August 1792 – 28 May 1878), known by his courtesy title Lord John Russell before 1861, was a British Whig and Liberal statesman who served as Prime Minister of the United Kingdom from 1846 to 1852 and again from 1865 to 1866.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/John_Russell,_1st_Earl_Russell\">https://en.wikipedia.org/wiki/John_Russell,_1st_Earl_Russell</a></p>\n",
+            "end": "1866-06-26"
+        },
+        {
+            "name": "Edward Smith-Stanley, 14th Earl of Derby",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1866-06-28",
+            "summary": "<p>Edward George Geoffrey Smith-Stanley, 14th Earl of Derby, KG GCMG PC PC (Ire) (29 March 1799 – 23 October 1869, known before 1834 as Edward Stanley, and from 1834 to 1851 as Lord Stanley) was a British statesman, three-time Prime Minister of the United Kingdom and, to date, the longest-serving leader of the Conservative Party. He was scion of one of Britain&#39;s oldest, wealthiest and most powerful families. He is one of only four British prime ministers to have three or more separate periods in office.[1] However, his ministries each lasted less than two years and totalled three years and 280 days.  Derby introduced the state education system in Ireland, and reformed Parliament.[2]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby\">https://en.wikipedia.org/wiki/Edward_Smith-Stanley,_14th_Earl_of_Derby</a></p>\n",
+            "end": "1868-02-25"
+        },
+        {
+            "name": "Benjamin Disraeli",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1868-02-27",
+            "summary": "<p>Benjamin Disraeli, 1st Earl of Beaconsfield, KG, PC, DL, JP, FRS[1] (21 December 1804 – 19 April 1881) was a British statesman and Conservative politician who twice served as Prime Minister of the United Kingdom. He played a central role in the creation of the modern Conservative Party, defining its policies and its broad outreach. Disraeli is remembered for his influential voice in world affairs, his political battles with the Liberal Party leader William Ewart Gladstone, and his one-nation conservatism or &quot;Tory democracy&quot;. He made the Conservatives the party most identified with the British Empire, and military action to expand it, both of which were popular among British voters. He is the only British prime minister to have been of Jewish origin. He was also a novelist, publishing works of fiction even as prime minister.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Benjamin_Disraeli\">https://en.wikipedia.org/wiki/Benjamin_Disraeli</a></p>\n",
+            "end": "1868-12-01"
+        },
+        {
+            "name": "William Ewart Gladstone",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1868-12-03",
+            "summary": "<p>William Ewart Gladstone FRS FSS (/ˈɡlædstən/; 29 December 1809 – 19 May 1898) was a British statesman and Liberal politician. In a career lasting over 60 years, he served for 12 years as Prime Minister of the United Kingdom, spread over four non-consecutive terms beginning in 1868 and ending in 1894. He also served as Chancellor of the Exchequer four times, serving over 12 years.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Ewart_Gladstone\">https://en.wikipedia.org/wiki/William_Ewart_Gladstone</a></p>\n",
+            "end": "1874-02-17"
+        },
+        {
+            "name": "Benjamin Disraeli",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1874-02-20",
+            "summary": "<p>Benjamin Disraeli, 1st Earl of Beaconsfield, KG, PC, DL, JP, FRS[1] (21 December 1804 – 19 April 1881) was a British statesman and Conservative politician who twice served as Prime Minister of the United Kingdom. He played a central role in the creation of the modern Conservative Party, defining its policies and its broad outreach. Disraeli is remembered for his influential voice in world affairs, his political battles with the Liberal Party leader William Ewart Gladstone, and his one-nation conservatism or &quot;Tory democracy&quot;. He made the Conservatives the party most identified with the British Empire, and military action to expand it, both of which were popular among British voters. He is the only British prime minister to have been of Jewish origin. He was also a novelist, publishing works of fiction even as prime minister.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Benjamin_Disraeli\">https://en.wikipedia.org/wiki/Benjamin_Disraeli</a></p>\n",
+            "end": "1880-04-21"
+        },
+        {
+            "name": "William Ewart Gladstone",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1880-04-23",
+            "summary": "<p>William Ewart Gladstone FRS FSS (/ˈɡlædstən/; 29 December 1809 – 19 May 1898) was a British statesman and Liberal politician. In a career lasting over 60 years, he served for 12 years as Prime Minister of the United Kingdom, spread over four non-consecutive terms beginning in 1868 and ending in 1894. He also served as Chancellor of the Exchequer four times, serving over 12 years.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Ewart_Gladstone\">https://en.wikipedia.org/wiki/William_Ewart_Gladstone</a></p>\n",
+            "end": "1885-06-09"
+        },
+        {
+            "name": "Robert Gascoyne-Cecil, 3rd Marquess of Salisbury",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1885-06-23",
+            "summary": "<p>Robert Arthur Talbot Gascoyne-Cecil, 3rd Marquess of Salisbury KG GCVO PC FRS DL (/ˈɡæskɔɪn ˈsɪsəl/;[1][2] 3 February 1830 – 22 August 1903) was a British statesman and Conservative politician who served as Prime Minister of the United Kingdom three times for a total of over thirteen years. He was also Foreign Secretary for much of his tenure, and during his last two years of office he was Lord Keeper of the Privy Seal. He avoided alignments or alliances, maintaining the policy of &quot;splendid isolation&quot;.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury\">https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury</a></p>\n",
+            "end": "1886-01-28"
+        },
+        {
+            "name": "William Ewart Gladstone",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1886-02-01",
+            "summary": "<p>William Ewart Gladstone FRS FSS (/ˈɡlædstən/; 29 December 1809 – 19 May 1898) was a British statesman and Liberal politician. In a career lasting over 60 years, he served for 12 years as Prime Minister of the United Kingdom, spread over four non-consecutive terms beginning in 1868 and ending in 1894. He also served as Chancellor of the Exchequer four times, serving over 12 years.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Ewart_Gladstone\">https://en.wikipedia.org/wiki/William_Ewart_Gladstone</a></p>\n",
+            "end": "1886-07-20"
+        },
+        {
+            "name": "Robert Gascoyne-Cecil, 3rd Marquess of Salisbury",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1886-07-25",
+            "summary": "<p>Robert Arthur Talbot Gascoyne-Cecil, 3rd Marquess of Salisbury KG GCVO PC FRS DL (/ˈɡæskɔɪn ˈsɪsəl/;[1][2] 3 February 1830 – 22 August 1903) was a British statesman and Conservative politician who served as Prime Minister of the United Kingdom three times for a total of over thirteen years. He was also Foreign Secretary for much of his tenure, and during his last two years of office he was Lord Keeper of the Privy Seal. He avoided alignments or alliances, maintaining the policy of &quot;splendid isolation&quot;.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury\">https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury</a></p>\n",
+            "end": "1892-08-11"
+        },
+        {
+            "name": "William Ewart Gladstone",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1892-08-15",
+            "summary": "<p>William Ewart Gladstone FRS FSS (/ˈɡlædstən/; 29 December 1809 – 19 May 1898) was a British statesman and Liberal politician. In a career lasting over 60 years, he served for 12 years as Prime Minister of the United Kingdom, spread over four non-consecutive terms beginning in 1868 and ending in 1894. He also served as Chancellor of the Exchequer four times, serving over 12 years.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/William_Ewart_Gladstone\">https://en.wikipedia.org/wiki/William_Ewart_Gladstone</a></p>\n",
+            "end": "1894-03-02"
+        },
+        {
+            "name": "Archibald Primrose, 5th Earl of Rosebery",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1894-03-05",
+            "summary": "<p>Archibald Philip Primrose, 5th Earl of Rosebery, 1st Earl of Midlothian, KG KT PC FRS FBA (7 May 1847 – 21 May 1929) was a British Liberal Party politician who served as Prime Minister of the United Kingdom from March 1894 to June 1895. Between the death of his father, in 1851, and the death of his grandfather, the 4th Earl of Rosebery, in 1868, he was known by the courtesy title of Lord Dalmeny.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Archibald_Primrose,_5th_Earl_of_Rosebery\">https://en.wikipedia.org/wiki/Archibald_Primrose,_5th_Earl_of_Rosebery</a></p>\n",
+            "end": "1895-06-22"
+        },
+        {
+            "name": "Robert Gascoyne-Cecil, 3rd Marquess of Salisbury",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1895-06-25",
+            "summary": "<p>Robert Arthur Talbot Gascoyne-Cecil, 3rd Marquess of Salisbury KG GCVO PC FRS DL (/ˈɡæskɔɪn ˈsɪsəl/;[1][2] 3 February 1830 – 22 August 1903) was a British statesman and Conservative politician who served as Prime Minister of the United Kingdom three times for a total of over thirteen years. He was also Foreign Secretary for much of his tenure, and during his last two years of office he was Lord Keeper of the Privy Seal. He avoided alignments or alliances, maintaining the policy of &quot;splendid isolation&quot;.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury\">https://en.wikipedia.org/wiki/Robert_Gascoyne-Cecil,_3rd_Marquess_of_Salisbury</a></p>\n",
+            "end": "1902-07-11"
+        },
+        {
+            "name": "Arthur Balfour",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1902-07-12",
+            "summary": "<p>Arthur James Balfour, 1st Earl of Balfour, KG, OM, PC, FRS, FBA, DL (/ˈbælfər, -fɔːr/,[1] traditionally Scottish /bəlˈfʊər/;[2][3] 25 July 1848 – 19 March 1930), also known as Lord Balfour, was a British Conservative statesman who served as Prime Minister of the United Kingdom from 1902 to 1905. As foreign secretary in the Lloyd George ministry, he issued the Balfour Declaration of 1917 on behalf of the cabinet.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Arthur_Balfour\">https://en.wikipedia.org/wiki/Arthur_Balfour</a></p>\n",
+            "end": "1905-12-04"
+        },
+        {
+            "name": "Henry Campbell-Bannerman",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1905-12-05",
+            "summary": "<p>Sir Henry Campbell-Bannerman GCB PC (né Campbell; 7 September 1836 – 22 April 1908) was a British statesman and Liberal politician. He served as the Prime Minister of the United Kingdom from 1905 to 1908 and Leader of the Liberal Party from 1899 to 1908. He also served as Secretary of State for War twice, in the Cabinets of Gladstone and Rosebery. He was the first First Lord of the Treasury to be officially called the &quot;Prime Minister&quot;, the term only coming into official usage five days after he took office. He remains the only person to date to hold the positions of Prime Minister and Father of the House at the same time, and the last Liberal leader to gain a UK parliamentary majority.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Henry_Campbell-Bannerman\">https://en.wikipedia.org/wiki/Henry_Campbell-Bannerman</a></p>\n",
+            "end": "1908-04-03"
+        },
+        {
+            "name": "H. H. Asquith",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1908-04-08",
+            "summary": "<p>Herbert Henry Asquith, 1st Earl of Oxford and Asquith, KG, PC, KC, FRS (12 September 1852 – 15 February 1928), generally known as H. H. Asquith, was a British statesman and Liberal Party politician who served as Prime Minister of the United Kingdom from 1908 to 1916. He was the last Liberal prime minister to command a majority government, and the most recent Liberal to have served as Leader of the Opposition. He played a major role in the design and passage of major liberal legislation and a reduction of the power of the House of Lords. In August 1914, Asquith took Great Britain and the British Empire into the First World War. During 1915, his government was vigorously attacked for a shortage of munitions and the failure of the Gallipoli Campaign. He formed a coalition government with other parties but failed to satisfy critics and was forced to resign in December 1916, and never regained power.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/H._H._Asquith\">https://en.wikipedia.org/wiki/H._H._Asquith</a></p>\n",
+            "end": "1916-12-05"
+        },
+        {
+            "name": "David Lloyd George",
+            "category": "prime ministers",
+            "subCategory": "liberal",
+            "start": "1916-12-06",
+            "summary": "<p>David Lloyd George, 1st Earl Lloyd-George of Dwyfor, OM PC (17 January 1863 – 26 March 1945) was Prime Minister of the United Kingdom from 1916 to 1922. He was a Liberal Party politician from Wales, known for leading the United Kingdom during the First World War, social reform policies including the National Insurance Act 1911, his role in the Paris Peace Conference, negotiating the establishment of the Irish Free State, disestablishment of the Church of England in Wales and support of Welsh devolution in his early career. He was the last Liberal Party Prime Minister; the party fell into third party status shortly after the end of his premiership.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/David_Lloyd_George\">https://en.wikipedia.org/wiki/David_Lloyd_George</a></p>\n",
+            "end": "1922-10-19"
+        },
+        {
+            "name": "Bonar Law",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1922-10-23",
+            "summary": "<p>Andrew Bonar Law (/ˈbɒnə ˈlɔː/;[1] 16 September 1858 – 30 October 1923) was a British Conservative politician who served as Prime Minister of the United Kingdom from October 1922 to May 1923.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Bonar_Law\">https://en.wikipedia.org/wiki/Bonar_Law</a></p>\n",
+            "end": "1923-05-20"
+        },
+        {
+            "name": "Stanley Baldwin",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1923-05-22",
+            "summary": "<p>Stanley Baldwin, 1st Earl Baldwin of Bewdley, KG, PC, PC (Can), JP, FRS (3 August 1867 – 14 December 1947)[1] was a British Conservative Party politician who dominated the government of the United Kingdom between the world wars, serving as Prime Minister on three occasions, from May 1923 to January 1924, from November 1924 to June 1929, and from June 1935 to May 1937.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Stanley_Baldwin\">https://en.wikipedia.org/wiki/Stanley_Baldwin</a></p>\n",
+            "end": "1924-01-22"
+        },
+        {
+            "name": "Ramsay MacDonald",
+            "category": "prime ministers",
+            "subCategory": "labour",
+            "start": "1924-01-22",
+            "summary": "<p>James Ramsay MacDonald FRS (né James McDonald Ramsay; 12 October 1866 – 9 November 1937) was a British politician who served as Prime Minister of the United Kingdom, the first who belonged to the Labour Party, leading minority Labour governments for nine months in 1924 and again between 1929 and 1931. From 1931 to 1935, he headed a National Government dominated by the Conservative Party and supported by only a few Labour members. MacDonald was expelled from the Labour Party as a result.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ramsay_MacDonald\">https://en.wikipedia.org/wiki/Ramsay_MacDonald</a></p>\n",
+            "end": "1924-11-04"
+        },
+        {
+            "name": "Stanley Baldwin",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1924-11-04",
+            "summary": "<p>Stanley Baldwin, 1st Earl Baldwin of Bewdley, KG, PC, PC (Can), JP, FRS (3 August 1867 – 14 December 1947)[1] was a British Conservative Party politician who dominated the government of the United Kingdom between the world wars, serving as Prime Minister on three occasions, from May 1923 to January 1924, from November 1924 to June 1929, and from June 1935 to May 1937.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Stanley_Baldwin\">https://en.wikipedia.org/wiki/Stanley_Baldwin</a></p>\n",
+            "end": "1929-06-04"
+        },
+        {
+            "name": "Ramsay MacDonald",
+            "category": "prime ministers",
+            "subCategory": "labour",
+            "start": "1929-06-05",
+            "summary": "<p>James Ramsay MacDonald FRS (né James McDonald Ramsay; 12 October 1866 – 9 November 1937) was a British politician who served as Prime Minister of the United Kingdom, the first who belonged to the Labour Party, leading minority Labour governments for nine months in 1924 and again between 1929 and 1931. From 1931 to 1935, he headed a National Government dominated by the Conservative Party and supported by only a few Labour members. MacDonald was expelled from the Labour Party as a result.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Ramsay_MacDonald\">https://en.wikipedia.org/wiki/Ramsay_MacDonald</a></p>\n",
+            "end": "1935-06-07"
+        },
+        {
+            "name": "Stanley Baldwin",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1935-06-07",
+            "summary": "<p>Stanley Baldwin, 1st Earl Baldwin of Bewdley, KG, PC, PC (Can), JP, FRS (3 August 1867 – 14 December 1947)[1] was a British Conservative Party politician who dominated the government of the United Kingdom between the world wars, serving as Prime Minister on three occasions, from May 1923 to January 1924, from November 1924 to June 1929, and from June 1935 to May 1937.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Stanley_Baldwin\">https://en.wikipedia.org/wiki/Stanley_Baldwin</a></p>\n",
+            "end": "1937-05-28"
+        },
+        {
+            "name": "Neville Chamberlain",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1937-05-28",
+            "summary": "<p>Arthur Neville Chamberlain FRS (/ˈtʃeɪmbərlɪn/; 18 March 1869 – 9 November 1940) was a British politician of the Conservative Party who served as Prime Minister of the United Kingdom from May 1937 to May 1940. He is best known for his foreign policy of appeasement, and in particular for his signing of the Munich Agreement on 30 September 1938, ceding the German-speaking Sudetenland region of Czechoslovakia to Nazi Germany led by Adolf Hitler. Following the German invasion of Poland on 1 September 1939, which marked the beginning of the Second World War, Chamberlain announced the declaration of war on Germany two days later and led the United Kingdom through the first eight months of the war until his resignation as prime minister on 10 May 1940.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Neville_Chamberlain\">https://en.wikipedia.org/wiki/Neville_Chamberlain</a></p>\n",
+            "end": "1940-05-10"
+        },
+        {
+            "name": "Winston Churchill",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1940-05-10",
+            "summary": "<p>Sir Winston Leonard Spencer Churchill,[a] KG, OM, CH, TD, DL, FRS, RA (30 November 1874 – 24 January 1965) was a British statesman, soldier and writer who served as Prime Minister of the United Kingdom from 1940 to 1945, during the Second World War, and again from 1951 to 1955. Apart from two years between 1922 and 1924, he was a Member of Parliament (MP) from 1900 to 1964 and represented a total of five constituencies. Ideologically an economic liberal and imperialist, he was for most of his career a member of the Conservative Party, which he led from 1940 to 1955. He was a member of the Liberal Party from 1904 to 1924.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Winston_Churchill\">https://en.wikipedia.org/wiki/Winston_Churchill</a></p>\n",
+            "end": "1945-07-26"
+        },
+        {
+            "name": "Clement Attlee",
+            "category": "prime ministers",
+            "subCategory": "labour",
+            "start": "1945-07-26",
+            "summary": "<p>Clement Richard Attlee, 1st Earl Attlee, KG, OM, CH, PC, FRS (3 January 1883 – 8 October 1967) was a British politician who served as Prime Minister of the United Kingdom from 1945 to 1951 and Leader of the Labour Party from 1935 to 1955. He was Deputy Prime Minister during the wartime coalition government under Winston Churchill, and served twice as Leader of the Opposition from 1935 to 1940 and from 1951 to 1955.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Clement_Attlee\">https://en.wikipedia.org/wiki/Clement_Attlee</a></p>\n",
+            "end": "1951-10-26"
+        },
+        {
+            "name": "Winston Churchill",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1951-10-26",
+            "summary": "<p>Sir Winston Leonard Spencer Churchill,[a] KG, OM, CH, TD, DL, FRS, RA (30 November 1874 – 24 January 1965) was a British statesman, soldier and writer who served as Prime Minister of the United Kingdom from 1940 to 1945, during the Second World War, and again from 1951 to 1955. Apart from two years between 1922 and 1924, he was a Member of Parliament (MP) from 1900 to 1964 and represented a total of five constituencies. Ideologically an economic liberal and imperialist, he was for most of his career a member of the Conservative Party, which he led from 1940 to 1955. He was a member of the Liberal Party from 1904 to 1924.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Winston_Churchill\">https://en.wikipedia.org/wiki/Winston_Churchill</a></p>\n",
+            "end": "1955-04-05"
+        },
+        {
+            "name": "Anthony Eden",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1955-04-06",
+            "summary": "<p>Robert Anthony Eden, 1st Earl of Avon, KG, MC, PC (12 June 1897 – 14 January 1977) was a British Conservative Party politician who served as Prime Minister of the United Kingdom from 1955 until his resignation in 1957.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Anthony_Eden\">https://en.wikipedia.org/wiki/Anthony_Eden</a></p>\n",
+            "end": "1957-01-09"
+        },
+        {
+            "name": "Harold Macmillan",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1957-01-10",
+            "summary": "<p>Maurice Harold Macmillan, 1st Earl of Stockton, OM, PC, FRS (10 February 1894 – 29 December 1986) was a British Conservative statesman and politician who was Prime Minister of the United Kingdom from 1957 to 1963.[1] Caricatured as &quot;Supermac&quot;, he was known for his pragmatism, wit and unflappability.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Harold_Macmillan\">https://en.wikipedia.org/wiki/Harold_Macmillan</a></p>\n",
+            "end": "1963-10-18"
+        },
+        {
+            "name": "Alec Douglas-Home",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1963-10-19",
+            "summary": "<p>Alexander Frederick Douglas-Home, Baron Home of the Hirsel KT PC (/ˈhjuːm/; 2 July 1903 – 9 October 1995) was a British Conservative politician who served as Prime Minister from October 1963 to October 1964.  He is notable for being the last Prime Minister to hold office while being a member of the House of Lords, before renouncing his peerage and taking up a seat in the House of Commons for the remainder of his premiership. His reputation, however, rests more on his two spells as the UK&#39;s foreign secretary than on his brief premiership.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Alec_Douglas-Home\">https://en.wikipedia.org/wiki/Alec_Douglas-Home</a></p>\n",
+            "end": "1964-10-16"
+        },
+        {
+            "name": "Harold Wilson",
+            "category": "prime ministers",
+            "subCategory": "labour",
+            "start": "1964-10-16",
+            "summary": "<p>James Harold Wilson, Baron Wilson of Rievaulx, KG, OBE, PC, FRS, FSS (11 March 1916 – 24 May 1995) was a British politician who was Prime Minister of the United Kingdom twice, from October 1964 to June 1970, and again from March 1974 to April 1976. He was the Leader of the Labour Party from 1963 to 1976, and was a Member of Parliament (MP) from 1945 to 1983. Wilson is the only Labour leader to have formed Labour administrations following four general elections.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Harold_Wilson\">https://en.wikipedia.org/wiki/Harold_Wilson</a></p>\n",
+            "end": "1970-06-19"
+        },
+        {
+            "name": "Edward Heath",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1970-06-19",
+            "summary": "<p>Sir Edward Richard George Heath KG MBE (9 July 1916 – 17 July 2005), often known as Ted Heath, was a British politician who served as Prime Minister of the United Kingdom from 1970 to 1974 and Leader of the Conservative Party from 1965 to 1975. Heath also served for 51 years as a Member of Parliament from 1950 to 2001. Outside of politics, Heath was a yachtsman, a musician, and an author.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Edward_Heath\">https://en.wikipedia.org/wiki/Edward_Heath</a></p>\n",
+            "end": "1974-03-04"
+        },
+        {
+            "name": "Harold Wilson",
+            "category": "prime ministers",
+            "subCategory": "labour",
+            "start": "1974-03-04",
+            "summary": "<p>James Harold Wilson, Baron Wilson of Rievaulx, KG, OBE, PC, FRS, FSS (11 March 1916 – 24 May 1995) was a British politician who was Prime Minister of the United Kingdom twice, from October 1964 to June 1970, and again from March 1974 to April 1976. He was the Leader of the Labour Party from 1963 to 1976, and was a Member of Parliament (MP) from 1945 to 1983. Wilson is the only Labour leader to have formed Labour administrations following four general elections.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Harold_Wilson\">https://en.wikipedia.org/wiki/Harold_Wilson</a></p>\n",
+            "end": "1976-04-05"
+        },
+        {
+            "name": "James Callaghan",
+            "category": "prime ministers",
+            "subCategory": "labour",
+            "start": "1976-04-05",
+            "summary": "<p>Leonard James Callaghan, Baron Callaghan of Cardiff, KG, PC (/ˈkæləhæn/ KAL-ə-han; 27 March 1912 – 26 March 2005), commonly known as Jim Callaghan, was a British politician who served as Prime Minister of the United Kingdom from 1976 to 1979 and Leader of the Labour Party from 1976 to 1980. Callaghan is the only person to have held all four Great Offices of State, having served as Chancellor of the Exchequer from 1964 to 1967, Home Secretary from 1967 to 1970 and Foreign Secretary from 1974 to 1976. He was a Member of Parliament (MP) from 1945 to 1987.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/James_Callaghan\">https://en.wikipedia.org/wiki/James_Callaghan</a></p>\n",
+            "end": "1979-05-04"
+        },
+        {
+            "name": "Margaret Thatcher",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1979-05-04",
+            "summary": "<p>Margaret Hilda Thatcher, Baroness Thatcher, LG, OM, DStJ, PC, FRS, HonFRSC (née Roberts; 13 October 1925 – 8 April 2013), was Prime Minister of the United Kingdom from 1979 to 1990 and Leader of the Conservative Party from 1975 to 1990. She was the first female British prime minister and the longest-serving British prime minister of the 20th century. As prime minister, she implemented policies that became known as Thatcherism. A Soviet journalist dubbed her the &quot;Iron Lady&quot;, a nickname that became associated with her uncompromising politics and leadership style.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Margaret_Thatcher\">https://en.wikipedia.org/wiki/Margaret_Thatcher</a></p>\n",
+            "end": "1990-11-28"
+        },
+        {
+            "name": "John Major",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "1990-11-28",
+            "summary": "<p>Sir John Major KG CH (born 29 March 1943) is a British former politician who served as Prime Minister of the United Kingdom and Leader of the Conservative Party from 1990 to 1997, and as Member of Parliament (MP) for Huntingdon, formerly Huntingdonshire, from 1979 to 2001. Prior to becoming prime minister, Major served as Chancellor of the Exchequer in the third Thatcher government.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/John_Major\">https://en.wikipedia.org/wiki/John_Major</a></p>\n",
+            "end": "1997-05-02"
+        },
+        {
+            "name": "Tony Blair",
+            "category": "prime ministers",
+            "subCategory": "labour",
+            "start": "1997-05-02",
+            "summary": "<p>Sir Anthony Charles Lynton Blair KG (born 6 May 1953) is a British politician who served as Prime Minister of the United Kingdom from 1997 to 2007 and Leader of the Labour Party from 1994 to 2007. On his resignation he was appointed Special Envoy of the Quartet on the Middle East, a diplomatic post which he held until 2015. He has been the executive chairman of the Tony Blair Institute for Global Change since 2016. As prime minister, many of his policies reflected a centrist &quot;Third Way&quot; political philosophy.[b] He is one of only two Labour leaders to form three majority governments, the other being Harold Wilson.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Tony_Blair\">https://en.wikipedia.org/wiki/Tony_Blair</a></p>\n",
+            "end": "2007-06-27"
+        },
+        {
+            "name": "Gordon Brown",
+            "category": "prime ministers",
+            "subCategory": "labour",
+            "start": "2007-06-27",
+            "summary": "<p>James Gordon Brown HonFRSE (born 20 February 1951) is a British politician who served as Prime Minister of the United Kingdom and Leader of the Labour Party from 2007 to 2010, the last Labour Prime Minister under Elizabeth II before her death in 2022. He served as Chancellor of the Exchequer in the Blair government from 1997 to 2007. Brown was a Member of Parliament (MP) from 1983 to 2015, first for Dunfermline East and later for Kirkcaldy and Cowdenbeath. He is the most recent Labour politician as well as the most recent Scottish politician to hold the office of Prime Minister.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Gordon_Brown\">https://en.wikipedia.org/wiki/Gordon_Brown</a></p>\n",
+            "end": "2010-05-11"
+        },
+        {
+            "name": "David Cameron",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "2010-05-11",
+            "summary": "<p>David William Donald Cameron (born 9 October 1966) is a British politician and lobbyist who served as Prime Minister of the United Kingdom from 2010 to 2016. He was Member of Parliament (MP) for Witney from 2001 to 2016 and leader of the Conservative Party from 2005 to 2016. He identifies as a one-nation conservative, and has been associated with both economically liberal and socially liberal policies.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/David_Cameron\">https://en.wikipedia.org/wiki/David_Cameron</a></p>\n",
+            "end": "2016-07-13"
+        },
+        {
+            "name": "Theresa May",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "2016-07-13",
+            "summary": "<p>Theresa Mary, Lady May (/təˈriːzə/;[1] née Brasier; born 1 October 1956) is a British politician who served as Prime Minister of the United Kingdom and Leader of the Conservative Party from 2016 to 2019. She served as Home Secretary from 2010 to 2016 in the Cameron government and has been the Member of Parliament (MP) for Maidenhead in Berkshire since 1997. Ideologically, May identifies herself as a one-nation conservative.[2]</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Theresa_May\">https://en.wikipedia.org/wiki/Theresa_May</a></p>\n",
+            "end": "2019-07-24"
+        },
+        {
+            "name": "Boris Johnson",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "2019-07-24",
+            "summary": "<p>Alexander Boris de Pfeffel Johnson (/ˈfɛfəl/;[5] born 19 June 1964) is a British politician who served as Prime Minister of the United Kingdom and Leader of the Conservative Party from 2019 to 2022. He previously served as Secretary of State for Foreign and Commonwealth Affairs from 2016 to 2018 and as Mayor of London from 2008 to 2016. Johnson has been Member of Parliament (MP) for Uxbridge and South Ruislip since 2015, having previously been MP for Henley from 2001 to 2008.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Boris_Johnson\">https://en.wikipedia.org/wiki/Boris_Johnson</a></p>\n",
+            "end": "2022-09-06"
+        },
+        {
+            "name": "Liz Truss",
+            "category": "prime ministers",
+            "subCategory": "conservative",
+            "start": "2022-09-06",
+            "summary": "<p>Mary Elizabeth Truss (born 26 July 1975)[1][2] is a British politician who is the current Prime Minister of the United Kingdom and Leader of the Conservative Party. Truss became Member of Parliament (MP) for South West Norfolk in 2010.[3] She held various Cabinet offices under prime ministers David Cameron, Theresa May and Boris Johnson, most recently as Foreign Secretary from 2021 to 2022. Truss was the last of fifteen British prime ministers who served Elizabeth II, who died on 8 September 2022, two days after appointing Truss to the office.</p>\n",
+            "citations": "<p><a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Liz_Truss\">https://en.wikipedia.org/wiki/Liz_Truss</a></p>\n",
+            "end": "-"
+        }
+    ],
+    "series": []
+}

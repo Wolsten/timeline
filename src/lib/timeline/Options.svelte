@@ -38,7 +38,7 @@
                 label="Symbols"
                 bind:value={options.symbols}
                 on:changed={() => {
-                    console.log("Toggled symbols")
+                    // console.log("Toggled symbols")
                     dispatch("optionsChanged", {
                         name: "symbols",
                         data: options.symbols,

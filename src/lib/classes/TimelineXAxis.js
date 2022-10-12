@@ -10,6 +10,7 @@ class TimelineXAxis {
 
     constructor(drawingWidth, xRange) {
         // console.warn('xRange', xRange)
+        const MIN_CANVAS_INTERVAL_SIZE = 70 // px
         let interval = 0
         let intervals = 0
         let month = 0
@@ -28,18 +29,24 @@ class TimelineXAxis {
             intervals = Math.ceil(xRange.range / interval)
             this.units = 'years'
         } else {
-            interval = 10
+            interval = Math.ceil(xRange.range / 10)
             intervals = Math.ceil(xRange.range / interval)
-            while (intervals > 12) {
-                interval = 10 * interval
-                intervals = Math.ceil(xRange.range / interval)
-            }
             this.units = `${interval} years`
         }
+        // console.log('interval=', interval, 'units[', this.units, ']')
+        let canvasInterval = drawingWidth / intervals
+        if (canvasInterval < MIN_CANVAS_INTERVAL_SIZE) {
 
-        // console.log('interval=', interval)
+            while (canvasInterval < MIN_CANVAS_INTERVAL_SIZE) {
+                intervals--
+                interval = Math.ceil(xRange.range / intervals)
+                canvasInterval = drawingWidth / intervals
+            }
 
-        const canvasInterval = drawingWidth / intervals
+            // console.error('Reset interval', interval, 'intervals', intervals, 'canvasInterval',
+            //     canvasInterval)
+        }
+
         let canvasX = 0
         let decimal = xRange.start.decimal
 

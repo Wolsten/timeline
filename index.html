@@ -21,6 +21,7 @@
     #main-c>div {
       flex-basis: 60%;
       flex-grow: 1;
+      /* padding: 10rem; */
     }
 
     #main-c>aside {
@@ -38,21 +39,43 @@
 
   <main id="main-c">
 
-    <!-- <div> -->
-    <!-- 
-          <time-line data-slug="/data/weekly-deaths-in-england-and-wales.json"></time-line>
-    <time-line data-slug="/data/history-of-taiwan.json"></time-line>
-    <time-line data-slug="/data/human-evolution.json"></time-line>
-    <time-line data-slug="/data/modern-democracy-in-great-britain.json"></time-line>
-    <time-line data-slug="/data/geologic-timescale.json"></time-line>
-  -->
-    <time-line data-slug="/data/history-of-ukraine.json"></time-line>
-    <time-line data-slug="/data/deaths-from-natural-disasters.json"></time-line>
+    <div>
+      <!-- 
+      Commented out timelines
+      http://test.local/wp-content/uploads/2022/09/history-of-ukraine.json
+      <time-line data-url="/data/history-of-taiwan.json"></time-line>
+      <time-line data-url="/data/geologic-timescale.json"></time-line>
+      <time-line data-url="/data/history-of-ukraine.json"></time-line>
+      <time-line data-url="/data/deaths-from-natural-disasters.json"></time-line>
+      <time-line data-url="/data/weekly-deaths-in-england-and-wales.json"></time-line>
+      <time-line data-url="/data/human-evolution.json"></time-line>
+      <time-line data-url="/data/modern-democracy-in-great-britain.json"
+        data-settings="XXXmaxEventsHeight=60vh,title=FUNNY TITLE">
+      </time-line>
+    -->
+
+      <time-line data-url="/data/geologic-timescale.json" data-settings="maxEventsHeight=400px">
+      </time-line>
+
+      <time-line data-url="/data/geologic-timescale.json">
+      </time-line>
+
+      <!-- <time-line data-url="/data/geologic-timescale.json" data-settings="readonly=true,subCategories=eon|era|period">
+      </time-line>
+
+      <time-line data-url="/data/geologic-timescale.json"
+        data-settings="readonly=true,subCategories=eon|evolution,title=Geologic timescale and human evolution">
+      </time-line>
+
+      <time-line data-url="/data/human-evolution.json" data-settings="readonly=true">
+      </time-line>
 
 
+      <time-line data-url="/data/human-evolution.json" data-settings="start=2.8mya,end=0.2mya">
+      </time-line> -->
 
-    <!-- </div>
-    <aside>
+    </div>
+    <!-- <aside>
     </aside> -->
 
   </main>
