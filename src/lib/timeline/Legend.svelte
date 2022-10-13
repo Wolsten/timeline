@@ -4,35 +4,10 @@
     import Symbol from "./Symbol.svelte"
     import Utils from "../Utils.js"
 
-    export let events
     export let series
     export let categories
     export let subCategories
     export let options
-
-    // console.log(events)
-    // console.log(categories)
-    // console.log(subCategories)
-
-    // Get list of event specific categories
-    $: eventCategories = categories.filter((category) =>
-        events.find((event) => event.category == category.name)
-    )
-    // console.log(eventCategories)
-
-    // Get list of event specific sub categories
-    $: eventSubCategories = subCategories.filter((subCategory) =>
-        eventCategories.find(
-            (category) => category.name == subCategory.category
-        )
-    )
-    // console.log(eventSubCategories)
-
-    // $: seriesCategories = categories.filter((category) =>{
-    //     series.find( entry => {
-
-    //     })
-    // })
 
     const dispatch = createEventDispatcher()
 
@@ -65,12 +40,12 @@
 @section HTML
 -------------------------------------------------------------------------------->
 
-{#if eventCategories.length > 0}
+<!-- {#if eventCategories.length > 0}
     {#each eventCategories as c}
         <aside class="events">
             {#if eventCategories.length > 1}
                 <span
-                    class="title symbol"
+                    class="title symbol multiple"
                     class:active={options.filter == c.name &&
                         options.filterType == "category"}
                     on:click|stopPropagation={() => handleClickCategory(c.name)}
@@ -84,12 +59,12 @@
             {#each eventSubCategories as sc}
                 {#if sc.category == c.name}
                     <span
-                        class="symbol events"
+                        class="symbol events multiple"
                         class:active={options.filter == sc.name}
                         class:highlighted={options.filter == sc.subCategory}
                         on:click|stopPropagation={() =>
                             handleClickSubCat(sc.name)}
-                        title="Click to highlight this category"
+                        title="Click to highlight this sub-category"
                     >
                         <Symbol index={0} colour={sc.colour} wrapped={true} />
 
@@ -99,8 +74,9 @@
             {/each}
         </aside>
     {/each}
-{/if}
+{/if} -->
 
+<!-- Series only -->
 {#if series.length > 1 && options.group == "single"}
     <aside class="series">
         <span class="title">Series:</span>
@@ -109,7 +85,7 @@
             {@const symbolIndex = options.symbols ? sIndex : 0}
 
             <span
-                class="symbol series"
+                class="symbol series multiple"
                 class:active={options.filter == entry.legend}
                 class:highlighted={options.filter == entry.subCategory}
                 on:click|stopPropagation={() => handleClickSeries(entry.legend)}
@@ -127,22 +103,21 @@
     </aside>
 {/if}
 
-{#if options.group !== "sub-category" && categories.length > 0}
-    {@const multiple = categories.length > 1}
+<!-- Categories for events and series -->
+{#if options.group !== "sub-category" && categories.length > 1}
     <aside>
         <span class="title">Categories:</span>
 
         {#each categories as category, cIndex}
             {@const colour = category.colour}
-            {@const isActive = multiple && options.filter == category.name}
+            {@const isActive = options.filter == category.name}
             {@const symbolIndex = options.symbols ? cIndex : 0}
             <span
                 class="symbol"
-                class:multiple
                 class:active={isActive}
                 title="Click to highlight this category"
                 on:click|stopPropagation={() =>
-                    multiple && handleClickCategory(category.name)}
+                    handleClickCategory(category.name)}
             >
                 <Symbol index={symbolIndex} {colour} wrapped={true} />
                 {Utils.sentenceCase(category.name)}
@@ -151,6 +126,7 @@
     </aside>
 {/if}
 
+<!-- Sub-categories for events and series -->
 {#if options.group !== "category" && subCategories.length > 0}
     {@const multiple = subCategories.length > 1}
     <aside>
@@ -162,7 +138,6 @@
             {@const symbolIndex = options.symbols ? scIndex : 0}
             <span
                 class="symbol"
-                class:multiple
                 class:active={isActive}
                 title="Click to highlight this sub category"
                 on:click|stopPropagation={() =>
@@ -199,9 +174,7 @@
 
         transition: all ease-in 300ms;
         text-align: center;
-    }
 
-    span.multiple {
         cursor: pointer;
     }
 
@@ -210,11 +183,11 @@
         cursor: default;
     }
 
-    .symbol.multiple:hover {
+    .symbol:hover {
         outline: solid 0.1rem var(--tl-colour-legend-highlight);
     }
 
-    .symbol.multiple.active {
+    .symbol.active {
         outline: solid 0.2rem var(--tl-colour-legend-highlight);
     }
 

@@ -307,7 +307,6 @@
     {/if}
 
     <Legend
-        events={filteredEvents}
         series={filteredSeries}
         categories={dataset.categories}
         subCategories={dataset.subCategories}
