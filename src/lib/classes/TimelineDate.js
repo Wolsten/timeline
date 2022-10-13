@@ -159,16 +159,13 @@ class TimelineDate {
         if (magnitude < 10000) {
             return Utils.stringifyToPrecision(magnitude, 4) + (year < 0 ? 'bc' : '')
         }
-        // Convert to millions
+        // Convert to millions and return of less than 1 billion
         magnitude = magnitude / 1000000
-        // Millions if less than 100M?
-        if (magnitude < 100) {
-            if (magnitude > 1) return `${Math.round(magnitude)}my` + (year < 0 ? 'a' : '')
+        if (magnitude < 1000) {
             return Utils.stringifyToPrecision(magnitude, 1) + 'my' + (year < 0 ? 'a' : '')
         }
         // Convert to billions
-        magnitude = magnitude / 100
-        if (magnitude > 1) return `${Math.round(magnitude)}by` + (year < 0 ? 'a' : '')
+        magnitude = magnitude / 1000
         return Utils.stringifyToPrecision(magnitude, 1) + 'by' + (year < 0 ? 'a' : '')
     }
 
