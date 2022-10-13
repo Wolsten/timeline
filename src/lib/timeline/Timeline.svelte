@@ -34,8 +34,6 @@
     let xAxis
     let selectedSeries
     let resetXRange = false // Bound to component reset functions
-    let rawSeriesLength = 0
-    let groupedSeriesLength = 0
 
     const options = new TimelineOptions(settings)
     const dataset = initDataset(data, options)
@@ -66,9 +64,7 @@
         filteredSeries = TimelineSeries.process(
             dataset.series,
             options.xRange,
-            options.filterType,
-            options.group,
-            options.totals
+            options.group
         )
 
     //
@@ -104,8 +100,9 @@
                 break
             case "group":
                 options.filter = ""
-                if (options.group) {
-                    options.filterType = "sub-category"
+                options.group = eventData
+                if (options.group != "off") {
+                    options.filterType = options.group
                 } else {
                     options.filterType = ""
                 }
@@ -220,7 +217,6 @@
         // Process series
         // data.xRange is also updated as passed by reference
         if (data.series.length > 0) {
-            rawSeriesLength = data.series.length
             data.series = TimelineSeries.init(
                 data.xRange,
                 data.series,
@@ -228,7 +224,7 @@
                 data.categories,
                 data.subCategories
             )
-            groupedSeriesLength = data.series.length - rawSeriesLength
+            // groupedSeriesLength = data.series.length - rawSeriesLength
         }
         data.xRange.setRange()
         // console.log("dataset", data)
@@ -238,6 +234,12 @@
         if (options.xRange.range === 0) {
             options.xRange = data.xRange.copy()
         }
+        // Remove 'other' category and sub-category from dataset so not used in legend
+        data.categories = data.categories.filter((cat) => cat.name !== "other")
+        data.subCategories = data.subCategories.filter(
+            (subCat) => subCat.name !== "other"
+        )
+
         return data
     }
 </script>
@@ -260,9 +262,9 @@
         <Options
             {options}
             xRange={dataset.xRange}
-            {rawSeriesLength}
-            {groupedSeriesLength}
+            rawSeriesLength={dataset.series.length}
             eventsLength={dataset.events.length}
+            subCats={dataset.subCategories.length}
             on:optionsChanged={handleOptions}
         />
     {/if}
@@ -307,7 +309,6 @@
     <Legend
         events={filteredEvents}
         series={filteredSeries}
-        {groupedSeriesLength}
         categories={dataset.categories}
         subCategories={dataset.subCategories}
         {options}

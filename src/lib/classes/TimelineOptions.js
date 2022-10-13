@@ -7,8 +7,7 @@ class TimelineOptions {
 
     symbols = false
     readonly = false
-    group = false      // by sub-category
-    totals = false     // show totals by category
+    group = 'single'   // Group by: 'single', 'category', 'sub-category'
     search = ''
     filter = ''        // Name of series, category or sub-category to highlight
     filterType = ''    // Taxononomy to highlight by (single, category or sub-category)
@@ -25,6 +24,8 @@ class TimelineOptions {
 
     constructor(settings = '') {
 
+        // console.log('Creating options from settings', settings)
+
         if (settings === '') {
             return
         }
@@ -35,11 +36,12 @@ class TimelineOptions {
         const pairs = settings.split(',')
         // console.log('pairs', pairs)
         pairs.forEach(pair => {
-            // debugger
+
             const parts = pair.split('=')
             if (parts.length == 2) {
                 const setting = parts[0].trim()
                 const value = parts[1].trim()
+                // console.log(setting, value)
                 switch (setting) {
                     case 'symbols':
                         if (value === 'true') this.symbols = true
@@ -48,7 +50,7 @@ class TimelineOptions {
                         if (value === 'true') this.readonly = true
                         break
                     case 'group':
-                        if (value === 'true') this.group = true
+                        this.group = value
                         break
                     case 'totals':
                         if (value === 'true') this.totals = true
@@ -133,8 +135,7 @@ class TimelineOptions {
         this.filter = ""
         this.sort = "date"
         this.symbols = false
-        this.group = false
-        this.totals = false
+        this.group = 'single'
         this.xRange = xRange.copy()
     }
 }

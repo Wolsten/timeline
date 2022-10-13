@@ -4,19 +4,21 @@
     import Button from "../components/Inputs/Button.svelte"
     import TextSearch from "../components/Inputs/TextSearch.svelte"
     import Toggle from "../components/Inputs/Toggle.svelte"
+    import Choice from "../components/Inputs/Choice.svelte"
 
     export let xRange // Full dataset xRange (not potential options.xRange subset)
     export let rawSeriesLength
-    export let groupedSeriesLength
     export let eventsLength
+    export let subCats = 0
     export let options
 
     const dispatch = createEventDispatcher()
 
-    let sort = false
     let search = ""
     let disabled = false
     let optionsEvent = "optionsChanged"
+
+    $: gOptions = groupOptions(rawSeriesLength)
 
     $: sort = options.sort == "category"
 
@@ -29,6 +31,15 @@
         options.group ||
         options.totals
     )
+
+    function groupOptions(l) {
+        if (l <= 1) return []
+        let g = ["single", "category"]
+        if (subCats > 1) {
+            g.push("sub-category")
+        }
+        return g
+    }
 </script>
 
 <div class="form">
@@ -48,30 +59,17 @@
             />
         {/if}
 
-        {#if groupedSeriesLength > 0 && groupedSeriesLength < rawSeriesLength}
-            <Toggle
+        {#if gOptions.length > 0}
+            <Choice
                 name="group"
-                label="Group"
-                disabled={options.totals}
+                label="Group by"
+                options={gOptions}
                 bind:value={options.group}
                 on:changed={() => {
+                    console.log("Toggled groupBy", options.group)
                     dispatch("optionsChanged", {
                         name: "group",
                         data: options.group,
-                    })
-                }}
-            />
-        {/if}
-
-        {#if groupedSeriesLength > 0 && groupedSeriesLength < rawSeriesLength}
-            <Toggle
-                name="totals"
-                label="Totals"
-                bind:value={options.totals}
-                on:changed={() => {
-                    dispatch("optionsChanged", {
-                        name: "group",
-                        data: options.totals,
                     })
                 }}
             />

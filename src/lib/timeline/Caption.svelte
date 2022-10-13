@@ -3,16 +3,13 @@
     export let multipleSeries
     export let options
 
-    function setComments(totals, group, filter, type) {
+    function setComments(group, filter) {
+        // console.log("setComments: " "group", group)
         let comments = ""
-        if (totals) {
-            comments = "series grouped and coloured by category"
-        } else if (group) {
-            if (type == "category") {
-                comments = "series grouped and coloured by category"
-            } else if (type == "sub-category") {
-                comments = "series grouped and coloured by sub-category"
-            }
+        if (group == "category") {
+            comments = "related series grouped by category"
+        } else if (group == "sub-category") {
+            comments = "related series grouped by sub-category"
         } else {
             comments = "individual series"
         }
@@ -26,16 +23,11 @@
 <figCaption>
     <h3>
         {title}
-        {#if multipleSeries}
-            <span class="subtitle"
-                >({setComments(
-                    options.totals,
-                    options.group,
-                    options.filter,
-                    options.filterType
-                )})</span
-            >
-        {/if}
+        <!-- {#if multipleSeries} -->
+        <span class="subtitle"
+            >({setComments(options.group, options.filter)})</span
+        >
+        <!-- {/if} -->
     </h3>
 </figCaption>
 

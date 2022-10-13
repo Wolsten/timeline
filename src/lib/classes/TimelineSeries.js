@@ -35,7 +35,7 @@ class TimelineSeries {
                 this.colour = rawEntry.colour ? rawEntry.colour : Utils.defaultColour(sIndex)
                 break
             case "category":
-            case "total":
+                // case "total":
                 this.colour = dataCategories.find(item => item.name == rawEntry.category).colour
                 break
             case "sub-category":
@@ -44,6 +44,7 @@ class TimelineSeries {
         }
         // Points
         rawEntry.points.forEach(point => {
+            // Convert the point into a {TimelineDate, y}
             const pt = new TimelinePoint(sIndex, point, this.colour)
             // If have options xRange set then constrain points accordingly
             if (oxRange.range === 0 || oxRange.dateInRange(pt.x)) {
@@ -78,31 +79,41 @@ class TimelineSeries {
         })
         if (totals.length < rawSeries.length) {
             totals.forEach((entry, sIndex) => {
-                series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
+                const totalSeries = new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories)
+                // Order the points
+                totalSeries.points.sort(TimelineSeries.sortGroup)
+                series.push(totalSeries)
             })
         }
         if (groups.length < rawSeries.length) {
             groups.forEach((entry, sIndex) => {
-                series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
+                const groupSeries = new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories)
+                // Order the points
+                groupSeries.points.sort(TimelineSeries.sortGroup)
+                series.push(groupSeries)
             })
         }
-        console.log('Initialiased series', series)
+        // console.log('Initialiased series', series)
         return series
     }
 
 
-    static process(series, xRange, type, group, totals) {
+    static sortGroup(a, b) {
+        if (a.x.before(b.x)) return -1
+        if (a.x.after(b.x)) return 1
+        return 0
+    }
+
+
+    static process(series, xRange, group) {
         if (series.length == 0) return []
         // Initialise the filtered list
         let filtered = []
-        // Totalised values only?
-        if (totals) {
-            filtered = series.filter((entry) => entry.type === 'category')
-        } else if (group) {
-            filtered = series.filter((entry) => entry.type === type)
-        } else {
-            filtered = series.filter((entry) => entry.type === "single")
-        }
+        // console.log("process group", group)
+        // debugger
+        // Group data? 
+        // group can be 'single' (meaning not grouped), 'category' or 'sub-category'
+        filtered = series.filter((entry) => entry.type === group)
         // Filter data by start and end range and generate data from points
         filtered.forEach((entry) => {
             entry.filteredPoints = []
@@ -133,54 +144,57 @@ class TimelineSeries {
 
         taxonomyList.forEach((tax, index) => {
 
-            let taxEntry
-            rawSeries.forEach(entry => {
-                if ((taxonomy == 'category' && entry.category == tax.name) ||
-                    (taxonomy == 'sub-category' && entry.subCategory == tax.name)) {
-                    // Initialise group
-                    if (!taxEntry) {
-                        const summary = taxonomy == 'category' ? 'All categories' : `Data grouped by ${taxonomy} ${name}`
-                        const subCategory = taxonomy == 'category' ? 'all' : entry.subCategory
-                        taxEntry = {
-                            ...entry,
-                            name: tax.name,
-                            legend: tax.name,
-                            subCategory: subCategory,
-                            summary: summary,
-                            max: Number.NEGATIVE_INFINITY,
-                            min: Number.POSITIVE_INFINITY,
-                            type: taxonomy,
-                            points: [],
+            // Ignore the 'other' category or sub-category
+            if (tax.name != 'other') {
+
+                let taxEntry
+                rawSeries.forEach(entry => {
+                    // Does the series match the taxonomy name?
+                    if ((taxonomy == 'category' && entry.category == tax.name) ||
+                        (taxonomy == 'sub-category' && entry.subCategory == tax.name)) {
+                        // Initialise group
+                        if (!taxEntry) {
+                            const summary = `Data grouped by ${taxonomy} ${name}`
+                            taxEntry = {
+                                ...entry,
+                                name: tax.name,
+                                legend: tax.name,
+                                summary: summary,
+                                max: Number.NEGATIVE_INFINITY,
+                                min: Number.POSITIVE_INFINITY,
+                                type: taxonomy,
+                                points: [],
+                            }
                         }
-                    }
-                    // Accumulate data points
-                    entry.points.forEach(point => {
-                        // Look for point with same x
-                        let match = taxEntry.points.findIndex(pt => {
-                            return pt.x == point.x
+                        // Accumulate data points
+                        entry.points.forEach(point => {
+                            // Look for point with same x
+                            let match = taxEntry.points.findIndex(pt => {
+                                return pt.x == point.x
+                            })
+                            // Create new point or add existing to match
+                            if (taxEntry.points.length == 0 || match == -1) {
+                                // *** IMPORTANT *** 
+                                // MUST PUSH A COPY NOT THE ORIGINAL
+                                // Otherwise will sum the original points as well as the new one
+                                taxEntry.points.push({ ...point })
+                                match = taxEntry.points.length - 1
+                            } else {
+                                taxEntry.points[match].y += point.y
+                            }
+                            // Update min and max values
+                            if (taxEntry.points[match].y > taxEntry.max) {
+                                taxEntry.max = taxEntry.points[match].y
+                            }
+                            if (taxEntry.points[match].y < taxEntry.min) {
+                                taxEntry.min = taxEntry.points[match].y
+                            }
                         })
-                        // Create new point or add existing to match
-                        if (taxEntry.points.length == 0 || match == -1) {
-                            // *** IMPORTANT *** MUST PUSH A COPY NOT THE ORIGINAL
-                            // taxEntry.points.push({ ...point })
-                            taxEntry.points.push(point)
-                            match = taxEntry.points.length - 1
-                        } else {
-                            taxEntry.points[match].y += point.y
-                        }
-                        // Update min and max values
-                        if (taxEntry.points[match].y > taxEntry.max) {
-                            taxEntry.max = taxEntry.points[match].y
-                        }
-                        if (taxEntry.points[match].y < taxEntry.min) {
-                            taxEntry.min = taxEntry.points[match].y
-                        }
-                    })
-                    // Sort points in date order
-                    taxEntry.points.sort((a, b) => a.x - b.x)
-                }
-            })
-            groups.push(taxEntry)
+                        // Points sorted after being converted to TimelineDates
+                    }
+                })
+                groups.push(taxEntry)
+            }
         })
         return groups
     }

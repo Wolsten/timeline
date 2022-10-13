@@ -9,25 +9,30 @@
     export let categories
     export let subCategories
     export let options
-    export let groupedSeriesLength
 
     // console.log(events)
     // console.log(categories)
     // console.log(subCategories)
 
     // Get list of event specific categories
-    let eventCategories = categories.filter((category) =>
+    $: eventCategories = categories.filter((category) =>
         events.find((event) => event.category == category.name)
     )
     // console.log(eventCategories)
 
     // Get list of event specific sub categories
-    let eventSubCategories = subCategories.filter((subCategory) =>
+    $: eventSubCategories = subCategories.filter((subCategory) =>
         eventCategories.find(
             (category) => category.name == subCategory.category
         )
     )
     // console.log(eventSubCategories)
+
+    // $: seriesCategories = categories.filter((category) =>{
+    //     series.find( entry => {
+
+    //     })
+    // })
 
     const dispatch = createEventDispatcher()
 
@@ -96,7 +101,7 @@
     {/each}
 {/if}
 
-{#if series.length > 1 && options.group == false && options.totals == false}
+{#if series.length > 1 && options.group == "single"}
     <aside class="series">
         <span class="title">Series:</span>
 
@@ -122,49 +127,51 @@
     </aside>
 {/if}
 
-{#if groupedSeriesLength > 0}
+{#if options.group !== "sub-category" && categories.length > 0}
+    {@const multiple = categories.length > 1}
     <aside>
-        {#if options.totals}
-            {#if categories.length > 1}
-                <span class="title">Categories:</span>
+        <span class="title">Categories:</span>
 
-                {#each categories as category, cIndex}
-                    <!-- {#if subCategory.category == category.name} -->
-                    {@const colour = category.colour}
-                    {@const isActive = options.filter == category.name}
-                    {@const symbolIndex = options.symbols ? cIndex : 0}
-                    <span
-                        class="symbol category"
-                        class:active={isActive}
-                        title="Click to highlight this category"
-                        on:click|stopPropagation={() =>
-                            handleClickCategory(category.name)}
-                    >
-                        <Symbol index={symbolIndex} {colour} wrapped={true} />
-                        {Utils.sentenceCase(category.name)}
-                    </span>
-                {/each}
-            {/if}
-        {:else}
-            <span class="title">Sub-categories:</span>
+        {#each categories as category, cIndex}
+            {@const colour = category.colour}
+            {@const isActive = multiple && options.filter == category.name}
+            {@const symbolIndex = options.symbols ? cIndex : 0}
+            <span
+                class="symbol"
+                class:multiple
+                class:active={isActive}
+                title="Click to highlight this category"
+                on:click|stopPropagation={() =>
+                    multiple && handleClickCategory(category.name)}
+            >
+                <Symbol index={symbolIndex} {colour} wrapped={true} />
+                {Utils.sentenceCase(category.name)}
+            </span>
+        {/each}
+    </aside>
+{/if}
 
-            {#each subCategories as subCategory, scIndex}
-                <!-- {#if subCategory.category == category.name} -->
-                {@const colour = subCategory.colour}
-                {@const isActive = options.filter == subCategory.name}
-                {@const symbolIndex = options.symbols ? scIndex : 0}
-                <span
-                    class="symbol sub-category"
-                    class:active={isActive}
-                    title="Click to highlight this sub category"
-                    on:click|stopPropagation={() =>
-                        handleClickSubCat(subCategory.name)}
-                >
-                    <Symbol index={symbolIndex} {colour} wrapped={true} />
-                    {Utils.sentenceCase(subCategory.name)}
-                </span>
-            {/each}
-        {/if}
+{#if options.group !== "category" && subCategories.length > 0}
+    {@const multiple = subCategories.length > 1}
+    <aside>
+        <span class="title">Sub-categories:</span>
+
+        {#each subCategories as subCategory, scIndex}
+            {@const colour = subCategory.colour}
+            {@const isActive = multiple && options.filter == subCategory.name}
+            {@const symbolIndex = options.symbols ? scIndex : 0}
+            <span
+                class="symbol"
+                class:multiple
+                class:active={isActive}
+                title="Click to highlight this sub category"
+                on:click|stopPropagation={() =>
+                    handleClickSubCat(subCategory.name)}
+            >
+                <Symbol index={symbolIndex} {colour} wrapped={true} />
+                {Utils.sentenceCase(subCategory.name)}
+            </span>
+        {/each}
     </aside>
 {/if}
 
@@ -189,9 +196,13 @@
         padding: 0.1rem 0.2rem;
         margin: 0.2rem 0.4rem;
         /* border-bottom: 4px solid transparent; */
-        cursor: pointer;
+
         transition: all ease-in 300ms;
         text-align: center;
+    }
+
+    span.multiple {
+        cursor: pointer;
     }
 
     .title {
@@ -199,11 +210,11 @@
         cursor: default;
     }
 
-    .symbol:hover {
+    .symbol.multiple:hover {
         outline: solid 0.1rem var(--tl-colour-legend-highlight);
     }
 
-    .symbol.active {
+    .symbol.multiple.active {
         outline: solid 0.2rem var(--tl-colour-legend-highlight);
     }
 
