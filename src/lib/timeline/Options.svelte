@@ -26,7 +26,8 @@
         options.filter != "" ||
         options.search != "" ||
         options.sort != "date" ||
-        options.group
+        options.group ||
+        options.totals
     )
 </script>
 
@@ -51,11 +52,26 @@
             <Toggle
                 name="group"
                 label="Group"
+                disabled={options.totals}
                 bind:value={options.group}
                 on:changed={() => {
                     dispatch("optionsChanged", {
                         name: "group",
                         data: options.group,
+                    })
+                }}
+            />
+        {/if}
+
+        {#if groupedSeriesLength > 0 && groupedSeriesLength < rawSeriesLength}
+            <Toggle
+                name="totals"
+                label="Totals"
+                bind:value={options.totals}
+                on:changed={() => {
+                    dispatch("optionsChanged", {
+                        name: "group",
+                        data: options.totals,
                     })
                 }}
             />

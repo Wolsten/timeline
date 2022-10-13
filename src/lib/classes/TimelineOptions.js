@@ -7,11 +7,12 @@ class TimelineOptions {
 
     symbols = false
     readonly = false
-    group = false      // group by category or sub-category according to filter typ
+    group = false      // by sub-category
+    totals = false     // show totals by category
     search = ''
-    filter = ''
-    filterType = ''
-    title = ''
+    filter = ''        // Name of series, category or sub-category to highlight
+    filterType = ''    // Taxononomy to highlight by (single, category or sub-category)
+    title = ''         // Overwrite the dataset name
     sort = 'date'
     maxEventsHeight = '' // can be set to any valid css value
     categories = []
@@ -47,7 +48,10 @@ class TimelineOptions {
                         if (value === 'true') this.readonly = true
                         break
                     case 'group':
-                        this.group = value ? true : false
+                        if (value === 'true') this.group = true
+                        break
+                    case 'totals':
+                        if (value === 'true') this.totals = true
                         break
                     case 'search':
                         this.search = value
@@ -130,6 +134,7 @@ class TimelineOptions {
         this.sort = "date"
         this.symbols = false
         this.group = false
+        this.totals = false
         this.xRange = xRange.copy()
     }
 }

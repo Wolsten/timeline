@@ -29,6 +29,7 @@ Possible settings (with defaults) are as follows:
 | symbols | false | Whether to display symbols on charts |
 | readonly | false | If set to `true` constrains user interactions |
 | group | false | If set to `true` group charted data by sub-category |
+| totals | false | If set to `true` group charted data by category |
 | search | '' | Show events with name containing the text |
 | filter | '' | Highlights events and graphical series according to category or sub-category |
 | filterType | '' | The taxonomy to filter against, allowed values include `single` for highlighting a series in a chart, `sub-category` for highlighting events and series by sub-category and `category` for highlighting events and series by category |

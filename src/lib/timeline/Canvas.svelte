@@ -118,7 +118,14 @@
     }
 
     function getColour(selPoint, filter, index) {
-        // console.error("Getting colour for series", index, "with filter", filter)
+        // console.error(
+        //     "Getting colour for series",
+        //     index,
+        //     "with filter",
+        //     filter,
+        //     "filterType",
+        //     options.filterType
+        // )
         let inActive = false
         // Set the default colour
         let colour = series[index].colour
@@ -135,15 +142,15 @@
                         inActive = true
                     }
                     break
-                // case "category":
-                //     if (series[index].category != filter) {
-                //         inActive = true
-                //     } else {
-                //         colour = categories.find(
-                //             (cat) => cat.name == filter
-                //         ).colour
-                //     }
-                //     break
+                case "category":
+                    if (series[index].category != filter) {
+                        inActive = true
+                    } else {
+                        colour = categories.find(
+                            (cat) => cat.name == filter
+                        ).colour
+                    }
+                    break
                 case "sub-category":
                     if (series[index].subCategory != filter) {
                         inActive = true

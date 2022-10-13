@@ -96,7 +96,7 @@
     {/each}
 {/if}
 
-{#if series.length > 1 && options.group == false}
+{#if series.length > 1 && options.group == false && options.totals == false}
     <aside class="series">
         <span class="title">Series:</span>
 
@@ -124,24 +124,47 @@
 
 {#if groupedSeriesLength > 0}
     <aside>
-        <span class="title">Categories:</span>
+        {#if options.totals}
+            {#if categories.length > 1}
+                <span class="title">Categories:</span>
 
-        {#each subCategories as subCategory, scIndex}
-            <!-- {#if subCategory.category == category.name} -->
-            {@const colour = subCategory.colour}
-            {@const isActive = options.filter == subCategory.name}
-            {@const symbolIndex = options.symbols ? scIndex : 0}
-            <span
-                class="symbol sub-category"
-                class:active={isActive}
-                title="Click to highlight this event category"
-                on:click|stopPropagation={() =>
-                    handleClickSubCat(subCategory.name)}
-            >
-                <Symbol index={symbolIndex} {colour} wrapped={true} />
-                {Utils.sentenceCase(subCategory.name)}
-            </span>
-        {/each}
+                {#each categories as category, cIndex}
+                    <!-- {#if subCategory.category == category.name} -->
+                    {@const colour = category.colour}
+                    {@const isActive = options.filter == category.name}
+                    {@const symbolIndex = options.symbols ? cIndex : 0}
+                    <span
+                        class="symbol category"
+                        class:active={isActive}
+                        title="Click to highlight this category"
+                        on:click|stopPropagation={() =>
+                            handleClickCategory(category.name)}
+                    >
+                        <Symbol index={symbolIndex} {colour} wrapped={true} />
+                        {Utils.sentenceCase(category.name)}
+                    </span>
+                {/each}
+            {/if}
+        {:else}
+            <span class="title">Sub-categories:</span>
+
+            {#each subCategories as subCategory, scIndex}
+                <!-- {#if subCategory.category == category.name} -->
+                {@const colour = subCategory.colour}
+                {@const isActive = options.filter == subCategory.name}
+                {@const symbolIndex = options.symbols ? scIndex : 0}
+                <span
+                    class="symbol sub-category"
+                    class:active={isActive}
+                    title="Click to highlight this sub category"
+                    on:click|stopPropagation={() =>
+                        handleClickSubCat(subCategory.name)}
+                >
+                    <Symbol index={symbolIndex} {colour} wrapped={true} />
+                    {Utils.sentenceCase(subCategory.name)}
+                </span>
+            {/each}
+        {/if}
     </aside>
 {/if}
 

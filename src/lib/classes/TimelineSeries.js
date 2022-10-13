@@ -1,5 +1,6 @@
 import Utils from "../Utils"
 import TimelinePoint from "../classes/TimelinePoint.js"
+import TimelineSubCategory from "./TimelineSubCategory"
 
 class TimelineSeries {
 
@@ -34,6 +35,7 @@ class TimelineSeries {
                 this.colour = rawEntry.colour ? rawEntry.colour : Utils.defaultColour(sIndex)
                 break
             case "category":
+            case "total":
                 this.colour = dataCategories.find(item => item.name == rawEntry.category).colour
                 break
             case "sub-category":
@@ -66,6 +68,7 @@ class TimelineSeries {
             rawSeries = rawSeries.filter(entry => options.subCategories.includes(entry.category.name))
         }
         // Generate grouped series
+        const totals = TimelineSeries.groupSeries(rawSeries, 'category', dataCategories)
         const groups = TimelineSeries.groupSeries(rawSeries, 'sub-category', dataSubCategories)
         // Generate new entries for each series ... do this individually to make sure the sIndex is restarted 
         // for each set as when displayed they are displayed in these sets only
@@ -73,22 +76,29 @@ class TimelineSeries {
         rawSeries.forEach((entry, sIndex) => {
             series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
         })
+        if (totals.length < rawSeries.length) {
+            totals.forEach((entry, sIndex) => {
+                series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
+            })
+        }
         if (groups.length < rawSeries.length) {
             groups.forEach((entry, sIndex) => {
                 series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
             })
         }
-        // console.log('Initialiased series', series)
+        console.log('Initialiased series', series)
         return series
     }
 
 
-    static process(series, xRange, type, group) {
+    static process(series, xRange, type, group, totals) {
         if (series.length == 0) return []
         // Initialise the filtered list
         let filtered = []
         // Totalised values only?
-        if (group) {
+        if (totals) {
+            filtered = series.filter((entry) => entry.type === 'category')
+        } else if (group) {
             filtered = series.filter((entry) => entry.type === type)
         } else {
             filtered = series.filter((entry) => entry.type === "single")
@@ -122,21 +132,21 @@ class TimelineSeries {
         let groups = []
 
         taxonomyList.forEach((tax, index) => {
-            // if (taxonomy == 'category' && tax.name == 'excess deaths') {
-            //     debugger
-            // }
+
             let taxEntry
             rawSeries.forEach(entry => {
                 if ((taxonomy == 'category' && entry.category == tax.name) ||
                     (taxonomy == 'sub-category' && entry.subCategory == tax.name)) {
                     // Initialise group
                     if (!taxEntry) {
-                        const name = tax.name
+                        const summary = taxonomy == 'category' ? 'All categories' : `Data grouped by ${taxonomy} ${name}`
+                        const subCategory = taxonomy == 'category' ? 'all' : entry.subCategory
                         taxEntry = {
                             ...entry,
                             name: tax.name,
                             legend: tax.name,
-                            summary: `Data grouped by ${taxonomy} ${name}`,
+                            subCategory: subCategory,
+                            summary: summary,
                             max: Number.NEGATIVE_INFINITY,
                             min: Number.POSITIVE_INFINITY,
                             type: taxonomy,

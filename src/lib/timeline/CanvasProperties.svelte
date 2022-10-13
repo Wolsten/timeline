@@ -82,7 +82,9 @@
 
         {#if series.citations}
             <h4>Source</h4>
-            {@html series.citations}
+            <div class="wrap-all">
+                {@html series.citations}
+            </div>
         {/if}
     </div>
 {/if}

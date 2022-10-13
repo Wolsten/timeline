@@ -3,9 +3,11 @@
     export let multipleSeries
     export let options
 
-    function setComments(group, filter, type) {
+    function setComments(totals, group, filter, type) {
         let comments = ""
-        if (group) {
+        if (totals) {
+            comments = "series grouped and coloured by category"
+        } else if (group) {
             if (type == "category") {
                 comments = "series grouped and coloured by category"
             } else if (type == "sub-category") {
@@ -27,6 +29,7 @@
         {#if multipleSeries}
             <span class="subtitle"
                 >({setComments(
+                    options.totals,
                     options.group,
                     options.filter,
                     options.filterType

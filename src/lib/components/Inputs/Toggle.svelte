@@ -11,6 +11,8 @@
     export let value = false
     export let disabled = false
 
+    // $: console.log(name, "disabled", disabled)
+
     // Must have a unique name for each toggle as otherwise multiple
     // checkboxes in different instances of the component could
     // interfere
@@ -114,7 +116,8 @@
         color: var(--tl-colour-toggle-hover-font);
     }
 
-    .holder.disabled span {
+    .holder.disabled span.active {
+        background-color: var(--tl-colour-faint-lines);
         opacity: var(--opacity-faint);
         cursor: default;
     }

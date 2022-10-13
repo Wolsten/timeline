@@ -67,7 +67,8 @@
             dataset.series,
             options.xRange,
             options.filterType,
-            options.group
+            options.group,
+            options.totals
         )
 
     //
@@ -250,7 +251,7 @@
     on:click|stopPropagation={handleClick}
 >
     <Caption
-        multipleSeries={dataset.series.length > 1}
+        multipleSeries={filteredSeries.length > 1}
         {options}
         title={options.title || dataset.name}
     />
