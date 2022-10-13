@@ -54,11 +54,11 @@
     .properties {
         /* font-size: 1rem;
         line-height: 1.4rem; */
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: fixed;
+        bottom: 10vh;
+        left: 5%;
         background: white;
-        width: 100%;
+        width: 70%;
         max-height: 100%;
         padding: 0.5rem;
         border: 1px solid var(--tl-colour-box-shadow);
@@ -69,9 +69,8 @@
 
     .properties.mobile {
         top: 0;
-        left: 0;
+        left: 10vh;
         width: 100%;
-        /* max-height: 50%; */
         max-height: 50vh;
     }
 

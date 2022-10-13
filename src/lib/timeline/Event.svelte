@@ -20,7 +20,6 @@
 
     // If sorting selecting just need top coordinate
     // $: props.top = getTop(options.sort)
-
     // If filtering get the new colours
     //$: props.colour = getColour(options.filter)
 
@@ -126,7 +125,8 @@
         }
     }
 
-    function handleClick() {
+    function handleClick(evt) {
+        // console.log("Event target", evt.target.parentNode.offsetTop)
         let clickMs = Date.now()
         // console.log('event handling click to select',event)
         if (
