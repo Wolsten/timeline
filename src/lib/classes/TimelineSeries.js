@@ -28,10 +28,10 @@ class TimelineSeries {
         this.summary = rawEntry.summary
         this.min = rawEntry.min
         this.max = rawEntry.max
-        this.type = rawEntry.type ? rawEntry.type : "single"
+        this.type = rawEntry.type ? rawEntry.type : "off"
         // Set colours
         switch (this.type) {
-            case "single":
+            case "off":
                 this.colour = rawEntry.colour ? rawEntry.colour : Utils.defaultColour(sIndex)
                 break
             case "category":

@@ -59,8 +59,8 @@
 
         text-align: center;
         margin: 0;
-        top: 0.3rem;
-        right: 0.5rem;
+        top: 0.1rem;
+        right: 0.2rem;
         padding-bottom: 0.4rem;
         font-size: 2rem;
     }

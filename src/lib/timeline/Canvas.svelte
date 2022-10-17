@@ -137,7 +137,7 @@
             }
         } else if (filter !== "") {
             switch (options.filterType) {
-                case "single":
+                case "off":
                     if (series[index].legend != filter) {
                         inActive = true
                     }

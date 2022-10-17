@@ -1,11 +1,7 @@
 :root {
-  /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height: 1.4em;
-  /* font-weight: normal; */
-  /* line-height: 24px;
-  font-weight: 400; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -90,6 +86,8 @@
 
   --tl-not-filtered: var(--tl-material-200-blue-grey);
 
+  --tl-colour-info: var(--tl-material-500-teal);
+
 
   /* Other custom variables */
 
@@ -97,7 +95,7 @@
 
   --tl-size-border-radius: 0.4rem;
 
-  --tl-size-input-padding: 0.4rem 0.6rem;
+  --tl-size-input-padding: 0.2rem 0.4rem;
 
   --tl-size-figure-padding-bottom: 0;
 
@@ -161,29 +159,13 @@ time-line h4 {
 }
 
 time-line p {
-  /* line-height: 2rem; */
   position: relative;
-  /* font-family: Georgia, 'Times New Roman', Times, serif; */
 }
-
-/* time-line li {
-  padding: 0.5rem;
-  text-align: left;
-  line-height: 1.4rem;
-  ;
-} */
-
-
-/* time-line .sub-title {
-  font-weight: bold;
-} */
-
 
 time-line button,
 time-line a {
   transition: background-color ease-in 500ms;
 }
-
 
 time-line svg {
   display: block;

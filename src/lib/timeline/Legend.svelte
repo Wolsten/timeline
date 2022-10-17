@@ -21,7 +21,7 @@
     function handleClickSeries(value) {
         dispatch("optionsChanged", {
             name: "filter",
-            data: { taxonomy: "single", value },
+            data: { taxonomy: "off", value },
         })
     }
 
@@ -77,7 +77,7 @@
 {/if} -->
 
 <!-- Series only -->
-{#if series.length > 1 && options.group == "single"}
+{#if series.length > 1 && options.group == "off"}
     <aside class="series">
         <span class="title">Series:</span>
 

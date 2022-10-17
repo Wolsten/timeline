@@ -7,12 +7,12 @@ class TimelineOptions {
 
     symbols = false
     readonly = false
-    group = 'single'   // Group by: 'single', 'category', 'sub-category'
+    group = "off"   // Group by: 'off', 'category', 'sub-category'
     search = ''
     filter = ''        // Name of series, category or sub-category to highlight
     filterType = ''    // Taxononomy to highlight by (single, category or sub-category)
     title = ''         // Overwrite the dataset name
-    sort = 'date'
+    sort = "date"
     maxEventsHeight = '' // can be set to any valid css value
     categories = []
     subCategories = []
@@ -21,6 +21,7 @@ class TimelineOptions {
     selectedPoint = undefined
     zoom = 1
     focus = undefined
+    info = false
 
     constructor(settings = '') {
 
@@ -135,7 +136,8 @@ class TimelineOptions {
         this.filter = ""
         this.sort = "date"
         this.symbols = false
-        this.group = 'single'
+        this.group = "off"
+        this.info = false
         this.xRange = xRange.copy()
     }
 }

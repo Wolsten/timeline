@@ -34,7 +34,7 @@
 
     function groupOptions(l) {
         if (l <= 1) return []
-        let g = ["single", "category"]
+        let g = ["off", "category"]
         if (subCats > 1) {
             g.push("sub-category")
         }
@@ -118,6 +118,16 @@
                 sort = false
                 dispatch("optionsChanged", {
                     name: "reset",
+                })
+            }}
+        />
+        <Button
+            label="i"
+            style="font-size:1.2rem;font-family:script;color:var(--tl-colour-info);"
+            on:clicked={() => {
+                dispatch("optionsChanged", {
+                    name: "info",
+                    data: true,
                 })
             }}
         />

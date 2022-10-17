@@ -20,6 +20,7 @@
     import CanvasProperties from "./CanvasProperties.svelte"
     import Caption from "./Caption.svelte"
     import XRange from "./XRange.svelte"
+    import Info from "./Info.svelte"
     import { windowWidth, touch } from "../stores"
 
     export let data
@@ -122,6 +123,9 @@
                 options.reset(dataset.xRange)
                 reScale()
                 resetXRange = true
+                break
+            case "info":
+                options.info = eventData
                 break
         }
         if (event.detail.name !== "selectedPoint") {
@@ -326,6 +330,10 @@
             {viewportWidth}
             on:optionsChanged={handleOptions}
         />
+    {/if}
+
+    {#if options.info}
+        <Info on:optionsChanged={handleOptions} />
     {/if}
 </figure>
 

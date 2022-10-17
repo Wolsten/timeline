@@ -52,8 +52,6 @@
 -------------------------------------------------------------------------------->
 <style>
     .properties {
-        /* font-size: 1rem;
-        line-height: 1.4rem; */
         position: fixed;
         bottom: 10vh;
         left: 5%;

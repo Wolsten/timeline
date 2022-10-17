@@ -5,11 +5,13 @@
 
     export let label = ""
     export let disabled = false
+    export let style = ""
 </script>
 
 <button
     type="button"
     {disabled}
+    {style}
     on:click|stopPropagation={() => dispatch("clicked")}
 >
     {label}
