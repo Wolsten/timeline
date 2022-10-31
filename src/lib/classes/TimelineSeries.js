@@ -69,24 +69,28 @@ class TimelineSeries {
             rawSeries = rawSeries.filter(entry => options.subCategories.includes(entry.category.name))
         }
         // Generate grouped series
-        const totals = TimelineSeries.groupSeries(rawSeries, 'category', dataCategories)
-        const groups = TimelineSeries.groupSeries(rawSeries, 'sub-category', dataSubCategories)
+        const categoryGroups = TimelineSeries.groupSeries(rawSeries, 'category', dataCategories)
+        const subCategoryGroups = TimelineSeries.groupSeries(rawSeries, 'sub-category', dataSubCategories)
         // Generate new entries for each series ... do this individually to make sure the sIndex is restarted 
         // for each set as when displayed they are displayed in these sets only
         const series = []
         rawSeries.forEach((entry, sIndex) => {
             series.push(new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories))
         })
-        if (totals.length < rawSeries.length) {
-            totals.forEach((entry, sIndex) => {
+        // Only add category groups if there are less groups than the original series
+        // Otherwise means there would be one category per series
+        if (categoryGroups.length < rawSeries.length) {
+            categoryGroups.forEach((entry, sIndex) => {
                 const totalSeries = new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories)
                 // Order the points
                 totalSeries.points.sort(TimelineSeries.sortGroup)
                 series.push(totalSeries)
             })
         }
-        if (groups.length < rawSeries.length) {
-            groups.forEach((entry, sIndex) => {
+        // Only add sub-category groups if there are less groups than the original series
+        // Otherwise means there would be one sub-category per series
+        if (subCategoryGroups.length < rawSeries.length) {
+            subCategoryGroups.forEach((entry, sIndex) => {
                 const groupSeries = new TimelineSeries(options.xRange, xRange, sIndex, entry, dataCategories, dataSubCategories)
                 // Order the points
                 groupSeries.points.sort(TimelineSeries.sortGroup)
@@ -145,56 +149,56 @@ class TimelineSeries {
         taxonomyList.forEach((tax, index) => {
 
             // Ignore the 'other' category or sub-category
-            if (tax.name != 'other') {
+            // if (tax.name != 'other') {
 
-                let taxEntry
-                rawSeries.forEach(entry => {
-                    // Does the series match the taxonomy name?
-                    if ((taxonomy == 'category' && entry.category == tax.name) ||
-                        (taxonomy == 'sub-category' && entry.subCategory == tax.name)) {
-                        // Initialise group
-                        if (!taxEntry) {
-                            const summary = `Data grouped by ${taxonomy} ${name}`
-                            taxEntry = {
-                                ...entry,
-                                name: tax.name,
-                                legend: tax.name,
-                                summary: summary,
-                                max: Number.NEGATIVE_INFINITY,
-                                min: Number.POSITIVE_INFINITY,
-                                type: taxonomy,
-                                points: [],
-                            }
+            let taxEntry
+            rawSeries.forEach(entry => {
+                // Does the series match the taxonomy name?
+                if ((taxonomy == 'category' && entry.category == tax.name) ||
+                    (taxonomy == 'sub-category' && entry.subCategory == tax.name)) {
+                    // Initialise group
+                    if (!taxEntry) {
+                        const summary = `Data grouped by ${taxonomy} ${name}`
+                        taxEntry = {
+                            ...entry,
+                            name: tax.name,
+                            legend: tax.name,
+                            summary: summary,
+                            max: Number.NEGATIVE_INFINITY,
+                            min: Number.POSITIVE_INFINITY,
+                            type: taxonomy,
+                            points: [],
                         }
-                        // Accumulate data points
-                        entry.points.forEach(point => {
-                            // Look for point with same x
-                            let match = taxEntry.points.findIndex(pt => {
-                                return pt.x == point.x
-                            })
-                            // Create new point or add existing to match
-                            if (taxEntry.points.length == 0 || match == -1) {
-                                // *** IMPORTANT *** 
-                                // MUST PUSH A COPY NOT THE ORIGINAL
-                                // Otherwise will sum the original points as well as the new one
-                                taxEntry.points.push({ ...point })
-                                match = taxEntry.points.length - 1
-                            } else {
-                                taxEntry.points[match].y += point.y
-                            }
-                            // Update min and max values
-                            if (taxEntry.points[match].y > taxEntry.max) {
-                                taxEntry.max = taxEntry.points[match].y
-                            }
-                            if (taxEntry.points[match].y < taxEntry.min) {
-                                taxEntry.min = taxEntry.points[match].y
-                            }
-                        })
-                        // Points sorted after being converted to TimelineDates
                     }
-                })
-                groups.push(taxEntry)
-            }
+                    // Accumulate data points
+                    entry.points.forEach(point => {
+                        // Look for point with same x
+                        let match = taxEntry.points.findIndex(pt => {
+                            return pt.x == point.x
+                        })
+                        // Create new point or add existing to match
+                        if (taxEntry.points.length == 0 || match == -1) {
+                            // *** IMPORTANT *** 
+                            // MUST PUSH A COPY NOT THE ORIGINAL
+                            // Otherwise will sum the original points as well as the new one
+                            taxEntry.points.push({ ...point })
+                            match = taxEntry.points.length - 1
+                        } else {
+                            taxEntry.points[match].y += point.y
+                        }
+                        // Update min and max values
+                        if (taxEntry.points[match].y > taxEntry.max) {
+                            taxEntry.max = taxEntry.points[match].y
+                        }
+                        if (taxEntry.points[match].y < taxEntry.min) {
+                            taxEntry.min = taxEntry.points[match].y
+                        }
+                    })
+                    // Points sorted after being converted to TimelineDates
+                }
+            })
+            groups.push(taxEntry)
+            // }
         })
         return groups
     }

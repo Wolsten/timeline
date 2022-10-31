@@ -1,33 +1,35 @@
 <script>
     export let title
-    export let multipleSeries
     export let options
+    export let filteredSeries
 
     function setComments(group, filter) {
-        // console.log("setComments: " "group", group)
         let comments = ""
-        if (group == "category") {
-            comments = "related series grouped by category"
-        } else if (group == "sub-category") {
-            comments = "related series grouped by sub-category"
-        } else {
-            comments = "individual series"
+        // For series only
+        if (filteredSeries.length > 0) {
+            if (group == "category") {
+                comments = "related series grouped by category"
+            } else if (group == "sub-category") {
+                comments = "related series grouped by sub-category"
+            } else {
+                comments = "individual series"
+            }
         }
+        // Show highlighting for events and series
         if (filter != "") {
-            comments = comments + ", highlighting " + filter
+            if (comments) comments += ", "
+            comments += "highlighting " + filter
         }
-        return comments
+        return comments ? "(" + comments + ")" : ""
     }
 </script>
 
 <figCaption>
     <h3>
         {title}
-        <!-- {#if multipleSeries} -->
-        <span class="subtitle"
-            >({setComments(options.group, options.filter)})</span
-        >
-        <!-- {/if} -->
+        <span class="subtitle">
+            {setComments(options.group, options.filter)}
+        </span>
     </h3>
 </figCaption>
 

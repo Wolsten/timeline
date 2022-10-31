@@ -170,6 +170,8 @@
             Utils.CANVAS_PADDING_RIGHT
         // Get axis and set options.xRange.scale a side effect
         xAxis = new TimelineXAxis(drawingWidth, options.xRange)
+        // Reset highlighting
+        options.filter = ""
     }
 
     function scrollToSelected() {
@@ -256,19 +258,14 @@
     class="timeline timeline-content"
     on:click|stopPropagation={handleClick}
 >
-    <Caption
-        multipleSeries={filteredSeries.length > 1}
-        {options}
-        title={options.title || dataset.name}
-    />
+    <Caption {options} title={options.title || dataset.name} {filteredSeries} />
 
     {#if options.readonly === false}
         <Options
             {options}
             xRange={dataset.xRange}
-            rawSeriesLength={dataset.series.length}
-            eventsLength={dataset.events.length}
-            subCats={dataset.subCategories.length}
+            series={dataset.series}
+            events={filteredEvents}
             on:optionsChanged={handleOptions}
         />
     {/if}
@@ -311,6 +308,7 @@
     {/if}
 
     <Legend
+        events={filteredEvents}
         series={filteredSeries}
         categories={dataset.categories}
         subCategories={dataset.subCategories}
@@ -340,7 +338,7 @@
 <style>
     figure {
         position: relative;
-        margin: 0;
+        margin: 2rem 0;
         padding: 1rem 0.5rem var(--tl-size-figure-padding-bottom) 0.5rem;
         width: 100%;
         background: var(--tl-colour-chart-background);

@@ -26,15 +26,14 @@ Possible settings (with defaults) are as follows:
 
 | Setting | Default | Usage |
 |---------|---------|-------|
-| symbols | false | Whether to display symbols on charts |
-| readonly | false | If set to `true` constrains user interactions |
-| group | false | If set to `true` group charted data by sub-category |
-| totals | false | If set to `true` group charted data by category |
+| symbols | `false` | Whether to display symbols on charts |
+| readonly | `false` | If set to `true` constrains user interactions |
+| group | `off` | Can be set to `category` or `sub-category` |
 | search | '' | Show events with name containing the text |
 | filter | '' | Highlights events and graphical series according to category or sub-category |
-| filterType | '' | The taxonomy to filter against, allowed values include `single` for highlighting a series in a chart, `sub-category` for highlighting events and series by sub-category and `category` for highlighting events and series by category |
+| filterType | '' | The taxonomy to filter against, allowed values include `off` for highlighting a series in a chart, `sub-category` for highlighting events and series by sub-category and `category` for highlighting events and series by category |
 | title | 'dataset name' | Override the dataset name specified in the json dataset file |
-| sort | 'date' | The order in which events are displayed, by `date` or by `category` (and date within category) |
+| sort | 'date' | The order in which events are displayed, by `date` or by `category` (and sub-category) |
 | maxEventsHeight | '' | Set to any valid css value, e.g. `200px` or `60vh` |
 | start | 'dataset start date' | Override the dataset start date to display a subset of data |
 | end | 'dataset end date' | Override the dataset end date to display a subset of data |

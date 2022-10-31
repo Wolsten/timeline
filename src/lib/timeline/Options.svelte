@@ -7,9 +7,8 @@
     import Choice from "../components/Inputs/Choice.svelte"
 
     export let xRange // Full dataset xRange (not potential options.xRange subset)
-    export let rawSeriesLength
-    export let eventsLength
-    export let subCats = 0
+    export let series // Original series
+    export let events // Filtered events
     export let options
 
     const dispatch = createEventDispatcher()
@@ -18,7 +17,9 @@
     let disabled = false
     let optionsEvent = "optionsChanged"
 
-    $: gOptions = groupOptions(rawSeriesLength)
+    $: gOptions = groupOptions(series)
+
+    $: eventSort = eventGroups(events)
 
     $: sort = options.sort == "category"
 
@@ -32,19 +33,32 @@
         options.totals
     )
 
-    function groupOptions(l) {
-        if (l <= 1) return []
-        let g = ["off", "category"]
-        if (subCats > 1) {
-            g.push("sub-category")
-        }
+    function eventGroups(e) {
+        let cGroups = []
+        let scGroups = []
+        e.forEach((evt) => {
+            if (cGroups.includes(evt.category) == false)
+                cGroups.push(evt.category)
+            if (scGroups.includes(evt.subCategory) == false)
+                scGroups.push(evt.subCategory)
+        })
+        return cGroups.length > 1 || scGroups.length > 1
+    }
+
+    function groupOptions(s) {
+        if (s.length <= 1) return []
+        // Default option
+        let g = ["off"]
+        // Do we have at least 1 category group and sub-category in the original series
+        if (series.find((s) => s.type == "category")) g.push("category")
+        if (series.find((s) => s.type == "sub-category")) g.push("sub-category")
         return g
     }
 </script>
 
 <div class="form">
     {#if options.readonly === false}
-        {#if rawSeriesLength > 0}
+        {#if series.length > 0}
             <Toggle
                 name="symbols"
                 label="Symbols"
@@ -59,14 +73,14 @@
             />
         {/if}
 
-        {#if gOptions.length > 0}
+        {#if gOptions.length > 1}
             <Choice
                 name="group"
                 label="Group by"
                 options={gOptions}
                 bind:value={options.group}
                 on:changed={() => {
-                    console.log("Toggled groupBy", options.group)
+                    // console.log("Toggled groupBy", options.group)
                     dispatch("optionsChanged", {
                         name: "group",
                         data: options.group,
@@ -76,19 +90,21 @@
         {/if}
     {/if}
 
-    {#if eventsLength > 0}
-        <Toggle
-            name="category"
-            label="Sort by"
-            options={["date", "category"]}
-            value={sort}
-            on:changed={() => {
-                dispatch(optionsEvent, {
-                    name: "sort",
-                    data: sort ? "date" : "category",
-                })
-            }}
-        />
+    {#if events.length > 0}
+        {#if eventSort}
+            <Toggle
+                name="category"
+                label="Sort by"
+                options={["date", "category"]}
+                value={sort}
+                on:changed={() => {
+                    dispatch(optionsEvent, {
+                        name: "sort",
+                        data: sort ? "date" : "category",
+                    })
+                }}
+            />
+        {/if}
 
         <TextSearch
             placeholder="Find event"

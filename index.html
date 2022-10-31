@@ -9,83 +9,97 @@
 
 <body>
 
-  <h1>Timeline Test</h1>
-
   <style>
     #main-c {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    #main-c>div {
-      flex-basis: 60%;
-      flex-grow: 1;
-      /* padding: 10rem; */
-    }
-
-    #main-c>aside {
-      flex-basis: 40%;
-      flex-shrink: 1;
-      padding: 2rem;
-    }
-
-    @media (max-width:800px) {
-      #main-c {
-        flex-direction: column;
-      }
+      margin: 0 auto;
+      max-width: 76ch;
     }
   </style>
 
   <main id="main-c">
 
-    <div>
-      <!-- 
-      Commented out timelines
-      http://test.local/wp-content/uploads/2022/09/history-of-ukraine.json
- 
-    data-settings="readonly=true,group=category,title=Total mortalities from natural disasters (TEST)">
-  </time-line>
-  <time-line data-url="/data/weekly-deaths-in-england-and-wales.json"></time-line>
-  <time-line data-url="/data/deaths-from-natural-disasters.json"></time-line>
-  <time-line data-url="/data/geologic-timescale.json"></time-line>
-  
-  <time-line data-url="/data/human-evolution.json"></time-line>
-  <time-line data-url="/data/modern-democracy-in-great-britain.json"></time-line>
-  <time-line data-url="/data/hybrid-dataset.json"></time-line>
-  <time-line data-url="/data/history-of-ukraine.json"></time-line>
--->
-
-      <time-line data-url="/data/history-of-taiwan.json"></time-line>
-
-      <time-line data-url="/data/weekly-deaths-in-england-and-wales.json"></time-line>
+    <h1>Timeline Test</h1>
 
 
+    <!-- <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"></time-line> -->
+    <!-- <time-line data-url="/data/deaths-from-natural-disasters.json"></time-line> -->
+    <!-- <time-line data-url="/data/geologic-timescale.json"></time-line> -->
+    <!-- <time-line data-url="/data/human-evolution.json"></time-line> -->
+    <!-- <time-line data-url="/data/modern-democracy-in-great-britain.json"></time-line> -->
+    <!-- <time-line data-url="/data/history-of-ukraine.json"></time-line> -->
+    <!-- <time-line data-url="/data/history-of-taiwan.json"></time-line> -->
 
 
-      <!-- <time-line data-url="/data/geologic-timescale.json" data-settings="maxEventsHeight=400px">
-      </time-line>
+    <p>
+      As the winter season approaches and with the associated rise in respiratory ill-nesses, it feels like a good
+      time
+      to take stock of the data on COVID-19 and excess deaths. The following chart shows the total weekly deaths since
+      the beginning of 2018 due to all causes using the official data from the <a href="https://www.ons.gov.uk">UK
+        Office for National Statistics:</a>
+    </p>
 
-      <time-line data-url="/data/geologic-timescale.json">
-      </time-line> -->
+    <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"
+      data-settings="readonly=true,group=category,title=Weekly deaths (all causes)">
+    </time-line>
 
-      <!-- <time-line data-url="/data/geologic-timescale.json" data-settings="readonly=true,subCategories=eon|era|period">
-      </time-line>
+    <p>We can look at the breakdown of COVID v non-COVID though we'll come back to these figures later:</p>
 
-      <time-line data-url="/data/geologic-timescale.json"
-        data-settings="readonly=true,subCategories=eon|evolution,title=Geologic timescale and human evolution">
-      </time-line>
+    <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"
+      data-settings="readonly=false,title=Weekly deaths (with and without COVID)"></time-line>
 
-      <time-line data-url="/data/human-evolution.json" data-settings="readonly=true">
-      </time-line>
+    <p>The data is slightly misleading in that the COVID-categorisation didn't start until March 2020 but the two
+      clear peaks in 2020 and 2021 are really clear. What is not shown is a similar peak in 2022 and we can speculate
+      as to why this is the case. There are a number of non-exclusive candidates:</p>
 
+    <ol>
+      <li>The vaccines programme which started in late 2020.</li>
+      <li>Natural herd immunity started to kick in (delayed by lockdown policies).</li>
+      <li>Many vulnerable people, particularly those over 80 and/or with pre-existing conditions had already
+        passed away in the first two peaks, but one would not have expected to see a larger number of deaths in the 2021
+        peak if this were the case.</li>
+      <li>The evolution of the vaccine and particularly the emergence of the delta variant which, though more
+        transmissable, was less serious.</li>
+    </ol>
 
-      <time-line data-url="/data/human-evolution.json" data-settings="start=2.8mya,end=0.2mya">
-      </time-line> -->
+    <p>One reason why I have some scepticism about the effectiveness of the vaccines is that although the programme
+      began in late 2020, targeting the most vulnerable/older people, the height of the 2021 peak is
+      very similar to the that of the initial 2020 peak. If the vaccines were as effective as many claim, why was the
+      second peak so similar to the first (with more overall deaths) and there no obvious point of inflection? This
+      question is all the more pertinent given the tighter lockdown measures introduced later in the pandemic.</p>
 
-    </div>
-    <!-- <aside>
-    </aside> -->
+    <p>Of course part of the problem could be in the way the data is recorded and collected. Many people have asked for
+      better data with a tighter definition of what constitutes death from COVID. There are many stories about people
+      dying in hospital following car crashes. These cases were registered as dying with COVID if they had died within
+      28 days of a positive COVID test. I don't want to overplay these stories, and fortunately, we have some good data
+      which tries to get to the bottom of this question as a result of a Freedom of Information (FOI) request.</p>
+
+    <!-- <time-line data-url="/data/weekly-deaths-in-england-and-wales.json" data-settings=""></time-line> -->
+
+    <p>From the data we have looked at so far it is impossible to attribute any weightings for each possibility. That
+      is not to say that vaccines were not as effective as some people thought and I would be interested if anyone
+      reading post who knows of a good quality study (particularly for the UK) could leave a link in the comments. Our
+      experience may not be representative but both my wife and I caught COVID before and after having the
+      vaccinations. The severity of the second infection was almost as bad as the first, with the main symptoms being
+      fatigue but little in the way of a cough.</p>
+
+    <p>However, it does appear that the vaccines were not tested for their effectiveness in preventing transmission,
+      as
+      discussed here:</p>
+
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/J6VbI8gOnUM" title="YouTube video player"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe> -->
+
+    <p>I supported the proposals outlined in the <a href="https://gbdeclaration.org">The Great Barrington
+        Declaration</a> which argued against lockdown in favour
+      of
+      targeted protection of the vulnerable. Countries such as Sweden and States such as Florida, which adopted this
+      approach,
+      have very similar outcomes to those which locked down hard. I don't think this is surprising given the highly
+      selective nature of this virus. Also, as far as I am aware lockdown was not a feature of any pandemic plans prior
+      to COVID-19.</p>
+
+    <!-- <time-line data-url="/data/weekly-deaths-in-england-and-wales.json"></time-line> -->
 
   </main>
 

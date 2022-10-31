@@ -193,24 +193,19 @@
         <!-- Y axis -->
         {#each yRange.horizontals as h, index}
             <!-- line and label-->
-            {#if index != 0}
-                {@const scaledHeight = TimelinePoint.scaleY(
-                    h.y,
-                    yRange,
-                    HEIGHT
-                )}
-                <line
-                    class="y-line"
-                    x1={Utils.CANVAS_PADDING_LEFT}
-                    x2={Utils.CANVAS_PADDING_LEFT + drawingWidth}
-                    y1={scaledHeight}
-                    y2={scaledHeight}
-                />
 
-                <text class="y-label" x={0} y={scaledHeight - 6}>
-                    {Utils.formatNumber(h.label, 2)}
-                </text>
-            {/if}
+            {@const scaledHeight = TimelinePoint.scaleY(h.y, yRange, HEIGHT)}
+            <line
+                class="y-line"
+                x1={Utils.CANVAS_PADDING_LEFT}
+                x2={Utils.CANVAS_PADDING_LEFT + drawingWidth}
+                y1={scaledHeight}
+                y2={scaledHeight}
+            />
+
+            <text class="y-label" x={0} y={scaledHeight - 6}>
+                {Utils.formatNumber(h.label, 2)}
+            </text>
         {/each}
 
         <!-- Data series -->
@@ -277,14 +272,6 @@
     .y-line {
         stroke-width: 1;
         stroke: var(--tl-colour-faint-lines);
-    }
-
-    .y-label {
-        font-size: 0.8rem;
-    }
-
-    text {
-        fill: var(--tl-colour-font);
     }
 
     .tooltip {

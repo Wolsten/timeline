@@ -68,14 +68,8 @@
         flex-basis: 70%;
     }
 
-    input,
-    select {
-        display: none;
-    }
-
     .holder {
         display: flex;
-        /* margin-left: 0.3rem; */
     }
 
     .toggle {
