@@ -20,36 +20,34 @@
 
     <h1>Timeline Test</h1>
 
-
-    <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"></time-line>
+    <!-- <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"></time-line>
     <time-line data-url="/data/deaths-from-natural-disasters.json"></time-line>
     <time-line data-url="/data/geologic-timescale.json"></time-line>
     <time-line data-url="/data/human-evolution.json"></time-line>
     <time-line data-url="/data/modern-democracy-in-great-britain.json"></time-line>
     <time-line data-url="/data/history-of-ukraine.json"></time-line>
-    <time-line data-url="/data/history-of-taiwan.json"></time-line>
+    <time-line data-url="/data/history-of-taiwan.json"></time-line> -->
 
+
+    As the winter season approaches and with the associated rise in respiratory ill-nesses, it feels like a good
+    time to take stock of the data on COVID-19 and excess deaths. The following chart shows the total weekly deaths
+    since the beginning of 2018 due to all causes using the official data from the <a href="https://www.ons.gov.uk">UK
+      Office for National Statistics (ONS):</a>
+
+    <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"
+      data-settings="readonly=true,group=category,title=Weekly deaths (all causes)">
+    </time-line>
+
+    <p>Looking at the breakdown of COVID v non-COVID we can see two large peaks of "with COVID" deaths:</p>
+
+    <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"
+      data-settings="readonly=true,title=Weekly deaths (with and without COVID)"></time-line>
 
     <p>
-      As the winter season approaches and with the associated rise in respiratory ill-nesses, it feels like a good
-      time
-      to take stock of the data on COVID-19 and excess deaths. The following chart shows the total weekly deaths since
-      the beginning of 2018 due to all causes using the official data from the <a href="https://www.ons.gov.uk">UK
-        Office for National Statistics:</a>
+      The data is slightly misleading in that the COVID-categorisation didn't start until March 2020. What is not shown
+      is a peak in 2022 similar to the previous two years and we can speculate as to why this is the case. There are a
+      number of non-exclusive candidates:
     </p>
-
-    <!-- <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"
-      data-settings="readonly=true,group=category,title=Weekly deaths (all causes)">
-    </time-line> -->
-
-    <p>We can look at the breakdown of COVID v non-COVID though we'll come back to these figures later:</p>
-
-    <!-- <time-line data-url="/data/weekly-deaths-in-england-and-wales-covid-comparison.json"
-      data-settings="readonly=false,title=Weekly deaths (with and without COVID)"></time-line> -->
-
-    <p>The data is slightly misleading in that the COVID-categorisation didn't start until March 2020 but the two
-      clear peaks in 2020 and 2021 are really clear. What is not shown is a similar peak in 2022 and we can speculate
-      as to why this is the case. There are a number of non-exclusive candidates:</p>
 
     <ol>
       <li>The vaccines programme which started in late 2020.</li>
@@ -57,23 +55,119 @@
       <li>Many vulnerable people, particularly those over 80 and/or with pre-existing conditions had already
         passed away in the first two peaks, but one would not have expected to see a larger number of deaths in the 2021
         peak if this were the case.</li>
-      <li>The evolution of the vaccine and particularly the emergence of the delta variant which, though more
+      <li>The evolution of the virus and particularly the emergence of the delta variant which, though more
         transmissable, was less serious.</li>
     </ol>
 
-    <p>One reason why I have some scepticism about the effectiveness of the vaccines is that although the programme
+    <p>
+      One reason why I have some scepticism about the effectiveness of the vaccines is that although the programme
       began in late 2020, targeting the most vulnerable/older people, the height of the 2021 peak is
       very similar to the that of the initial 2020 peak. If the vaccines were as effective as many claim, why was the
-      second peak so similar to the first (with more overall deaths) and there no obvious point of inflection? This
-      question is all the more pertinent given the tighter lockdown measures introduced later in the pandemic.</p>
+      second peak so similar to the first (with more overall deaths) with no obvious inflection point? This
+      question is all the more pertinent given the tighter lockdown measures introduced later in the pandemic.
+    </p>
+
+    <p>
+      To get a clearer idea of what is going on lets look at how the current mortality figures compare to the running
+      5-year average and the resulting excess death rate, which is the difference between the two.
+    </p>
+
+    <time-line data-url="/data/weekly-deaths-compared-to-5-year-average.json"
+      data-settings="readonly=true,categories=Total deaths|Excess deaths|5-year average"></time-line>
+
+    <p>
+      The chart shows the annual winter peaks for the 5-year average due to normal respiratory illnesses such as flu.
+      There is a delay in increase of excess deaths in 2020 as a result of the virus
+      taking hold around March following the normal winter peak but by 2021 they are aligned. Concentrating on 2022 we
+      see:
+    </p>
+
+    <time-line data-url="/data/weekly-deaths-compared-to-5-year-average.json"
+      data-settings="readonly=true,title=Weekly deaths in 2022,categories=Total deaths|Excess deaths|5-year average,start=2022-01-01,end=2022-12-31">
+    </time-line>
+
+    <p>
+      From the previous chart we know that COVID deaths are much reduced in 2022 but the excess deaths dip rather
+      than rise in the usual winter peak. However, although COVID deaths remain low, excess deaths in 2022 remain
+      significant. In fact, if you look carefully it can be seen that the excess deaths are actually rising throughout
+      the year when one would expect them to fall, all other things being considered? So what is going on here?
+      Certainly the medical profession and the press have started to pick up on this.
+    </p>
+
+    <p>
+      The BMJ have looked into the underlying causes with a report <a
+        href="https://www.bmj.com/content/379/bmj.o2524">What is driving excess deaths
+        in England and Wales?</a>. This article attempts (unconvincingly in my opinion) to attribute as much of the
+      excess death to delayed-COVID symptoms with some attribution to the 2022 heatwave hitting the elderly. Amongst the
+      other factors they mention are increases in diabetes related death and slower NHS
+      treatment due to being overstretched. The BMJ also concludes that "covid-19 remains a deadly and disabling
+      threat". Well yes, but as we have known since the middle of 2020 the threat is to older people (over 80) and those
+      with certain underlying health issues such as obesity and diabetes. We now know with a good degree of certainty
+      that the delta variant of the virus is much less deadly.
+    </p>
+
+    <p>
+      My belief, based on common sense and backed up by the expert opinion of the <a
+        href="https://gbdeclaration.org">Great
+        Barrington Declaration</a> and many other medical experts, is that it was inevitable that lockdown policies
+      would have a detrimental impact in a variety of ways:
+    </p>
+
+    <ol>
+      <li>Transforming the NHS into a COVID-only service meant that, though ostensibly still open for business, many
+        people avoided visiting their GP in order to get an early diagnosis of their symptoms. Most diseases
+        can be treated better if caught early.</li>
+      <li>People were actively discouraged from taking exercise, which is a pre-requisite for better health,
+        particularly cardio-vascular fitness but also significantly relieves mental health stresses.</li>
+      <!-- @todo REFERENCE -->
+      <li>Being kept in-doors also has an impact the amount of vitamin D that the body produces and some
+        studies have shown that healthy levels of vitamin D are a factor in withstanding the symptoms of COVID.</li>
+      <li>The current economic consequences were entirely predictable and it is ironic that Mr Sunak is now in charge of
+        sorting out the fallout from his own pandemic spending.</li>
+      <li>Education was badly hit, with many students now taking their universities to court to reclaim fees and I fully
+        support them.</li>
+      <li>It appears that many people have become accustomed to a work-at-home lifestyle and are now reluctant to
+        return to the office, despite in many cases holding onto "London allowances". I can understand that in many
+        areas this might be a more efficient way to work but it seems obvious from the actual performance of several
+        public bodies that this does not appear to be the case. </li>
+    </ol>
+
+
+
+
+
+
+
+
+
+
 
     <p>Of course part of the problem could be in the way the data is recorded and collected. Many people have asked for
-      better data with a tighter definition of what constitutes death from COVID. There are many stories about people
-      dying in hospital following car crashes. These cases were registered as dying with COVID if they had died within
-      28 days of a positive COVID test. I don't want to overplay these stories, and fortunately, we have some good data
-      which tries to get to the bottom of this question as a result of a Freedom of Information (FOI) request.</p>
+      better data with a tighter definition of what constitutes death from COVID. To be fair to the medical profession
+      and the ONS, allocating cause of death was not a simple matter before COVID. The ONS cover this issue in detail <a
+        href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/methodologies/userguidetomortalitystatisticsjuly2017">here</a>.
+    </p>
 
-    <!-- <time-line data-url="/data/weekly-deaths-in-england-and-wales.json" data-settings=""></time-line> -->
+
+
+
+
+    <p>There are many stories in the media about people dying in hospital following car crashes and subsequently
+      registered as dying
+      with COVID if they had died within 28 days of a positive COVID test. However, as the ONS response to a <a
+        href="https://www.ons.gov.uk/aboutus/transparencyandgovernance/freedomofinformationfoi/covid19deathswithin28daysofapositivecovid19testandonsmethodologyforcovid19reporting">
+        Freedom of Information</a> request on this question shows, this is not the simple matter that some of the press
+      have made out and death "with COVID" within 28 days being a categorisation by used public health departments to
+      better respond to an emergency situation. It is not used in the ONS mortality figures. Fortunately, we have some
+      interesting data
+      as a result of another <a
+        href="https://www.ons.gov.uk/aboutus/transparencyandgovernance/freedomofinformationfoi/covid19alonewithnounderlininghealthissuesnovemeber2019todecember2021">FOI
+        request to ONS</a>:</p>
+
+    <time-line data-url="/data/weekly-deaths-compared-to-5-year-average.json"
+      data-settings="readonly=true,categories=Total deaths|Excess deaths|5-year average"></time-line>
+
+    <p>The interesting </p>
 
     <p>From the data we have looked at so far it is impossible to attribute any weightings for each possibility. That
       is not to say that vaccines were not as effective as some people thought and I would be interested if anyone
@@ -83,8 +177,7 @@
       fatigue but little in the way of a cough.</p>
 
     <p>However, it does appear that the vaccines were not tested for their effectiveness in preventing transmission,
-      as
-      discussed here:</p>
+      as discussed here:</p>
 
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/J6VbI8gOnUM" title="YouTube video player"
       frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

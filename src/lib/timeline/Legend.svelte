@@ -9,22 +9,24 @@
     export let subCategories
     export let options
 
+    // An event category only needs to appear once to be "used"
     $: usedEventCategories = categories.filter((c) =>
         events.find((e) => e.category == c.name)
     )
 
+    // An event sub-category only needs to appear once to be "used"
     $: usedEventSubCategories = subCategories.filter((c) =>
         events.find((e) => e.subCategory == c.name)
     )
 
     $: usedCategories = [...usedEventCategories, ...usedSeriesCategories]
 
-    $: usedSeriesCategories = categories.filter((c) =>
-        series.find((s) => s.category == c.name)
+    $: usedSeriesCategories = categories.filter(
+        (c) => series.filter((s) => s.category == c.name).length > 0
     )
 
-    $: usedSeriesSubCategories = subCategories.filter((c) =>
-        series.find((s) => s.subCategory == c.name)
+    $: usedSeriesSubCategories = subCategories.filter(
+        (c) => series.filter((s) => s.subCategory == c.name).length > 0
     )
 
     $: usedSubCategories = [

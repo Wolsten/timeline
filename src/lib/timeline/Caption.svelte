@@ -1,26 +1,15 @@
 <script>
     export let title
     export let options
-    export let filteredSeries
 
     function setComments(group, filter) {
         let comments = ""
-        // For series only
-        if (filteredSeries.length > 0) {
-            if (group == "category") {
-                comments = "related series grouped by category"
-            } else if (group == "sub-category") {
-                comments = "related series grouped by sub-category"
-            } else {
-                comments = "individual series"
-            }
-        }
         // Show highlighting for events and series
         if (filter != "") {
-            if (comments) comments += ", "
-            comments += "highlighting " + filter
+            comments = "highlighting " + filter
+            return "(" + comments + ")"
         }
-        return comments ? "(" + comments + ")" : ""
+        return ""
     }
 </script>
 

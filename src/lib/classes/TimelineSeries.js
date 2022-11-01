@@ -1,6 +1,6 @@
 import Utils from "../Utils"
 import TimelinePoint from "../classes/TimelinePoint.js"
-import TimelineSubCategory from "./TimelineSubCategory"
+// import TimelineSubCategory from "./TimelineSubCategory"
 
 class TimelineSeries {
 
@@ -63,10 +63,10 @@ class TimelineSeries {
     static init(xRange, rawSeries, options, dataCategories, dataSubCategories) {
         // Filter series according to optional categories and sub categories
         if (options.categories.length > 0) {
-            rawSeries = rawSeries.filter(entry => options.categories.includes(entry.category.name))
+            rawSeries = rawSeries.filter(entry => options.categories.includes(entry.category))
         }
         if (options.subCategories.length > 0) {
-            rawSeries = rawSeries.filter(entry => options.subCategories.includes(entry.category.name))
+            rawSeries = rawSeries.filter(entry => options.subCategories.includes(entry.subCategory))
         }
         // Generate grouped series
         const categoryGroups = TimelineSeries.groupSeries(rawSeries, 'category', dataCategories)

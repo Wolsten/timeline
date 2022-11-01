@@ -258,7 +258,7 @@
     class="timeline timeline-content"
     on:click|stopPropagation={handleClick}
 >
-    <Caption {options} title={options.title || dataset.name} {filteredSeries} />
+    <Caption {options} title={options.title || dataset.name} />
 
     {#if options.readonly === false}
         <Options

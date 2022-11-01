@@ -49,9 +49,11 @@
         if (s.length <= 1) return []
         // Default option
         let g = ["off"]
-        // Do we have at least 1 category group and sub-category in the original series
-        if (series.find((s) => s.type == "category")) g.push("category")
-        if (series.find((s) => s.type == "sub-category")) g.push("sub-category")
+        // Do we have more than one used category group and sub-category in the original series?
+        if (series.filter((s) => s.type == "category").length > 1)
+            g.push("category")
+        if (series.filter((s) => s.type == "sub-category").length > 1)
+            g.push("sub-category")
         return g
     }
 </script>

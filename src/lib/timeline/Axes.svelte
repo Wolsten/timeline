@@ -2,7 +2,6 @@
     import { fade } from "svelte/transition"
 
     import Utils from "../Utils.js"
-    // import TimelineDate from "../classes/TimelineDate.js"
 
     export let xAxis
     export let viewportWidth
@@ -15,6 +14,8 @@
 
     $: alignWithTicks = xAxis.units != "months" && xAxis.units != "quarters"
     $: interval = xAxis.ticks[1]
+
+    // $: console.log(xAxis)
 </script>
 
 <!------------------------------------------------------------------------------

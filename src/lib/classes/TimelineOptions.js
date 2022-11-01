@@ -41,7 +41,7 @@ class TimelineOptions {
             const parts = pair.split('=')
             if (parts.length == 2) {
                 const setting = parts[0].trim()
-                const value = parts[1].trim()
+                let value = parts[1].trim()
                 // console.log(setting, value)
                 switch (setting) {
                     case 'symbols':
@@ -80,6 +80,7 @@ class TimelineOptions {
                         end = value
                         break
                     case 'subCategories':
+                        value = value.toLowerCase()
                         const subCategories = value.split('|')
                         if (subCategories.length > 0) {
                             subCategories.forEach(subCat => subCat.trim())
@@ -88,6 +89,7 @@ class TimelineOptions {
                         // console.log('subCategories', this.subCategories)
                         break;
                     case 'categories':
+                        value = value.toLowerCase()
                         const cats = value.split('|')
                         if (cats.length > 0) {
                             cats.forEach(cat => cat.trim())
