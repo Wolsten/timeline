@@ -2,7 +2,6 @@
     import { createEventDispatcher } from "svelte"
 
     import Symbol from "./Symbol.svelte"
-    // import Utils from "../Utils.js"
 
     export let events // Filtered events
     export let series // Filtered series
@@ -126,6 +125,7 @@
     </aside>
 {/if}
 
+<!-- Series grouped by sub-category or filter by series or event sub-categories -->
 {#if options.group === "sub-category" || (usedSeriesSubCategories.length > 1 && usedSeriesSubCategories.length != series.length) || (usedEventSubCategories.length > 1 && usedEventSubCategories.length != events.length)}
     <aside>
         {#if usedSubCategories.length > 1}
@@ -154,10 +154,8 @@
                     handleClickSubCat(subCategory.name)}
             >
                 <Symbol index={symbolIndex} {colour} wrapped={true} />
-                {#if options.group == "sub-category"}
-                    Total
-                {/if}
-                {subCategory.name}
+                {#if options.group == "sub-category"}Total
+                {/if}{subCategory.name}
             </span>
         {/each}
     </aside>
