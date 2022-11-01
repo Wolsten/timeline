@@ -5,7 +5,7 @@
     export let colour = "transparent"
     export let wrapped = false // True is using symbol in html not an svg
 
-    const SYMBOL_SIZE = 12
+    const SYMBOL_SIZE = 10
 </script>
 
 <!------------------------------------------------------------------------------
@@ -42,10 +42,6 @@
 <style>
     svg {
         margin-right: 0.3rem;
-    }
-
-    rect {
-        cursor: pointer;
     }
 
     /* Smaller square */

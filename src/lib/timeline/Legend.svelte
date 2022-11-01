@@ -10,17 +10,28 @@
     export let subCategories
     export let options
 
-    $: usedCategories = categories.filter(
-        (cat) =>
-            series.find((s) => s.category == cat.name) !== undefined ||
-            events.find((e) => e.category == cat.name) !== undefined
+    $: usedEventCategories = categories.filter((c) =>
+        events.find((e) => e.category == c.name)
     )
 
-    $: usedSubCategories = subCategories.filter(
-        (subCat) =>
-            series.find((s) => s.subCategory == subCat.name) !== undefined ||
-            events.find((e) => e.subCategory == subCat.name) !== undefined
+    $: usedEventSubCategories = subCategories.filter((c) =>
+        events.find((e) => e.subCategory == c.name)
     )
+
+    $: usedCategories = [...usedEventCategories, ...usedSeriesCategories]
+
+    $: usedSeriesCategories = categories.filter((c) =>
+        series.find((s) => s.category == c.name)
+    )
+
+    $: usedSeriesSubCategories = subCategories.filter((c) =>
+        series.find((s) => s.subCategory == c.name)
+    )
+
+    $: usedSubCategories = [
+        ...usedEventSubCategories,
+        ...usedSeriesSubCategories,
+    ]
 
     const dispatch = createEventDispatcher()
 
@@ -54,7 +65,7 @@
 -------------------------------------------------------------------------------->
 
 <!-- Series only -->
-{#if options.group == "off" && series.length > 1}
+{#if options.group == "off" && series.length > 0}
     <aside class="series">
         <span class="title">Series:</span>
 
@@ -80,9 +91,8 @@
     </aside>
 {/if}
 
-<!-- Categories for events and series -->
-<!-- {#if options.group !== "sub-category" && usedCategories.length > 0 && (series.length > usedCategories.length || events.length > usedCategories.length)} -->
-{#if options.group === "category" || usedCategories.length > 1}
+<!-- Series grouped by category or filter by series or event categories -->
+{#if options.group === "category" || (usedSeriesCategories.length > 1 && usedSeriesCategories.length != series.length) || (usedEventCategories.length > 1 && usedEventCategories.length != events.length)}
     <aside>
         {#if usedCategories.length > 1}
             <span class="title">Categories:</span>
@@ -95,7 +105,12 @@
                 usedCategories.length > 1}
             {@const isActive =
                 options.filter == category.name && usedCategories.length > 1}
-            {@const symbolIndex = options.symbols ? cIndex : 0}
+            {@const symbolIndex = options.symbols
+                ? options.group == "off"
+                    ? 0
+                    : cIndex
+                : 0}
+
             <span
                 class="symbol"
                 class:active={isActive}
@@ -105,19 +120,13 @@
                     handleClickCategory(category.name)}
             >
                 <Symbol index={symbolIndex} {colour} wrapped={true} />
-                {#if options.group == "category"}
-                    Total
-                {/if}
-                {category.name}
-                <!-- {Utils.sentenceCase(category.name)} -->
+                {#if options.group == "category"}Total {/if}{category.name}
             </span>
         {/each}
     </aside>
 {/if}
 
-<!-- Sub-categories for events and series -->
-<!-- {#if options.group !== "category" && usedSubCategories.length > 1 && (series.length > usedSubCategories.length || events.length > usedSubCategories.length)} -->
-{#if options.group === "sub-category" || usedSubCategories.length > series.length}
+{#if options.group === "sub-category" || (usedSeriesSubCategories.length > 1 && usedSeriesSubCategories.length != series.length) || (usedEventSubCategories.length > 1 && usedEventSubCategories.length != events.length)}
     <aside>
         {#if usedSubCategories.length > 1}
             <span class="title">Sub-categories:</span>
@@ -131,7 +140,11 @@
             {@const hoverable =
                 (series.length > 0 && options.group == "off") ||
                 usedSubCategories.length > 1}
-            {@const symbolIndex = options.symbols ? scIndex : 0}
+            {@const symbolIndex = options.symbols
+                ? options.group == "off"
+                    ? 0
+                    : scIndex
+                : 0}
             <span
                 class="symbol"
                 class:active={isActive}
@@ -145,7 +158,6 @@
                     Total
                 {/if}
                 {subCategory.name}
-                <!-- {Utils.sentence?Case(subCategory.name)} -->
             </span>
         {/each}
     </aside>

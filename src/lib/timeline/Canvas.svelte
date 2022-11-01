@@ -170,7 +170,7 @@
     }
 
     function getSymbolIndex(filter, sIndex) {
-        if (options.group == false) {
+        if (options.group == "off") {
             return sIndex
         }
         if (options.filterType == "category") {
@@ -262,6 +262,10 @@
         overflow: visible;
         position: relative;
         width: 100%;
+    }
+
+    g {
+        cursor: pointer;
     }
 
     polyline {
