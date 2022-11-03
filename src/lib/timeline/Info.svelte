@@ -1,14 +1,14 @@
 <script>
     import { createEventDispatcher } from "svelte"
-    import { slide } from "svelte/transition"
+    import { fly } from "svelte/transition"
 
-    // import { mobile } from "../stores.js"
+    import { mobile } from "../stores.js"
     import Button from "../components/Inputs/Button.svelte"
 
     const dispatch = createEventDispatcher()
 </script>
 
-<div class="properties" transition:slide>
+<div class="properties" class:mobile={$mobile} transition:fly={{ x: -200 }}>
     <div class="scroller">
         <h2>How to use timelines</h2>
 
@@ -95,25 +95,31 @@
 
 <style>
     .properties {
-        position: absolute;
-        top: 0;
+        position: fixed;
+        bottom: 0;
         left: 0;
         background: white;
-        width: 100%;
-        height: 100%;
-        padding: 2rem;
+        width: 50vw;
+        min-width: 200px;
+        height: 100vh;
         border: 1px solid var(--tl-colour-box-shadow);
         box-shadow: 0.2rem 0.2rem 0.3rem var(--tl-colour-box-shadow);
         z-index: 2;
     }
 
+    .properties.mobile {
+        width: 100vw;
+        min-height: 100vh;
+        max-height: 100vh;
+    }
+
     .scroller {
+        height: 100%;
         position: absolute;
         top: 0;
         left: 0;
-        height: 100%;
         padding: 2rem;
-        z-index: 2;
+        z-index: 3;
         overflow-y: scroll;
     }
 
